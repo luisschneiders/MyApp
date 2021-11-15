@@ -21,6 +21,7 @@ namespace LocationLibrary
         private string _postcode;
         private string _state;
 
+        // constructor
         public Location()
         {
         }
