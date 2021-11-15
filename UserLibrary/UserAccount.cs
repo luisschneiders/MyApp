@@ -5,7 +5,7 @@ namespace UserLibrary
 {
     public class UserAccount : ILocation
     {
-        private int _userId;
+        private string _userId;
         private string _userName;
         private string _userEmail;
         private string _userPassword;
@@ -13,6 +13,7 @@ namespace UserLibrary
         private string _userPhone;
         private ILocation _userLocation;
 
+        // constructor
         public UserAccount(string userName, string userEmail, string userPassword, string userMobilePhone, string userPhone, ILocation userLocation)
         {
             _userName = userName;
@@ -23,7 +24,20 @@ namespace UserLibrary
             _userLocation = userLocation;
         }
 
-        public int UserId
+        // method Save
+        public void Save(string userName)
+        {
+            if (userName.Trim() == "")
+            {
+                throw new ArgumentNullException(nameof(userName), "Name can't be null.");
+            }
+
+            UserId = Guid.NewGuid().ToString();
+            UserName = userName;
+
+        }
+
+        public string UserId
         {
             get => _userId;
             set => _userId = value;
