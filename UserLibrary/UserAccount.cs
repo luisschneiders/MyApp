@@ -27,10 +27,7 @@ namespace UserLibrary
         // method Save
         public void Save(string userName)
         {
-            if (userName.Trim() == "")
-            {
-                throw new ArgumentNullException(nameof(userName), "Name can't be null.");
-            }
+            // Add validation for fields
 
             UserId = Guid.NewGuid().ToString();
             UserName = userName;
