@@ -12,7 +12,7 @@ namespace LocationLibrary
         string State { get; set; }
     }
 
-    public class Location: ILocation
+    public class Location : ILocation
     {
         private string _address;
         private int _lat;
