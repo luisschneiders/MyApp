@@ -3,7 +3,7 @@ using LocationLibrary;
 
 namespace UserLibrary
 {
-    public class UserAccount : ILocation
+    public class User : ILocation
     {
         private string _userId;
         private string _userName;
@@ -14,7 +14,7 @@ namespace UserLibrary
         private ILocation _userLocation;
 
         // constructor
-        public UserAccount(string userName, string userEmail, string userPassword, string userMobilePhone, string userPhone, ILocation userLocation)
+        public User(string userName, string userEmail, string userPassword, string userMobilePhone, string userPhone, ILocation userLocation)
         {
             _userName = userName;
             _userEmail = userEmail;
