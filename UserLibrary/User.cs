@@ -9,12 +9,12 @@ namespace UserLibrary
         private string _userName;
         private string _userEmail;
         private string _userPassword;
-        private string _userMobilePhone;
-        private string _userPhone;
+        private int _userMobilePhone;
+        private int _userPhone;
         private ILocation _userLocation;
 
         // constructor
-        public User(string userName, string userEmail, string userPassword, string userMobilePhone, string userPhone, ILocation userLocation)
+        public User(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, ILocation userLocation)
         {
             _userName = userName;
             _userEmail = userEmail;
@@ -58,13 +58,13 @@ namespace UserLibrary
             set => _userPassword = value;
         }
 
-        public string UserMobilePhone
+        public int UserMobilePhone
         {
             get => _userMobilePhone;
             set => _userMobilePhone = value;
         }
 
-        public string UserPhone
+        public int UserPhone
         {
             get => _userPhone;
             set => _userPhone = value;
