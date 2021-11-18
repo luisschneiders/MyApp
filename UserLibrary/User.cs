@@ -14,14 +14,8 @@ namespace UserLibrary
         private Location _userLocation;
 
         // constructor
-        public User(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, Location userLocation)
+        public User()
         {
-            _userName = userName;
-            _userEmail = userEmail;
-            _userPassword = userPassword;
-            _userMobilePhone = userMobilePhone;
-            _userPhone = userPhone;
-            _userLocation = userLocation;
         }
 
         // method Save
