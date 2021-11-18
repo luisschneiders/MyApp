@@ -2,17 +2,8 @@
 
 namespace LocationLibrary
 {
-    public interface ILocation
-    {
-        string Address { get; set; }
-        int Lat { get; set; }
-        int Lng { get; set; }
-        string Suburb { get; set; }
-        string Postcode { get; set; }
-        string State { get; set; }
-    }
 
-    public class Location : ILocation
+    public partial class Location
     {
         private string _address;
         private int _lat;
@@ -22,8 +13,14 @@ namespace LocationLibrary
         private string _state;
 
         // constructor
-        public Location()
+        public Location(string address, int lat, int lng, string suburb, string postcode, string state)
         {
+            _address = address;
+            _lat = lat;
+            _lng = lng;
+            _suburb = suburb;
+            _postcode = postcode;
+            _state = state;
         }
 
         public string Address
