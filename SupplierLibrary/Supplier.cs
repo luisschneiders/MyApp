@@ -3,41 +3,31 @@ using LocationLibrary;
 
 namespace SupplierLibrary
 {
-    public interface ISupplier
-    {
-        string SupplierId { get; set; }
-        string SupplierName { get; set; }
-        int SupplierABN { get; set; }
-        int[] SupplierPhone { get; set; }
-        string[] SupplierEmail { get; set; }
-    }
-
-    public class Supplier : ISupplier , ILocation
+    public class Supplier
     {
         private string _supplierId;
         private string _supplierName;
         private int _supplierABN;
         private int[] _supplierPhone;
         private string[] _supplierEmail;
-        private ILocation _supplierLocation;
+        private object _supplierLocation;
 
         // contructor
-        public Supplier(string supplierName, int supplierABN, int[] supplierPhone, string[] supplierEmail, ILocation supplierLocation)
+        public Supplier()
         {
-            _supplierName = supplierName;
-            _supplierABN = supplierABN;
-            _supplierPhone = supplierPhone;
-            _supplierEmail = supplierEmail;
-            _supplierLocation = supplierLocation;
         }
 
         // method Save
-        public void Save(string supplierName)
+        public void Save(string supplierName, int supplierABN, int[] supplierPhone, string[] supplierEmail, Location supplierLocation)
         {
             // Add validation for fields
 
             SupplierId = Guid.NewGuid().ToString();
             SupplierName = supplierName;
+            SupplierABN = supplierABN;
+            SupplierPhone = supplierPhone;
+            SupplierEmail = supplierEmail;
+            SupplierLocation = supplierLocation;
         }
 
         public string SupplierId
@@ -70,11 +60,10 @@ namespace SupplierLibrary
             set => _supplierEmail = value;
         }
 
-        public string Address { get => _supplierLocation.Address; set => _supplierLocation.Address = value; }
-        public int Lat { get => _supplierLocation.Lat; set => _supplierLocation.Lat = value; }
-        public int Lng { get => _supplierLocation.Lng; set => _supplierLocation.Lng = value; }
-        public string Suburb { get => _supplierLocation.Suburb; set => _supplierLocation.Suburb = value; }
-        public string Postcode { get => _supplierLocation.Postcode; set => _supplierLocation.Postcode = value; }
-        public string State { get => _supplierLocation.State; set => _supplierLocation.State = value; }
+        public object SupplierLocation
+        {
+            get => _supplierLocation;
+            set => _supplierLocation = value;
+        }
     }
 }
