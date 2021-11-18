@@ -3,7 +3,7 @@ using LocationLibrary;
 
 namespace UserLibrary
 {
-    public class User : ILocation
+    public class User
     {
         private string _userId;
         private string _userName;
@@ -11,10 +11,10 @@ namespace UserLibrary
         private string _userPassword;
         private int _userMobilePhone;
         private int _userPhone;
-        private ILocation _userLocation;
+        private object _userLocation;
 
         // constructor
-        public User(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, ILocation userLocation)
+        public User(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, Location userLocation)
         {
             _userName = userName;
             _userEmail = userEmail;
@@ -25,12 +25,17 @@ namespace UserLibrary
         }
 
         // method Save
-        public void Save(string userName)
+        public void Save(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, Location userLocation)
         {
             // Add validation for fields
 
             UserId = Guid.NewGuid().ToString();
             UserName = userName;
+            UserEmail = userEmail;
+            UserPassword = userPassword;
+            UserMobilePhone = userMobilePhone;
+            UserPhone = userPhone;
+            UserLocation = userLocation;
 
         }
 
@@ -70,12 +75,10 @@ namespace UserLibrary
             set => _userPhone = value;
         }
 
-        // Assign get and set for _userLocation field
-        public string Address { get => _userLocation.Address; set => _userLocation.Address = value; }
-        public int Lat { get => _userLocation.Lat; set => _userLocation.Lat = value; }
-        public int Lng { get => _userLocation.Lng; set => _userLocation.Lng = value; }
-        public string Suburb { get => _userLocation.Suburb; set => _userLocation.Suburb = value; }
-        public string Postcode { get => _userLocation.Postcode; set => _userLocation.Postcode = value; }
-        public string State { get => _userLocation.State; set => _userLocation.State = value; }
+        public object UserLocation
+        {
+            get => _userLocation;
+            set => _userLocation = value;
+        }
     }
 }
