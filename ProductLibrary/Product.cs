@@ -9,7 +9,7 @@ namespace ProductLibrary
         private string _productName;
         private decimal _productInitialStock;
         private decimal _productCurrentStock;
-        private object _productSupplier;
+        private Supplier _productSupplier;
 
         // constructor
         public Product()
@@ -53,7 +53,7 @@ namespace ProductLibrary
             set => _productCurrentStock = value;
         }
 
-        public object ProductSupplier
+        public Supplier ProductSupplier
         {
             get => _productSupplier;
             set => _productSupplier = value;

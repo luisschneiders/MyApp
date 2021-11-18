@@ -10,7 +10,7 @@ namespace SupplierLibrary
         private int _supplierABN;
         private int[] _supplierPhone;
         private string[] _supplierEmail;
-        private object _supplierLocation;
+        private Location _supplierLocation;
 
         // contructor
         public Supplier()
@@ -60,7 +60,7 @@ namespace SupplierLibrary
             set => _supplierEmail = value;
         }
 
-        public object SupplierLocation
+        public Location SupplierLocation
         {
             get => _supplierLocation;
             set => _supplierLocation = value;

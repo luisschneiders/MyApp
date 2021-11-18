@@ -11,7 +11,7 @@ namespace UserLibrary
         private string _userPassword;
         private int _userMobilePhone;
         private int _userPhone;
-        private object _userLocation;
+        private Location _userLocation;
 
         // constructor
         public User(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, Location userLocation)
@@ -75,7 +75,7 @@ namespace UserLibrary
             set => _userPhone = value;
         }
 
-        public object UserLocation
+        public Location UserLocation
         {
             get => _userLocation;
             set => _userLocation = value;
