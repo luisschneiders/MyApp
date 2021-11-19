@@ -5,8 +5,8 @@ namespace ContactDetailsLibrary
 {
     public class ContactDetails
     {
-        private List<string> _email;
-        private List<int> _phone;
+        private List<string> _email; // can add more than one email
+        private List<int> _phone; // can add more than one phone
         private int _mobile;
 
         // constructor
