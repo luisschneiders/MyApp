@@ -17,4 +17,4 @@ More details will be added here...
 
 ## License
 
-HealthCare App is open source software [licensed as ISC](https://github.com/luisschneiders/HealthCareApp/blob/main/LICENSE).
+HealthCare App is open source software [licensed as ISC](https://github.com/luisschneiders/HealthCareApp/blob/master/LICENSE).
