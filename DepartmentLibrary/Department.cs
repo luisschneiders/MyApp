@@ -1,8 +1,9 @@
 ﻿using System;
+using BaseLibrary;
 
 namespace DepartmentLibrary
 {
-    public class Department
+    public class Department : Base
     {
         private string _departmentID;
         private string _departmentName;
@@ -13,13 +14,16 @@ namespace DepartmentLibrary
         }
 
         // method Save
-        public void Save(string departmentName)
+        public void Save(Department department)
         {
             // Add validation for fields
 
             DepartmentId = Guid.NewGuid().ToString();
-            DepartmentName = departmentName;
-            
+            DepartmentName = department.DepartmentName;
+
+            // both fields will have the same value
+            CreatedAt = UpdatedAt = DateTime.UtcNow;
+
         }
 
         public string DepartmentId
