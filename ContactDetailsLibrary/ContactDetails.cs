@@ -8,11 +8,11 @@ namespace ContactDetailsLibrary
         private List<string> _email; // can add more than one email
 
         #nullable enable //Nullable contexts enable fine-grained control for how the compiler interprets reference type variables
-        private List<int>? _phone; // can add more than one phone or it can be nullable
-        private int? _mobile; // this field can be nullable
+        private List<string>? _phone; // can add more than one phone or it can be nullable
+        private string? _mobile; // this field can be nullable
 
         // constructor
-        public ContactDetails(List<string> email, List<int>? phone, int? mobile)
+        public ContactDetails(List<string> email, List<string>? phone, string? mobile)
         {
             _email = email;
             _phone = phone;
@@ -25,13 +25,13 @@ namespace ContactDetailsLibrary
             set => _email = value;
         }
 
-        public List<int>? Phone
+        public List<string>? Phone
         {
             get => _phone;
             set => _phone = value;
         }
 
-        public int? Mobile
+        public string? Mobile
         {
             get => _mobile;
             set => _mobile = value;
