@@ -1,10 +1,11 @@
 ﻿using System;
+using BaseLibrary;
 using ContactDetailsLibrary;
 using LocationLibrary;
 
 namespace UserLibrary
 {
-    public class User
+    public class User : Base
     {
         private string _userId;
         private string _userName;
@@ -18,15 +19,18 @@ namespace UserLibrary
         }
 
         // method Save
-        public void Save(string userName, string userPassword, ContactDetails userContactDetails, Location userLocation)
+        public void Save(User user)
         {
             // Add validation for fields
 
             UserId = Guid.NewGuid().ToString();
-            UserName = userName;
-            UserPassword = userPassword;
-            UserContactDetails = userContactDetails;
-            UserLocation = userLocation;
+            UserName = user.UserName;
+            UserPassword = user.UserPassword;
+            UserContactDetails = user.UserContactDetails;
+            UserLocation = user.UserLocation;
+
+            // both fields will have the same value
+            CreatedAt = UpdatedAt = DateTime.UtcNow;
 
         }
 
