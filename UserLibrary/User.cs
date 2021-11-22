@@ -1,4 +1,5 @@
 ﻿using System;
+using ContactDetailsLibrary;
 using LocationLibrary;
 
 namespace UserLibrary
@@ -7,10 +8,8 @@ namespace UserLibrary
     {
         private string _userId;
         private string _userName;
-        private string _userEmail;
         private string _userPassword;
-        private int _userMobilePhone;
-        private int _userPhone;
+        private ContactDetails _userContactDetails;
         private Location _userLocation;
 
         // constructor
@@ -19,16 +18,14 @@ namespace UserLibrary
         }
 
         // method Save
-        public void Save(string userName, string userEmail, string userPassword, int userMobilePhone, int userPhone, Location userLocation)
+        public void Save(string userName, string userPassword, ContactDetails userContactDetails, Location userLocation)
         {
             // Add validation for fields
 
             UserId = Guid.NewGuid().ToString();
             UserName = userName;
-            UserEmail = userEmail;
             UserPassword = userPassword;
-            UserMobilePhone = userMobilePhone;
-            UserPhone = userPhone;
+            UserContactDetails = userContactDetails;
             UserLocation = userLocation;
 
         }
@@ -45,28 +42,16 @@ namespace UserLibrary
             set => _userName = value;
         }
 
-        public string UserEmail
-        {
-            get => _userEmail;
-            set => _userEmail = value;
-        }
-
         public string UserPassword
         {
             get => _userPassword;
             set => _userPassword = value;
         }
 
-        public int UserMobilePhone
+        public ContactDetails UserContactDetails
         {
-            get => _userMobilePhone;
-            set => _userMobilePhone = value;
-        }
-
-        public int UserPhone
-        {
-            get => _userPhone;
-            set => _userPhone = value;
+            get => _userContactDetails;
+            set => _userContactDetails = value;
         }
 
         public Location UserLocation
