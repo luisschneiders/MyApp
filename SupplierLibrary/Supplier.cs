@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using ContactDetailsLibrary;
 using LocationLibrary;
 
 namespace SupplierLibrary
@@ -8,9 +10,8 @@ namespace SupplierLibrary
         private string _supplierId;
         private string _supplierName;
         private int _supplierABN;
-        private int[] _supplierPhone;
-        private string[] _supplierEmail;
-        private Location _supplierLocation;
+        private ContactDetails _supplierContactDetails;
+        private List<Location> _supplierLocation; // supplier can have multiple locations
 
         // contructor
         public Supplier()
@@ -18,15 +19,14 @@ namespace SupplierLibrary
         }
 
         // method Save
-        public void Save(string supplierName, int supplierABN, int[] supplierPhone, string[] supplierEmail, Location supplierLocation)
+        public void Save(string supplierName, int supplierABN, ContactDetails supplierContactDetails, List<Location> supplierLocation)
         {
             // Add validation for fields
 
             SupplierId = Guid.NewGuid().ToString();
             SupplierName = supplierName;
             SupplierABN = supplierABN;
-            SupplierPhone = supplierPhone;
-            SupplierEmail = supplierEmail;
+            SupplierContactDetails = supplierContactDetails;
             SupplierLocation = supplierLocation;
         }
 
@@ -48,19 +48,13 @@ namespace SupplierLibrary
             set => _supplierABN = value;
         }
 
-        public int[] SupplierPhone
+        public ContactDetails SupplierContactDetails
         {
-            get => _supplierPhone;
-            set => _supplierPhone = value;
+            get => _supplierContactDetails;
+            set => _supplierContactDetails = value;
         }
 
-        public string[] SupplierEmail
-        {
-            get => _supplierEmail;
-            set => _supplierEmail = value;
-        }
-
-        public Location SupplierLocation
+        public List<Location> SupplierLocation
         {
             get => _supplierLocation;
             set => _supplierLocation = value;
