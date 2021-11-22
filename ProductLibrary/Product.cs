@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using SupplierLibrary;
 
 namespace ProductLibrary
@@ -9,7 +10,10 @@ namespace ProductLibrary
         private string _productName;
         private decimal _productInitialStock;
         private decimal _productCurrentStock;
-        private Supplier _productSupplier;
+        private string _productSerialNumber;
+        private DateTime _productManufactureDate;
+        private DateTime _productExpireDate;
+        private List<Supplier> _productSupplier;
 
         // constructor
         public Product()
@@ -17,16 +21,18 @@ namespace ProductLibrary
         }
 
         // method Save
-        public void Save(string productName, decimal productInitialStock, decimal productCurrentStock, Supplier productSupplier)
+        public void Save(Product product)
         {
             // Add validation for fields
 
             ProductId = Guid.NewGuid().ToString();
-            ProductName = productName;
-            ProductInitialStock = productInitialStock;
-            ProductCurrentStock = productCurrentStock;
-            ProductSupplier = productSupplier;
-
+            ProductName = product.ProductName;
+            ProductInitialStock = product.ProductInitialStock;
+            ProductCurrentStock = product.ProductCurrentStock;
+            ProductSerialNumber = product.ProductSerialNumber;
+            ProductManufactureDate = product.ProductManufactureDate;
+            ProductExpireDate = product.ProductExpireDate;
+            ProductSupplier = product.ProductSupplier;
         }
 
         public string ProductId
@@ -53,7 +59,25 @@ namespace ProductLibrary
             set => _productCurrentStock = value;
         }
 
-        public Supplier ProductSupplier
+        public string ProductSerialNumber
+        {
+            get => _productSerialNumber;
+            set => _productSerialNumber = value;
+        }
+
+        public DateTime ProductManufactureDate
+        {
+            get => _productManufactureDate;
+            set => _productManufactureDate = value;
+        }
+
+        public DateTime ProductExpireDate
+        {
+            get => _productExpireDate;
+            set => _productExpireDate = value;
+        }
+
+        public List<Supplier> ProductSupplier
         {
             get => _productSupplier;
             set => _productSupplier = value;
