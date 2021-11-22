@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using BaseLibrary;
 using SupplierLibrary;
 
 namespace ProductLibrary
 {
-    public class Product
+    public class Product : Base
     {
         private string _productId;
         private string _productName;
@@ -33,6 +34,9 @@ namespace ProductLibrary
             ProductManufactureDate = product.ProductManufactureDate;
             ProductExpireDate = product.ProductExpireDate;
             ProductSupplier = product.ProductSupplier;
+
+            // both fields will have the same value
+            CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
         public string ProductId
