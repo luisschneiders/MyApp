@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using BaseLibrary;
 using ContactDetailsLibrary;
 using LocationLibrary;
 
 namespace SupplierLibrary
 {
-    public class Supplier
+    public class Supplier : Base
     {
         private string _supplierId;
         private string _supplierName;
-        private int _supplierABN;
+        private string _supplierABN;
         private ContactDetails _supplierContactDetails;
         private List<Location> _supplierLocation; // supplier can have multiple locations
 
@@ -19,15 +20,18 @@ namespace SupplierLibrary
         }
 
         // method Save
-        public void Save(string supplierName, int supplierABN, ContactDetails supplierContactDetails, List<Location> supplierLocation)
+        public void Save(Supplier supplier)
         {
             // Add validation for fields
 
             SupplierId = Guid.NewGuid().ToString();
-            SupplierName = supplierName;
-            SupplierABN = supplierABN;
-            SupplierContactDetails = supplierContactDetails;
-            SupplierLocation = supplierLocation;
+            SupplierName = supplier.SupplierName;
+            SupplierABN = supplier.SupplierABN;
+            SupplierContactDetails = supplier.SupplierContactDetails;
+            SupplierLocation = supplier.SupplierLocation;
+
+            // both fields will have the same value
+            CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
         public string SupplierId
@@ -42,7 +46,7 @@ namespace SupplierLibrary
             set => _supplierName = value;
         }
 
-        public int SupplierABN
+        public string SupplierABN
         {
             get => _supplierABN;
             set => _supplierABN = value;
