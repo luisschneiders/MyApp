@@ -1,16 +1,16 @@
 ﻿using System;
+using BaseLibrary;
+using ContactDetailsLibrary;
 using LocationLibrary;
 
 namespace CustomerLibrary
 {
-    public class Customer
+    public class Customer : Base
     {
         private string _customerId;
         private string _customerName;
         private int _customerAge;
-        private string _customerEmail;
-        private int _customerMobilePhone;
-        private int _customerPhone;
+        private ContactDetails _customerContactDetails;
         private Location _customerLocation;
 
         // constructor
@@ -19,17 +19,18 @@ namespace CustomerLibrary
         }
 
         // method Save
-        public void Save(string customerName, int customerAge, string customerEmail, int customerMobilePhone, int customerPhone, Location customerLocation)
+        public void Save(Customer customer)
         {
             // Add validation for fields
 
             CustomerId = Guid.NewGuid().ToString();
-            CustomerName = customerName;
-            CustomerAge = customerAge;
-            CustomerEmail = customerEmail;
-            CustomerMobilePhone = customerMobilePhone;
-            CustomerPhone = customerPhone;
-            CustomerLocation = customerLocation;
+            CustomerName = customer.CustomerName;
+            CustomerAge = customer.CustomerAge;
+            CustomerContactDetails = customer.CustomerContactDetails;
+            CustomerLocation = customer.CustomerLocation;
+
+            // both fields will have the same value
+            CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
         public string CustomerId
@@ -50,22 +51,10 @@ namespace CustomerLibrary
             set => _customerAge = value;
         }
 
-        public string CustomerEmail
+        public ContactDetails CustomerContactDetails
         {
-            get => _customerEmail;
-            set => _customerEmail = value;
-        }
-
-        public int CustomerMobilePhone
-        {
-            get => _customerMobilePhone;
-            set => _customerMobilePhone = value;
-        }
-
-        public int CustomerPhone
-        {
-            get => _customerPhone;
-            set => _customerPhone = value;
+            get => _customerContactDetails;
+            set => _customerContactDetails = value;
         }
 
         public Location CustomerLocation

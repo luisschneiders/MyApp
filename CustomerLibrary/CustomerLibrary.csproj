@@ -6,5 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\LocationLibrary\LocationLibrary.csproj" />
+    <ProjectReference Include="..\BaseLibrary\BaseLibrary.csproj" />
+    <ProjectReference Include="..\ContactDetailsLibrary\ContactDetailsLibrary.csproj" />
   </ItemGroup>
 </Project>
