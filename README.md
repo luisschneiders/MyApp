@@ -8,7 +8,7 @@
 
 ## Synopsis
 
-HealthCare App is a Dotnet framework solution that contains libraries that can be used for: Web application, Mobile and Desktop.
+HealthCare App is a dotNET framework solution that contains libraries that can be used for: Web application, Mobile and Desktop.
 
 ## Installation
 
