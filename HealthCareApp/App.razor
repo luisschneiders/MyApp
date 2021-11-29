@@ -7,12 +7,14 @@
         </Found>
         <NotFound>
             <LayoutView Layout="@typeof(MainLayout)">
-                <div class="page-404">
-                    <p class="h1 pb-5">Sorry, page not found.</p>
-                    <p>
+                <MessageView
+                    Icon="oi-magnifying-glass lg-icon warning-color"
+                    Title="Page not found"
+                    Message="Sorry, we could find the page.">
+                    <ChildContent>
                         <button class="btn btn-primary" @onclick="OnClick">Back to Home</button>
-                    </p>
-                </div>
+                    </ChildContent>
+                </MessageView>
             </LayoutView>
         </NotFound>
     </Router>
