@@ -16,8 +16,6 @@ a, .btn-link {
 
 .content {
     height: calc(100% - 56px);
-    /* TODO: remove the background color */
-    background-color: #f0f8ff;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -51,16 +49,20 @@ a, .btn-link {
     top: 0.5rem;
 }
 
-.small-size-icon {
+.sm-icon {
     font-size: 1.2rem;
 }
 
-.medium-size-icon {
+.md-icon {
     font-size: 1.6rem;
 }
 
-.large-size-icon {
+.lg-icon {
     font-size: 3rem;
+}
+
+.logo-icon {
+    color: #ff2f2f;
 }
 
 .not-authorized {
