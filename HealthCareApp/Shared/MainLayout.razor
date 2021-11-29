@@ -11,7 +11,14 @@
         </div>
 
         <div class="content p-4">
-            @Body
+            <AuthorizeView>
+                <Authorized>
+                    @Body
+                </Authorized>
+                <NotAuthorized>
+                    <NotAuthorizedMessage />
+                </NotAuthorized>
+            </AuthorizeView>
         </div>
     </div>
 </div>
