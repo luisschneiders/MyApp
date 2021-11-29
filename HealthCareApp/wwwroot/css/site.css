@@ -64,11 +64,3 @@ a, .btn-link {
 .logo-icon {
     color: #ff2f2f;
 }
-
-.not-authorized {
-    color: #dc3545;
-}
-
-.authorized {
-    color: #28a745;
-}
