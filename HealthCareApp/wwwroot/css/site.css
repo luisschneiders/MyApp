@@ -44,9 +44,29 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.small-size-icon {
+    font-size: 1.2rem;
+}
+
+.medium-size-icon {
+    font-size: 1.6rem;
+}
+
+.large-size-icon {
+    font-size: 3rem;
+}
+
+.not-authorized {
+    color: #dc3545;
+}
+
+.authorized {
+    color: #28a745;
+}
