@@ -1,0 +1,25 @@
+﻿<div class="card hca-card-view m-2">
+    <div class="card-body">
+        <h3 class="card-title">@Title</h3>
+        <i>@Message</i>
+        <p class="card-text">@ChildContent</p>
+        <button class="btn btn-primary">Button A</button>
+        <button class="btn btn-secondary">Button B</button>
+    </div>
+</div>
+
+@code {
+
+    [Parameter]
+    public string Icon { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+
+    [Parameter]
+    public string Message { get; set; } = "";
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+
+}
