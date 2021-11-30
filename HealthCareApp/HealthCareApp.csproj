@@ -6,6 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Shared\Cards\" />
+    <None Remove="Components\" />
+    <None Remove="Components\Card\" />
+  </ItemGroup>
+  <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
   </ItemGroup>
 
@@ -17,4 +22,8 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.11" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Components\" />
+    <Folder Include="Components\Card\" />
+  </ItemGroup>
 </Project>
