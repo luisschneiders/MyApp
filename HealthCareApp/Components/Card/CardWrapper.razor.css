@@ -4,4 +4,11 @@
     flex-wrap: wrap;
     align-items: stretch;
     justify-content: center;
+}   
+
+@media (min-width: 1200px) {
+    .card-wrapper {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+    }
 }
