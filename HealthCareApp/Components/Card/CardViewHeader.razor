@@ -1,0 +1,12 @@
+﻿<div class="card-header hca-card-header">
+    <img src="@ImageUrl" class="card-img-top" alt="...">
+    <h3 class="card-title">@Title</h3>
+</div>
+
+@code {
+    [Parameter]
+    public string ImageUrl { get; set; } = "https://burst.shopifycdn.com/photos/buying-bitcoin-on-app.jpg?width=925&exif=1&iptc=1";
+
+    [Parameter]
+    public string Title { get; set; } = "";
+}
