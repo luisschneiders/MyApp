@@ -7,7 +7,7 @@ namespace CustomerLibrary
 {
     public class Customer : Base
     {
-        private string _customerId;
+        private Guid _customerId;
         private string _customerName;
         private int _customerAge;
         private ContactDetails _customerContactDetails;
@@ -23,7 +23,7 @@ namespace CustomerLibrary
         {
             // Add validation for fields
 
-            CustomerId = Guid.NewGuid().ToString();
+            CustomerId = Guid.NewGuid();
             CustomerName = customer.CustomerName;
             CustomerAge = customer.CustomerAge;
             CustomerContactDetails = customer.CustomerContactDetails;
@@ -33,7 +33,7 @@ namespace CustomerLibrary
             CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
-        public string CustomerId
+        public Guid CustomerId
         {
             get => _customerId;
             set => _customerId = value;

@@ -7,7 +7,7 @@ namespace ProductLibrary
 {
     public class Product : Base
     {
-        private string _productId;
+        private Guid _productId;
         private string _productName;
         private decimal _productInitialStock;
         private decimal _productCurrentStock;
@@ -26,7 +26,7 @@ namespace ProductLibrary
         {
             // Add validation for fields
 
-            ProductId = Guid.NewGuid().ToString();
+            ProductId = Guid.NewGuid();
             ProductName = product.ProductName;
             ProductInitialStock = product.ProductInitialStock;
             ProductCurrentStock = product.ProductCurrentStock;
@@ -39,7 +39,7 @@ namespace ProductLibrary
             CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
-        public string ProductId
+        public Guid ProductId
         {
             get => _productId;
             set => _productId = value;
