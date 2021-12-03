@@ -14,7 +14,7 @@ namespace ProductLibrary
         private string _productSerialNumber;
         private DateTime _productManufactureDate;
         private DateTime _productExpireDate;
-        private List<Supplier> _productSupplier;
+        private Supplier _productSupplier;
 
         // constructor
         public Product()
@@ -81,7 +81,7 @@ namespace ProductLibrary
             set => _productExpireDate = value;
         }
 
-        public List<Supplier> ProductSupplier
+        public Supplier ProductSupplier
         {
             get => _productSupplier;
             set => _productSupplier = value;

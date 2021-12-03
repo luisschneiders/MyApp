@@ -12,7 +12,7 @@ namespace SupplierLibrary
         private string _supplierName;
         private string _supplierABN;
         private ContactDetails _supplierContactDetails;
-        private List<Location> _supplierLocation; // supplier can have multiple locations
+        private Location _supplierLocation;
 
         // contructor
         public Supplier()
@@ -58,7 +58,7 @@ namespace SupplierLibrary
             set => _supplierContactDetails = value;
         }
 
-        public List<Location> SupplierLocation
+        public Location SupplierLocation
         {
             get => _supplierLocation;
             set => _supplierLocation = value;
