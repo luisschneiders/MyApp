@@ -7,7 +7,7 @@ namespace ContactDetailsLibrary
     {
         private string _email;
 
-        #nullable enable //Nullable contexts enable fine-grained control for how the compiler interprets reference type variables
+        #nullable enable // Nullable contexts enable fine-grained control for how the compiler interprets reference type variables
         private string? _phone;
         private string? _mobile;
 

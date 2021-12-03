@@ -6,8 +6,8 @@ namespace LocationLibrary
     public partial class Location
     {
         private string _address;
-        private int _lat;
-        private int _lng;
+        private float _lat;
+        private float _lng;
         private string _suburb;
         private string _postcode;
         private string _state;
@@ -22,13 +22,13 @@ namespace LocationLibrary
             get => _address;
             set => _address = value;
         }
-        public int Lat
+        public float Lat
         {
             get => _lat;
             set => _lat = value;
         }
 
-        public int Lng
+        public float Lng
         {
             get => _lng;
             set => _lng = value;
