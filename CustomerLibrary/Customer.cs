@@ -8,7 +8,8 @@ namespace CustomerLibrary
     public class Customer : Base
     {
         private Guid _customerId;
-        private string _customerName;
+        private string _customerFirstName;
+        private string _customerLastName;
         private int _customerAge;
         private ContactDetails _customerContactDetails;
         private Location _customerLocation;
@@ -24,7 +25,8 @@ namespace CustomerLibrary
             // Add validation for fields
 
             CustomerId = Guid.NewGuid();
-            CustomerName = customer.CustomerName;
+            CustomerFirstName = customer.CustomerFirstName;
+            CustomerLastName = customer.CustomerLastName;
             CustomerAge = customer.CustomerAge;
             CustomerContactDetails = customer.CustomerContactDetails;
             CustomerLocation = customer.CustomerLocation;
@@ -39,10 +41,21 @@ namespace CustomerLibrary
             set => _customerId = value;
         }
 
-        public string CustomerName
+        public string CustomerFirstName
         {
-            get => _customerName;
-            set => _customerName = value;
+            get => _customerFirstName;
+            set => _customerFirstName = value;
+        }
+
+        public string CustomerLastName
+        {
+            get => _customerLastName;
+            set => _customerLastName = value;
+        }
+
+        public string FullName
+        {
+            get => $"{_customerFirstName} {_customerLastName}";
         }
 
         public int CustomerAge

@@ -13,14 +13,8 @@ namespace LocationLibrary
         private string _state;
 
         // constructor
-        public Location(string address, int lat, int lng, string suburb, string postcode, string state)
+        public Location()
         {
-            _address = address;
-            _lat = lat;
-            _lng = lng;
-            _suburb = suburb;
-            _postcode = postcode;
-            _state = state;
         }
 
         public string Address

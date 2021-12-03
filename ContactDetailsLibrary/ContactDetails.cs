@@ -12,11 +12,8 @@ namespace ContactDetailsLibrary
         private string? _mobile; // this field can be nullable
 
         // constructor
-        public ContactDetails(List<string> email, List<string>? phone, string? mobile)
+        public ContactDetails()
         {
-            _email = email;
-            _phone = phone;
-            _mobile = mobile;
         }
 
         public List<string> Email
