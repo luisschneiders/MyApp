@@ -5,7 +5,7 @@ namespace DepartmentLibrary
 {
     public class Department : Base
     {
-        private Guid _departmentID;
+        private Guid _id;
         private string _departmentName;
 
         // constructor
@@ -18,7 +18,7 @@ namespace DepartmentLibrary
         {
             // Add validation for fields
 
-            DepartmentId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             DepartmentName = department.DepartmentName;
 
             // both fields will have the same value
@@ -26,10 +26,10 @@ namespace DepartmentLibrary
 
         }
 
-        public Guid DepartmentId
+        public Guid Id
         {
-            get => _departmentID;
-            set => _departmentID = value;
+            get => _id;
+            set => _id = value;
         }
 
         public string DepartmentName

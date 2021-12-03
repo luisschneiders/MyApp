@@ -8,7 +8,7 @@ namespace SupplierLibrary
 {
     public class Supplier : Base
     {
-        private Guid _supplierId;
+        private Guid _id;
         private string _supplierName;
         private string _supplierABN;
         private ContactDetails _supplierContactDetails;
@@ -24,7 +24,7 @@ namespace SupplierLibrary
         {
             // Add validation for fields
 
-            SupplierId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             SupplierName = supplier.SupplierName;
             SupplierABN = supplier.SupplierABN;
             SupplierContactDetails = supplier.SupplierContactDetails;
@@ -34,10 +34,10 @@ namespace SupplierLibrary
             CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
-        public Guid SupplierId
+        public Guid Id
         {
-            get => _supplierId;
-            set => _supplierId = value;
+            get => _id;
+            set => _id = value;
         }
 
         public string SupplierName

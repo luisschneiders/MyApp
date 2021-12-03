@@ -7,7 +7,7 @@ namespace UserLibrary
 {
     public class User : Base
     {
-        private Guid _userId;
+        private Guid _id;
         private string _userName;
         private string _userPassword;
         private ContactDetails _userContactDetails;
@@ -23,7 +23,7 @@ namespace UserLibrary
         {
             // Add validation for fields
 
-            UserId = Guid.NewGuid();
+            Id = Guid.NewGuid();
             UserName = user.UserName;
             UserPassword = user.UserPassword;
             UserContactDetails = user.UserContactDetails;
@@ -34,10 +34,10 @@ namespace UserLibrary
 
         }
 
-        public Guid UserId
+        public Guid Id
         {
-            get => _userId;
-            set => _userId = value;
+            get => _id;
+            set => _id = value;
         }
 
         public string UserName
