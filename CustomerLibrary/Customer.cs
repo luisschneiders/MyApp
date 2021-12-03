@@ -10,7 +10,7 @@ namespace CustomerLibrary
         private Guid _id;
         private string _customerFirstName;
         private string _customerLastName;
-        private int _customerAge;
+        private DateTime _customerDOB;
         private ContactDetails _customerContactDetails;
         private Location _customerLocation;
 
@@ -27,7 +27,7 @@ namespace CustomerLibrary
             Id = Guid.NewGuid();
             CustomerFirstName = customer.CustomerFirstName;
             CustomerLastName = customer.CustomerLastName;
-            CustomerAge = customer.CustomerAge;
+            CustomerDOB = customer.CustomerDOB;
             CustomerContactDetails = customer.CustomerContactDetails;
             CustomerLocation = customer.CustomerLocation;
 
@@ -58,10 +58,10 @@ namespace CustomerLibrary
             get => $"{_customerFirstName} {_customerLastName}";
         }
 
-        public int CustomerAge
+        public DateTime CustomerDOB
         {
-            get => _customerAge;
-            set => _customerAge = value;
+            get => _customerDOB;
+            set => _customerDOB = value;
         }
 
         public ContactDetails CustomerContactDetails
