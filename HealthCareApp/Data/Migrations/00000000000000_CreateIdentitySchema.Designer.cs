@@ -84,10 +84,10 @@ namespace HealthCareApp.Data.Migrations
                         .HasMaxLength(256);
 
                     b.Property<Boolean>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<Boolean>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
@@ -107,7 +107,7 @@ namespace HealthCareApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Boolean>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<string>("SecurityStamp")
                         .HasColumnType("TEXT");

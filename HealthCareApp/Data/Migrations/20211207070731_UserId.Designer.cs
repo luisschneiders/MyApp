@@ -70,7 +70,7 @@ namespace HealthCareApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Boolean>("IsActive")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
@@ -185,10 +185,10 @@ namespace HealthCareApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Boolean>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<Boolean>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("TEXT");
@@ -214,7 +214,7 @@ namespace HealthCareApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Boolean>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("BOOLEAN");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
