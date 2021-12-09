@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductLibrary", "ProductLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SupplierLibrary", "SupplierLibrary\SupplierLibrary.csproj", "{0B7E1346-0296-4DCC-89C4-22EB5C7AE861}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserLibrary", "UserLibrary\UserLibrary.csproj", "{981A746F-D99C-4FE9-B724-E9A74327627E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EmployeeLibrary", "UserLibrary\EmployeeLibrary.csproj", "{981A746F-D99C-4FE9-B724-E9A74327627E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
