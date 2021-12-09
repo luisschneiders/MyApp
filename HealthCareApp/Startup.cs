@@ -33,7 +33,8 @@ namespace HealthCareApp
         {
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlite(
-                    Configuration.GetConnectionString("DefaultConnection")));
+                    Configuration.GetConnectionString("DefaultConnection")
+                ));
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
@@ -41,6 +42,7 @@ namespace HealthCareApp
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddSingleton<WeatherForecastService>();
+            services.AddScoped<CustomerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
