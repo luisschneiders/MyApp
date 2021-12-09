@@ -8,7 +8,7 @@ namespace CustomerLibrary.Models
     public class Customer
     {
         [Key]
-        public int Id { get; set; }
+        public Guid Id { get; set; }
 
         [Required]
         public string CustomerFirstName { get; set; }

@@ -6,6 +6,9 @@ namespace LocationLibrary.Models
 {
     public class Location
     {
+        [Key]
+        public Guid Id { get; set; }
+
         [Required]
         public string Address { get; set; }
 

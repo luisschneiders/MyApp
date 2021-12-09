@@ -5,6 +5,7 @@ namespace LocationLibrary
 
     public partial class Location
     {
+        private Guid _id;
         private string _address;
         private float _lat;
         private float _lng;
@@ -15,6 +16,12 @@ namespace LocationLibrary
         // constructor
         public Location()
         {
+        }
+
+        public Guid Id
+        {
+            get => _id;
+            set => _id = value;
         }
 
         public string Address
