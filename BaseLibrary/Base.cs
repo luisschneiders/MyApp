@@ -4,7 +4,7 @@ namespace BaseLibrary
 {
     public abstract class Base
     {
-        private bool _isActive;
+        private Boolean _isActive;
         private Guid _insertedBy;
         private DateTime? _createdAt;
         private DateTime? _updatedAt;
@@ -14,7 +14,7 @@ namespace BaseLibrary
         {
         }
 
-        public bool IsActive
+        public Boolean IsActive
         {
             get => _isActive;
             set => _isActive = value;

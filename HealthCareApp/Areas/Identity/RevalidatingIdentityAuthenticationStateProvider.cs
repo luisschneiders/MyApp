@@ -30,7 +30,7 @@ namespace HealthCareApp.Areas.Identity
 
         protected override TimeSpan RevalidationInterval => TimeSpan.FromMinutes(30);
 
-        protected override async Task<bool> ValidateAuthenticationStateAsync(
+        protected override async Task<Boolean> ValidateAuthenticationStateAsync(
             AuthenticationState authenticationState, CancellationToken cancellationToken)
         {
             // Get the user manager from a new scope to ensure it fetches fresh data
@@ -53,7 +53,7 @@ namespace HealthCareApp.Areas.Identity
             }
         }
 
-        private async Task<bool> ValidateSecurityStampAsync(UserManager<TUser> userManager, ClaimsPrincipal principal)
+        private async Task<Boolean> ValidateSecurityStampAsync(UserManager<TUser> userManager, ClaimsPrincipal principal)
         {
             var user = await userManager.GetUserAsync(principal);
             if (user == null)
