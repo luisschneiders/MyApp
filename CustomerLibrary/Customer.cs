@@ -11,8 +11,8 @@ namespace CustomerLibrary
         private string _customerFirstName;
         private string _customerLastName;
         private DateTime _customerDOB;
-        private ContactDetails _customerContactDetails;
-        private Location _customerLocation;
+        private ContactDetails _contactDetails;
+        private Location _location;
 
         // constructor
         public Customer()
@@ -48,16 +48,16 @@ namespace CustomerLibrary
             set => _customerDOB = value;
         }
 
-        public ContactDetails CustomerContactDetails
+        public ContactDetails ContactDetails
         {
-            get => _customerContactDetails;
-            set => _customerContactDetails = value;
+            get => _contactDetails;
+            set => _contactDetails = value;
         }
 
-        public Location CustomerLocation
+        public Location Location
         {
-            get => _customerLocation;
-            set => _customerLocation = value;
+            get => _location;
+            set => _location = value;
         }
 
     }

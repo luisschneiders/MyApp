@@ -20,9 +20,9 @@ namespace CustomerLibrary.Models
         public DateTime CustomerDOB { get; set; }
 
         [Required]
-        public ContactDetails CustomerContactDetails { get; set; }
+        public ContactDetails ContactDetails { get; set; }
 
-        public Location CustomerLocation { get; set; }
+        public Location Location { get; set; }
 
     }
 }
