@@ -42,6 +42,8 @@ namespace HealthCareApp
             services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
             services.AddDatabaseDeveloperPageExceptionFilter();
             services.AddSingleton<WeatherForecastService>();
+            services.AddHttpContextAccessor();
+            services.AddScoped<UserService>();
             services.AddScoped<CustomerService>();
         }
 
