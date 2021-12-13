@@ -11,8 +11,8 @@ namespace SupplierLibrary
         private Guid _id;
         private string _supplierName;
         private string _supplierABN;
-        private ICollection<ContactDetails> _supplierContactDetails;
-        private ICollection<Location> _supplierLocation;
+        private ICollection<ContactDetails> _contactDetails;
+        private ICollection<Location> _location;
 
         // contructor
         public Supplier()
@@ -37,16 +37,16 @@ namespace SupplierLibrary
             set => _supplierABN = value;
         }
 
-        public ICollection<ContactDetails> SupplierContactDetails
+        public ICollection<ContactDetails> ContactDetails
         {
-            get => _supplierContactDetails;
-            set => _supplierContactDetails = value;
+            get => _contactDetails;
+            set => _contactDetails = value;
         }
 
-        public ICollection<Location> SupplierLocation
+        public ICollection<Location> Location
         {
-            get => _supplierLocation;
-            set => _supplierLocation = value;
+            get => _location;
+            set => _location = value;
         }
     }
 }

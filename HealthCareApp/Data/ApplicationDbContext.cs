@@ -1,9 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using CustomerLibrary;
+﻿using CustomerLibrary;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using SupplierLibrary;
 
 namespace HealthCareApp.Data
 {
@@ -15,5 +13,6 @@ namespace HealthCareApp.Data
         }
 
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Supplier> Suppliers { get; set; }
     }
 }
