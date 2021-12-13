@@ -19,22 +19,6 @@ namespace CustomerLibrary
         {
         }
 
-        // method Save
-        public void Save(Customer customer)
-        {
-            // Add validation for fields
-
-            Id = Guid.NewGuid();
-            CustomerFirstName = customer.CustomerFirstName;
-            CustomerLastName = customer.CustomerLastName;
-            CustomerDOB = customer.CustomerDOB;
-            CustomerContactDetails = customer.CustomerContactDetails;
-            CustomerLocation = customer.CustomerLocation;
-
-            // both fields will have the same value
-            CreatedAt = UpdatedAt = DateTime.UtcNow;
-        }
-
         public Guid Id
         {
             get => _id;

@@ -11,27 +11,12 @@ namespace SupplierLibrary
         private Guid _id;
         private string _supplierName;
         private string _supplierABN;
-        private ContactDetails _supplierContactDetails;
-        private Location _supplierLocation;
+        private ICollection<ContactDetails> _supplierContactDetails;
+        private ICollection<Location> _supplierLocation;
 
         // contructor
         public Supplier()
         {
-        }
-
-        // method Save
-        public void Save(Supplier supplier)
-        {
-            // Add validation for fields
-
-            Id = Guid.NewGuid();
-            SupplierName = supplier.SupplierName;
-            SupplierABN = supplier.SupplierABN;
-            SupplierContactDetails = supplier.SupplierContactDetails;
-            SupplierLocation = supplier.SupplierLocation;
-
-            // both fields will have the same value
-            CreatedAt = UpdatedAt = DateTime.UtcNow;
         }
 
         public Guid Id
@@ -52,13 +37,13 @@ namespace SupplierLibrary
             set => _supplierABN = value;
         }
 
-        public ContactDetails SupplierContactDetails
+        public ICollection<ContactDetails> SupplierContactDetails
         {
             get => _supplierContactDetails;
             set => _supplierContactDetails = value;
         }
 
-        public Location SupplierLocation
+        public ICollection<Location> SupplierLocation
         {
             get => _supplierLocation;
             set => _supplierLocation = value;
