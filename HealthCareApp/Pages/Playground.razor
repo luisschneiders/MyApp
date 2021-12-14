@@ -1,0 +1,201 @@
+﻿@page "/playground"
+@using HealthCareApp.Components.Card
+@using HealthCareApp.Data
+@using CustomerLibrary
+@using ContactDetailsLibrary
+@using LocationLibrary
+@using SupplierLibrary
+@using Microsoft.AspNetCore.Http;
+
+@inject IHttpContextAccessor httpContextAccessor
+@inject CustomerService customerService
+@inject UserService userService
+@inject SupplierService supplierService
+
+<CardWrapper>
+    <CardView>
+        <CardViewHeader Title="Employees" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
+        <CardViewBody>
+            <p>Card 01.0</p>
+            <p>Card 01.1</p>
+        </CardViewBody>
+        <CardViewFooter>
+            <button class="btn btn-secondary">Cancel</button>
+            <button class="btn btn-primary">Update</button>
+        </CardViewFooter>
+    </CardView>
+    <CardView>
+        <CardViewHeader Title="Suppliers" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+        <CardViewBody>
+            <p>Card 05.0</p>
+            <p>Card 05.1</p>
+        </CardViewBody>
+        <CardViewFooter>
+            <button class="btn btn-primary"
+                    @onclick="AddSupplier">
+                Add supplier
+            </button>
+        </CardViewFooter>
+    </CardView>
+    <CardView>
+        <CardViewHeader Title="Patients" ImageUrl="https://burst.shopifycdn.com/photos/nurse-helping-patient.jpg?width=925&exif=1&iptc=1" />
+        <CardViewBody>
+            <p>Card 02.0</p>
+            <p>Card 02.1</p>
+        </CardViewBody>
+        <CardViewFooter>
+            <button class="btn btn-primary"
+                    @onclick="AddCustomer">
+                Add patient
+            </button>
+        </CardViewFooter>
+    </CardView>
+    <CardView>
+        <CardViewHeader Title="Departments" ImageUrl="https://burst.shopifycdn.com/photos/medical-monitoring-machine-and-supplies-in-hospital-hallway.jpg?width=925&exif=1&iptc=1" />
+        <CardViewBody>
+            <p>Card 03.0</p>
+            <p>Card 03.1</p>
+        </CardViewBody>
+    </CardView>
+    <CardView>
+        <CardViewHeader Title="Products" ImageUrl="https://burst.shopifycdn.com/photos/pills-pill-container.jpg?width=925&exif=1&iptc=1" />
+        <CardViewBody>
+            <p>Card 04.0</p>
+            <p>Card 04.1</p>
+        </CardViewBody>
+        <CardViewFooter>
+            <button class="btn btn-primary">Button A</button>
+        </CardViewFooter>
+    </CardView>
+</CardWrapper>
+
+@code{
+    private List<ContactDetails> _contactDetails = new List<ContactDetails>();
+    private List<Location> _locations = new List<Location>();
+
+    private Customer newCustomer = new Customer()
+    {
+        CustomerFirstName = "Luis",
+        CustomerLastName = "Schneiders",
+        CustomerDOB = new DateTime(1985, 05, 28),
+    };
+
+    private Supplier newSupplier = new Supplier()
+    {
+        SupplierName = "S Chee & L Schneiders",
+        SupplierABN = "012345678910",
+    };
+
+    private void AddNewCustomerContactDetails()
+    {
+        ContactDetails contactDetails1 = new ContactDetails()
+        {
+            Email = "customer01@email.com",
+            Mobile = "0101010101",
+            Phone = "0202020202",
+        };
+
+        ContactDetails contactDetails2 = new ContactDetails()
+        {
+            Email = "customer02@email.com",
+            Mobile = "0101010101",
+            Phone = "0202020202",
+        };
+
+        _contactDetails.Add(contactDetails1);
+        _contactDetails.Add(contactDetails2);
+
+        newCustomer.ContactDetails = _contactDetails;
+    }
+
+    private void AddNewCustomerLocations()
+    {
+        Location location1 = new Location()
+        {
+            Address = "Customer location 1",
+            Lat = (float)01.12,
+            Lng = (float)01.12,
+            Postcode = "3027",
+            State = "VIC",
+            Suburb = "Williams Landing",
+        };
+
+        Location location2 = new Location()
+        {
+            Address = "Customer location 2",
+            Lat = (float)01.12,
+            Lng = (float)01.12,
+            Postcode = "3027",
+            State = "VIC",
+            Suburb = "Williams Landing",
+        };
+        _locations.Add(location1);
+        _locations.Add(location2);
+
+        newCustomer.Location = _locations;
+    }
+
+    private void AddNewSupplierContactDetails()
+    {
+        ContactDetails contactDetails1 = new ContactDetails()
+        {
+            Email = "supplier01@email.com",
+            Mobile = "0101010101",
+            Phone = "0202020202",
+        };
+
+        ContactDetails contactDetails2 = new ContactDetails()
+        {
+            Email = "supplier02@email.com",
+            Mobile = "0101010101",
+            Phone = "0202020202",
+        };
+
+        _contactDetails.Add(contactDetails1);
+        _contactDetails.Add(contactDetails2);
+
+        newSupplier.ContactDetails = _contactDetails;
+    }
+
+    private void AddNewSupplierLocations()
+    {
+        Location location1 = new Location()
+        {
+            Address = "Supplier location 1",
+            Lat = (float)01.12,
+            Lng = (float)01.12,
+            Postcode = "3000",
+            State = "VIC",
+            Suburb = "Parkville",
+        };
+
+        Location location2 = new Location()
+        {
+            Address = "Supplier location 2",
+            Lat = (float)01.12,
+            Lng = (float)01.12,
+            Postcode = "3000",
+            State = "VIC",
+            Suburb = "Parkville",
+        };
+        _locations.Add(location1);
+        _locations.Add(location2);
+
+        newSupplier.Location = _locations;
+    }
+
+
+    private async Task AddCustomer()
+    {
+        AddNewCustomerContactDetails();
+        AddNewCustomerLocations();
+        await customerService.AddCustomerAsync(newCustomer);
+    }
+
+    private async Task AddSupplier()
+    {
+        AddNewSupplierContactDetails();
+        AddNewSupplierLocations();
+        await supplierService.AddSupplierAsync(newSupplier);
+    }
+}
