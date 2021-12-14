@@ -28,5 +28,8 @@ namespace LocationLibrary.Models
 
         [Required]
         public string State { get; set; }
+
+        public Guid CustomerId { get; set; }
+        public Guid SupplierId { get; set; }
     }
 }

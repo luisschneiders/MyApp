@@ -19,5 +19,7 @@ namespace ContactDetailsLibrary.Models
         [Required]
         public string? Mobile { get; set; }
 
+        public Guid CustomerId { get; set; }
+        public Guid SupplierId { get; set; }
     }
 }
