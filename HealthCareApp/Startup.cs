@@ -45,6 +45,7 @@ namespace HealthCareApp
             services.AddHttpContextAccessor();
             services.AddScoped<UserService>();
             services.AddScoped<CustomerService>();
+            services.AddScoped<SupplierService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
