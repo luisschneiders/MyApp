@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BaseLibrary;
 using ContactDetailsLibrary;
 using LocationLibrary;
@@ -11,8 +12,8 @@ namespace CustomerLibrary
         private string _customerFirstName;
         private string _customerLastName;
         private DateTime _customerDOB;
-        private ContactDetails _contactDetails;
-        private Location _location;
+        private ICollection<ContactDetails> _contactDetails;
+        private ICollection<Location> _location;
 
         // constructor
         public Customer()
@@ -48,13 +49,13 @@ namespace CustomerLibrary
             set => _customerDOB = value;
         }
 
-        public ContactDetails ContactDetails
+        public ICollection<ContactDetails> ContactDetails
         {
             get => _contactDetails;
             set => _contactDetails = value;
         }
 
-        public Location Location
+        public ICollection<Location> Location
         {
             get => _location;
             set => _location = value;
