@@ -40,6 +40,5 @@ namespace ContactDetailsLibrary
             get => _mobile;
             set => _mobile = value;
         }
-
     }
 }
