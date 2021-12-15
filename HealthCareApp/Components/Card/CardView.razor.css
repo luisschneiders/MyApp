@@ -2,13 +2,10 @@
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
     border: 1px solid rgb(0 0 0 / 4%);
 }
-.hca-card-view a {
-    height: 100%;
-}
-.hca-card-view a:hover {
+a.hca-card-view:hover {
     cursor: pointer;
     transform: scale(1.02, 1.02);
     box-shadow: 0px 17px 20px -12px rgb(0 0 0 / 50%);
-    border-radius: calc(0.25rem - 1px );
     text-decoration: none;
+    transition: all .1s ease-in-out;
 }
