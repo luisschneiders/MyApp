@@ -1,5 +1,5 @@
 ﻿<div class="card-header hca-card-header">
-    <img src="@ImageUrl" class="card-img-top" alt="...">
+    <img src="@ImageUrl" class="card-img-top" alt="@ImageDescription">
     <h3 class="card-title">@Title</h3>
 </div>
 
@@ -8,5 +8,8 @@
     public string ImageUrl { get; set; } = "https://burst.shopifycdn.com/photos/buying-bitcoin-on-app.jpg?width=925&exif=1&iptc=1";
 
     [Parameter]
-    public string Title { get; set; } = "";
+    public string Title { get; set; } = "Title";
+
+    [Parameter]
+    public string ImageDescription { get; set; } = "Image description";
 }
