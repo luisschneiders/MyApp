@@ -1,0 +1,12 @@
+﻿.page-body {
+
+}
+
+@media (min-width: 641px) {
+    .page-body {
+        overflow: auto;
+        height: calc(100vh - 166px);
+        display: block;
+        width: 100%;
+    }
+}

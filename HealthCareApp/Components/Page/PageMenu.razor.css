@@ -1,14 +1,15 @@
-﻿.page-header {
+﻿.page-menu {
+
 }
 
 @media (min-width: 641px) {
-    .page-header {
-        display: flex;
+    .page-menu {
+/*        display: flex;
         flex-direction: row;
         flex-wrap: wrap;
         align-items: center;
         justify-content: space-between;
         align-content: center;
-        height: 60px;
+        height: 60px;*/
     }
 }

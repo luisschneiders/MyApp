@@ -1,0 +1,28 @@
+﻿@using Microsoft.AspNetCore.Components.Web.Extensions.Head
+@*@using System.Globalization;*@
+
+
+@inject NavigationManager navigationManager
+
+<Title value="@Title"></Title>
+
+<h2>
+    <span class="title text-capitalize">
+        @Title
+    </span>
+</h2>
+
+@code {
+
+    public string Title { get; set; }
+
+    protected override void OnInitialized()
+    {
+        string uri = navigationManager.Uri;
+        string[] path = uri.Split('/');
+        Title = path[3];
+
+        @*// Set title uppercase
+            Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(path[3].ToLower());*@
+    }
+}
