@@ -16,6 +16,7 @@ a, .btn-link {
 
 .content {
     height: calc(100% - 56px);
+/*    background-color:azure;*/
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -63,4 +64,13 @@ a, .btn-link {
 
 .logo-icon {
     color: #ff2f2f;
+}
+
+.title {
+    background: #4040d9;
+    background: -webkit-linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
+    background: -moz-linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
+    background: linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
