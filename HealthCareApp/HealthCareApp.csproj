@@ -32,6 +32,9 @@
     <None Update="Components\Page\PageFooter.razor.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>
+    <None Update="Components\Page\PageHeader.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
