@@ -4,7 +4,7 @@
         <span class="oi oi-medical-cross logo-icon" aria-hidden="true"></span>
     </a>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi-justify" aria-hidden="true"></i>
     </button>
 </div>
 
@@ -14,38 +14,36 @@
             <Authorized>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                        <span class="oi oi-home" aria-hidden="true"></span> Home
+                        <i class="bi-house" aria-hidden="true"></i>Home
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="counter">
-                        <span class="oi oi-plus" aria-hidden="true"></span> Counter
+                        <i class="bi-plus-lg" aria-hidden="true"></i>Counter
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="fetchdata">
-                        <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch data
+                        <i class="bi-list-columns" aria-hidden="true"></i>Fetch data
                     </NavLink>
                 </li>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="playground">
-                        <span class="oi oi-beaker" aria-hidden="true"></span> Playground
+                        <i class="bi-controller" aria-hidden="true"></i>Playground
                     </NavLink>
                 </li>
             </Authorized>
             <NotAuthorized>
                 <li class="nav-item px-3">
                     <NavLink class="nav-link" href="/about-us">
-                        <span class="oi oi-people" aria-hidden="true"></span> About Us
+                        <i class="bi-building" aria-hidden="true"></i>About us
                     </NavLink>
                     <NavLink class="nav-link" href="/contact-us">
-                        <span class="oi oi-envelope-closed" aria-hidden="true"></span> Contact Us
+                        <i class="bi-envelope" aria-hidden="true"></i>Contact us
                     </NavLink>
                     <NavLink class="nav-link" href="/map">
-                        <span class="oi oi-map" aria-hidden="true"></span> Map
+                        <i class="bi-map" aria-hidden="true"></i>Map
                     </NavLink>
-
-
                 </li>
             </NotAuthorized>
         </AuthorizeView>
