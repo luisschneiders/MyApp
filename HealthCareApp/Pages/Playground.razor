@@ -14,19 +14,34 @@
 @inject SupplierService supplierService
 
 <PageWrapper>
-    <PageMenu>
-        <ContentTopPage></ContentTopPage>
-        <div>
-            <button type="button" class="btn btn-primary">
+    <PageHeader>
+        <PageTitle></PageTitle>
+        <PageMenu>
+            <button type="button" class="btn btn-outline-danger">
+                <i class="bi-trash"></i>
+            </button>
+
+            <button type="button" class="btn btn-outline-primary">
+                <i class="bi-plus-lg"></i>
+            </button>
+            <button type="button" class="btn btn-outline-info">
+                <i class="bi-search"></i>
+            </button>
+            <button type="button" class="btn btn-outline-danger">
+                <i class="bi-trash"></i>
+                Delete
+            </button>
+
+            <button type="button" class="btn btn-outline-primary">
                 <i class="bi-plus-lg"></i>
                 Save
             </button>
-            <button type="button" class="btn btn-info">
+            <button type="button" class="btn btn-outline-info">
                 <i class="bi-search"></i>
                 Search
             </button>
-        </div>
-    </PageMenu>
+        </PageMenu>
+    </PageHeader>
     <PageBody>
         <CardWrapper>
             <CardView Link="/">

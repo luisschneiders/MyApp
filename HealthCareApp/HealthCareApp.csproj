@@ -29,6 +29,9 @@
     <None Update="Components\Page\PageMenu.razor.css">
       <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
     </None>
+    <None Update="Components\Page\PageFooter.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
