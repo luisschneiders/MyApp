@@ -1,0 +1,29 @@
+﻿@page "/employees"
+@page "/employees/{employeeId:guid}"
+@using HealthCareApp.Components.Page
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle></PageTitle>
+        <PageMenu>
+            <button type="button" class="btn btn-light">
+                <i class="bi-search"></i>
+                Search
+            </button>
+            <button type="button" class="btn btn-outline-primary">
+                <i class="bi-plus-lg"></i>
+                New employee
+            </button>
+        </PageMenu>
+    </PageHeader>
+    <PageBody>
+        Content here...
+    </PageBody>
+    <PageFooter></PageFooter>
+</PageWrapper>
+
+@code {
+    [Parameter]
+    public Guid EmployeeId { get; set; } = Guid.Empty;
+
+}
