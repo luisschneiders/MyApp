@@ -1,5 +1,6 @@
 ﻿@page "/playground"
 @using HealthCareApp.Components.Card
+@using HealthCareApp.Components.Page
 @using HealthCareApp.Data
 @using CustomerLibrary
 @using ContactDetailsLibrary
@@ -12,48 +13,108 @@
 @inject UserService userService
 @inject SupplierService supplierService
 
-<CardWrapper>
-    <CardView Link="/">
-        <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
-        <CardViewBody>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </CardViewBody>
-    </CardView>
-    <CardView Link="/">
-        <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
-        <CardViewBody>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </CardViewBody>
-    </CardView>
-    <CardView>
-        <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
-        <CardViewBody>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </CardViewBody>
-        <CardViewFooter>
-            <button class="btn btn-primary"
-                    @onclick="AddSupplier">
-                Add supplier
+<PageWrapper>
+    <PageMenu>
+        <ContentTopPage></ContentTopPage>
+        <div>
+            <button type="button" class="btn btn-primary">
+                <i class="bi-plus-lg"></i>
+                Save
             </button>
-        </CardViewFooter>
-    </CardView>
-    <CardView>
-        <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
-        <CardViewBody>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        </CardViewBody>
-        <CardViewFooter>
-            <button class="btn btn-default"
-                    >
-                Cancel
+            <button type="button" class="btn btn-info">
+                <i class="bi-search"></i>
+                Search
             </button>
-            <button class="btn btn-primary"
-                    @onclick="AddCustomer">
-                Add patient
-            </button>
-        </CardViewFooter>
-    </CardView>
-</CardWrapper>
+        </div>
+    </PageMenu>
+    <PageBody>
+        <CardWrapper>
+            <CardView Link="/">
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/">
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+                <CardViewFooter>
+                    <button class="btn btn-primary"
+                            @onclick="AddSupplier">
+                        Add supplier
+                    </button>
+                </CardViewFooter>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+                <CardViewFooter>
+                    <button class="btn btn-default">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary"
+                            @onclick="AddCustomer">
+                        Add patient
+                    </button>
+                </CardViewFooter>
+            </CardView>
+        </CardWrapper>
+        <CardWrapper>
+            <CardView Link="/">
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/">
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+                <CardViewFooter>
+                    <button class="btn btn-default">
+                        Cancel
+                    </button>
+                    <button class="btn btn-primary"
+                            @onclick="AddCustomer">
+                        Add patient
+                    </button>
+                </CardViewFooter>
+            </CardView>
+        </CardWrapper>
+        <CardWrapper>
+            <CardView>
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+                <CardViewBody>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                </CardViewBody>
+            </CardView>
+        </CardWrapper>
+    </PageBody>
+    <PageFooter></PageFooter>
+</PageWrapper>
 
 @code{
 

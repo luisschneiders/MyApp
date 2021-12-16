@@ -16,7 +16,6 @@ a, .btn-link {
 
 .content {
     height: calc(100% - 56px);
-/*    background-color:azure;*/
 }
 
 .valid.modified:not([type=checkbox]) {

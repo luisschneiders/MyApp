@@ -13,12 +13,26 @@
     <None Remove="Microsoft.EntityFrameworkCore.Design" />
     <None Remove="app.db-shm" />
     <None Remove="app.db-wal" />
+    <None Remove="Components\Page\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <None Update="Components\Page\PageView.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
+    <None Update="Components\Page\PageWrapper.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
+    <None Update="Components\Page\PageBody.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
+    <None Update="Components\Page\PageMenu.razor.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Components.Web.Extensions" Version="5.0.0-preview9.20513.1" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.11" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="5.0.11" />
@@ -33,6 +47,7 @@
   <ItemGroup>
     <Folder Include="Components\" />
     <Folder Include="Components\Card\" />
+    <Folder Include="Components\Page\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
