@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using BaseLibrary;
 using ContactDetailsLibrary;
 using LocationLibrary;
@@ -12,28 +13,12 @@ namespace EmployeeLibrary
         private string _employeeLastName;
         private string _employeeUsername;
         private string _employeePassword;
-        private ContactDetails _employeeContactDetails;
-        private Location _employeeLocation;
+        private ICollection<ContactDetails> _contactDetails;
+        private ICollection<Location> _location;
 
         // constructor
         public Employee()
         {
-        }
-
-        // method Save
-        public void Save(Employee employee)
-        {
-            // Add validation for fields
-
-            Id = Guid.NewGuid();
-            EmployeeUsername = employee.EmployeeUsername;
-            EmployeePassword = employee.EmployeePassword;
-            EmployeeContactDetails = employee.EmployeeContactDetails;
-            EmployeeLocation = employee.EmployeeLocation;
-
-            // both fields will have the same value
-            CreatedAt = UpdatedAt = DateTime.UtcNow;
-
         }
 
         public Guid Id
@@ -66,16 +51,16 @@ namespace EmployeeLibrary
             set => _employeePassword = value;
         }
 
-        public ContactDetails EmployeeContactDetails
+        public ICollection<ContactDetails> ContactDetails
         {
-            get => _employeeContactDetails;
-            set => _employeeContactDetails = value;
+            get => _contactDetails;
+            set => _contactDetails = value;
         }
 
-        public Location EmployeeLocation
+        public ICollection<Location> Location
         {
-            get => _employeeLocation;
-            set => _employeeLocation = value;
+            get => _location;
+            set => _location = value;
         }
     }
 }

@@ -3,14 +3,16 @@ using System;
 using HealthCareApp.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HealthCareApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211217033503_EmployeeSchema")]
+    partial class EmployeeSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,9 +31,6 @@ namespace HealthCareApp.Data.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("EmployeeId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Mobile")
                         .HasColumnType("TEXT");
 
@@ -44,8 +43,6 @@ namespace HealthCareApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("SupplierId");
 
@@ -90,6 +87,9 @@ namespace HealthCareApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("CreatedAt")
                         .HasColumnType("TEXT");
 
@@ -111,10 +111,17 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Employees");
                 });
@@ -129,9 +136,6 @@ namespace HealthCareApp.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<Guid?>("CustomerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("EmployeeId")
                         .HasColumnType("TEXT");
 
                     b.Property<float>("Lat")
@@ -155,8 +159,6 @@ namespace HealthCareApp.Data.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
 
                     b.HasIndex("SupplierId");
 
@@ -394,13 +396,24 @@ namespace HealthCareApp.Data.Migrations
                         .WithMany("ContactDetails")
                         .HasForeignKey("CustomerId");
 
-                    b.HasOne("EmployeeLibrary.Employee", null)
-                        .WithMany("ContactDetails")
-                        .HasForeignKey("EmployeeId");
-
                     b.HasOne("SupplierLibrary.Supplier", null)
                         .WithMany("ContactDetails")
                         .HasForeignKey("SupplierId");
+                });
+
+            modelBuilder.Entity("EmployeeLibrary.Employee", b =>
+                {
+                    b.HasOne("ContactDetailsLibrary.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
+
+                    b.HasOne("LocationLibrary.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.Navigation("ContactDetails");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("LocationLibrary.Location", b =>
@@ -408,10 +421,6 @@ namespace HealthCareApp.Data.Migrations
                     b.HasOne("CustomerLibrary.Customer", null)
                         .WithMany("Location")
                         .HasForeignKey("CustomerId");
-
-                    b.HasOne("EmployeeLibrary.Employee", null)
-                        .WithMany("Location")
-                        .HasForeignKey("EmployeeId");
 
                     b.HasOne("SupplierLibrary.Supplier", null)
                         .WithMany("Location")
@@ -470,13 +479,6 @@ namespace HealthCareApp.Data.Migrations
                 });
 
             modelBuilder.Entity("CustomerLibrary.Customer", b =>
-                {
-                    b.Navigation("ContactDetails");
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("EmployeeLibrary.Employee", b =>
                 {
                     b.Navigation("ContactDetails");
 
