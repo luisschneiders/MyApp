@@ -49,6 +49,10 @@ a, .btn-link {
     top: 0.5rem;
 }
 
+.xs-icon {
+    font-size: .9rem;
+}
+
 .sm-icon {
     font-size: 1.2rem;
 }
