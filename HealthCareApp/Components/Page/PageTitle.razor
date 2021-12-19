@@ -4,25 +4,37 @@
 
 @inject NavigationManager navigationManager
 
-<Title value="@Title"></Title>
+
+<Title value="@DefaultTitle"></Title>
 
 <h2>
     <span class="title text-capitalize">
-        @Title
+        @if (@DefaultTitle.Length > 0)
+        {
+            @DefaultTitle
+        }
+        else
+        {
+            @Title;
+        }
     </span>
 </h2>
 
 @code {
 
-    public string Title { get; set; }
+
+    public string DefaultTitle { get; set; }
+
+    [Parameter]
+    public string Title { get; set; } = "";
 
     protected override void OnInitialized()
     {
         string uri = navigationManager.Uri;
         string[] path = uri.Split('/');
-        Title = path[3];
+        DefaultTitle = path[3];
 
         @*// Set title uppercase
-            Title = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(path[3].ToLower());*@
+            DefaultTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(path[3].ToLower());*@
     }
 }

@@ -1,34 +1,46 @@
 ﻿@page "/"
 @using HealthCareApp.Components.Card
+@using HealthCareApp.Components.Page
 
-<h2 class="pb-2">
+@*<h2 class="pb-2">
     <span class="title">
         Quick links
     </span>
-</h2>
+</h2>*@
+<PageWrapper>
+    <PageHeader></PageHeader>
+    <PageBody>
+        <PageTitle Title="Quick links"></PageTitle>
+        <CardWrapper>
+            <CardView Link="/employees">
+                <CardViewHeader Title="Employees" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
+            </CardView>
 
-<CardWrapper>
-        <CardView Link="/employees">
-            <CardViewHeader Title="Employees" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
-        </CardView>
+            <CardView Link="/departments">
+                <CardViewHeader Title="Departments" ImageUrl="https://burst.shopifycdn.com/photos/medical-monitoring-machine-and-supplies-in-hospital-hallway.jpg?width=925&exif=1&iptc=1" />
+            </CardView>
+            <CardView Link="/patients">
+                <CardViewHeader Title="Patients" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
+            </CardView>
+            <CardView Link="/suppliers">
+                <CardViewHeader Title="Suppliers" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+            </CardView>
+        </CardWrapper>
 
-        <CardView Link="/departments">
-            <CardViewHeader Title="Departments" ImageUrl="https://burst.shopifycdn.com/photos/medical-monitoring-machine-and-supplies-in-hospital-hallway.jpg?width=925&exif=1&iptc=1" />
-        </CardView>
-        <CardView Link="/patients">
-            <CardViewHeader Title="Patients" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
-        </CardView>
-        <CardView Link="/suppliers">
-            <CardViewHeader Title="Suppliers" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
-        </CardView>
-</CardWrapper>
-<hr>
+        <hr>
+
+        <PageTitle Title="What's happening"></PageTitle>
+
+    </PageBody>
+    <PageFooter></PageFooter>
+</PageWrapper>
+@*<hr>
 
 <h2 class="pb-2">
     <span class="title">
         What's happening
     </span>
-</h2>
+</h2>*@
 
 
 @code {
