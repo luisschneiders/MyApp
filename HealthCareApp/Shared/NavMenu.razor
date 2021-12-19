@@ -32,10 +32,10 @@
                         <i class="bi-list-columns sm-icon" aria-hidden="true"></i>Fetch data
                     </NavLink>
                 </li>*@
-                <li class="nav-item px-3">
+                <li class="nav-item px-3 nav-link-submenu">
                     <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.First)">
                         <i class="bi-gear-wide-connected sm-icon"></i>Settings
-                        <i class="bi-@NavSubmenuIcon xs-icon"></i>
+                        <i class="bi-@NavSubmenuIcon xs-icon ml-4"></i>
                     </NavLink>
                 </li>
                 @if (navSubmenu == NavSubmenu.First)
