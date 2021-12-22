@@ -1,0 +1,41 @@
+﻿@page "/playground/modal"
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Modal
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle Title="Modal layout"></PageTitle>
+        <PageMenu />
+    </PageHeader>
+    <PageBody>
+        <div class="h-100 d-flex justify-content-center align-items-center">
+            <button class="btn btn-outline-info btn-rounded" @onclick="() => modal.Open()">Open Modal!</button>
+        </div>
+    </PageBody>
+    <PageFooter />
+</PageWrapper>
+<Modal @ref="modal">
+    <Title>This is a <em>Title!</em></Title>
+    <Body>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
+            <i>Quis istud possit, inquit, negare?</i>
+            <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
+        </p>
+        <FetchData />
+        <dl>
+            <dt><dfn>Stoici scilicet.</dfn></dt>
+            <dd>An hoc usque quaque, aliter in vita?</dd>
+            <dt><dfn>Erat enim Polemonis.</dfn></dt>
+            <dd>Quod cum accidisset ut alter alterum necopinato videremus, surrexit statim.</dd>
+        </dl>
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-outline-secondary btn-rounded" data-dismiss="modal" @onclick="() => modal.Close()">Close</button>
+        <button type="button" class="btn btn-outline-primary btn-rounded">Save changes</button>
+    </Footer>
+</Modal>
+
+@code{
+    private Modal modal { get; set; }
+}
