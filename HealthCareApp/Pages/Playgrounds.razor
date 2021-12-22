@@ -17,31 +17,7 @@
 <PageWrapper>
     <PageHeader>
         <PageTitle Title="Playgrounds"></PageTitle>
-        <PageMenu>
-            @*<button type="button" class="btn btn-outline-danger">
-                <i class="bi bi-trash"></i>
-            </button>
-
-            <button type="button" class="btn btn-outline-primary">
-                <i class="bi bi-plus-lg"></i>
-            </button>
-            <button type="button" class="btn btn-light">
-                <i class="bi bi-search"></i>
-            </button>
-            <button type="button" class="btn btn-outline-danger btn-rounded">
-                <i class="bi bi-trash"></i>
-                Delete
-            </button>
-
-            <button type="button" class="btn btn-outline-primary btn-rounded">
-                <i class="bi bi-plus-lg"></i>
-                Save
-            </button>
-            <button type="button" class="btn btn-light btn-rounded">
-                <i class="bi bi-search"></i>
-                Search
-            </button>*@
-        </PageMenu>
+        <PageMenu />
     </PageHeader>
     <PageBody>
         <h3 class="text-center">List of components used in the Healthcare App</h3>
@@ -65,34 +41,8 @@
                 </CardViewBody>
             </CardView>
         </CardWrapper>
-
-        @*<button class="btn btn-primary" @onclick="() => modal.Open()">Modal!</button>
-
-        <Modal @ref="modal">
-            <Title>This is a <em>Title!</em></Title>
-            <Body>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
-                    <i>Quis istud possit, inquit, negare?</i>
-                    <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
-                </p>
-                <FetchData />
-                <dl>
-                    <dt><dfn>Stoici scilicet.</dfn></dt>
-                    <dd>An hoc usque quaque, aliter in vita?</dd>
-                    <dt><dfn>Erat enim Polemonis.</dfn></dt>
-                    <dd>Quod cum accidisset ut alter alterum necopinato videremus, surrexit statim.</dd>
-                </dl>
-            </Body>
-            <Footer>
-                <button type="button" class="btn btn-primary">Save changes</button>
-                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => modal.Close()">Close</button>
-            </Footer>
-        </Modal>*@
-
-
     </PageBody>
-    <PageFooter></PageFooter>
+    <PageFooter />
 </PageWrapper>
 
 @code{
@@ -258,7 +208,4 @@
         var finalString = new String(stringChars);
         return finalString;
     }
-
-    private Modal modal { get; set; }*@
-
 }
