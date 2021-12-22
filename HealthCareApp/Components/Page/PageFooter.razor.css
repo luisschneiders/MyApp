@@ -5,3 +5,7 @@
     justify-content: center;
     height: 50px;
 }
+
+.page-footer-background {
+    border: 1px dashed #b11b61;
+}

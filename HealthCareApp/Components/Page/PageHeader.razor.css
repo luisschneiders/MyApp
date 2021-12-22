@@ -1,5 +1,8 @@
 ﻿.page-header {
 }
+.page-header-background {
+    border: 1px dashed #ef95bf;
+}
 
 @media (min-width: 641px) {
     .page-header {

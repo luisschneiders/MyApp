@@ -1,6 +1,7 @@
 ﻿.hca-card-view {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
     border: 1px solid rgb(0 0 0 / 4%);
+    min-width: 220px;
 }
 a.hca-card-view:hover {
     cursor: pointer;

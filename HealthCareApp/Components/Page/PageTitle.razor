@@ -5,36 +5,26 @@
 @inject NavigationManager navigationManager
 
 
-<Title value="@DefaultTitle"></Title>
+<Title value="@Title"></Title>
 
 <h2>
-    <span class="title text-capitalize">
-        @if (@DefaultTitle.Length > 0)
-        {
-            @DefaultTitle
-        }
-        else
-        {
-            @Title;
-        }
+    <span class="text-gradient text-capitalize">
+        @Title
     </span>
 </h2>
 
 @code {
-
-
-    public string DefaultTitle { get; set; }
 
     [Parameter]
     public string Title { get; set; } = "";
 
     protected override void OnInitialized()
     {
-        string uri = navigationManager.Uri;
-        string[] path = uri.Split('/');
-        DefaultTitle = path[3];
+        base.OnInitialized();
 
-        @*// Set title uppercase
-            DefaultTitle = CultureInfo.CurrentCulture.TextInfo.ToTitleCase(path[3].ToLower());*@
+        if (string.IsNullOrWhiteSpace(Title))
+        {
+            throw new ArgumentNullException();
+        }
     }
 }

@@ -68,16 +68,26 @@ a, .btn-link {
 .lg-icon {
     font-size: 3rem;
 }
+.xlg-icon {
+    font-size: 5rem;
+}
+.xxlg-icon {
+    font-size: 6.5rem;
+}
 
 .logo-icon {
     color: #ff2f2f;
 }
 
-.title {
+.text-gradient {
     background: #4040d9;
     background: -webkit-linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
     background: -moz-linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
     background: linear-gradient(to right, #4040d9 0%, #ff40ff 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+}
+
+.hca-icon-color {
+    color: #ff40ff;
 }

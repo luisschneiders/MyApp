@@ -1,8 +1,11 @@
-﻿<div class="page-header">
+﻿<div class="page-header @StyleCSS">
     @ChildContent
 </div>
 
 @code {
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public string StyleCSS { get; set; }
 }

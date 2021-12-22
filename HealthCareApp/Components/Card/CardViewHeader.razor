@@ -1,15 +1,39 @@
-﻿<div class="card-header hca-card-header">
-    <img src="@ImageUrl" class="card-img-top" alt="@ImageDescription">
-    <h3 class="card-title">@Title</h3>
+﻿<div class="card-header hca-card-header text-center">
+    @if (@Icon.Length > 0)
+    {
+        <i class="@Icon xxlg-icon hca-icon-color"></i>
+    }
+    else
+    {
+        <img src="@ImageUrl" class="card-img-top mb-1" alt="@ImageDescription">
+    }
+    @if (@Title.Length > 0)
+    {
+        <h3 class="card-title">@Title</h3>
+    }
 </div>
 
 @code {
     [Parameter]
-    public string ImageUrl { get; set; } = "https://burst.shopifycdn.com/photos/buying-bitcoin-on-app.jpg?width=925&exif=1&iptc=1";
+    public string ImageUrl { get; set; } = "";
 
     [Parameter]
-    public string Title { get; set; } = "Title";
+    public string Icon { get; set; } = "";
+
+    [Parameter]
+    public string Title { get; set; } = "";
 
     [Parameter]
     public string ImageDescription { get; set; } = "Image description";
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        if (string.IsNullOrWhiteSpace(ImageUrl) && string.IsNullOrWhiteSpace(Icon))
+        {
+            throw new ArgumentNullException();
+        }
+    }
+
 }
