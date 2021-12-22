@@ -1,6 +1,7 @@
-﻿@page "/playground"
+﻿@page "/playgrounds"
 @using HealthCareApp.Components.Card
 @using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Modal
 @using HealthCareApp.Data
 @using CustomerLibrary
 @using ContactDetailsLibrary
@@ -15,125 +16,88 @@
 
 <PageWrapper>
     <PageHeader>
-        <PageTitle></PageTitle>
+        <PageTitle Title="Playgrounds"></PageTitle>
         <PageMenu>
-            <button type="button" class="btn btn-outline-danger">
-                <i class="bi-trash"></i>
+            @*<button type="button" class="btn btn-outline-danger">
+                <i class="bi bi-trash"></i>
             </button>
 
             <button type="button" class="btn btn-outline-primary">
-                <i class="bi-plus-lg"></i>
+                <i class="bi bi-plus-lg"></i>
             </button>
             <button type="button" class="btn btn-light">
-                <i class="bi-search"></i>
+                <i class="bi bi-search"></i>
             </button>
             <button type="button" class="btn btn-outline-danger btn-rounded">
-                <i class="bi-trash"></i>
+                <i class="bi bi-trash"></i>
                 Delete
             </button>
 
             <button type="button" class="btn btn-outline-primary btn-rounded">
-                <i class="bi-plus-lg"></i>
+                <i class="bi bi-plus-lg"></i>
                 Save
             </button>
             <button type="button" class="btn btn-light btn-rounded">
-                <i class="bi-search"></i>
+                <i class="bi bi-search"></i>
                 Search
-            </button>
+            </button>*@
         </PageMenu>
     </PageHeader>
     <PageBody>
+        <h3 class="text-center">List of components used in the Healthcare App</h3>
         <CardWrapper>
-            <CardView Link="/">
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
+            <CardView Link="/playground/card">
+                <CardViewHeader Icon="bi bi-card-heading" />
                 <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>UI layout for <b>Cards</b>.</p>
                 </CardViewBody>
             </CardView>
-            <CardView Link="/">
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+            <CardView Link="/playground/page">
+                <CardViewHeader Icon="bi bi-layout-text-window-reverse"/>
                 <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>UI layout for <b>Pages</b>.</p>
                 </CardViewBody>
             </CardView>
-            <CardView>
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
+            <CardView Link="/playground/modal">
+                <CardViewHeader Icon="bi bi-window" />
                 <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-                <CardViewFooter>
-                    <button class="btn btn-outline-primary btn-rounded"
-                            @onclick="AddSupplier">
-                        Add supplier
-                    </button>
-                </CardViewFooter>
-            </CardView>
-            <CardView>
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-                <CardViewFooter>
-                    <button class="btn btn-outline-default btn-rounded">
-                        Cancel
-                    </button>
-                    <button class="btn btn-outline-primary btn-rounded"
-                            @onclick="AddCustomer">
-                        Add patient
-                    </button>
-                </CardViewFooter>
-            </CardView>
-        </CardWrapper>
-        <CardWrapper>
-            <CardView Link="/">
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/doctor-looking-at-clipboard.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/">
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-            </CardView>
-            <CardView>
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-                <CardViewFooter>
-                    <button class="btn btn-outline-default btn-rounded">
-                        Cancel
-                    </button>
-                    <button class="btn btn-outline-primary btn-rounded"
-                            @onclick="AddCustomer">
-                        Add patient
-                    </button>
-                </CardViewFooter>
-            </CardView>
-        </CardWrapper>
-        <CardWrapper>
-            <CardView>
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/newborn-baby-feet.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                </CardViewBody>
-            </CardView>
-            <CardView>
-                <CardViewHeader Title="Lorem ipsum" ImageUrl="https://burst.shopifycdn.com/photos/flat-cardboard-boxes.jpg?width=925&exif=1&iptc=1" />
-                <CardViewBody>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <p>UI layout for <b>Modals</b>.</p>
                 </CardViewBody>
             </CardView>
         </CardWrapper>
+
+        @*<button class="btn btn-primary" @onclick="() => modal.Open()">Modal!</button>
+
+        <Modal @ref="modal">
+            <Title>This is a <em>Title!</em></Title>
+            <Body>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
+                    <i>Quis istud possit, inquit, negare?</i>
+                    <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
+                </p>
+                <FetchData />
+                <dl>
+                    <dt><dfn>Stoici scilicet.</dfn></dt>
+                    <dd>An hoc usque quaque, aliter in vita?</dd>
+                    <dt><dfn>Erat enim Polemonis.</dfn></dt>
+                    <dd>Quod cum accidisset ut alter alterum necopinato videremus, surrexit statim.</dd>
+                </dl>
+            </Body>
+            <Footer>
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" @onclick="() => modal.Close()">Close</button>
+            </Footer>
+        </Modal>*@
+
+
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
 
 @code{
 
-    public Customer newCustomer = new Customer();
+    @*public Customer newCustomer = new Customer();
 
     public Supplier newSupplier = new Supplier();
 
@@ -294,5 +258,7 @@
         var finalString = new String(stringChars);
         return finalString;
     }
+
+    private Modal modal { get; set; }*@
 
 }

@@ -1,0 +1,43 @@
+﻿@page "/playground/page"
+@using HealthCareApp.Components.Page
+
+<PageWrapper>
+    <PageHeader StyleCSS="page-header-background">
+        <PageTitle Title="Pages layout"></PageTitle>
+        <PageMenu>
+            <button type="button" class="btn btn-outline-danger">
+                <i class="bi bi-trash"></i>
+            </button>
+
+            <button type="button" class="btn btn-outline-primary">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+            <button type="button" class="btn btn-light">
+                <i class="bi bi-search"></i>
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-rounded">
+                <i class="bi bi-trash"></i>
+                Delete
+            </button>
+
+            <button type="button" class="btn btn-outline-primary btn-rounded">
+                <i class="bi bi-plus-lg"></i>
+                Save
+            </button>
+            <button type="button" class="btn btn-light btn-rounded">
+                <i class="bi bi-search"></i>
+                Search
+            </button>
+        </PageMenu>
+    </PageHeader>
+    <PageBody StyleCSS="page-body-background">
+        <div class="h-100 d-flex justify-content-center align-items-center">Page body</div>
+    </PageBody>
+    <PageFooter StyleCSS="page-footer-background">
+        <span>Page footer</span>
+    </PageFooter>
+</PageWrapper>
+
+@code{
+
+}
