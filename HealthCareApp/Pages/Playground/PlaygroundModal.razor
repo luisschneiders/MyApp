@@ -90,19 +90,16 @@
 
     private async Task CloseSmallModalAsync()
     {
-        modalSmallTarget = Guid.NewGuid();
         await Task.FromResult(modalSmall.Close(modalSmallTarget));
     }
 
     private async Task CloseMediumModalAsync()
     {
-        modalMediumTarget = Guid.NewGuid();
         await Task.FromResult(modalMedium.Close(modalMediumTarget));
     }
 
     private async Task CloseLargeModalAsync()
     {
-        modalLargeTarget = Guid.NewGuid();
         await Task.FromResult(modalLarge.Close(modalLargeTarget));
     }
 
