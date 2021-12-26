@@ -14,6 +14,8 @@
     <None Remove="app.db-shm" />
     <None Remove="app.db-wal" />
     <None Remove="Components\Page\" />
+    <None Remove="Components\Modal\" />
+    <None Remove="Pages\Playground\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -54,6 +56,8 @@
     <Folder Include="Components\" />
     <Folder Include="Components\Card\" />
     <Folder Include="Components\Page\" />
+    <Folder Include="Components\Modal\" />
+    <Folder Include="Pages\Playground\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
