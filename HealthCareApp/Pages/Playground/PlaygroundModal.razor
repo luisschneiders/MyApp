@@ -8,34 +8,104 @@
         <PageMenu />
     </PageHeader>
     <PageBody>
-        <div class="h-100 d-flex justify-content-center align-items-center">
-            <button class="btn btn-outline-info btn-rounded" @onclick="() => modal.Open()">Open Modal!</button>
+        <div class="h-100 d-flex justify-content-around align-items-center">
+            <button class="btn btn-outline-secondary btn-rounded"
+                    data-target="#modalSmallTarget"
+                    @onclick="() => OpenSmallModalAsync()">
+                Open Modal Small!
+            </button>
+            <button class="btn btn-outline-info btn-rounded"
+                    data-target="#modalMediumTarget"
+                    @onclick="() => OpenMediumModalAsync()">
+                Open Modal Medium!
+            </button>
+            <button class="btn btn-outline-primary btn-rounded"
+                    data-target="#modalLargeTarget"
+                    @onclick="() => OpenLargeModalAsync()">
+                Open Modal Large!
+            </button>
         </div>
     </PageBody>
     <PageFooter />
 </PageWrapper>
-<Modal @ref="modal">
-    <Title>This is a <em>Title!</em></Title>
+
+
+<Modal @ref="modalSmall" Size="ModalSize.sm">
+    <Title>Small Modal</Title>
     <Body>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
-            <i>Quis istud possit, inquit, negare?</i>
-            <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
-        </p>
-        <FetchData />
-        <dl>
-            <dt><dfn>Stoici scilicet.</dfn></dt>
-            <dd>An hoc usque quaque, aliter in vita?</dd>
-            <dt><dfn>Erat enim Polemonis.</dfn></dt>
-            <dd>Quod cum accidisset ut alter alterum necopinato videremus, surrexit statim.</dd>
-        </dl>
+        <h5>This is a small modal!!</h5>
     </Body>
     <Footer>
-        <button type="button" class="btn btn-outline-secondary btn-rounded" data-dismiss="modal" @onclick="() => modal.Close()">Close</button>
-        <button type="button" class="btn btn-outline-primary btn-rounded">Save changes</button>
+        <button type="button" class="btn btn-outline-secondary btn-rounded" data-dismiss="modal" @onclick="() => CloseSmallModalAsync()">Close</button>
+    </Footer>
+</Modal>
+
+<Modal @ref="modalMedium" Size="ModalSize.md">
+    <Title>Medium Modal</Title>
+    <Body>
+        <h3>This is a medium modal!!</h3>
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-outline-primary btn-rounded" data-dismiss="modal" @onclick="() => CloseMediumModalAsync()">Close</button>
+    </Footer>
+</Modal>
+
+<Modal @ref="modalLarge" Size="ModalSize.lg">
+    <Title>Large Modal</Title>
+    <Body>
+        <h2>This is a large modal!!</h2>
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-outline-primary btn-rounded" data-dismiss="modal" @onclick="() => CloseLargeModalAsync()">Close</button>
     </Footer>
 </Modal>
 
 @code{
     private Modal modal { get; set; }
+    private Modal modalSmall { get; set; }
+    private Modal modalMedium { get; set; }
+    private Modal modalLarge { get; set; }
+
+    private Guid modalSmallTarget { get; set; }
+    private Guid modalMediumTarget { get; set; }
+    private Guid modalLargeTarget { get; set; }
+
+    private async Task OpenSmallModalAsync()
+    {
+        modalSmallTarget = Guid.NewGuid();
+        await Task.FromResult(modalSmall.Open(modalSmallTarget));
+    }
+
+    private async Task OpenMediumModalAsync()
+    {
+        modalMediumTarget = Guid.NewGuid();
+        await Task.FromResult(modalMedium.Open(modalMediumTarget));
+    }
+
+    private async Task OpenLargeModalAsync()
+    {
+        modalLargeTarget = Guid.NewGuid();
+        await Task.FromResult(modalLarge.Open(modalLargeTarget));
+    }
+
+    private async Task CloseSmallModalAsync()
+    {
+        modalSmallTarget = Guid.NewGuid();
+        await Task.FromResult(modalSmall.Close(modalSmallTarget));
+    }
+
+    private async Task CloseMediumModalAsync()
+    {
+        modalMediumTarget = Guid.NewGuid();
+        await Task.FromResult(modalMedium.Close(modalMediumTarget));
+    }
+
+    private async Task CloseLargeModalAsync()
+    {
+        modalLargeTarget = Guid.NewGuid();
+        await Task.FromResult(modalLarge.Close(modalLargeTarget));
+    }
+
+    private RenderFragment title { get; set; }
+
 }
