@@ -1,5 +1,6 @@
 ﻿@page "/playground/modal"
 @using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Card
 @using HealthCareApp.Components.Modal
 
 <PageWrapper>
@@ -8,23 +9,44 @@
         <PageMenu />
     </PageHeader>
     <PageBody>
-        <div class="h-100 d-flex justify-content-around align-items-center">
-            <button class="btn btn-outline-secondary btn-rounded"
-                    data-target="#modalSmallTarget"
-                    @onclick="() => OpenSmallModalAsync()">
-                Open Modal Small!
-            </button>
-            <button class="btn btn-outline-info btn-rounded"
-                    data-target="#modalMediumTarget"
-                    @onclick="() => OpenMediumModalAsync()">
-                Open Modal Medium!
-            </button>
-            <button class="btn btn-outline-primary btn-rounded"
-                    data-target="#modalLargeTarget"
-                    @onclick="() => OpenLargeModalAsync()">
-                Open Modal Large!
-            </button>
-        </div>
+        <CardWrapper>
+            <CardView>
+                <CardViewHeader Title="Small Modal" Icon="bi bi-window" />
+                <CardViewBody>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <button class="btn btn-outline-secondary btn-rounded"
+                                data-target="#modalSmallTarget"
+                                @onclick="() => OpenSmallModalAsync()">
+                            Open Modal
+                        </button>
+                    </div>
+                </CardViewBody>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Medium Modal" Icon="bi bi-window" />
+                <CardViewBody>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <button class="btn btn-outline-info btn-rounded"
+                                data-target="#modalMediumTarget"
+                                @onclick="() => OpenMediumModalAsync()">
+                            Open Modal
+                        </button>
+                    </div>
+                </CardViewBody>
+            </CardView>
+            <CardView>
+                <CardViewHeader Title="Large Modal" Icon="bi bi-window" />
+                <CardViewBody>
+                    <div class="d-flex justify-content-around align-items-center">
+                        <button class="btn btn-outline-primary btn-rounded"
+                                data-target="#modalLargeTarget"
+                                @onclick="() => OpenLargeModalAsync()">
+                            Open Modal
+                        </button>
+                    </div>
+                </CardViewBody>
+            </CardView>
+        </CardWrapper>
     </PageBody>
     <PageFooter />
 </PageWrapper>
