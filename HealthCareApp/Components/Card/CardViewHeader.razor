@@ -1,7 +1,7 @@
 ﻿<div class="card-header hca-card-header text-center">
     @if (@Icon.Length > 0)
     {
-        <i class="@Icon xxlg-icon hca-icon-color"></i>
+        <i class="@Icon @IconTheme xxlg-icon"></i>
     }
     else
     {
@@ -19,6 +19,9 @@
 
     [Parameter]
     public string Icon { get; set; } = "";
+
+    [Parameter]
+    public string IconTheme { get; set; } = "hca-default-theme-icon";
 
     [Parameter]
     public string Title { get; set; } = "";

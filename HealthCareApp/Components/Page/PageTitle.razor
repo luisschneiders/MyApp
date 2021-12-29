@@ -8,7 +8,7 @@
 <Title value="@Title"></Title>
 
 <h2>
-    <span class="text-gradient text-capitalize">
+    <span class="@TitleTheme text-capitalize">
         @Title
     </span>
 </h2>
@@ -17,6 +17,9 @@
 
     [Parameter]
     public string Title { get; set; } = "";
+
+    [Parameter]
+    public string TitleTheme { get; set; } = "hca-default-theme-title";
 
     protected override void OnInitialized()
     {

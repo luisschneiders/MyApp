@@ -10,7 +10,7 @@
     >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">
+                <h5 class="@TitleTheme modal-title">
                     @Title
                 </h5>
                 <button class="close"
@@ -43,6 +43,9 @@
 
     [Parameter]
     public RenderFragment Title { get; set; }
+
+    [Parameter]
+    public string TitleTheme { get; set; } = "hca-default-theme-title";
 
     [Parameter]
     public RenderFragment Body { get; set; }

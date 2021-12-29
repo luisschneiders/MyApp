@@ -1,29 +1,67 @@
 ﻿@page "/employees"
 @page "/employees/{employeeId:guid}"
 @using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Modal
 
 <PageWrapper>
     <PageHeader>
-        <PageTitle Title="Employees"></PageTitle>
+        <PageTitle
+                   Title="Employees"
+                   TitleTheme="hca-employee-theme-title"></PageTitle>
         <PageMenu>
-            <button type="button" class="btn btn-light btn-rounded" title="Search">
+            <button type="button"
+                    class="btn btn-light btn-rounded"
+                    title="Search">
                 <i class="bi bi-search"></i>
-                Search
             </button>
-            <button type="button" class="btn btn-outline-primary btn-rounded" title="Add new employee">
+            <button type="button"
+                    class="btn btn-primary btn-rounded"
+                    title="Add new employee"
+                    @onclick="() => OpenModalAddEmployeeAsync()"
+            >
                 <i class="bi bi-plus-lg"></i>
-                New employee
             </button>
         </PageMenu>
     </PageHeader>
     <PageBody>
-        Content here...
+        
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
+<Modal @ref="modalAddEmployee"
+       TitleTheme="hca-employee-theme-title"
+>
+    <Title>Add new employee</Title>
+    <Body>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
+            <i>Quis istud possit, inquit, negare?</i>
+            <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
+        </p>
+    </Body>
+    <Footer>
+        <button type="button" class="btn btn-light btn-rounded" data-dismiss="modal" @onclick="() => CloseModalAddEmployeeAsync()">Cancel</button>
+        <button type="button" class="btn btn-outline-primary btn-rounded">Save</button>
+    </Footer>
+</Modal>
 
 @code {
+
+    private Modal modalAddEmployee { get; set; }
+    private Guid modalAddEmployeeTarget { get; set; }
+
     [Parameter]
     public Guid EmployeeId { get; set; } = Guid.Empty;
+
+    private async Task OpenModalAddEmployeeAsync()
+    {
+        modalAddEmployeeTarget = Guid.NewGuid();
+        await Task.FromResult(modalAddEmployee.Open(modalAddEmployeeTarget));
+    }
+
+    private async Task CloseModalAddEmployeeAsync()
+    {
+        await Task.FromResult(modalAddEmployee.Close(modalAddEmployeeTarget));
+    }
 
 }
