@@ -1,12 +1,15 @@
-﻿@page "/employees"
-@page "/employees/{employeeId:guid}"
+﻿@page "/employee/list"
+@page "/employee/list/{employeeId:guid}"
+
+@using EmployeeLibrary.Models
+@using ContactDetailsLibrary.Models
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Modal
+@using System.Text.Json;
 
 <PageWrapper>
     <PageHeader>
-        <PageTitle
-                   Title="Employees"
+        <PageTitle Title="Employees"
                    TitleTheme="hca-employee-theme-title"></PageTitle>
         <PageMenu>
             <button type="button"
@@ -17,41 +20,169 @@
             <button type="button"
                     class="btn btn-primary btn-rounded"
                     title="Add new employee"
-                    @onclick="() => OpenModalAddEmployeeAsync()"
-            >
+                    @onclick="() => OpenModalAddEmployeeAsync()">
                 <i class="bi bi-plus-lg"></i>
             </button>
         </PageMenu>
     </PageHeader>
     <PageBody>
-        
+        body...
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
-<Modal @ref="modalAddEmployee"
-       TitleTheme="hca-employee-theme-title"
+<EditForm Model="@employee"
+          OnValidSubmit="@HandleValidSubmit"
+          OnInvalidSubmit="@HandleInvalidSubmit"
 >
-    <Title>Add new employee</Title>
-    <Body>
-        <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Omnes enim iucundum motum, quo sensus hilaretur.
-            <i>Quis istud possit, inquit, negare?</i>
-            <mark>Ego vero isti, inquam, permitto.</mark> Duo Reges: constructio interrete.
-        </p>
-    </Body>
-    <Footer>
-        <button type="button" class="btn btn-light btn-rounded" data-dismiss="modal" @onclick="() => CloseModalAddEmployeeAsync()">Cancel</button>
-        <button type="button" class="btn btn-outline-primary btn-rounded">Save</button>
-    </Footer>
-</Modal>
+    <DataAnnotationsValidator />
+    <Modal @ref="modalAddEmployee"
+           TitleTheme="hca-employee-theme-title"
+           Size="ModalSize.lg">
+        <Title>Add new employee</Title>
+        <Body>
+            <div class="row">
+                <div class="col-sm-8">
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="EmployeeFirstName">
+                            First Name
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText class="form-control"
+                                       id="EmployeeFirstName"
+                                       @bind-Value="@employee.EmployeeFirstName" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="EmployeeLastName">
+                            Last Name
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText class="form-control"
+                                       id="EmployeeLastName"
+                                       @bind-Value="@employee.EmployeeLastName" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="EmployeeUsername">
+                            Username
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText class="form-control"
+                                       id="EmployeeUsername"
+                                       @bind-Value="@employee.EmployeeUsername" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="EmployeePassword">
+                            Password
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText type="password"
+                                       class="form-control"
+                                       id="EmployeePassword"
+                                       autocomplete="off"
+                                       @bind-Value="@employee.EmployeePassword" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="Email">
+                            Email
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText type="email"
+                                       class="form-control"
+                                       id="Email"
+                                       autocomplete="off"
+                                       @bind-Value="@contactDetails.Email" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    @if (displayValidationErrorMessages)
+                    {
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label>Validation Messages: </label>
+                                <ValidationSummary />
+                            </div>
+                        </div>
+                    }
+                    @if (displayUserAddedToDB)
+                    {
+                        <div class="row  mb-3 bg-success text-white">
+                            <label class="p-2">Employee saved successfully! </label>
+                        </div>
+                    }
+                    <span>
+                        @employeeToJson
+                    </span>
+                </div>
+            </div>
+        </Body>
+        <Footer>
+            <button type="button"
+                    class="btn btn-light btn-rounded"
+                    data-dismiss="modal"
+                    @onclick="() => CloseModalAddEmployeeAsync()">
+                Cancel
+            </button>
+            <button type="submit"
+                    class="btn btn-outline-primary btn-rounded">
+                Save
+            </button>
+        </Footer>
+    </Modal>
+</EditForm>
 
 @code {
+
+    [Parameter]
+    public Guid EmployeeId { get; set; } = Guid.Empty;
 
     private Modal modalAddEmployee { get; set; }
     private Guid modalAddEmployeeTarget { get; set; }
 
-    [Parameter]
-    public Guid EmployeeId { get; set; } = Guid.Empty;
+    private Employee employee;
+    private ContactDetails contactDetails;
+
+    bool displayValidationErrorMessages = false;
+    bool displayUserAddedToDB = false;
+
+    private string employeeToJson;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+
+        contactDetails = new ContactDetails();
+        employee = new Employee()
+        {
+
+        };
+
+        EmployeeToJson();
+
+    }
+
+    private void HandleValidSubmit(EditContext context)
+    {
+        displayValidationErrorMessages = false;
+        displayUserAddedToDB = true;
+
+        EmployeeToJson();
+    }
+    private void HandleInvalidSubmit(EditContext context)
+    {
+        displayValidationErrorMessages = true;
+        displayUserAddedToDB = false;
+
+        EmployeeToJson();
+    }
 
     private async Task OpenModalAddEmployeeAsync()
     {
@@ -62,6 +193,12 @@
     private async Task CloseModalAddEmployeeAsync()
     {
         await Task.FromResult(modalAddEmployee.Close(modalAddEmployeeTarget));
+    }
+
+    private void EmployeeToJson()
+    {
+        var opt = new JsonSerializerOptions() { WriteIndented = true };
+        employeeToJson = JsonSerializer.Serialize<Employee>(employee, opt);
     }
 
 }
