@@ -21,10 +21,10 @@ namespace CustomerLibrary.Models
         public DateTime CustomerDOB { get; set; }
 
         [Required]
-        public ICollection<ContactDetails> ContactDetails { get; set; }
+        public ContactDetails ContactDetails { get; set; }
 
         [Required]
-        public ICollection<Location> Location { get; set; }
+        public Location Location { get; set; }
 
     }
 }

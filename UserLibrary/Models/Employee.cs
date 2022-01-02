@@ -23,10 +23,10 @@ namespace EmployeeLibrary.Models
         [Required]
         public string EmployeePassword { get; set; }
 
-        [Required]
-        public ICollection<ContactDetails> ContactDetails { get; set; }
+        [ValidateComplexType]
+        public ContactDetails ContactDetails { get; set; }
 
-        [Required]
-        public ICollection<Location> Location { get; set; }
+        [ValidateComplexType]
+        public Location Location { get; set; }
     }
 }
