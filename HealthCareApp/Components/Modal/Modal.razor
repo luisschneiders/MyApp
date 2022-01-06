@@ -13,13 +13,11 @@
                 <h5 class="@TitleTheme modal-title">
                     @Title
                 </h5>
-                <button class="close"
+                <button class="btn-close"
                         type="button"
-                        data-dismiss="modal"
+                        data-bs-dismiss="modal"
                         aria-label="Close"
-                        @onclick="() => Close(guid)"
-                >
-                    <i class="bi bi-x"></i>
+                        @onclick="() => Close(guid)">
                 </button>
             </div>
             <div class="modal-body">
