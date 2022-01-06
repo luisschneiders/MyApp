@@ -1,8 +1,8 @@
-﻿using CustomerLibrary;
-using EmployeeLibrary;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using SupplierLibrary;
+using CustomerLibrary.Models;
+using EmployeeLibrary.Models;
+using SupplierLibrary.Models;
 
 namespace HealthCareApp.Data
 {

@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using CustomerLibrary;
 using Microsoft.AspNetCore.Http;
+using CustomerLibrary.Models;
 
 namespace HealthCareApp.Data
 {

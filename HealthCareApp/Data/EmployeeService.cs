@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using EmployeeLibrary;
+using EmployeeLibrary.Models;
 
 namespace HealthCareApp.Data
 {
