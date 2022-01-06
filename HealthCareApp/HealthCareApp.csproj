@@ -61,6 +61,8 @@
     <Folder Include="Components\Modal\" />
     <Folder Include="Pages\Playground\" />
     <Folder Include="Pages\Employee\" />
+    <Folder Include="wwwroot\js\" />
+    <Folder Include="wwwroot\js\bootstrap\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
@@ -81,5 +83,9 @@
     <ProjectReference Include="..\UserLibrary\EmployeeLibrary.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\js\" />
+    <Content Remove="wwwroot\js\bootstrap\" />
   </ItemGroup>
 </Project>
