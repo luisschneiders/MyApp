@@ -16,20 +16,14 @@ namespace HealthCareApp.Data.Migrations
             modelBuilder
                 .HasAnnotation("ProductVersion", "5.0.11");
 
-            modelBuilder.Entity("ContactDetailsLibrary.ContactDetails", b =>
+            modelBuilder.Entity("ContactDetailsLibrary.Models.ContactDetails", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("EmployeeId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Mobile")
@@ -38,36 +32,32 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<string>("Phone")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("SupplierId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SupplierId");
 
                     b.ToTable("ContactDetails");
                 });
 
-            modelBuilder.Entity("CustomerLibrary.Customer", b =>
+            modelBuilder.Entity("CustomerLibrary.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CustomerDOB")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerFirstName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("CustomerLastName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("InsertedBy")
@@ -76,33 +66,47 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
+
                     b.ToTable("Customers");
                 });
 
-            modelBuilder.Entity("EmployeeLibrary.Employee", b =>
+            modelBuilder.Entity("EmployeeLibrary.Models.Employee", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmployeeFirstName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmployeeLastName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmployeePassword")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EmployeeUsername")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("InsertedBy")
@@ -111,54 +115,50 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
+
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("LocationLibrary.Location", b =>
+            modelBuilder.Entity("LocationLibrary.Models.Location", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Address")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("CustomerId")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("EmployeeId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<float>("Lat")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float(10,6)");
 
                     b.Property<float>("Lng")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float(10,6)");
 
                     b.Property<string>("Postcode")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("State")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Suburb")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid?>("SupplierId")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("SupplierId");
 
                     b.ToTable("Location");
                 });
@@ -359,13 +359,16 @@ namespace HealthCareApp.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("SupplierLibrary.Supplier", b =>
+            modelBuilder.Entity("SupplierLibrary.Models.Supplier", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("CreatedAt")
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("InsertedBy")
@@ -374,48 +377,57 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SupplierABN")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("SupplierName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime?>("UpdatedAt")
+                    b.Property<DateTime>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
+
                     b.ToTable("Suppliers");
                 });
 
-            modelBuilder.Entity("ContactDetailsLibrary.ContactDetails", b =>
+            modelBuilder.Entity("CustomerLibrary.Models.Customer", b =>
                 {
-                    b.HasOne("CustomerLibrary.Customer", null)
-                        .WithMany("ContactDetails")
-                        .HasForeignKey("CustomerId");
+                    b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
 
-                    b.HasOne("EmployeeLibrary.Employee", null)
-                        .WithMany("ContactDetails")
-                        .HasForeignKey("EmployeeId");
+                    b.HasOne("LocationLibrary.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
 
-                    b.HasOne("SupplierLibrary.Supplier", null)
-                        .WithMany("ContactDetails")
-                        .HasForeignKey("SupplierId");
+                    b.Navigation("ContactDetails");
+
+                    b.Navigation("Location");
                 });
 
-            modelBuilder.Entity("LocationLibrary.Location", b =>
+            modelBuilder.Entity("EmployeeLibrary.Models.Employee", b =>
                 {
-                    b.HasOne("CustomerLibrary.Customer", null)
-                        .WithMany("Location")
-                        .HasForeignKey("CustomerId");
+                    b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
 
-                    b.HasOne("EmployeeLibrary.Employee", null)
-                        .WithMany("Location")
-                        .HasForeignKey("EmployeeId");
+                    b.HasOne("LocationLibrary.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
 
-                    b.HasOne("SupplierLibrary.Supplier", null)
-                        .WithMany("Location")
-                        .HasForeignKey("SupplierId");
+                    b.Navigation("ContactDetails");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -469,22 +481,16 @@ namespace HealthCareApp.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("CustomerLibrary.Customer", b =>
+            modelBuilder.Entity("SupplierLibrary.Models.Supplier", b =>
                 {
-                    b.Navigation("ContactDetails");
+                    b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
 
-                    b.Navigation("Location");
-                });
+                    b.HasOne("LocationLibrary.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
 
-            modelBuilder.Entity("EmployeeLibrary.Employee", b =>
-                {
-                    b.Navigation("ContactDetails");
-
-                    b.Navigation("Location");
-                });
-
-            modelBuilder.Entity("SupplierLibrary.Supplier", b =>
-                {
                     b.Navigation("ContactDetails");
 
                     b.Navigation("Location");
