@@ -13,8 +13,8 @@ namespace EmployeeLibrary
         private string _employeeLastName;
         private string _employeeUsername;
         private string _employeePassword;
-        private ICollection<ContactDetails> _contactDetails;
-        private ICollection<Location> _location;
+        private ContactDetails _contactDetails;
+        private Location _location;
 
         // constructor
         public Employee()
@@ -51,13 +51,13 @@ namespace EmployeeLibrary
             set => _employeePassword = value;
         }
 
-        public ICollection<ContactDetails> ContactDetails
+        public ContactDetails ContactDetails
         {
             get => _contactDetails;
             set => _contactDetails = value;
         }
 
-        public ICollection<Location> Location
+        public Location Location
         {
             get => _location;
             set => _location = value;

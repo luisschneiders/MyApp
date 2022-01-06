@@ -21,24 +21,6 @@ namespace ProductLibrary
         {
         }
 
-        // method Save
-        public void Save(Product product)
-        {
-            // Add validation for fields
-
-            Id = Guid.NewGuid();
-            ProductName = product.ProductName;
-            ProductInitialStock = product.ProductInitialStock;
-            ProductCurrentStock = product.ProductCurrentStock;
-            ProductSerialNumber = product.ProductSerialNumber;
-            ProductManufactureDate = product.ProductManufactureDate;
-            ProductExpireDate = product.ProductExpireDate;
-            ProductSupplier = product.ProductSupplier;
-
-            // both fields will have the same value
-            CreatedAt = UpdatedAt = DateTime.UtcNow;
-        }
-
         public Guid Id
         {
             get => _id;

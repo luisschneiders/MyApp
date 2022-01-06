@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ContactDetailsLibrary;
-using LocationLibrary;
+using BaseLibrary.Models;
+using ContactDetailsLibrary.Models;
+using LocationLibrary.Models;
 
 namespace EmployeeLibrary.Models
 {
-    public class Employee
+    public class Employee : Base
     {
         [Key]
         public Guid Id { get; set; }
@@ -24,9 +24,9 @@ namespace EmployeeLibrary.Models
         public string EmployeePassword { get; set; }
 
         [ValidateComplexType]
-        public ContactDetails ContactDetails { get; set; }
+        public ContactDetails ContactDetails { get; set; } = new();
 
         [ValidateComplexType]
-        public Location Location { get; set; }
+        public Location Location { get; set; } = new();
     }
 }

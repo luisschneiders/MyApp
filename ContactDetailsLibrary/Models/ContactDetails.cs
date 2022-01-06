@@ -13,13 +13,9 @@ namespace ContactDetailsLibrary.Models
         public string Email { get; set; }
 
 #nullable enable
-        [Required]
         public string? Phone { get; set; }
 
-        [Required]
         public string? Mobile { get; set; }
 
-        public Guid CustomerId { get; set; }
-        public Guid SupplierId { get; set; }
     }
 }

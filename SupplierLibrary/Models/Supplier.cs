@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using ContactDetailsLibrary;
-using LocationLibrary;
+using BaseLibrary.Models;
+using ContactDetailsLibrary.Models;
+using LocationLibrary.Models;
 
 namespace SupplierLibrary.Models
 {
-    public class Supplier
+    public class Supplier : Base
     {
         [Key]
         public Guid Id { get; set; }
@@ -17,10 +17,10 @@ namespace SupplierLibrary.Models
         [Required]
         public string SupplierABN { get; set; }
 
-        [Required]
+        [ValidateComplexType]
         public ContactDetails ContactDetails { get; set; }
 
-        [Required]
+        [ValidateComplexType]
         public Location Location { get; set; }
     }
 }

@@ -13,14 +13,6 @@ namespace LocationLibrary.Models
         public string Address { get; set; }
 
         [Required]
-        [Column(TypeName = "float(10,6)")]
-        public float Lat { get; set; }
-
-        [Required]
-        [Column(TypeName = "float(10,6)")]
-        public float Lng { get; set; }
-
-        [Required]
         public string Suburb { get; set; }
 
         [Required]
@@ -29,7 +21,11 @@ namespace LocationLibrary.Models
         [Required]
         public string State { get; set; }
 
-        public Guid CustomerId { get; set; }
-        public Guid SupplierId { get; set; }
+        [Column(TypeName = "float(10,6)")]
+        public float Lat { get; set; }
+
+        [Column(TypeName = "float(10,6)")]
+        public float Lng { get; set; }
+
     }
 }

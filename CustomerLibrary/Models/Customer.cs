@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BaseLibrary.Models;
 using ContactDetailsLibrary.Models;
 using LocationLibrary.Models;
 
 namespace CustomerLibrary.Models
 {
-    public class Customer
+    public class Customer : Base
     {
         [Key]
         public Guid Id { get; set; }

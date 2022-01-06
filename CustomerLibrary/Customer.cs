@@ -12,8 +12,8 @@ namespace CustomerLibrary
         private string _customerFirstName;
         private string _customerLastName;
         private DateTime _customerDOB;
-        private ICollection<ContactDetails> _contactDetails;
-        private ICollection<Location> _location;
+        private ContactDetails _contactDetails;
+        private Location _location;
 
         // constructor
         public Customer()
@@ -49,13 +49,13 @@ namespace CustomerLibrary
             set => _customerDOB = value;
         }
 
-        public ICollection<ContactDetails> ContactDetails
+        public ContactDetails ContactDetails
         {
             get => _contactDetails;
             set => _contactDetails = value;
         }
 
-        public ICollection<Location> Location
+        public Location Location
         {
             get => _location;
             set => _location = value;
