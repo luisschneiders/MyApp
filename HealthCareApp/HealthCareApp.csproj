@@ -17,6 +17,7 @@
     <None Remove="Components\Modal\" />
     <None Remove="Pages\Playground\" />
     <None Remove="Pages\Employee\" />
+    <None Remove="Components\Toast\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -62,7 +63,7 @@
     <Folder Include="Pages\Playground\" />
     <Folder Include="Pages\Employee\" />
     <Folder Include="wwwroot\js\" />
-    <Folder Include="wwwroot\js\bootstrap\" />
+    <Folder Include="Components\Toast\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
@@ -86,6 +87,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
-    <Content Remove="wwwroot\js\bootstrap\" />
+    <Content Remove="wwwroot\js\bootstrap\bootstrap.min.js" />
+    <Content Remove="wwwroot\js\bootstrap\bootstrap.min.js.map" />
   </ItemGroup>
 </Project>
