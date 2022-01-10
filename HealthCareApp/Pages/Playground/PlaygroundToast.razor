@@ -1,0 +1,37 @@
+﻿@page "/playground/toast"
+
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Toast
+
+@inject ToastService toastService;
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle Title="Toast layout"></PageTitle>
+        <PageMenu />
+    </PageHeader>
+    <PageBody>
+        <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+            <div>
+                <button type="button"
+                        class="btn btn-light btn-rounded"
+                        @onclick="() => ShowToast()">
+                    Show toast
+                </button>
+            </div>
+        </div>
+        <Toast />
+    </PageBody>
+</PageWrapper>
+
+@code {
+
+    private string toastMessage { get; set; }
+
+    private void ShowToast()
+    {
+        toastMessage = "Toast message";
+        toastService.ShowToast(toastMessage, ToastLevel.Info);
+    }
+
+}
