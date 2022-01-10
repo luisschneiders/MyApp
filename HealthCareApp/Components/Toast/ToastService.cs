@@ -39,7 +39,7 @@ namespace HealthCareApp.Components.Toast
             }
         }
 
-        public void HideToast(object source, ElapsedEventArgs args)
+        private void HideToast(object source, ElapsedEventArgs args)
         {
             OnHide?.Invoke();
         }
