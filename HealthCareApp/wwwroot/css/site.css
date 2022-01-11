@@ -80,18 +80,18 @@ a, .btn-link {
     color: #ff2f2f;
 }
 
-.hca-default-theme-icon, .hca-default-theme-title {
+.hca-app-icon, .hca-app-title {
     color: #7ED5EA;
 }
-.hca-employee-theme-icon, .hca-employee-theme-title {
+.hca-employee-icon, .hca-employee-title {
     color: #ff7a52;
 }
-.hca-department-theme-icon, .hca-department-theme-title {
+.hca-department-icon, .hca-department-title {
     color: #C39EA0;
 }
-.hca-patient-theme-icon, .hca-patient-theme-title {
+.hca-patient-icon, .hca-patient-title {
     color: #FA255E;
 }
-.hca-supplier-theme-icon, .hca-supplier-theme-title {
+.hca-supplier-icon, .hca-supplier-title {
     color: #849531;
 }

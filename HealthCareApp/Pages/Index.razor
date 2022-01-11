@@ -1,6 +1,7 @@
 ﻿@page "/"
 @using HealthCareApp.Components.Card
 @using HealthCareApp.Components.Page
+@using HealthCareApp.Settings.Theme
 
 <PageWrapper>
     <PageHeader></PageHeader>
@@ -8,20 +9,20 @@
         <PageTitle Title="Quick links"></PageTitle>
         <CardWrapper>
             <CardView Link="/employee/list">
-                <CardViewHeader Title="Employees" Icon="bi bi-people" IconTheme="hca-employee-theme-icon" />
+                <CardViewHeader Title="Employees" Icon="bi bi-people" IconTheme="Theme.employee" />
                 <CardViewBody />
             </CardView>
 
             <CardView Link="/departments">
-                <CardViewHeader Title="Departments" Icon="bi bi-columns-gap" IconTheme="hca-department-theme-icon" />
+                <CardViewHeader Title="Departments" Icon="bi bi-columns-gap" IconTheme="Theme.department" />
                 <CardViewBody />
             </CardView>
             <CardView Link="/patients">
-                <CardViewHeader Title="Patients" Icon="bi bi-person-lines-fill" IconTheme="hca-patient-theme-icon" />
+                <CardViewHeader Title="Patients" Icon="bi bi-person-lines-fill" IconTheme="Theme.patient" />
                 <CardViewBody />
             </CardView>
             <CardView Link="/suppliers">
-                <CardViewHeader Title="Suppliers" Icon="bi bi-boxes" IconTheme="hca-supplier-theme-icon" />
+                <CardViewHeader Title="Suppliers" Icon="bi bi-boxes" IconTheme="Theme.supplier" />
                 <CardViewBody />
             </CardView>
         </CardWrapper>

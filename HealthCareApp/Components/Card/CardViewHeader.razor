@@ -1,7 +1,9 @@
-﻿<div class="card-header hca-card-header text-center">
+﻿@using HealthCareApp.Settings.Theme
+
+<div class="card-header hca-card-header text-center">
     @if (@Icon.Length > 0)
     {
-        <i class="@Icon @IconTheme xxlg-icon"></i>
+        <i class="@Icon hca-@IconTheme-icon xxlg-icon"></i>
     }
     else
     {
@@ -21,7 +23,7 @@
     public string Icon { get; set; } = "";
 
     [Parameter]
-    public string IconTheme { get; set; } = "hca-default-theme-icon";
+    public Theme IconTheme { get; set; } = Theme.app;
 
     [Parameter]
     public string Title { get; set; } = "";
