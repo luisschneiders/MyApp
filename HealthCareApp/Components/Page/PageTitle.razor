@@ -10,7 +10,7 @@
 <Title value="@Title"></Title>
 
 <h2>
-    <span class="hca-@TitleTheme-title text-capitalize">
+    <span class="hca-@Theme-title text-capitalize">
         @Title
     </span>
 </h2>
@@ -21,7 +21,7 @@
     public string Title { get; set; } = "";
 
     [Parameter]
-    public Theme TitleTheme { get; set; } = Theme.app;
+    public Theme Theme { get; set; } = Theme.app;
 
     protected override void OnInitialized()
     {

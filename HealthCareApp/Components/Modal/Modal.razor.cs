@@ -17,7 +17,7 @@ namespace HealthCareApp.Components.Modal
         public RenderFragment Footer { get; set; }
 
         [Parameter]
-        public Theme TitleTheme { get; set; } = Theme.app;
+        public Theme Theme { get; set; } = Theme.app;
 
         [Parameter]
         public ModalSize Size { get; set; } = ModalSize.md;
