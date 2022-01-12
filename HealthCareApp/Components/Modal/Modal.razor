@@ -1,23 +1,23 @@
-﻿<div class="modal fade @modalClass"
-     tabindex="-1"
-     role="dialog"
-     style="display:@modalDisplay"
-     id="@guid"
->
+﻿<div class="modal fade @ModalClass"
+         tabindex="-1"
+         role="dialog"
+         style="display:@ModalStyleDisplay;"
+         id="@ModalId"
+    >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-@Size"
-         data-backdrop="static"
-         role="document"
+            data-backdrop="static"
+            role="document"
     >
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="@TitleTheme modal-title">
+                <h5 class="hca-@TitleTheme-title modal-title">
                     @Title
                 </h5>
                 <button class="btn-close"
                         type="button"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                        @onclick="() => Close(guid)">
+                        @onclick="() => Close(ModalId)">
                 </button>
             </div>
             <div class="modal-body">
@@ -29,54 +29,7 @@
         </div>
     </div>
 </div>
-@if (showBackdrop)
+@if (@ShowBackdrop)
 {
-    <div class="modal-backdrop fade show @modalClass" style="display: @modalDisplay"></div>
-}
-
-@code {
-
-    [Parameter]
-    public Guid Id { get; set; }
-
-    [Parameter]
-    public RenderFragment Title { get; set; }
-
-    [Parameter]
-    public string TitleTheme { get; set; } = "hca-default-theme-title";
-
-    [Parameter]
-    public RenderFragment Body { get; set; }
-
-    [Parameter]
-    public RenderFragment Footer { get; set; }
-
-    [Parameter]
-    public ModalSize Size { get; set; } = ModalSize.md;
-
-    private string modalDisplay = "none;";
-    private string modalClass = "";
-    private Boolean showBackdrop = false;
-    private Guid guid = Guid.Empty;
-
-    public async Task Open(Guid target)
-    {
-        guid = target;
-        modalDisplay = "block;";
-        await Task.Delay(100);
-        modalClass = "show";
-        showBackdrop = true;
-        StateHasChanged();
-    }
-
-    public async Task Close(Guid target)
-    {
-        guid = target;
-        modalClass = "";
-        await Task.Delay(250);
-        modalDisplay = "none;";
-        showBackdrop = false;
-        StateHasChanged();
-    }
-
+    <div class="modal-backdrop fade @ModalClass" style="display: @ModalStyleDisplay;"></div>
 }
