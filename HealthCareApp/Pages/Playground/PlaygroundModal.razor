@@ -83,7 +83,7 @@
 </Modal>
 
 @code{
-    private Modal modal { get; set; }
+
     private Modal modalSmall { get; set; }
     private Modal modalMedium { get; set; }
     private Modal modalLarge { get; set; }
@@ -92,10 +92,22 @@
     private Guid modalMediumTarget { get; set; }
     private Guid modalLargeTarget { get; set; }
 
+    protected override async Task OnInitializedAsync()
+    {
+
+        await base.OnInitializedAsync();
+
+    }
+
     private async Task OpenSmallModalAsync()
     {
         modalSmallTarget = Guid.NewGuid();
         await Task.FromResult(modalSmall.Open(modalSmallTarget));
+    }
+
+    private async Task CloseSmallModalAsync()
+    {
+        await Task.FromResult(modalSmall.Close(modalSmallTarget));
     }
 
     private async Task OpenMediumModalAsync()
@@ -104,27 +116,20 @@
         await Task.FromResult(modalMedium.Open(modalMediumTarget));
     }
 
+    private async Task CloseMediumModalAsync()
+    {
+        await Task.FromResult(modalMedium.Close(modalMediumTarget));
+    }
+
     private async Task OpenLargeModalAsync()
     {
         modalLargeTarget = Guid.NewGuid();
         await Task.FromResult(modalLarge.Open(modalLargeTarget));
     }
 
-    private async Task CloseSmallModalAsync()
-    {
-        await Task.FromResult(modalSmall.Close(modalSmallTarget));
-    }
-
-    private async Task CloseMediumModalAsync()
-    {
-        await Task.FromResult(modalMedium.Close(modalMediumTarget));
-    }
-
     private async Task CloseLargeModalAsync()
     {
         await Task.FromResult(modalLarge.Close(modalLargeTarget));
     }
-
-    private RenderFragment title { get; set; }
 
 }
