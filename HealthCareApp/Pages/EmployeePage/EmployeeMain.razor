@@ -18,12 +18,12 @@
                    Theme="Theme.employee"></PageTitle>
         <PageMenu>
             <button type="button"
-                    class="btn btn-light btn-rounded"
+                    class="btn btn-light btn-rounded btn-icon"
                     title="Search">
                 <i class="bi bi-search"></i>
             </button>
             <button type="button"
-                    class="btn btn-primary btn-rounded"
+                    class="btn btn-primary btn-rounded btn-icon"
                     title="Add new employee"
                     @onclick="() => OpenModalAddEmployeeAsync()">
                 <i class="bi bi-plus-lg"></i>
@@ -31,36 +31,40 @@
         </PageMenu>
     </PageHeader>
     <PageBody>
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Username</th>
-                    <th>Email</th>
-                </tr>
-            </thead>
-            <tbody>
-                <Virtualize Context="person"
-                            ItemsProvider="@LoadEmployees">
-                    <ItemContent>
-                        <tr>
-                            <td>@person.Id</td>
-                            <td>@person.EmployeeFirstName</td>
-                            <td>@person.EmployeeLastName</td>
-                            <td>@person.EmployeeUsername</td>
-                            <td>@person.ContactDetails.Email</td>
-                        </tr>
-                    </ItemContent>
-                    <Placeholder>
-                        <tr>
-                            <td>Loading...</td>
-                        </tr>
-                    </Placeholder>
-                </Virtualize>
-            </tbody>
-        </table>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Username</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <Virtualize Context="person"
+                                ItemsProvider="@LoadEmployees"
+                                @ref="VirtualizeContainer"
+                    >
+                        <ItemContent>
+                            <tr>
+                                <td>@person.Id</td>
+                                <td>@person.EmployeeFirstName</td>
+                                <td>@person.EmployeeLastName</td>
+                                <td>@person.EmployeeUsername</td>
+                                <td>@person.ContactDetails.Email</td>
+                            </tr>
+                        </ItemContent>
+                        <Placeholder>
+                            <tr>
+                                <td>Loading...</td>
+                            </tr>
+                        </Placeholder>
+                    </Virtualize>
+                </tbody>
+            </table>
+        </div>
         <Toast />
     </PageBody>
     <PageFooter></PageFooter>
@@ -251,6 +255,7 @@
 
     private Modal _modalAddEmployee { get; set; }
     private Guid _modalAddEmployeeTarget { get; set; }
+    private Virtualize<Employee> VirtualizeContainer { get; set; }
 
     private Employee _employee = new Employee();
 
@@ -269,8 +274,8 @@
 
         await employeeService.AddEmployeeAsync(_employee);
 
-        @*await VirtualizeContainer.RefreshDataAsync();
-        await InvokeAsync(() => StateHasChanged());*@
+        await VirtualizeContainer.RefreshDataAsync();
+        await InvokeAsync(() => StateHasChanged());
 
         await Task.Delay((int)Delay.dataSuccess);
 
