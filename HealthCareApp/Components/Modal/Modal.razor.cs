@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using HealthCareApp.Settings.Enum;
 using HealthCareApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
@@ -31,7 +32,7 @@ namespace HealthCareApp.Components.Modal
         {
             ModalId = target;
             ModalStyleDisplay = ModalDisplay.block;
-            await Task.Delay(100);
+            await Task.Delay((int)Delay.modalOpen);
             ModalClass = "show";
             ShowBackdrop = true;
 
@@ -42,7 +43,7 @@ namespace HealthCareApp.Components.Modal
         {
             ModalId = target;
             ModalClass = "";
-            await Task.Delay(250);
+            await Task.Delay((int)Delay.modalClose);
             ModalStyleDisplay = ModalDisplay.none;
             ShowBackdrop = false;
 
