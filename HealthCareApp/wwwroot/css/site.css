@@ -19,20 +19,28 @@ a, .btn-link {
     border-radius: 45px;
 }
 
+.btn-icon {
+    width: 38px;
+}
+
+.btn-icon i {
+    margin-left: -2px;
+}
+
 .content {
     height: calc(100% - 56px);
 }
 
 .valid.modified:not([type=checkbox]) {
-    outline: 1px solid #26b050;
+    border-color: #198754;
 }
 
 .invalid {
-    outline: 1px solid red;
+    border-color: #dc3545;
 }
 
 .validation-message {
-    color: red;
+    color: #dc3545;
 }
 
 #blazor-error-ui {
