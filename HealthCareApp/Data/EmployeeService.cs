@@ -25,7 +25,7 @@ namespace HealthCareApp.Data
         }
 
         // async method to add new employee
-        public async Task<Employee> AddCustomerAsync(Employee employee)
+        public async Task<Employee> AddEmployeeAsync(Employee employee)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
