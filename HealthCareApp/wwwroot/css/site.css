@@ -4,6 +4,10 @@ html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
+body {
+    background: linear-gradient(145deg, var(--bs-purple) 35%, var(--bs-red) 100%);
+}
+
 a, .btn-link {
     color: #28559A;
     text-decoration: none;
@@ -61,19 +65,15 @@ a, .btn-link {
     right: 0.75rem;
     top: 0.5rem;
 }
-
 .xs-icon {
     font-size: .9rem;
 }
-
 .sm-icon {
     font-size: 1.2rem;
 }
-
 .md-icon {
     font-size: 1.6rem;
 }
-
 .lg-icon {
     font-size: 3rem;
 }
@@ -83,11 +83,9 @@ a, .btn-link {
 .xxlg-icon {
     font-size: 6.5rem;
 }
-
 .logo-icon {
     color: #ff2f2f;
 }
-
 .hca-app-icon, .hca-app-title {
     color: #7ED5EA;
 }
@@ -102,4 +100,8 @@ a, .btn-link {
 }
 .hca-supplier-icon, .hca-supplier-title {
     color: #849531;
+}
+.table > .hca-thead {
+    background-color: #3e2723;
+    color: #f8f9f8;
 }

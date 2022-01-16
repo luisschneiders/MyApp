@@ -9,12 +9,11 @@
 }
 
 .sidebar {
-    background: #37517e;
+    background: none;
 }
 
 .top-row {
-    background-color: #fff;
-    border-bottom: 1px solid #f1f1f1;
+    background-color: rgba(0,0,0,0.4);
     box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
     justify-content: flex-end;
     height: 3.5rem;
@@ -25,6 +24,7 @@
     .top-row ::deep a, .top-row .btn-link {
         white-space: nowrap;
         margin-left: 1.5rem;
+        color: #f8f9f8;
     }
 
     .top-row a:first-child {
