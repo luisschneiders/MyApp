@@ -4,9 +4,11 @@
 @using HealthCareApp.Settings.Theme
 
 <PageWrapper>
-    <PageHeader></PageHeader>
-    <PageBody>
-        <PageTitle Title="Quick links"></PageTitle>
+    <PageHeader>
+        <PageTitle Title="Dashboard"></PageTitle>
+    </PageHeader>
+    <PageBody Styles="p-2">
+        <h4 class="hca-app-title">Quick links</h4>
         <CardWrapper>
             <CardView Link="/employees">
                 <CardViewHeader Title="Employees" Icon="bi bi-people" IconTheme="Theme.employee" />
@@ -27,8 +29,7 @@
             </CardView>
         </CardWrapper>
         <hr>
-        <PageTitle Title="What's happening"></PageTitle>
-
+        <h4 class="hca-app-title">What's happening</h4>
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
