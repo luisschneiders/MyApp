@@ -73,39 +73,3 @@
         </AuthorizeView>
     </ul>
 </div>
-
-@code {
-    private enum NavSubmenu
-    {
-        None,
-        First,
-        Second
-    };
-
-    private Boolean collapseNavMenu = true;
-    private Boolean collapseNavSubmenu = true;
-
-    private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-    private string NavSubmenuIcon => collapseNavSubmenu ? "bi-chevron-expand" : "bi-chevron-contract";
-    private NavSubmenu navSubmenu = NavSubmenu.None;
-
-
-    private void ToggleNavMenu()
-    {
-        collapseNavMenu = !collapseNavMenu;
-    }
-
-    private void ToggleNavSubmenu(NavSubmenu submenu)
-    {
-        collapseNavSubmenu = !collapseNavSubmenu;
-
-        if (navSubmenu == submenu)
-        {
-            navSubmenu = NavSubmenu.None;
-        }
-        else
-        {
-            navSubmenu = submenu;
-        }
-    }
-}
