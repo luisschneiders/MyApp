@@ -28,5 +28,9 @@ namespace EmployeeLibrary.Models
 
         [ValidateComplexType]
         public Location Location { get; set; } = new();
+
+        // Shadow properties
+        public Guid ContactDetailsId { get; set; }
+        public Guid LocationId { get; set; }
     }
 }
