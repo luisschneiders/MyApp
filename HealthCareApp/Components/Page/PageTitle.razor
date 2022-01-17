@@ -1,11 +1,5 @@
 ﻿@using Microsoft.AspNetCore.Components.Web.Extensions.Head
-@using HealthCareApp.Settings.Theme
-
-@*@using System.Globalization;*@
-
-
 @inject NavigationManager navigationManager
-
 
 <Title value="@Title"></Title>
 
@@ -14,22 +8,3 @@
         @Title
     </span>
 </h2>
-
-@code {
-
-    [Parameter]
-    public string Title { get; set; } = "";
-
-    [Parameter]
-    public Theme Theme { get; set; } = Theme.app;
-
-    protected override void OnInitialized()
-    {
-        base.OnInitialized();
-
-        if (string.IsNullOrWhiteSpace(Title))
-        {
-            throw new ArgumentNullException();
-        }
-    }
-}
