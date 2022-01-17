@@ -5,15 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\LocationLibrary\LocationLibrary.csproj" />
-    <ProjectReference Include="..\ContactDetailsLibrary\ContactDetailsLibrary.csproj" />
     <ProjectReference Include="..\BaseLibrary\BaseLibrary.csproj" />
+    <ProjectReference Include="..\ContactDetailsLibrary\ContactDetailsLibrary.csproj" />
+    <ProjectReference Include="..\LocationLibrary\LocationLibrary.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Models\" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\" />
+    <None Remove="Microsoft.AspNetCore.Components.DataAnnotations.Validation" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.DataAnnotations.Validation" Version="3.2.0-rc1.20223.4" />

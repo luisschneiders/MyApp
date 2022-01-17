@@ -18,6 +18,9 @@
     <None Remove="Pages\Playground\" />
     <None Remove="Pages\Employee\" />
     <None Remove="Components\Toast\" />
+    <None Remove="Settings\" />
+    <None Remove="Settings\Theme\" />
+    <None Remove="Components\Message\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -61,33 +64,27 @@
     <Folder Include="Components\Page\" />
     <Folder Include="Components\Modal\" />
     <Folder Include="Pages\Playground\" />
-    <Folder Include="Pages\Employee\" />
+    <Folder Include="Pages\EmployeePage\" />
     <Folder Include="wwwroot\js\" />
     <Folder Include="Components\Toast\" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\ContactDetailsLibrary\ContactDetailsLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\LocationLibrary\LocationLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\SupplierLibrary\SupplierLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\UserLibrary\EmployeeLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
-    <ProjectReference Include="..\UserLibrary\EmployeeLibrary.csproj">
-      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
-    </ProjectReference>
+    <Folder Include="Settings\" />
+    <Folder Include="Settings\Enum\" />
+    <Folder Include="Components\Message\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
     <Content Remove="wwwroot\js\bootstrap\bootstrap.min.js" />
     <Content Remove="wwwroot\js\bootstrap\bootstrap.min.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CustomerLibrary\CustomerLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\EmployeeLibrary\EmployeeLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\SupplierLibrary\SupplierLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
