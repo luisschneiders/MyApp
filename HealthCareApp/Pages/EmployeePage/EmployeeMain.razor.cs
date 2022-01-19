@@ -62,7 +62,9 @@ namespace HealthCareApp.Pages.EmployeePage
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
         {
             var employees = await employeeService.GetEmployeesAsync();
-            return new ItemsProviderResult<Employee>(employees.Skip(request.StartIndex).Take(request.Count), employees.Count);
+            return new ItemsProviderResult<Employee>(
+                employees.Skip(request.StartIndex).Take(request.Count), employees.Count
+            );
         }
     }
 }
