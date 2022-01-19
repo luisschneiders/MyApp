@@ -29,38 +29,48 @@
         </PageMenu>
     </PageHeader>
     <PageBody Styles="p-2">
-        <div class="list-group gap-2">
-            <Virtualize Context="person"
-                        ItemsProvider="@LoadEmployees"
-                        @ref="VirtualizeContainer">
-                <ItemContent>
-                    <a href="/employee/@person.Id"
-                        class="list-group-item list-group-item-action d-flex gap-3 py-3">
-                        <i class="bi bi-person sm-icon"></i>
-                        <div class="d-flex gap-2 w-100 justify-content-between">
-                            <div>
-                                <h6 class="mb-0">
-                                    @person.EmployeeFirstName @person.EmployeeLastName
-                                </h6>
-                                <div class="mb-0 opacity-75">
-                                    <span>
-                                        @person.EmployeeUsername
-                                    </span>
-                                    <span>
-                                        @person.ContactDetails.Email
-                                    </span>
+        @if (_employee == null)
+        {
+            <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+                <div class="spinner-border" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        } else
+        {
+            <div class="list-group gap-2">
+                <Virtualize Context="person"
+                            ItemsProvider="@LoadEmployees"
+                            @ref="VirtualizeContainer">
+                    <ItemContent>
+                        <a href="/employee/@person.Id"
+                            class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                            <i class="bi bi-person md-icon"></i>
+                            <div class="d-flex gap-2 w-100 justify-content-between">
+                                <div>
+                                    <h6 class="mb-0">
+                                        @person.EmployeeFirstName @person.EmployeeLastName
+                                    </h6>
+                                    <div class="gap-2 w-100 opacity-75">
+                                        <div>
+                                            @person.EmployeeUsername
+                                        </div>
+                                        <div>
+                                            email: @(@person.ContactDetails == null ? "No email details" : @person.ContactDetails.Email)
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                        </a>
+                    </ItemContent>
+                    <Placeholder>
+                        <div>
+                            <span>Loading...</span>
                         </div>
-                    </a>
-                </ItemContent>
-                <Placeholder>
-                    <div>
-                        <span>Loading...</span>
-                    </div>
-                </Placeholder>
-            </Virtualize>
-        </div>
+                    </Placeholder>
+                </Virtualize>
+            </div>
+        }
         <Toast />
     </PageBody>
     <PageFooter></PageFooter>
@@ -70,7 +80,7 @@
           OnInvalidSubmit="@HandleInvalidSubmitAsync"
           autocomplete="off">
     <ObjectGraphDataAnnotationsValidator />
-    <Modal @ref="_modalAddEmployee"
+    <Modal @ref="ModalAddEmployee"
            Theme="Theme.employee"
            Size="ModalSize.lg">
         <Title>Add new employee</Title>
@@ -217,7 +227,7 @@
                     </fieldset>
                 </div>
                 <div class="col-sm-4">
-                    @if (@_displayValidationErrorMessages)
+                    @if (@DisplayValidationErrorMessages)
                     {
                         <div class="row mb-3">
                             <div class="col">
