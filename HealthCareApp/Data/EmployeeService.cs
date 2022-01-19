@@ -4,6 +4,9 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using EmployeeLibrary.Models;
+using System.Data;
+using System.Linq;
+using ContactDetailsLibrary.Models;
 
 namespace HealthCareApp.Data
 {
@@ -21,7 +24,15 @@ namespace HealthCareApp.Data
         // async method to get list of employees
         public async Task<List<Employee>> GetEmployeesAsync()
         {
-            return await _applicationDbContext.Employees.ToListAsync();
+            UserService userService = new (_httpContextAccessor);
+
+            var employees = await _applicationDbContext.Employees
+                .Include(e => e.ContactDetails)
+                .Where(e => e.InsertedBy == userService.UserId())
+                .OrderByDescending(e => e.CreatedAt)
+                .ToListAsync();
+
+            return employees;
         }
 
         // async method to add new employee
