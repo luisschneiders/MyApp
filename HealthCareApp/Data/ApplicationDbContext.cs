@@ -4,6 +4,7 @@ using CustomerLibrary.Models;
 using EmployeeLibrary.Models;
 using SupplierLibrary.Models;
 using ContactDetailsLibrary.Models;
+using LocationLibrary.Models;
 
 namespace HealthCareApp.Data
 {
@@ -18,6 +19,7 @@ namespace HealthCareApp.Data
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Employee> Employees { get; set; }
         public DbSet<ContactDetails> ContactDetails { get; set; }
+        public DbSet<Location> Location { get; set; }
 
     }
 }
