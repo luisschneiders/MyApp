@@ -15,7 +15,7 @@ a, .btn-link {
 
 .btn-primary {
     color: #fff;
-    background-color: #1b6ec2;
+    background: linear-gradient(135deg,#0a7fd8 0,#0a7fd8 29%,#0069b9 76%,#0069b9 100%);
     border-color: #1861ac;
 }
 
@@ -33,6 +33,10 @@ a, .btn-link {
 
 .content {
     height: calc(100% - 56px);
+}
+
+.form-control {
+    border-radius: 10px;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -65,6 +69,9 @@ a, .btn-link {
     right: 0.75rem;
     top: 0.5rem;
 }
+.badge {
+    border-radius: 8px;
+}
 .xs-icon {
     font-size: .9rem;
 }
@@ -87,17 +94,22 @@ a, .btn-link {
     color: #ff2f2f;
 }
 .hca-app-icon, .hca-app-title {
-    color: #7ED5EA;
+    color: #99ebff;
+    text-shadow: 1px 1px 0px hsl(192deg 100% 20%);
 }
 .hca-employee-icon, .hca-employee-title {
-    color: #ff7a52;
+    color: #ff9999;
+    text-shadow: 1px 1px 0px hsl(0deg 100% 20%);
 }
 .hca-department-icon, .hca-department-title {
-    color: #C39EA0;
+    color: #99d0ff;
+    text-shadow: 1px 1px 0px hsl(208deg 100% 20%);
 }
 .hca-patient-icon, .hca-patient-title {
-    color: #FA255E;
+    color: #99ffc2;
+    text-shadow: 1px 1px 0px hsl(144deg 100% 20%);
 }
 .hca-supplier-icon, .hca-supplier-title {
-    color: #849531;
+    color: #ffdb99;
+    text-shadow: 1px 1px 0px hsl(39deg 100% 20%);
 }
