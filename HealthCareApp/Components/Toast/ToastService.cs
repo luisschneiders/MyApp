@@ -1,15 +1,16 @@
 ﻿using System;
 using System.Timers;
+using HealthCareApp.Settings.Enum;
 
 namespace HealthCareApp.Components.Toast
 {
     public class ToastService : IToastService, IDisposable
     {
-        public event Action<string, ToastLevel> OnShow;
+        public event Action<string, Level> OnShow;
         public event Action OnHide;
         private Timer Countdown;
 
-        public void ShowToast(string message, ToastLevel level)
+        public void ShowToast(string message, Level level)
         {
             OnShow?.Invoke(message, level);
             StartCountDown();

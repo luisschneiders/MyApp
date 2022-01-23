@@ -1,5 +1,5 @@
 ﻿@page "/playground/toast"
-
+@using HealthCareApp.Settings.Enum
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Toast
 
@@ -31,7 +31,7 @@
     private void ShowToast()
     {
         toastMessage = "Toast message";
-        toastService.ShowToast(toastMessage, ToastLevel.Info);
+        toastService.ShowToast(toastMessage, Level.Info);
     }
 
 }

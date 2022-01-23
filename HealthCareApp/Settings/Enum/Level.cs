@@ -1,7 +1,7 @@
 ﻿using System;
-namespace HealthCareApp.Components.Toast
+namespace HealthCareApp.Settings.Enum
 {
-    public enum ToastLevel
+    public enum Level
     {
         Info,
         Success,

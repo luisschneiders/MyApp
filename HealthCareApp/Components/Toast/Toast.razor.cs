@@ -1,4 +1,6 @@
 ﻿using System;
+using HealthCareApp.Settings.Enum;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Toast
@@ -8,10 +10,13 @@ namespace HealthCareApp.Components.Toast
         [Inject]
         ToastService ToastService { get; set; }
 
+        AppSettings AppSettings { get; set; } = new();
+
         protected Guid ToastId { get; set; } = Guid.NewGuid();
         protected string ToastMessage { get; set; }
         protected bool IsVisible { get; set; }
         protected string ToastBackgroundColor { get; set; }
+
 
         protected override void OnInitialized()
         {
@@ -21,9 +26,14 @@ namespace HealthCareApp.Components.Toast
             ToastService.OnHide += HideToast;
         }
 
-        private void ShowToast(string message, ToastLevel level)
+        private void ShowToast(string message, Level level)
         {
-            BuildToastSettings(message, level);
+
+            AppSettings.BuildLevel(level, message);
+
+            ToastBackgroundColor = AppSettings.BackgroundColor;
+            ToastMessage = AppSettings.Message;
+
             IsVisible = true;
             InvokeAsync(() => StateHasChanged());
         }
@@ -32,27 +42,6 @@ namespace HealthCareApp.Components.Toast
         {
             IsVisible = false;
             InvokeAsync(() => StateHasChanged());
-        }
-
-        private void BuildToastSettings(string message, ToastLevel level)
-        {
-            switch (level)
-            {
-                case ToastLevel.Info:
-                    ToastBackgroundColor = "bg-info";
-                    break;
-                case ToastLevel.Warning:
-                    ToastBackgroundColor = "bg-warning";
-                    break;
-                case ToastLevel.Error:
-                    ToastBackgroundColor = "bg-danger";
-                    break;
-                case ToastLevel.Success:
-                    ToastBackgroundColor = "bg-success";
-                    break;
-            }
-
-            ToastMessage = message;
         }
 
         public void Dispose()
