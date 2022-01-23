@@ -1,7 +1,9 @@
 ﻿<div class="modal fade @ModalClass"
          tabindex="-1"
          role="dialog"
-         style="display:@ModalStyleDisplay;"
+         style="display: @ModalStyleDisplay;
+                backdrop-filter: blur(6px);
+                -webkit-backdrop-filter: blur(6px);"
          id="@ModalId"
     >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-@Size"
@@ -9,7 +11,7 @@
             role="document"
     >
         <div class="modal-content">
-            <div class="modal-header">
+            <div class="modal-header hca-@Theme-modal-header">
                 <h5 class="hca-@Theme-title modal-title">
                     @Title
                 </h5>

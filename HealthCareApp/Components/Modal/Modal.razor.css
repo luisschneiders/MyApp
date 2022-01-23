@@ -1,0 +1,10 @@
+﻿.modal-content {
+    border-radius: 20px;
+}
+.hca-app-modal-header {
+    background: linear-gradient(90deg, hsl(192deg 100% 20%) 40%, #99ebff 118%);
+}
+
+.hca-employee-modal-header {
+    background: linear-gradient(90deg, hsl(0deg 100% 20%) 40%, #ff9999 118%);
+}
