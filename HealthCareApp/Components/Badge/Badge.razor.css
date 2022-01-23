@@ -1,0 +1,20 @@
+﻿.hca-badge {
+    padding: 10px;
+    border-radius: 20px;
+}
+.hca-badge-bg-info {
+    background: hsl(190deg 100% 60% / 45%);
+    color: hsl(190deg 69% 20%);
+}
+.hca-badge-bg-success {
+    background: hsl(152deg 100% 60% / 45%);
+    color: hsl(152deg 69% 20%);
+}
+.hca-badge-bg-warning {
+    background-color: hsl(45deg 100% 60% / 45%);
+    color: hsl(45deg 69% 20%);
+}
+.hca-badge-bg-danger {
+    background-color: hsl(354deg 100% 60% / 45%);
+    color: hsl(354deg 69% 20%);
+}
