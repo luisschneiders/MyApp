@@ -1,4 +1,5 @@
 ﻿.hca-card-header {
     background-color: inherit;
     border-bottom: none;
+    border-radius: 40px;
 }

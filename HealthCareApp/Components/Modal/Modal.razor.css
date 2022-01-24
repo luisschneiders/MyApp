@@ -2,17 +2,5 @@
     border-radius: 20px;
 }
 .hca-app-modal-header {
-    background: linear-gradient(90deg, hsl(192deg 100% 20%) 40%, #99ebff 118%);
-}
-.hca-employee-modal-header {
-    background: linear-gradient(90deg, hsl(0deg 100% 20%) 40%, #ff9999 118%);
-}
-.hca-department-modal-header {
-    background: linear-gradient(90deg, hsl(208deg 100% 20%) 40%, #99d0ff 118%);
-}
-.hca-patient-modal-header {
-    background: linear-gradient(90deg, hsl(144deg 100% 20%) 40%, #99ffc2 118%);
-}
-.hca-supplier-modal-header {
-    background: linear-gradient(90deg, hsl(39deg 100% 20%) 40%, #ffdb99 118%);
+    background: #f7eee7;
 }
