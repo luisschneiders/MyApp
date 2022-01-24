@@ -2,8 +2,10 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeLibrary.Models;
+using HealthCareApp.Components.Badge;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
+using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
@@ -12,6 +14,12 @@ namespace HealthCareApp.Pages.EmployeePage
 {
     public partial class EmployeeMain
     {
+        [Inject]
+        EmployeeService EmployeeService { get; set; }
+
+        [Inject]
+        ToastService ToastService { get; set; }
+
         [Parameter]
         public Guid EmployeeId { get; set; } = Guid.Empty;
 
@@ -33,14 +41,14 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             DisplayValidationErrorMessages = false;
 
-            await employeeService.AddEmployeeAsync(_employee);
+            await EmployeeService.AddEmployeeAsync(_employee);
             await VirtualizeContainer.RefreshDataAsync();
             await InvokeAsync(() => StateHasChanged());
 
             await Task.Delay((int)Delay.dataSuccess);
             await Task.FromResult(_employee = new Employee());
 
-            toastService.ShowToast("Employee added!", ToastLevel.Success);
+            ToastService.ShowToast("Employee added!", Level.Success);
         }
 
         private async Task HandleInvalidSubmitAsync()
@@ -61,7 +69,8 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
         {
-            var employees = await employeeService.GetEmployeesAsync();
+            var employees = await EmployeeService.GetEmployeesAsync();
+
             return new ItemsProviderResult<Employee>(
                 employees.Skip(request.StartIndex).Take(request.Count), employees.Count
             );

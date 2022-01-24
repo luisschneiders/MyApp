@@ -1,14 +1,12 @@
 ﻿@page "/employees"
 @page "/employee/{employeeId:guid}"
 
-@using HealthCareApp.Data
 @using HealthCareApp.Settings.Theme
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Modal
 @using HealthCareApp.Components.Toast
-
-@inject EmployeeService employeeService
-@inject ToastService toastService
+@using HealthCareApp.Components.Badge
+@using HealthCareApp.Settings.Enum;
 
 <PageWrapper>
     <PageHeader>
@@ -29,14 +27,15 @@
         </PageMenu>
     </PageHeader>
     <PageBody Styles="p-2">
-        @if (_employee == null)
+        @if (_employee == null || _employee.ContactDetails == null || _employee.Location == null)
         {
             <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
                 <div class="spinner-border" role="status">
                     <span class="visually-hidden">Loading...</span>
                 </div>
             </div>
-        } else
+        }
+        else
         {
             <div class="list-group gap-2">
                 <Virtualize Context="person"
@@ -44,9 +43,9 @@
                             @ref="VirtualizeContainer">
                     <ItemContent>
                         <a href="/employee/@person.Id"
-                            class="list-group-item list-group-item-action d-flex gap-3 py-3">
+                           class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
                             <i class="bi bi-person md-icon"></i>
-                            <div class="d-flex gap-2 w-100 justify-content-between">
+                            <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
                                 <div>
                                     <h6 class="mb-0">
                                         @person.EmployeeFirstName @person.EmployeeLastName
@@ -56,9 +55,24 @@
                                             @person.EmployeeUsername
                                         </div>
                                         <div>
-                                            email: @(@person.ContactDetails == null ? "No email details" : @person.ContactDetails.Email)
+                                            @person.ContactDetails.Email
                                         </div>
+
+                                        <address class="mb-0">
+                                            @person.Location.Suburb.ToUpper() @person.Location.State.ToUpper() @person.Location.Postcode
+                                        </address>
+
                                     </div>
+                                </div>
+                                <div>
+                                    @if (person.IsActive)
+                                    {
+                                        <Badge Level="Level.Success" Message="Active" />
+                                    }
+                                    else
+                                    {
+                                        <Badge Level="Level.Warning" Message="Inactive" />
+                                    }
                                 </div>
                             </div>
                         </a>
@@ -227,7 +241,7 @@
                     </fieldset>
                 </div>
                 <div class="col-sm-4">
-                    @if (@DisplayValidationErrorMessages)
+                    @if (DisplayValidationErrorMessages)
                     {
                         <div class="row mb-3">
                             <div class="col">
