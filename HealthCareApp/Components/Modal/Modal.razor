@@ -11,8 +11,8 @@
             role="document"
     >
         <div class="modal-content">
-            <div class="modal-header hca-@Theme-modal-header">
-                <h5 class="hca-@Theme-title modal-title">
+            <div class="modal-header hca-app-modal-header">
+                <h5 class="hca-app-title modal-title">
                     @Title
                 </h5>
                 <button class="btn-close"
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-@if (@ShowBackdrop)
+@if (ShowBackdrop)
 {
     <div class="modal-backdrop fade @ModalClass" style="display: @ModalStyleDisplay;"></div>
 }
