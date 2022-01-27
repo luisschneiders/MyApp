@@ -2,10 +2,6 @@
 @using HealthCareApp.Components.Card
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Data
-@using CustomerLibrary
-@using ContactDetailsLibrary
-@using LocationLibrary
-@using SupplierLibrary
 @using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor httpContextAccessor
@@ -43,6 +39,12 @@
                 <CardViewHeader Icon="bi bi-collection" />
                 <CardViewBody>
                     <p>UI layout for <b>Toast</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/badge">
+                <CardViewHeader Icon="bi bi-usb-c" />
+                <CardViewBody>
+                    <p>UI layout for <b>Badge</b>.</p>
                 </CardViewBody>
             </CardView>
         </CardWrapper>

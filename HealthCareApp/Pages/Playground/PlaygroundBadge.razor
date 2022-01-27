@@ -1,0 +1,21 @@
+﻿@page "/playground/badge"
+@using HealthCareApp.Settings.Enum
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Badge
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle Title="Badge layout"></PageTitle>
+        <PageMenu />
+    </PageHeader>
+    <PageBody>
+        <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+            <div>
+                <Badge Level="Level.Info" Message="Info message!" />
+                <Badge Level="Level.Success" Message="Success message!" />
+                <Badge Level="Level.Warning" Message="Warning message!" />
+                <Badge Level="Level.Error" Message="Error message!" />
+            </div>
+        </div>
+    </PageBody>
+</PageWrapper>
