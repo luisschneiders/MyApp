@@ -29,10 +29,10 @@ namespace HealthCareApp.Components.Toast
         private void ShowToast(string message, Level level)
         {
 
-            AppSettings.BuildLevel(level, message);
+            AppSettings.BuildLevel(level);
 
             ToastBackgroundColor = AppSettings.BackgroundColor;
-            ToastMessage = AppSettings.Message;
+            ToastMessage = message;
 
             IsVisible = true;
             InvokeAsync(() => StateHasChanged());

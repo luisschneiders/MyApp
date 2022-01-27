@@ -20,11 +20,10 @@ namespace HealthCareApp.Components.Badge
 
         protected override void OnInitialized()
         {
-            AppSettings.BuildLevel(Level, Message);
-            BackgroundColor = AppSettings.BackgroundColor;
-            Message = AppSettings.Message;
-
             base.OnInitialized();
+
+            AppSettings.BuildLevel(Level);
+            BackgroundColor = AppSettings.BackgroundColor;
         }
 
     }

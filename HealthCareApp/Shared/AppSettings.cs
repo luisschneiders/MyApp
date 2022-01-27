@@ -7,10 +7,7 @@ namespace HealthCareApp.Shared
     {
         public string BackgroundColor { get; set; }
 
-#nullable enable
-        public string? Message { get; set; }
-
-        public void BuildLevel(Level level, string? message)
+        public void BuildLevel(Level level)
         {
             switch (level)
             {
@@ -27,8 +24,6 @@ namespace HealthCareApp.Shared
                     BackgroundColor = "bg-success";
                     break;
             }
-
-            Message = message;
         }
     }
 }
