@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeLibrary.Models;
-using HealthCareApp.Components.Badge;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
@@ -45,10 +44,11 @@ namespace HealthCareApp.Pages.EmployeePage
             await VirtualizeContainer.RefreshDataAsync();
             await InvokeAsync(() => StateHasChanged());
 
+            ToastService.ShowToast("Employee added!", Level.Success);
+
             await Task.Delay((int)Delay.dataSuccess);
             await Task.FromResult(_employee = new Employee());
 
-            ToastService.ShowToast("Employee added!", Level.Success);
         }
 
         private async Task HandleInvalidSubmitAsync()
