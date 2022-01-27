@@ -1,5 +1,12 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
 
+/*
+    App Main Colors
+    #997588;
+    #f7eee7;
+    #d6c1b8;
+    #755767;
+*/
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
@@ -37,7 +44,7 @@ a:hover {
 
 .content {
     width: calc(100% - 3rem);
-    height: calc(100% - 106px);
+    height: calc(100% - 86px);
     margin: auto;
     background-color: #ffffff;
     border-radius: 40px;
@@ -122,5 +129,5 @@ a:hover {
     border: none;
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: #f0ded1;
+    background-color: rgb(247 238 231 / 45%);
 }

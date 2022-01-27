@@ -8,7 +8,7 @@
 @media (min-width: 641px) {
     .page-body {
         overflow: auto;
-        height: calc(100vh - 216px);
+        height: calc(100vh - 196px);
         display: block;
         width: 100%;
     }
