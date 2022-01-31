@@ -6,12 +6,13 @@
 @using HealthCareApp.Components.Modal
 @using HealthCareApp.Components.Toast
 @using HealthCareApp.Components.Badge
+@using HealthCareApp.Components.Spinner
 @using HealthCareApp.Settings.Enum;
 
 <PageWrapper>
     <PageHeader>
         <PageTitle Title="Employees"
-                   Theme="Theme.employee"></PageTitle>
+                   Theme="Theme.Employee"></PageTitle>
         <PageMenu>
             <button type="button"
                     class="btn btn-light btn-rounded btn-icon"
@@ -27,12 +28,10 @@
         </PageMenu>
     </PageHeader>
     <PageBody Styles="p-2">
-        @if (_employee == null || _employee.ContactDetails == null || _employee.Location == null)
+        @if (IsLoading)
         {
             <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
-                <div class="spinner-border" role="status">
-                    <span class="visually-hidden">Loading...</span>
-                </div>
+                <Spinner Size="Size.Md" />
             </div>
         }
         else
@@ -78,9 +77,7 @@
                         </a>
                     </ItemContent>
                     <Placeholder>
-                        <div>
-                            <span>Loading...</span>
-                        </div>
+                        <Spinner />
                     </Placeholder>
                 </Virtualize>
             </div>
@@ -95,7 +92,7 @@
           autocomplete="off">
     <ObjectGraphDataAnnotationsValidator />
     <Modal @ref="ModalAddEmployee"
-           Theme="Theme.employee"
+           Theme="Theme.Employee"
            Size="ModalSize.lg">
         <Title>Add new employee</Title>
         <Body>

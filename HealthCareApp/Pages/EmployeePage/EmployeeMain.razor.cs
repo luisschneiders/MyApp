@@ -3,9 +3,11 @@ using System.Linq;
 using System.Threading.Tasks;
 using EmployeeLibrary.Models;
 using HealthCareApp.Components.Modal;
+using HealthCareApp.Components.Spinner;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -28,12 +30,22 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Employee _employee = new();
 
-        private bool DisplayValidationErrorMessages { get; set; } = false;
+        private bool DisplayValidationErrorMessages { get; set; }
+        private bool IsLoading { get; set; }
 
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
 
-            await base.OnInitializedAsync();
+            if (firstRender)
+            {
+                await Task.Run(() => IsLoading = true);
+                StateHasChanged();
+            }
+            else
+            {
+                await Task.Run(() => IsLoading = false);
+                StateHasChanged();
+            }
         }
 
         private async Task HandleValidSubmitAsync()
@@ -46,7 +58,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
             ToastService.ShowToast("Employee added!", Level.Success);
 
-            await Task.Delay((int)Delay.dataSuccess);
+            await Task.Delay((int)Delay.DataSuccess);
             await Task.FromResult(_employee = new Employee());
 
         }
@@ -71,6 +83,9 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             var employees = await EmployeeService.GetEmployeesAsync();
 
+            await Task.Run(() => IsLoading = false);
+
+            await InvokeAsync(() => StateHasChanged());
             return new ItemsProviderResult<Employee>(
                 employees.Skip(request.StartIndex).Take(request.Count), employees.Count
             );
