@@ -10,7 +10,7 @@ namespace HealthCareApp.Components.Page
         public string Title { get; set; } = "";
 
         [Parameter]
-        public Theme Theme { get; set; } = Theme.app;
+        public Theme Theme { get; set; } = Theme.App;
 
         protected override void OnInitialized()
         {

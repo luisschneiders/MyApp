@@ -13,7 +13,7 @@ namespace HealthCareApp.Components.Card
         public string Icon { get; set; } = "";
 
         [Parameter]
-        public Theme IconTheme { get; set; } = Theme.app;
+        public Theme IconTheme { get; set; } = Theme.App;
 
         [Parameter]
         public string Title { get; set; } = "";
