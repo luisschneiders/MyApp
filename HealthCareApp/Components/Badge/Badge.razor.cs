@@ -16,7 +16,7 @@ namespace HealthCareApp.Components.Badge
 
         AppSettings AppSettings { get; set; } = new();
 
-        protected string BackgroundColor { get; set; }
+        private string BackgroundColor { get; set; }
 
         protected override void OnInitialized()
         {

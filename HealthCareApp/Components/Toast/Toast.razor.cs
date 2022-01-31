@@ -12,11 +12,10 @@ namespace HealthCareApp.Components.Toast
 
         AppSettings AppSettings { get; set; } = new();
 
-        protected Guid ToastId { get; set; } = Guid.NewGuid();
-        protected string ToastMessage { get; set; }
-        protected bool IsVisible { get; set; }
-        protected string ToastBackgroundColor { get; set; }
-
+        private Guid ToastId { get; set; } = Guid.NewGuid();
+        private string Message { get; set; }
+        private bool IsVisible { get; set; }
+        private string BackgroundColor { get; set; }
 
         protected override void OnInitialized()
         {
@@ -31,8 +30,8 @@ namespace HealthCareApp.Components.Toast
 
             AppSettings.BuildLevel(level);
 
-            ToastBackgroundColor = AppSettings.BackgroundColor;
-            ToastMessage = message;
+            BackgroundColor = AppSettings.BackgroundColor;
+            Message = message;
 
             IsVisible = true;
             InvokeAsync(() => StateHasChanged());
