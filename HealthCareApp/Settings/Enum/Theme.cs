@@ -3,10 +3,10 @@ namespace HealthCareApp.Settings.Theme
 {
     public enum Theme
     {
-        app,
-        employee,
-        department,
-        patient,
-        supplier
+        App,
+        Employee,
+        Department,
+        Patient,
+        Supplier
     }
 }

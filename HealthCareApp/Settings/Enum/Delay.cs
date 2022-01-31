@@ -3,8 +3,8 @@ namespace HealthCareApp.Settings.Enum
 {
     public enum Delay
     {
-        modalOpen = 100,
-        modalClose = 250,
-        dataSuccess = 1000
+        ModalOpen = 100,
+        ModalClose = 250,
+        DataSuccess = 1000
     }
 }
