@@ -6,22 +6,39 @@ namespace HealthCareApp.Shared
     public class AppSettings
     {
         public string BackgroundColor { get; set; }
+        public string ComponentSize { get; set; }
 
         public void BuildLevel(Level level)
         {
             switch (level)
             {
                 case Level.Info:
-                    BackgroundColor = "bg-info";
+                    BackgroundColor = "info";
                     break;
                 case Level.Warning:
-                    BackgroundColor = "bg-warning";
+                    BackgroundColor = "warning";
                     break;
                 case Level.Error:
-                    BackgroundColor = "bg-danger";
+                    BackgroundColor = "danger";
                     break;
                 case Level.Success:
-                    BackgroundColor = "bg-success";
+                    BackgroundColor = "success";
+                    break;
+            }
+        }
+
+        public void BuildSize(Size size)
+        {
+            switch (size)
+            {
+                case Size.Sm:
+                    ComponentSize = "sm";
+                    break;
+                case Size.Md:
+                    ComponentSize = "md";
+                    break;
+                case Size.Lg:
+                    ComponentSize = "lg";
                     break;
             }
         }
