@@ -25,6 +25,5 @@ namespace HealthCareApp.Components.Badge
             AppSettings.BuildLevel(Level);
             BackgroundColor = AppSettings.BackgroundColor;
         }
-
     }
 }

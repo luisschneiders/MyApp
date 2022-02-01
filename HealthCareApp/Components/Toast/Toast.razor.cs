@@ -8,9 +8,9 @@ namespace HealthCareApp.Components.Toast
     public partial class Toast : ComponentBase, IDisposable
     {
         [Inject]
-        ToastService ToastService { get; set; }
+        private ToastService ToastService { get; set; }
 
-        AppSettings AppSettings { get; set; } = new();
+        private AppSettings AppSettings { get; set; } = new();
 
         private Guid ToastId { get; set; } = Guid.NewGuid();
         private string Message { get; set; }
