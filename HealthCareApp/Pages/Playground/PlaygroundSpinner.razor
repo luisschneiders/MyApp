@@ -1,0 +1,21 @@
+﻿@page "/playground/spinner"
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Spinner
+@using HealthCareApp.Settings.Enum
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle Title="Component Spinner"></PageTitle>
+        <PageMenu />
+    </PageHeader>
+    <PageBody>
+        <div class="h-100 d-flex flex-row justify-content-evenly align-items-center">
+            <div>
+                <Spinner Size="Size.Sm" />
+            </div>
+            <div>
+                <Spinner Size="Size.Md" />
+            </div>
+        </div>
+    </PageBody>
+</PageWrapper>
