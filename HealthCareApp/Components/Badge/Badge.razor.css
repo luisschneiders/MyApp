@@ -1,6 +1,7 @@
 ﻿.hca-badge {
     padding: 10px;
     border-radius: 20px;
+    font-size: 0.85rem;
 }
 .hca-badge-bg-info {
     background: hsl(190deg 100% 60% / 45%);
