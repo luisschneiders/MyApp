@@ -16,6 +16,7 @@ using Microsoft.Extensions.Hosting;
 using HealthCareApp.Areas.Identity;
 using HealthCareApp.Data;
 using HealthCareApp.Components.Toast;
+using HealthCareApp.Components.Spinner;
 
 namespace HealthCareApp
 {
@@ -49,6 +50,7 @@ namespace HealthCareApp
             services.AddScoped<SupplierService>();
             services.AddScoped<EmployeeService>();
             services.AddScoped<ToastService>();
+            services.AddScoped<SpinnerService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
