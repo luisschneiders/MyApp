@@ -7,7 +7,6 @@ using HealthCareApp.Components.Spinner;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -16,10 +15,13 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeMain
     {
         [Inject]
-        EmployeeService EmployeeService { get; set; }
+        private EmployeeService EmployeeService { get; set; }
 
         [Inject]
-        ToastService ToastService { get; set; }
+        private ToastService ToastService { get; set; }
+
+        [Inject]
+        private SpinnerService SpinnerService { get; set; }
 
         [Parameter]
         public Guid EmployeeId { get; set; } = Guid.Empty;
@@ -31,20 +33,17 @@ namespace HealthCareApp.Pages.EmployeePage
         private Employee _employee = new();
 
         private bool DisplayValidationErrorMessages { get; set; }
-        private bool IsLoading { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
 
             if (firstRender)
             {
-                await Task.Run(() => IsLoading = true);
-                StateHasChanged();
+                await Task.Run(() => SpinnerService.ShowSpinner());
             }
             else
             {
-                await Task.Run(() => IsLoading = false);
-                StateHasChanged();
+                await Task.Run(() => SpinnerService.HideSpinner());
             }
         }
 
@@ -83,7 +82,7 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             var employees = await EmployeeService.GetEmployeesAsync();
 
-            await Task.Run(() => IsLoading = false);
+            await Task.Run(() => SpinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
             return new ItemsProviderResult<Employee>(

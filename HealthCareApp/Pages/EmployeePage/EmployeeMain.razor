@@ -28,14 +28,9 @@
         </PageMenu>
     </PageHeader>
     <PageBody Styles="p-2">
-        @if (IsLoading)
-        {
-            <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+            <div class="d-flex flex-column justify-content-evenly align-items-center">
                 <Spinner Size="Size.Md" />
             </div>
-        }
-        else
-        {
             <div class="list-group gap-2">
                 <Virtualize Context="person"
                             ItemsProvider="@LoadEmployees"
@@ -81,7 +76,6 @@
                     </Placeholder>
                 </Virtualize>
             </div>
-        }
         <Toast />
     </PageBody>
     <PageFooter></PageFooter>
