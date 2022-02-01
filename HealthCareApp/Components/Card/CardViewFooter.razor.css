@@ -1,4 +1,6 @@
 ﻿.hca-card-footer {
     background-color: inherit;
     border-top: none;
+    border-bottom-left-radius: 40px;
+    border-bottom-right-radius: 40px;
 }
