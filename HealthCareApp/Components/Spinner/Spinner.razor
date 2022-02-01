@@ -1,3 +1,6 @@
-﻿<div class="spinner-border spinner-border-@ComponentSize" role="status">
-    <span class="visually-hidden">Loading...</span>
-</div>
+﻿@if (IsVisible)
+{
+    <div class="spinner-border spinner-border-@ComponentSize" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+}
