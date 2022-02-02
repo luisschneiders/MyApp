@@ -14,7 +14,6 @@ namespace HealthCareApp.Shared
         private bool collapseNavSubmenu = true;
 
         private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-        private string NavSubmenuIcon => collapseNavSubmenu ? "bi-chevron-expand" : "bi-chevron-contract";
         private NavSubmenu navSubmenu = NavSubmenu.None;
 
 
