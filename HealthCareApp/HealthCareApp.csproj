@@ -21,6 +21,8 @@
     <None Remove="Settings\" />
     <None Remove="Settings\Theme\" />
     <None Remove="Components\Message\" />
+    <None Remove="Components\Badge\" />
+    <None Remove="Components\Spinner\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -70,6 +72,8 @@
     <Folder Include="Settings\" />
     <Folder Include="Settings\Enum\" />
     <Folder Include="Components\Message\" />
+    <Folder Include="Components\Badge\" />
+    <Folder Include="Components\Spinner\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
