@@ -23,9 +23,10 @@ namespace HealthCareApp.Pages.EmployeePage
         private Virtualize<Employee> VirtualizeContainer { get; set; }
 
         /*
-         * Add component EmployeeModalAdd reference
+         * Add component EmployeeModalAdd & EmployeeModalUpdate reference
          */
         private EmployeeModalAdd EmployeeModalAdd { get; set; }
+        private EmployeeModalUpdate EmployeeModalUpdate { get; set; }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
@@ -42,6 +43,11 @@ namespace HealthCareApp.Pages.EmployeePage
         private async Task OpenModalAddAsync()
         {
             await Task.FromResult(EmployeeModalAdd.OpenModalAddAsync());
+        }
+
+        private async Task OpenModalUpdateAsync(Employee employee)
+        {
+            await Task.FromResult(EmployeeModalUpdate.OpenModalUpdateAsync(employee));
         }
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
