@@ -23,10 +23,10 @@ namespace HealthCareApp.Components.Modal
         [Parameter]
         public ModalSize Size { get; set; } = ModalSize.md;
 
-        protected ModalDisplay ModalStyleDisplay { get; set; } = ModalDisplay.none;
-        protected string ModalClass { get; set; } = "";
-        protected bool ShowBackdrop { get; set; } = false;
-        protected Guid ModalId { get; set; } = Guid.Empty;
+        private ModalDisplay ModalStyleDisplay { get; set; } = ModalDisplay.none;
+        private string ModalClass { get; set; } = "";
+        private bool ShowBackdrop { get; set; } = false;
+        private Guid ModalId { get; set; } = Guid.Empty;
 
         public async Task Open(Guid target)
         {
