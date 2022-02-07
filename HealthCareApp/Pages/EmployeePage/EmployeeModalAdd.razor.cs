@@ -38,6 +38,8 @@ namespace HealthCareApp.Pages.EmployeePage
             ToastService.ShowToast("Employee added!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
+
+            await CloseModalAddAsync();
             await Task.FromResult(_employee = new Employee());
 
         }
