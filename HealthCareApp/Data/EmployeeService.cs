@@ -66,7 +66,9 @@ namespace HealthCareApp.Data
             return await Task.FromResult(employeeList);
         }
 
-        // async method to add new employee
+        /*
+         * async method to add new employee
+         */
         public async Task<Employee> AddEmployeeAsync(Employee employee)
         {
 
@@ -80,6 +82,26 @@ namespace HealthCareApp.Data
             try
             {
                 _applicationDbContext.Employees.Add(employee);
+                await _applicationDbContext.SaveChangesAsync();
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return employee;
+        }
+
+        /*
+         * async method to update employee
+         */
+        public async Task<Employee> UpdateEmployeeAsync(Employee employee)
+        {
+            employee.UpdatedAt = DateTime.UtcNow;
+
+            try
+            {
+                _applicationDbContext.Employees.Update(employee);
                 await _applicationDbContext.SaveChangesAsync();
             }
             catch (Exception)
