@@ -1,16 +1,17 @@
 ﻿@using HealthCareApp.Components.Modal
 @using HealthCareApp.Settings.Theme
 
-<EditForm Model="@_employee"
-          OnValidSubmit="@HandleValidSubmitAsync"
-          OnInvalidSubmit="@HandleInvalidSubmitAsync"
-          autocomplete="off">
-    <ObjectGraphDataAnnotationsValidator />
-    <Modal @ref="ModalAdd"
-           Theme="Theme.Employee"
-           Size="ModalSize.lg">
-        <Title>Add new employee</Title>
-        <Body>
+<Modal @ref="ModalAdd"
+        Theme="Theme.Employee"
+        Size="ModalSize.lg">
+    <Title>Add new employee</Title>
+    <Body>
+        <EditForm Model="@_employee"
+                  OnValidSubmit="@HandleValidSubmitAsync"
+                  OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                  autocomplete="off"
+                  id="FormAddEmploye">
+            <ObjectGraphDataAnnotationsValidator />
             <div class="row">
                 <div class="col-sm-8">
                     <div class="row mb-3">
@@ -164,18 +165,19 @@
                     }
                 </div>
             </div>
-        </Body>
-        <Footer>
-            <button type="button"
-                    class="btn btn-light btn-rounded"
-                    data-dismiss="modal"
-                    @onclick="() => CloseModalAddAsync()">
-                Cancel
-            </button>
-            <button type="submit"
-                    class="btn btn-primary btn-rounded">
-                Save
-            </button>
-        </Footer>
-    </Modal>
 </EditForm>
+        </Body>
+    <Footer>
+        <button type="button"
+                class="btn btn-light btn-rounded"
+                data-dismiss="modal"
+                @onclick="() => CloseModalAddAsync()">
+            Cancel
+        </button>
+        <button type="submit"
+                form="FormAddEmploye"
+                class="btn btn-primary btn-rounded">
+            Save
+        </button>
+    </Footer>
+</Modal>

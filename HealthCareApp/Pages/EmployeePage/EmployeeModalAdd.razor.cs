@@ -6,7 +6,6 @@ using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web.Virtualization;
 
 namespace HealthCareApp.Pages.EmployeePage
 {
