@@ -95,7 +95,7 @@ namespace HealthCareApp.Data
         /*
          * async method to update employee
          */
-        public async Task<Employee> UpdateEmployeeAsync(Employee employee)
+        public async Task<bool> UpdateEmployeeAsync(Employee employee)
         {
             employee.UpdatedAt = DateTime.UtcNow;
 
@@ -109,7 +109,7 @@ namespace HealthCareApp.Data
                 throw;
             }
 
-            return employee;
+            return true;
         }
     }
 }
