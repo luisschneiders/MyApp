@@ -6,7 +6,7 @@
         Size="ModalSize.lg">
     <Title>Add new employee</Title>
     <Body>
-        <EditForm Model="@_employee"
+        <EditForm Model="@employee"
                   OnValidSubmit="@HandleValidSubmitAsync"
                   OnInvalidSubmit="@HandleInvalidSubmitAsync"
                   autocomplete="off"
@@ -22,7 +22,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                        id="EmployeeFirstName"
-                                       @bind-Value="@_employee.EmployeeFirstName" />
+                                       @bind-Value="@employee.EmployeeFirstName" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -33,7 +33,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                        id="EmployeeLastName"
-                                       @bind-Value="@_employee.EmployeeLastName" />
+                                       @bind-Value="@employee.EmployeeLastName" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -44,7 +44,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                        id="EmployeeUsername"
-                                       @bind-Value="@_employee.EmployeeUsername" />
+                                       @bind-Value="@employee.EmployeeUsername" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -56,7 +56,7 @@
                             <InputText type="password"
                                        class="form-control"
                                        id="EmployeePassword"
-                                       @bind-Value="@_employee.EmployeePassword" />
+                                       @bind-Value="@employee.EmployeePassword" />
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@
                                 <InputText type="email"
                                            class="form-control"
                                            id="Email"
-                                           @bind-Value="@_employee.ContactDetails.Email" />
+                                           @bind-Value="@employee.ContactDetails.Email" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -83,7 +83,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="Mobile"
-                                           @bind-Value="@_employee.ContactDetails.Mobile" />
+                                           @bind-Value="@employee.ContactDetails.Mobile" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -95,7 +95,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="Phone"
-                                           @bind-Value="@_employee.ContactDetails.Phone" />
+                                           @bind-Value="@employee.ContactDetails.Phone" />
                             </div>
                         </div>
                     </fieldset>
@@ -111,7 +111,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="Address"
-                                           @bind-Value="@_employee.Location.Address" />
+                                           @bind-Value="@employee.Location.Address" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -123,7 +123,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="Suburb"
-                                           @bind-Value="@_employee.Location.Suburb" />
+                                           @bind-Value="@employee.Location.Suburb" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -135,7 +135,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="State"
-                                           @bind-Value="@_employee.Location.State" />
+                                           @bind-Value="@employee.Location.State" />
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@
                                 <InputText type="text"
                                            class="form-control"
                                            id="Postcode"
-                                           @bind-Value="@_employee.Location.Postcode" />
+                                           @bind-Value="@employee.Location.Postcode" />
                             </div>
                         </div>
                     </fieldset>

@@ -24,14 +24,19 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Guid ModalUpdateTarget { get; set; }
 
-        private Employee _employee = new();
+        private Employee employee;
 
         private bool DisplayValidationErrorMessages { get; set; }
 
+        // Constructor
+        public EmployeeModalUpdate()
+        {
+            employee = new();
+        }
+
         public async Task OpenModalUpdateAsync(Employee employee)
         {
-
-            _employee = employee;
+            this.employee = employee;
 
             ModalUpdateTarget = employee.Id;
             await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
@@ -47,7 +52,7 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             DisplayValidationErrorMessages = false;
 
-            await EmployeeService.UpdateEmployeeAsync(_employee);
+            await EmployeeService.UpdateEmployeeAsync(employee);
             await OnSubmitSuccess.InvokeAsync();
 
             ToastService.ShowToast("Employee updated!", Level.Success);
@@ -55,7 +60,7 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Delay((int)Delay.DataSuccess);
 
             await CloseModalUpdateAsync();
-            await Task.FromResult(_employee = new Employee());
+            await Task.FromResult(employee = new Employee());
 
         }
 
