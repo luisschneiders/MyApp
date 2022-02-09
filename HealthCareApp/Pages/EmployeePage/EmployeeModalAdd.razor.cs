@@ -46,23 +46,27 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Delay((int)Delay.DataSuccess);
 
             await CloseModalAddAsync();
+            await Task.CompletedTask;
         }
 
         private async Task HandleInvalidSubmitAsync()
         {
             await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.CompletedTask;
         }
 
         public async Task OpenModalAddAsync()
         {
             ModalAddTarget = Guid.NewGuid();
             await Task.FromResult(ModalAdd.Open(ModalAddTarget));
+            await Task.CompletedTask;
         }
 
         private async Task CloseModalAddAsync()
         {
             employee = new Employee();
             await Task.FromResult(ModalAdd.Close(ModalAddTarget));
+            await Task.CompletedTask;
         }
     }
 }

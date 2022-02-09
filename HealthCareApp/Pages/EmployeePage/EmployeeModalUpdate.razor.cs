@@ -40,13 +40,14 @@ namespace HealthCareApp.Pages.EmployeePage
 
             ModalUpdateTarget = employee.Id;
             await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
-
+            await Task.CompletedTask;
         }
 
         private async Task CloseModalUpdateAsync()
         {
             employee = new Employee();
             await Task.FromResult(ModalUpdate.Close(ModalUpdateTarget));
+            await Task.CompletedTask;
         }
 
         private async Task HandleValidSubmitAsync()
@@ -61,12 +62,14 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Delay((int)Delay.DataSuccess);
 
             await CloseModalUpdateAsync();
+            await Task.CompletedTask;
 
         }
 
         private async Task HandleInvalidSubmitAsync()
         {
             await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.CompletedTask;
         }
     }
 }
