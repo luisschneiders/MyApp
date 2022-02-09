@@ -46,8 +46,6 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Delay((int)Delay.DataSuccess);
 
             await CloseModalAddAsync();
-            await Task.FromResult(employee = new Employee());
-
         }
 
         private async Task HandleInvalidSubmitAsync()
@@ -63,7 +61,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task CloseModalAddAsync()
         {
-            await Task.FromResult(employee = new Employee());
+            employee = new Employee();
             await Task.FromResult(ModalAdd.Close(ModalAddTarget));
         }
     }

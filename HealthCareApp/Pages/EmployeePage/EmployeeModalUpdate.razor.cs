@@ -45,6 +45,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task CloseModalUpdateAsync()
         {
+            employee = new Employee();
             await Task.FromResult(ModalUpdate.Close(ModalUpdateTarget));
         }
 
@@ -60,7 +61,6 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Delay((int)Delay.DataSuccess);
 
             await CloseModalUpdateAsync();
-            await Task.FromResult(employee = new Employee());
 
         }
 
