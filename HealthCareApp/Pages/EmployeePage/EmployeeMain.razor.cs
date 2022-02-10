@@ -45,9 +45,9 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.FromResult(EmployeeModalAdd.OpenModalAddAsync());
         }
 
-        private async Task OpenModalUpdateAsync(Employee employee)
+        private async Task OpenModalUpdateAsync(Guid id)
         {
-            await Task.FromResult(EmployeeModalUpdate.OpenModalUpdateAsync(employee));
+            await Task.FromResult(EmployeeModalUpdate.OpenModalUpdateAsync(id));
         }
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)

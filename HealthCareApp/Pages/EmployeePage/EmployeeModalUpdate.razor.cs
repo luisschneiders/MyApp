@@ -34,11 +34,11 @@ namespace HealthCareApp.Pages.EmployeePage
             employee = new();
         }
 
-        public async Task OpenModalUpdateAsync(Employee employee)
+        public async Task OpenModalUpdateAsync(Guid id)
         {
-            this.employee = employee;
+            employee = EmployeeService.GetEmployeeById(id);
 
-            ModalUpdateTarget = employee.Id;
+            ModalUpdateTarget = id;
             await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
             await Task.CompletedTask;
         }
