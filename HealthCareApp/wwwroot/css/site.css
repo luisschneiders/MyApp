@@ -47,11 +47,11 @@ a:hover {
     height: calc(100% - 86px);
     margin: auto;
     background-color: #ffffff;
-    border-radius: 40px;
+    border-radius: 1.8rem;
 }
 
 .form-control {
-    border-radius: 20px;
+    border-radius: 1.8rem;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -124,7 +124,7 @@ a:hover {
     color: #ffdb99;
 }
 .hca-list-group-item {
-    border-radius: 40px;
+    border-radius: 1.8rem;
     background-color: #f7eee7;
     border: none;
 }
