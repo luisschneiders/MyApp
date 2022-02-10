@@ -67,6 +67,22 @@ namespace HealthCareApp.Data
         }
 
         /*
+         * method to get employee by ID
+         */
+        public Employee GetEmployeeById(Guid guid)
+        {
+            try
+            {
+                Employee employee =  _applicationDbContext.Employees.FirstOrDefault(employee => employee.Id.Equals(guid));
+                return employee;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        /*
          * async method to add new employee
          */
         public async Task<Employee> AddEmployeeAsync(Employee employee)
