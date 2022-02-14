@@ -6,6 +6,7 @@ using EmployeeLibrary.Models;
 using ContactDetailsLibrary.Models;
 using System.Linq;
 using LocationLibrary.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace HealthCareApp.Data
 {
@@ -27,40 +28,34 @@ namespace HealthCareApp.Data
             List<Employee> employeeList = new List<Employee>();
 
             /* Raw query with joins, filters and ordering */
-            var query = from employee in _applicationDbContext.Set<Employee>()
-                        join contactDetails in _applicationDbContext.Set<ContactDetails>()
-                            on employee.ContactDetailsId equals contactDetails.Id
-                        join location in _applicationDbContext.Set<Location>()
-                            on employee.LocationId equals location.Id
-                        where employee.InsertedBy == userService.UserId()
-                        orderby employee.CreatedAt descending
-                        select new { employee, contactDetails, location};
-
-            /* this is not working for some reasons */
-            //var employees = _applicationDbContext.Employees
-            //    .Include(c => c.ContactDetails)
-            //    .Include(l => l.Location)
-            //    .Where(employee => employee.InsertedBy == userService.UserId())
-            //    .OrderByDescending(e => e.CreatedAt)
-            //    .ToList();
+            var query =
+                (
+                    from employee in _applicationDbContext.Set<Employee>()
+                    join contactDetails in _applicationDbContext.Set<ContactDetails>()
+                        on employee.ContactDetailsId equals contactDetails.Id
+                    join location in _applicationDbContext.Set<Location>()
+                        on employee.LocationId equals location.Id
+                    where employee.InsertedBy == userService.UserId()
+                    orderby employee.CreatedAt descending
+                    select new { employee, contactDetails, location}
+                ).AsNoTracking();
 
             foreach (var i in query)
             {
-                Employee employee = new Employee();
-                employee = i.employee;
+                Employee employeeDetails = new();
+                employeeDetails = i.employee;
 
                 if (i.employee.ContactDetailsId == i.contactDetails?.Id)
                 {
-                    employee.ContactDetails = i.contactDetails;
+                    employeeDetails.ContactDetails = i.contactDetails;
                 }
 
                 if (i.employee.LocationId == i.location?.Id)
                 {
-                    employee.Location = i.location;
+                    employeeDetails.Location = i.location;
                 }
 
-                employeeList.Add(employee);
-
+                employeeList.Add(employeeDetails);
             }
 
             return await Task.FromResult(employeeList);
@@ -73,8 +68,34 @@ namespace HealthCareApp.Data
         {
             try
             {
-                Employee employee =  _applicationDbContext.Employees.FirstOrDefault(employee => employee.Id.Equals(guid));
-                return employee;
+                UserService userService = new UserService(_httpContextAccessor);
+
+                /* Raw query with joins, filters and ordering */
+                var query =
+                    (
+                        from employee in _applicationDbContext.Set<Employee>()
+                        join contactDetails in _applicationDbContext.Set<ContactDetails>()
+                            on employee.ContactDetailsId equals contactDetails.Id
+                        join location in _applicationDbContext.Set<Location>()
+                            on employee.LocationId equals location.Id
+                        where employee.Id == guid
+                        select new { employee, contactDetails, location }
+                    ).AsNoTracking().FirstOrDefault();
+
+                Employee employeeDetails = new();
+
+                employeeDetails = query.employee;
+
+                if (query.employee.ContactDetailsId == query.contactDetails?.Id)
+                {
+                    employeeDetails.ContactDetails = query.contactDetails;
+                }
+
+                if (query.employee.LocationId == query.location?.Id)
+                {
+                    employeeDetails.Location = query.location;
+                }
+                return employeeDetails;
             }
             catch (Exception)
             {
@@ -127,5 +148,6 @@ namespace HealthCareApp.Data
 
             return true;
         }
+
     }
 }
