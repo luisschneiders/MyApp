@@ -42,20 +42,7 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                Employee employeeDetails = new();
-                employeeDetails = i.employee;
-
-                if (i.employee.ContactDetailsId == i.contactDetails?.Id)
-                {
-                    employeeDetails.ContactDetails = i.contactDetails;
-                }
-
-                if (i.employee.LocationId == i.location?.Id)
-                {
-                    employeeDetails.Location = i.location;
-                }
-
-                employeeList.Add(employeeDetails);
+                employeeList.Add(SetEmployeeDetails(i.employee, i.contactDetails, i.location));
             }
 
             return await Task.FromResult(employeeList);
@@ -82,20 +69,8 @@ namespace HealthCareApp.Data
                         select new { employee, contactDetails, location }
                     ).AsNoTracking().FirstOrDefault();
 
-                Employee employeeDetails = new();
+                return SetEmployeeDetails(query.employee, query.contactDetails, query.location);
 
-                employeeDetails = query.employee;
-
-                if (query.employee.ContactDetailsId == query.contactDetails?.Id)
-                {
-                    employeeDetails.ContactDetails = query.contactDetails;
-                }
-
-                if (query.employee.LocationId == query.location?.Id)
-                {
-                    employeeDetails.Location = query.location;
-                }
-                return employeeDetails;
             }
             catch (Exception)
             {
@@ -149,5 +124,23 @@ namespace HealthCareApp.Data
             return true;
         }
 
+        private static Employee SetEmployeeDetails(Employee employee, ContactDetails contactDetails, Location location)
+        {
+            Employee employeeDetails;
+
+            employeeDetails = employee;
+
+            if (employee.ContactDetailsId == contactDetails?.Id)
+            {
+                employeeDetails.ContactDetails = contactDetails;
+            }
+
+            if (employee.LocationId == location?.Id)
+            {
+                employeeDetails.Location = location;
+            }
+
+            return employeeDetails;
+        }
     }
 }
