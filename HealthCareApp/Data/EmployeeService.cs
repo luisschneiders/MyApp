@@ -95,6 +95,15 @@ namespace HealthCareApp.Data
             {
                 _applicationDbContext.Employees.Add(employee);
                 await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(employee).State = EntityState.Detached;
+                _applicationDbContext.Entry(employee.ContactDetails).State = EntityState.Detached;
+                _applicationDbContext.Entry(employee.Location).State = EntityState.Detached;
             }
             catch (Exception)
             {
@@ -115,6 +124,15 @@ namespace HealthCareApp.Data
             {
                 _applicationDbContext.Employees.Update(employee);
                 await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(employee).State = EntityState.Detached;
+                _applicationDbContext.Entry(employee.ContactDetails).State = EntityState.Detached;
+                _applicationDbContext.Entry(employee.Location).State = EntityState.Detached;
             }
             catch (Exception)
             {
