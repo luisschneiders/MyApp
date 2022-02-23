@@ -12,7 +12,81 @@ html, body {
 }
 
 body {
-    background-color: #d6c1b8;
+    background: linear-gradient(
+        0deg, rgba(248, 184, 139,0) 20%,
+        rgba(248, 184, 139,.1) 20%,
+        rgba(248, 184, 139,.1) 40%,
+        rgba(248, 184, 139,.2) 40%,
+        rgba(248, 184, 139,.2) 60%,
+        rgba(248, 184, 139,.4) 60%,
+        rgba(248, 184, 139,.4) 80%,
+        rgba(248, 184, 139,.6) 80%),
+        linear-gradient(
+        45deg, rgba(250, 248, 132,0) 20%,
+        rgba(250, 248, 132,.1) 20%,
+        rgba(250, 248, 132,.1) 40%,
+        rgba(250, 248, 132,.2) 40%,
+        rgba(250, 248, 132,.2) 60%,
+        rgba(250, 248, 132,.4) 60%,
+        rgba(250, 248, 132,.4) 80%,
+        rgba(250, 248, 132,.6) 80%),
+        linear-gradient(
+        90deg, rgba(186, 237, 145,0) 20%,
+        rgba(186, 237, 145,.1) 20%,
+        rgba(186, 237, 145,.1) 40%,
+        rgba(186, 237, 145,.2) 40%,
+        rgba(186, 237, 145,.2) 60%,
+        rgba(186, 237, 145,.4) 60%,
+        rgba(186, 237, 145,.4) 80%,
+        rgba(186, 237, 145,.6) 80%),
+        linear-gradient(
+        135deg, rgba(178, 206, 254,0) 20%,
+        rgba(178, 206, 254,.1) 20%,
+        rgba(178, 206, 254,.1) 40%,
+        rgba(178, 206, 254,.2) 40%,
+        rgba(178, 206, 254,.2) 60%,
+        rgba(178, 206, 254,.4) 60%,
+        rgba(178, 206, 254,.4) 80%,
+        rgba(178, 206, 254,.6) 80%),
+        linear-gradient(
+        180deg, rgba(242, 162, 232,0) 20%,
+        rgba(242, 162, 232,.1) 20%,
+        rgba(242, 162, 232,.1) 40%,
+        rgba(242, 162, 232,.2) 40%,
+        rgba(242, 162, 232,.2) 60%,
+        rgba(242, 162, 232,.4) 60%,
+        rgba(242, 162, 232,.4) 80%,
+        rgba(242, 162, 232,.6) 80%),
+        linear-gradient(
+        225deg, rgba(254, 163, 170,0) 20%,
+        rgba(254, 163, 170,.1) 20%,
+        rgba(254, 163, 170,.1) 40%,
+        rgba(254, 163, 170,.2) 40%,
+        rgba(254, 163, 170,.2) 60%,
+        rgba(254, 163, 170,.4) 60%,
+        rgba(254, 163, 170,.4) 80%,
+        rgba(254, 163, 170,.6) 80%),
+        linear-gradient(270deg,
+        rgba(248, 184, 139,0) 20%,
+        rgba(248, 184, 139,.1) 20%,
+        rgba(248, 184, 139,.1) 40%,
+        rgba(248, 184, 139,.2) 40%,
+        rgba(248, 184, 139,.2) 60%,
+        rgba(248, 184, 139,.4) 60%,
+        rgba(248, 184, 139,.4) 80%,
+        rgba(248, 184, 139,.6) 80%),
+        linear-gradient(315deg,
+        rgba(250, 248, 132,0) 20%,
+        rgba(250, 248, 132,.1) 20%,
+        rgba(250, 248, 132,.1) 40%,
+        rgba(250, 248, 132,.2) 40%,
+        rgba(250, 248, 132,.2) 60%,
+        rgba(250, 248, 132,.4) 60%,
+        rgba(250, 248, 132,.4) 80%,
+        rgba(250, 248, 132,.6) 80%);
+    background-color: #2000a3;
+    background-size: 100% 100%;
+    min-height: 100%;
 }
 
 a, .btn-link {
@@ -46,7 +120,7 @@ a:hover {
     width: calc(100% - 3rem);
     height: calc(100% - 86px);
     margin: auto;
-    background-color: #ffffff;
+    background-color: #ffffff9e;
     border-radius: 1.8rem;
 }
 
@@ -129,5 +203,5 @@ a:hover {
     border: none;
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: rgb(247 238 231 / 45%);
+    background-color: #f5f5f5;
 }
