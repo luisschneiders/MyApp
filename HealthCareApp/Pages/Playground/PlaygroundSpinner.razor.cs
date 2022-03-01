@@ -13,6 +13,7 @@ namespace HealthCareApp.Pages.Playground
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await Task.Run(() => SpinnerService.ShowSpinner());
+            await Task.CompletedTask;
         }
     }
 }

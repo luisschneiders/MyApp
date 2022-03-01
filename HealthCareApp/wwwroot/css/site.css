@@ -158,6 +158,18 @@ a:hover {
     right: 0.75rem;
     top: 0.5rem;
 }
+.flex-container {
+    display: grid;
+    grid-template-columns: 40% auto;
+    height: 100%;
+}
+.flex-container .flex-container-list {
+    overflow-y: auto;
+    border-right: 1px solid #d6c1b8;
+}
+.flex-container .flex-container-main {
+    flex-grow: 2;
+}
 .badge {
     border-radius: 8px;
 }
