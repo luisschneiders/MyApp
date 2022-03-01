@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
+using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -22,6 +23,10 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Virtualize<Employee> VirtualizeContainer { get; set; }
 
+        private Employee EmployeeDetails { get; set; }
+
+        private bool IsLoading { get; set; }
+
         /*
          * Add component EmployeeModalAdd & EmployeeModalUpdate reference
          */
@@ -33,21 +38,37 @@ namespace HealthCareApp.Pages.EmployeePage
             if (firstRender)
             {
                 await Task.Run(() => SpinnerService.ShowSpinner());
+                await Task.CompletedTask;
             }
             else
             {
                 await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.CompletedTask;
             }
         }
 
         private async Task OpenModalAddAsync()
         {
             await Task.FromResult(EmployeeModalAdd.OpenModalAddAsync());
+            await Task.CompletedTask;
         }
 
         private async Task OpenModalUpdateAsync(Guid id)
         {
             await Task.FromResult(EmployeeModalUpdate.OpenModalUpdateAsync(id));
+            await Task.CompletedTask;
+        }
+
+        private async Task ShowEmployeeDetails(Employee employee)
+        {
+
+            EmployeeDetails = employee;
+
+            IsLoading = true;
+            await Task.Delay((int)Delay.DataLoading);
+            IsLoading = false;
+
+            await Task.CompletedTask;
         }
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
@@ -64,7 +85,14 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task RefreshVirtualizeContainer()
         {
+            EmployeeDetails = null;
             await VirtualizeContainer.RefreshDataAsync();
+        }
+
+        public async Task VirtualizeContainerAsync()
+        {
+            await RefreshVirtualizeContainer();
+            await Task.CompletedTask;
         }
     }
 }

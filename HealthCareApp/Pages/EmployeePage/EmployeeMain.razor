@@ -25,55 +25,67 @@
         </PageMenu>
     </PageHeader>
     <PageBody Styles="p-2">
-        <div class="d-flex flex-row justify-content-evenly align-items-center">
-            <Spinner Size="Size.Md" />
-        </div>
-        <div class="list-group gap-2">
-            <Virtualize Context="person"
-                        ItemsProvider="@LoadEmployees"
-                        @ref="VirtualizeContainer">
-                <ItemContent>
-                    <button type="button"
-                            class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3"
-                            @onclick="() => OpenModalUpdateAsync(person.Id)"
-                    >
-                        <i class="bi bi-person md-icon"></i>
-                        <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
-                            <div>
-                                <h6 class="mb-0">
-                                    @person.EmployeeFirstName @person.EmployeeLastName
-                                </h6>
-                                <div class="gap-2 w-100 opacity-75">
-                                    <div>
-                                        @person.EmployeeUsername
-                                    </div>
-                                    <div>
-                                        @person.ContactDetails.Email
-                                    </div>
-
-                                    <address class="mb-0">
-                                        @person.Location.Suburb.ToUpper() @person.Location.State.ToUpper() @person.Location.Postcode
-                                    </address>
-
-                                </div>
-                            </div>
-                            <div>
-                                @if (person.IsActive)
-                                {
-                                    <Badge Level="Level.Success" Message="Active" />
-                                }
-                                else
-                                {
-                                    <Badge Level="Level.Warning" Message="Inactive" />
-                                }
-                            </div>
-                        </div>
-                    </button>
-                </ItemContent>
-                <Placeholder>
+        <div class="flex-container">
+            <div class="flex-container-list ps-1 pe-2">
+                <div class="d-flex flex-row justify-content-evenly align-items-center">
                     <Spinner Size="Size.Md" />
-                </Placeholder>
-            </Virtualize>
+                </div>
+                <div class="list-group gap-2">
+                    <Virtualize Context="person"
+                                ItemsProvider="@LoadEmployees"
+                                @ref="VirtualizeContainer">
+                        <ItemContent>
+                            <button type="button"
+                                    class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3"
+                                    @onclick="() => ShowEmployeeDetails(person)"
+                            >
+                                <i class="bi bi-person md-icon"></i>
+                                <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
+                                    <div>
+                                        <h6 class="mb-0">
+                                            @person.EmployeeFirstName @person.EmployeeLastName
+                                        </h6>
+                                        <div class="gap-2 w-100 opacity-75">
+                                            <div>
+                                                @person.EmployeeUsername
+                                            </div>
+                                            <div>
+                                                @person.ContactDetails.Email
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        @if (person.IsActive)
+                                        {
+                                            <Badge Level="Level.Success" Message="Active" />
+                                        }
+                                        else
+                                        {
+                                            <Badge Level="Level.Warning" Message="Inactive" />
+                                        }
+                                    </div>
+                                </div>
+                            </button>
+                        </ItemContent>
+                        <Placeholder>
+                            <Spinner Size="Size.Md" />
+                        </Placeholder>
+                    </Virtualize>
+                </div>
+            </div>
+            <div class="flex-container-main ps-2">
+                <EmployeeDetails Info="EmployeeDetails" Loading="IsLoading" />
+                @if (!IsLoading && EmployeeDetails is not null)
+                {
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="button"
+                                class="btn btn-outline-primary btn-rounded"
+                                @onclick="() => OpenModalUpdateAsync(EmployeeDetails.Id)">
+                            Update Details
+                        </button>
+                    </div>
+                }
+            </div>
         </div>
         <Toast />
     </PageBody>
