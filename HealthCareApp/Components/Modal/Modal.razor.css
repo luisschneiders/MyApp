@@ -2,5 +2,6 @@
     border-radius: 1.8rem;
 }
 .hca-app-modal-header {
-    background: #f7eee7;
+    background: #f3f2f1;
+    border-bottom: none;
 }

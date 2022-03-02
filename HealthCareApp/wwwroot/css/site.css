@@ -120,7 +120,7 @@ a:hover {
     width: calc(100% - 3rem);
     height: calc(100% - 86px);
     margin: auto;
-    background-color: #ffffff9e;
+    background-color: #f3f2f1;
     border-radius: 1.8rem;
 }
 
@@ -195,7 +195,7 @@ a:hover {
     color: #ff2f2f;
 }
 .hca-app-icon, .hca-app-title {
-    color: #997588;
+    color: #0dcaf0;
 }
 .hca-employee-icon, .hca-employee-title {
     color: #ff9999;
@@ -211,9 +211,9 @@ a:hover {
 }
 .hca-list-group-item {
     border-radius: 1.8rem;
-    background-color: #f7eee7;
+    background-color: #ffffff;
     border: none;
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: #f5f5f5;
+    background-color: #dbe0e1;
 }
