@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EmployeeLibrary.Models;
@@ -26,6 +27,9 @@ namespace HealthCareApp.Pages.EmployeePage
         private Employee EmployeeDetails { get; set; }
 
         private bool IsLoading { get; set; }
+        private string SearchTerm { get; set; }
+        private List<Employee> Results { get; set; }
+        private List<Employee> Employees { get; set; }
 
         /*
          * Add component EmployeeModalAdd & EmployeeModalUpdate reference
@@ -73,13 +77,13 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
         {
-            var employees = await EmployeeService.GetEmployeesAsync();
+            Employees = await EmployeeService.GetEmployeesAsync();
 
             await Task.Run(() => SpinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
             return new ItemsProviderResult<Employee>(
-                employees.Skip(request.StartIndex).Take(request.Count), employees.Count
+                Employees.Skip(request.StartIndex).Take(request.Count), Employees.Count
             );
         }
 
@@ -93,6 +97,19 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             await RefreshVirtualizeContainer();
             await Task.CompletedTask;
+        }
+
+        private async Task SearchEmployeeAsync()
+        {
+            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            {
+                Results = await EmployeeService.SearchAsync(SearchTerm);
+                Console.WriteLine("LFS - searching... " + Results);
+
+            } else
+            {
+                Results = null;
+            }
         }
     }
 }
