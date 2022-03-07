@@ -48,6 +48,28 @@ namespace HealthCareApp.Data
             return await Task.FromResult(employeeList);
         }
 
+        public async Task<List<Employee>> SearchAsync(string searchTerm)
+        {
+            UserService userService = new UserService(_httpContextAccessor);
+            List<Employee> employeeList = new List<Employee>();
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
+            {
+                return null;
+            }
+
+            var query = _applicationDbContext.Employees
+                .Where(employee => employee.InsertedBy == userService.UserId()
+                                && employee.EmployeeFirstName.Contains(searchTerm));
+                
+            foreach (var employee in query)
+            {
+                employeeList.Add(employee);
+            }
+
+            return await Task.FromResult(employeeList);
+        }
+
         /*
          * method to get employee by ID
          */
