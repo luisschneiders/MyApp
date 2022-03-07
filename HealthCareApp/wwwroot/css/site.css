@@ -224,6 +224,14 @@ a:hover {
     background-color: #ffffff;
     border: none;
 }
+.hca-list-group-item:first-child {
+    border-top-left-radius: 1.8rem;
+    border-top-right-radius: 1.8rem;
+}
+.hca-list-group-item:last-child {
+    border-bottom-left-radius: 1.8rem;
+    border-bottom-right-radius: 1.8rem;
+}
 .list-group-item-action:focus, .list-group-item-action:hover {
     background-color: #dbe0e1;
 }
