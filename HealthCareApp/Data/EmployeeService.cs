@@ -58,13 +58,22 @@ namespace HealthCareApp.Data
                 return null;
             }
 
-            var query = _applicationDbContext.Employees
-                .Where(employee => employee.InsertedBy == userService.UserId()
-                                && employee.EmployeeFirstName.Contains(searchTerm));
-                
-            foreach (var employee in query)
+            var query =
+                (
+                    from employee in _applicationDbContext.Set<Employee>()
+                    join contactDetails in _applicationDbContext.Set<ContactDetails>()
+                        on employee.ContactDetailsId equals contactDetails.Id
+                    join location in _applicationDbContext.Set<Location>()
+                        on employee.LocationId equals location.Id
+                    where employee.InsertedBy == userService.UserId()
+                    && EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
+                    orderby employee.CreatedAt descending
+                    select new { employee, contactDetails, location }
+                ).AsNoTracking();
+
+            foreach (var i in query)
             {
-                employeeList.Add(employee);
+                employeeList.Add(SetEmployeeDetails(i.employee, i.contactDetails, i.location));
             }
 
             return await Task.FromResult(employeeList);
