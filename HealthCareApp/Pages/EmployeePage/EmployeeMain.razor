@@ -92,6 +92,7 @@
                     }
                     @if (Results is not null)
                     {
+                        <div></div>
                         @foreach (var person in Results)
                         {
                             <button type="button"
@@ -106,6 +107,9 @@
                                         <div class="gap-2 w-100 opacity-75">
                                             <div>
                                                 @person.EmployeeUsername
+                                            </div>
+                                            <div>
+                                                @person.ContactDetails.Email
                                             </div>
                                         </div>
                                     </div>
