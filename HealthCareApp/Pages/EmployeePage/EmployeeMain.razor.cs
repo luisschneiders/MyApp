@@ -104,8 +104,6 @@ namespace HealthCareApp.Pages.EmployeePage
             if (!string.IsNullOrWhiteSpace(SearchTerm))
             {
                 Results = await EmployeeService.SearchAsync(SearchTerm);
-                Console.WriteLine("LFS - searching... " + Results);
-
             } else
             {
                 Results = null;
