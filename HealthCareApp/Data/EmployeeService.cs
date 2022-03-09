@@ -66,7 +66,9 @@ namespace HealthCareApp.Data
                     join location in _applicationDbContext.Set<Location>()
                         on employee.LocationId equals location.Id
                     where employee.InsertedBy == userService.UserId()
-                    && EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
+                    && (EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
+                    || EF.Functions.Like(employee.EmployeeLastName, $"%{searchTerm}%")
+                    || EF.Functions.Like(employee.EmployeeUsername, $"%{searchTerm}%"))
                     orderby employee.CreatedAt descending
                     select new { employee, contactDetails, location }
                 ).AsNoTracking();
