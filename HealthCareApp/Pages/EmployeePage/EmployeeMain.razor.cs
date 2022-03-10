@@ -99,12 +99,15 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.CompletedTask;
         }
 
-        private async Task SearchEmployeeAsync()
+        private async Task SearchEmployeeAsync(ChangeEventArgs eventArgs)
         {
-            if (!string.IsNullOrWhiteSpace(SearchTerm))
+            var searchTerm = eventArgs.Value.ToString();
+            
+            if (!string.IsNullOrWhiteSpace(searchTerm))
             {
-                Results = await EmployeeService.SearchAsync(SearchTerm);
-            } else
+                Results = await EmployeeService.SearchAsync(searchTerm);
+            }
+            else
             {
                 Results = null;
             }
