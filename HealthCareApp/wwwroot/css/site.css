@@ -219,6 +219,9 @@ a:hover {
 .hca-Supplier-icon, .hca-Supplier-title {
     color: #997588;
 }
+.hca-form-control-plaintext {
+    padding: 0 0 1.5rem 0;
+}
 .hca-list-group-item {
     border-radius: 1.8rem;
     background-color: #ffffff;
