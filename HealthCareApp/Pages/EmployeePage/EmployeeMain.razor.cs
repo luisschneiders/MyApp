@@ -112,5 +112,12 @@ namespace HealthCareApp.Pages.EmployeePage
                 Results = null;
             }
         }
+
+        private async Task UpdateEmployeeStatusAsync(Employee employee)
+        {
+            employee.IsActive = !employee.IsActive;
+            await Task.FromResult(EmployeeService.UpdateEmployeeAsync(employee));
+            await Task.CompletedTask;
+        }
     }
 }
