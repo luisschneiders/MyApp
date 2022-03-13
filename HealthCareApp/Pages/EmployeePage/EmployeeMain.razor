@@ -47,36 +47,52 @@
                                     ItemsProvider="@LoadEmployees"
                                     @ref="VirtualizeContainer">
                             <ItemContent>
-                                <button type="button"
-                                        class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3"
-                                        @onclick="() => ShowEmployeeDetails(person)">
-                                    <i class="bi bi-person md-icon"></i>
-                                    <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
-                                        <div>
-                                            <span class="mb-0 fs-6 fw-bolder">
-                                                @person.EmployeeFirstName.Truncate((int)Truncate.FirstName) @person.EmployeeLastName.Truncate((int)Truncate.LastName)
-                                            </span>
-                                            <div class="gap-2 w-100 opacity-75">
-                                                <div class="text-muted">
-                                                    @person.EmployeeUsername
+                                <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <div class="d-flex @(person.IsActive ? "" : "text-black-50")"
+                                             role="button"
+                                             @onclick="() => ShowEmployeeDetails(person)"
+                                        >
+                                            <i class="bi bi-person md-icon"></i>
+                                            <div class="ps-1">
+                                                <div class="mb-0 fs-5">
+                                                    @person.EmployeeFirstName.Truncate((int)Truncate.FirstName) @person.EmployeeLastName.Truncate((int)Truncate.LastName)
                                                 </div>
                                                 <div>
-                                                    @person.ContactDetails.Email
+                                                    <div class="text-muted">
+                                                        @person.EmployeeUsername
+                                                    </div>
+                                                    <div>
+                                                        @person.ContactDetails.Email
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                         <div>
-                                            @if (person.IsActive)
-                                            {
-                                                <Badge Level="Level.Success" Message="Active" />
-                                            }
-                                            else
-                                            {
-                                                <Badge Level="Level.Warning" Message="Inactive" />
-                                            }
+                                            <div class="form-check form-switch">
+                                                @if (person.IsActive)
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           checked
+                                                           @onclick="() => UpdateEmployeeStatusAsync(person)"
+                                                    />
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           @onclick="() => UpdateEmployeeStatusAsync(person)"
+                                                    />
+                                                }
+                                            </div>
                                         </div>
                                     </div>
-                                </button>
+                                </div>
                             </ItemContent>
                             <Placeholder>
                                 <Spinner Size="Size.Md" />
@@ -88,36 +104,49 @@
                         <div></div>
                         @foreach (var person in Results)
                         {
-                            <button type="button"
-                                    class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3"
-                                    @onclick="() => ShowEmployeeDetails(person)">
-                                <i class="bi bi-person md-icon"></i>
-                                <div class="d-flex gap-2 w-100 justify-content-between align-items-center">
-                                    <div>
-                                        <h6 class="mb-0">
-                                            @person.EmployeeFirstName @person.EmployeeLastName
-                                        </h6>
-                                        <div class="gap-2 w-100 opacity-75">
-                                            <div>
-                                                @person.EmployeeUsername
+                            <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <div class="d-flex @(person.IsActive ? "" : "text-black-50")"
+                                         role="button"
+                                         @onclick="() => ShowEmployeeDetails(person)">
+                                        <i class="bi bi-person md-icon"></i>
+                                        <div class="ps-1">
+                                            <div class="mb-0 fs-5">
+                                                @person.EmployeeFirstName.Truncate((int)Truncate.FirstName) @person.EmployeeLastName.Truncate((int)Truncate.LastName)
                                             </div>
                                             <div>
-                                                @person.ContactDetails.Email
+                                                <div class="text-muted">
+                                                    @person.EmployeeUsername
+                                                </div>
+                                                <div>
+                                                    @person.ContactDetails.Email
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div>
-                                        @if (person.IsActive)
-                                        {
-                                            <Badge Level="Level.Success" Message="Active" />
-                                        }
-                                        else
-                                        {
-                                            <Badge Level="Level.Warning" Message="Inactive" />
-                                        }
+                                        <div class="form-check form-switch">
+                                            @if (person.IsActive)
+                                            {
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       role="switch"
+                                                       id="IsActive"
+                                                       checked
+                                                       @onclick="() => UpdateEmployeeStatusAsync(person)" />
+                                            }
+                                            else
+                                            {
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       role="switch"
+                                                       id="IsActive"
+                                                       @onclick="() => UpdateEmployeeStatusAsync(person)" />
+                                            }
+                                        </div>
                                     </div>
                                 </div>
-                            </button>
+                            </div>
                         }
                     }
                 </div>
