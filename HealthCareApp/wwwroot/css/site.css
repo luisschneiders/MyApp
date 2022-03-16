@@ -158,6 +158,14 @@ a:hover {
     right: 0.75rem;
     top: 0.5rem;
 }
+.highlight {
+    background-color: #dbe0e1;
+    border-radius: 8px;
+}
+.markup-example {
+    background-color: #ffffff;
+    border-radius: 1.8rem;
+}
 .flex-container {
     display: grid;
     grid-template-columns: 40% auto;
@@ -176,7 +184,6 @@ a:hover {
 .flex-container .flex-container-main {
     flex-grow: 2;
 }
-
 .badge {
     border-radius: 8px;
 }

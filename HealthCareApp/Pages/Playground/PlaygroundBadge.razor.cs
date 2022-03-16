@@ -1,16 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using BaseLibrary;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.Playground
 {
-    public partial class PlaygroundToast : ComponentBase
+    public partial class PlaygroundBadge : ComponentBase
     {
-        [Inject]
-        private ToastService ToastService { get; set; }
 
         private ComponentMarkup ComponentMarkup { get; set; }
         private List<ComponentMarkup> ComponentMarkupList { get; set; }
@@ -24,7 +20,7 @@ namespace HealthCareApp.Pages.Playground
 
             Codes = new()
             {
-                new MarkupString("<Toast />").ToString()
+                new MarkupString("<Badge Level='Level.Info' Message='Info message!' />").ToString()
             };
             ComponentMarkup = new()
             {
@@ -35,31 +31,17 @@ namespace HealthCareApp.Pages.Playground
 
             Codes = new()
             {
-                new MarkupString("ToastService.ShowToast('Toast message!', Level.Info)").ToString(),
+                new MarkupString("Level='enum'").ToString(),
+                new MarkupString("Message='string'").ToString()
             };
             ComponentMarkup = new()
             {
-                Title = "Service",
-                Code = Codes
-            };
-            ComponentMarkupList.Add(ComponentMarkup);
-
-            Codes = new()
-            {
-                new MarkupString("ShowToast(string, enum)").ToString(),
-            };
-            ComponentMarkup = new()
-            {
-                Title = "Method",
+                Title = "Parameter",
                 Code = Codes
             };
             ComponentMarkupList.Add(ComponentMarkup);
 
         }
 
-        private void ShowToast()
-        {
-            ToastService.ShowToast("Toast message!", Level.Info);
-        }
     }
 }
