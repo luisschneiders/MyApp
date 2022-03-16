@@ -1,9 +1,6 @@
 ﻿@page "/playground/toast"
-@using HealthCareApp.Settings.Enum
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Toast
-
-@inject ToastService toastService;
 
 <PageWrapper>
     <PageHeader>
@@ -11,27 +8,40 @@
         <PageMenu />
     </PageHeader>
     <PageBody>
-        <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <p>
+                        <h4 class="hca-app-title">How to use</h4>
+                        <hr />
+                    </p>
+                    <p>
+                        <h5>Component:</h5>
+                        <code>@MarkupStringComponent</code>
+                    </p>
+                    <p>
+                        <h5>Service:</h5>
+                        <code>@MarkupStringService</code>
+                    </p>
+                    <p>
+                        <h5>Method:</h5>
+                        <code>@MarkupStringMethod</code>
+                    </p>
+                </div>
+                <div class="col">
+                    <div class="h-100 d-flex flex-column justify-content-evenly align-items-center">
+                        <button type="button"
+                                class="btn btn-light btn-rounded"
+                                @onclick="() => ShowToast()">
+                            Show toast
+                        </button>
+
+                    </div>
+                </div>
+            </div>
             <div>
-                <button type="button"
-                        class="btn btn-light btn-rounded"
-                        @onclick="() => ShowToast()">
-                    Show toast
-                </button>
             </div>
         </div>
         <Toast />
     </PageBody>
 </PageWrapper>
-
-@code {
-
-    private string toastMessage { get; set; }
-
-    private void ShowToast()
-    {
-        toastMessage = "Toast message";
-        toastService.ShowToast(toastMessage, Level.Info);
-    }
-
-}
