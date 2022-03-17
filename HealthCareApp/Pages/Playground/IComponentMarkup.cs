@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace BaseLibrary
+namespace HealthCareApp.Pages.Playground
 {
     public interface IComponentMarkup
     {
