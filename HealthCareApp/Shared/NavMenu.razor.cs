@@ -6,8 +6,9 @@ namespace HealthCareApp.Shared
         private enum NavSubmenu
         {
             None,
-            First,
-            Second
+            Settings,
+            Playground,
+            Api
         };
 
         private bool collapseNavMenu = true;

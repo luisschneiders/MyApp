@@ -22,22 +22,12 @@
                         <i class="bi bi-list-stars sm-icon"></i>Schedules
                     </NavLink>
                 </li>
-                @*<li class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <i class="bi bi-plus-lg sm-icon"></i>Counter
-                    </NavLink>
-                </li>
-                <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="fetchdata">
-                        <i class="bi bi-list-columns sm-icon"></i>Fetch data
-                    </NavLink>
-                </li>*@
                 <li class="nav-item px-3 nav-link-submenu">
-                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.First)">
+                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Settings)">
                         <i class="bi bi-gear-wide-connected sm-icon"></i>Settings
                     </NavLink>
                 </li>
-                @if (navSubmenu == NavSubmenu.First)
+                @if (navSubmenu == NavSubmenu.Settings)
                 {
                     <li class="nav-item px-5">
                         <NavLink class="nav-link" href="/employees">
@@ -51,11 +41,11 @@
                     </li>
                 }
                 <li class="nav-item px-3 nav-link-submenu">
-                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Second)">
+                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Playground)">
                         <i class="bi bi-controller sm-icon"></i>Playgrounds
                     </NavLink>
                 </li>
-                @if (navSubmenu == NavSubmenu.Second)
+                @if (navSubmenu == NavSubmenu.Playground)
                 {
                     <li class="nav-item px-5">
                         <NavLink class="nav-link" href="/playground/card">
@@ -85,6 +75,35 @@
                     <li class="nav-item px-5">
                         <NavLink class="nav-link" href="/playground/spinner">
                             <i class="bi bi-arrow-clockwise sm-icon"></i>Spinners
+                        </NavLink>
+                    </li>
+                }
+                <li class="nav-item px-3 nav-link-submenu">
+                    <hr />
+                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Api)">
+                        <i class="bi bi-share sm-icon"></i>APIs
+                    </NavLink>
+                </li>
+                @if (navSubmenu == NavSubmenu.Api)
+                {
+                    <li class="nav-item px-5">
+                        <NavLink class="nav-link" href="/playground/api-get">
+                            <i class="bi bi-terminal sm-icon"></i>Get
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-5">
+                        <NavLink class="nav-link" href="/playground/api-post">
+                            <i class="bi bi-terminal-plus sm-icon"></i>Post
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-5">
+                        <NavLink class="nav-link" href="/playground/api-put">
+                            <i class="bi bi-terminal-fill sm-icon"></i>Put
+                        </NavLink>
+                    </li>
+                    <li class="nav-item px-5">
+                        <NavLink class="nav-link" href="/playground/api-delete">
+                            <i class="bi bi-terminal-x sm-icon"></i>Delete
                         </NavLink>
                     </li>
                 }
