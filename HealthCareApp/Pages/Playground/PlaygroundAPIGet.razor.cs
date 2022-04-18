@@ -57,6 +57,7 @@ namespace HealthCareApp.Pages.Playground
         {
             await Task.Run(() => SpinnerService.ShowSpinner());
 
+            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
             var endpoint = "https://localhost:7086/";
             var route = "api/v1/Language";
 
@@ -76,6 +77,7 @@ namespace HealthCareApp.Pages.Playground
 
                 request.Headers.Add("Accept", "text/plain");
                 request.Headers.Add("User-Agent", "HealthCare App");
+                request.Headers.Add("HealthCareAPIKey", healthCareApiKey);
 
                 var response = await client.SendAsync(request);
 

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNetEnv;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -13,6 +14,8 @@ namespace HealthCareApp
     {
         public static void Main(string[] args)
         {
+            // Load env variables
+            Env.Load();
             CreateHostBuilder(args).Build().Run();
         }
 

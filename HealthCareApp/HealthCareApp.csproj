@@ -24,6 +24,7 @@
     <None Remove="Components\Badge\" />
     <None Remove="Components\Spinner\" />
     <None Remove="Newtonsoft.Json" />
+    <None Remove="DotNetEnv" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -60,6 +61,7 @@
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+    <PackageReference Include="DotNetEnv" Version="2.3.0" />
   </ItemGroup>
 
   <ItemGroup>
