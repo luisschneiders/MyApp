@@ -408,3 +408,6 @@ ASALocalRun/
 
 # Local History for Visual Studio
 .localhistory/
+
+# Environment file
+*.env
