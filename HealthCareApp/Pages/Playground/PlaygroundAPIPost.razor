@@ -17,7 +17,7 @@
                         <h4 class="hca-app-title">How to use</h4>
                         <hr />
                     </p>
-                    @*@foreach (var markupString in ComponentMarkupList)
+                    @foreach (var markupString in _componentMarkupList)
                     {
                         <div>
                             <h5>@markupString.Title</h5>
@@ -29,32 +29,48 @@
                                 </p>
                             }
                         </div>
-                    }*@
-                    @*<form class="row g-3 align-items-center">
-                        <div class="col-auto">
-                            <label class="col-form-label"
-                                   for="scope">
-                                Select scope
+                    }
+                    <EditForm Model="_labelMop"
+                              OnValidSubmit="@HandleValidSubmitAsync"
+                              OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                              autocomplete="off"
+                              id="FormCreateLabel">
+                        <div class="row g-3 mb-5 align-items-center">
+
+
+                            <label class="col-auto col-form-label"
+                                   for="Barcode">
+                                Barcode
                             </label>
+                            <div class="col-auto">
+                                <InputText class="form-control disabled"
+                                           placeholder="Scan label..."
+                                           id="Barcode"
+                                           @bind-Value="_labelMop.Barcode" />
+                            </div>
+                            <div class="col-auto">
+                                <button type="submit"
+                                        class="btn btn-info btn-rounded text-white"
+                                        form="FormCreateLabel">
+                                    Test endpoint
+                                </button>
+                            </div>
+
                         </div>
-                        <div class="col-auto">
-                            <select class="form-select form-control"
-                                    aria-label="Select scope"
-                                    @bind="SelectedScope">
-                                <option value="all" selected>All</option>
-                                <option value="dictionary">Dictionary</option>
-                                <option value="translation">Translation</option>
-                                <option value="transliteration">Transliteration</option>
-                            </select>
+                        <div class="row g-3 align-items-center">
+                            <div class="col-auto">
+                                @if (_displayValidationMessages)
+                                {
+                                    <div class="row mb-3">
+                                        <div class="col">
+                                            <label>Validation Messages: </label>
+                                            <ValidationSummary />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
                         </div>
-                        <div class="col-auto">
-                            <button type="button"
-                                    class="btn btn-info btn-rounded text-white"
-                                    @onclick="() => GetLanguages()">
-                                Test endpoint
-                            </button>
-                        </div>
-                    </form>*@
+                    </EditForm>
                 </div>
                 <div class="col-6 markup-example">
                     <p>
@@ -65,18 +81,18 @@
                         <div class="d-flex flex-column justify-content-evenly align-items-center">
                             <Spinner Size="Size.Md" />
                         </div>
-                        @*@if (getLanguagesError)
+                        @if (_labelError)
                         {
                             <div class="d-flex flex-column justify-content-evenly align-items-center">
-                                <Badge Level='Level.Error' Message='Unable to get languages. Please try again later!' />
+                                <Badge Level='Level.Error' Message='Unable to create label. Please try again later!' />
                             </div>
                         }
                         else
                         {
                             <code>
-                                @Languages
+                                @_labelString
                             </code>
-                        }*@
+                        }
                     </div>
                 </div>
             </div>

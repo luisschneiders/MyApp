@@ -12,7 +12,7 @@ namespace HealthCareApp.Pages.Playground
         [Inject]
         private SpinnerService SpinnerService { get; set; }
 
-        private string Languages { get; set; }
+        private string _languages { get; set; }
         private bool getLanguagesError;
 
         private string SelectedScope { get; set; } = "all";
@@ -84,9 +84,7 @@ namespace HealthCareApp.Pages.Playground
                 if (response.IsSuccessStatusCode)
                 {
 
-                    var body = await response.Content.ReadAsStringAsync();
-
-                    Languages = body;
+                    _languages = await response.Content.ReadAsStringAsync();
 
                 }
                 else
