@@ -94,5 +94,8 @@
     <ProjectReference Include="..\SupplierLibrary\SupplierLibrary.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+    <ProjectReference Include="..\LabelLibrary\LabelLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
   </ItemGroup>
 </Project>
