@@ -88,14 +88,12 @@ namespace HealthCareApp.Pages.Playground
                 catch (HttpRequestException e)
                 {
                     await Task.Run(() => SpinnerService.HideSpinner());
-                    System.Diagnostics.Debug.WriteLine(e.Message);
                     Console.WriteLine("Error: {0}", e.Message);
                     _labelError = true;
                 }
                 catch (Exception ex)
                 {
                     await Task.Run(() => SpinnerService.HideSpinner());
-                    System.Diagnostics.Debug.WriteLine(ex.Message);
                     Console.WriteLine("Error: {0}", ex.Message);
                     _labelError = true;
                 }
