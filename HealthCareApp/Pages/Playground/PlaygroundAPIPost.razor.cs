@@ -16,27 +16,33 @@ namespace HealthCareApp.Pages.Playground
         private SpinnerService SpinnerService { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
+        private LabelMop _labelMop { get; set; } = new();
+
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
+        private string _labelString { get; set; }
 
-        private LabelMop _labelMop { get; set; } = new();
+        private string _endpoint { get; set; }
+        private string _route { get; set; }
 
         private bool _displayValidationMessages { get; set; }
         private bool _labelError { get; set; }
 
-        private string _labelString { get; set; }
-
+        public PlaygroundAPIPost()
+        {
+            _endpoint = "https://localhost:7086/";
+            _route = "api/v1/Labels";
+        }
 
         protected override void OnInitialized()
         {
 
-            _componentMarkup = new();
             _componentMarkupList = new List<ComponentMarkup>();
 
             _codes = new()
             {
                 new MarkupString("Endpoint = 'https://localhost:7086/' ").ToString(),
-                new MarkupString("Route = 'api/v1/Label' ").ToString(),
+                new MarkupString("Route = 'api/v1/Labels' ").ToString(),
             };
             _componentMarkup = new()
             {
@@ -50,10 +56,8 @@ namespace HealthCareApp.Pages.Playground
         private async Task HandleValidSubmitAsync()
         {
             var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
-            var endpoint = "https://localhost:7086/";
-            var route = "api/v1/Label";
 
-            var URI = $"{endpoint}{route}";
+            var URI = $"{_endpoint}{_route}";
 
             var timeOut = new DateTime(0001, 1, 1, 23, 00, 00);
 
