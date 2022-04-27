@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,22 +17,28 @@ namespace HealthCareApp.Pages.Playground
         private SpinnerService SpinnerService { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
-        private LabelMop _labelMop { get; set; } = new();
+        private LabelMop _labelMop { get; set; }
 
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
-        private string _labelString { get; set; }
 
+        private string _labelString { get; set; }
         private string _endpoint { get; set; }
         private string _route { get; set; }
+        private string _uri { get; set; }
+        private string _fileName { get; set; }
+        private string _filePath { get; set; }
 
         private bool _displayValidationMessages { get; set; }
         private bool _labelError { get; set; }
 
         public PlaygroundAPIPost()
         {
+            _labelMop = new();
             _endpoint = "https://localhost:7086/";
             _route = "api/v1/Labels";
+            _uri = $"{_endpoint}{_route}";
+            _filePath = "./wwwroot/images/";
         }
 
         protected override void OnInitialized()
@@ -46,7 +53,7 @@ namespace HealthCareApp.Pages.Playground
             };
             _componentMarkup = new()
             {
-                Title = "Endpoint, route",
+                Title = "Endpoint and route",
                 Code = _codes
             };
             _componentMarkupList.Add(_componentMarkup);
@@ -56,8 +63,6 @@ namespace HealthCareApp.Pages.Playground
         private async Task HandleValidSubmitAsync()
         {
             var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
-
-            var URI = $"{_endpoint}{_route}";
 
             var timeOut = new DateTime(0001, 1, 1, 23, 00, 00);
 
@@ -72,35 +77,39 @@ namespace HealthCareApp.Pages.Playground
             _labelMop.TimeIn = timeIn;
             _labelMop.Quantity = 50;
 
-            using (var httpClient = new HttpClient())
+            HttpClient httpClient = new HttpClient();
+
+            try
             {
-                try
-                {
-                    httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
-                    httpClient.DefaultRequestHeaders.Add("User-Agent", "HealthCare App");
-                    httpClient.DefaultRequestHeaders.Add("HealthCareAPIKey", healthCareApiKey);
+                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "HealthCare App");
+                httpClient.DefaultRequestHeaders.Add("HealthCareAPIKey", healthCareApiKey);
 
-                    var queryString = new StringContent(JsonConvert.SerializeObject(_labelMop), UnicodeEncoding.UTF8, "application/json");
+                var queryString = new StringContent(JsonConvert.SerializeObject(_labelMop), UnicodeEncoding.UTF8, "application/json");
 
-                    var httpResponse = await httpClient.PostAsync(new Uri(URI), queryString);
+                var httpResponse = await httpClient.PostAsync(new Uri(_uri), queryString);
 
-                    if (httpResponse.IsSuccessStatusCode)
-                    {
-                        _labelString = await httpResponse.Content.ReadAsStringAsync();
-                    }
-                }
-                catch (HttpRequestException e)
+                if (httpResponse.IsSuccessStatusCode)
                 {
-                    await Task.Run(() => SpinnerService.HideSpinner());
-                    Console.WriteLine("Error: {0}", e.Message);
-                    _labelError = true;
+                    Guid guid = Guid.NewGuid();
+
+                    _labelString = await httpResponse.Content.ReadAsStringAsync();
+                    _fileName = $"label-{guid}.png";
+
+                    DisplayLabelImage(_labelMop, _uri, _filePath, _fileName);
                 }
-                catch (Exception ex)
-                {
-                    await Task.Run(() => SpinnerService.HideSpinner());
-                    Console.WriteLine("Error: {0}", ex.Message);
-                    _labelError = true;
-                }
+            }
+            catch (HttpRequestException e)
+            {
+                await Task.Run(() => SpinnerService.HideSpinner());
+                Console.WriteLine("Error: {0}", e.Message);
+                _labelError = true;
+            }
+            catch (Exception ex)
+            {
+                await Task.Run(() => SpinnerService.HideSpinner());
+                Console.WriteLine("Error: {0}", ex.Message);
+                _labelError = true;
             }
 
             _labelMop = new();
@@ -113,6 +122,58 @@ namespace HealthCareApp.Pages.Playground
         {
             await Task.FromResult(_displayValidationMessages = true);
             await Task.CompletedTask;
+        }
+
+        private static void DisplayLabelImage(LabelMop labelMop, string uri, string filePath, string fileName)
+        {
+
+            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
+
+            HttpClient httpClient = new HttpClient();
+
+            try
+            {
+                httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "HealthCare App");
+                httpClient.DefaultRequestHeaders.Add("HealthCareAPIKey", healthCareApiKey);
+
+                var queryString = new StringContent(JsonConvert.SerializeObject(labelMop), UnicodeEncoding.UTF8, "application/json");
+
+                var httpResponse = httpClient.GetAsync(uri).Result;
+
+                if (httpResponse.IsSuccessStatusCode)
+                {
+
+
+                    var stream = httpResponse.Content.ReadAsStreamAsync().Result;
+
+                    DirectoryInfo info = new DirectoryInfo(filePath);
+
+                    if (!info.Exists)
+                    {
+                        info.Create();
+                    }
+
+                    string path = Path.Combine(filePath, fileName);
+
+                    FileStream fileStream = new(path, FileMode.CreateNew, FileAccess.ReadWrite);
+
+                    stream.CopyTo(fileStream);
+                    stream.Close();
+
+                    fileStream.Close();
+
+                }
+            }
+            catch (HttpRequestException e)
+            {
+                Console.WriteLine("Error: {0}", e.Message);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+            }
+
         }
     }
 }
