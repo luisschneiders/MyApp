@@ -226,6 +226,9 @@ a:hover {
 .hca-Supplier-icon, .hca-Supplier-title {
     color: #997588;
 }
+.hca-Label-icon, .hca-Label-title {
+    color: #997588;
+}
 .hca-form-control-plaintext {
     padding: 0 0 1.5rem 0;
 }

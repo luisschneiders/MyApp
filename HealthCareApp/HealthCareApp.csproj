@@ -26,6 +26,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="DotNetEnv" />
     <None Remove="Services\" />
+    <None Remove="Pages\LabelPage\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -80,6 +81,7 @@
     <Folder Include="Components\Badge\" />
     <Folder Include="Components\Spinner\" />
     <Folder Include="Services\" />
+    <Folder Include="Pages\LabelPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
