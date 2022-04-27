@@ -163,7 +163,7 @@ a:hover {
     border-radius: 8px;
 }
 .markup-example {
-    background-color: #ffffff;
+    background-color: #f4fdff;
     border-radius: 1.8rem;
 }
 .flex-container {
@@ -244,4 +244,7 @@ a:hover {
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
     background-color: #dbe0e1;
+}
+.zpl-format {
+    word-break: break-all;
 }

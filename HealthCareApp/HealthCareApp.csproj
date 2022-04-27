@@ -25,6 +25,7 @@
     <None Remove="Components\Spinner\" />
     <None Remove="Newtonsoft.Json" />
     <None Remove="DotNetEnv" />
+    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -78,6 +79,7 @@
     <Folder Include="Components\Message\" />
     <Folder Include="Components\Badge\" />
     <Folder Include="Components\Spinner\" />
+    <Folder Include="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
@@ -92,6 +94,9 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\SupplierLibrary\SupplierLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\LabelLibrary\LabelLibrary.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
