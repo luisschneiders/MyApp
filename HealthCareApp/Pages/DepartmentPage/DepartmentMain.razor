@@ -1,0 +1,151 @@
+﻿@page "/departments"
+@using HealthCareApp.Settings.Theme
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.Toast
+@using HealthCareApp.Components.Spinner
+@using HealthCareApp.Settings.Enum
+@using BaseLibrary
+
+<PageWrapper>
+    <PageHeader>
+        <PageTitle Title="Departments"
+                   Theme="Theme.Department" />
+        <PageMenu>
+            <button type="button"
+                    class="btn btn-info btn-rounded btn-icon text-white"
+                    title="Add new department"
+                    @onclick="() => OpenModalAddAsync()">
+                <i class="bi bi-plus-lg"></i>
+            </button>
+        </PageMenu>
+    </PageHeader>
+    <PageBody Styles="p-2">
+        <div class="flex-container">
+            <div class="flex-container-list ps-1 pe-2">
+                <div class="flex-container-list-search py-1">
+                    <div class="row g-0">
+                        <div class="col">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Start typing to search departments..."
+                                   aria-label="search"
+                                   @bind-value="SearchTerm"
+                                   @oninput="SearchDepartmentAsync">
+                        </div>
+                    </div>
+                </div>
+                <div class="d-flex flex-row justify-content-evenly align-items-center">
+                    <Spinner Size="Size.Md" />
+                </div>
+                <div class="list-group gap-2">
+                    @if (Results is null)
+                    {
+                        <Virtualize Context="department"
+                                    ItemsProvider="@LoadDepartments"
+                                    @ref="VirtualizeContainer">
+                            <ItemContent>
+                                <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
+                                    <div class="d-flex w-100 justify-content-between align-items-center">
+                                        <div class="d-flex @(department.IsActive ? "" : "text-black-50")"
+                                             role="button"
+                                             @onclick="() => ShowDepartmentDetails(department)">
+                                            <i class="bi bi-person md-icon"></i>
+                                            <div class="ps-1">
+                                                <div class="mb-0 fs-5">
+                                                    @department.Name.Truncate((int)Truncate.DepartmentName)
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div class="form-check form-switch">
+                                                @if (department.IsActive)
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           checked
+                                                           @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </ItemContent>
+                            <Placeholder>
+                                <Spinner Size="Size.Md" />
+                            </Placeholder>
+                        </Virtualize>
+                    }
+                    @if (Results is not null)
+                    {
+                        <div></div>
+                        @foreach (var department in Results)
+                        {
+                            <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
+                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                    <div class="d-flex @(department.IsActive ? "" : "text-black-50")"
+                                         role="button"
+                                         @onclick="() => ShowDepartmentDetails(department)">
+                                        <i class="bi bi-person md-icon"></i>
+                                        <div class="ps-1">
+                                            <div class="mb-0 fs-5">
+                                                @department.Name.Truncate((int)Truncate.DepartmentName)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="form-check form-switch">
+                                            @if (department.IsActive)
+                                            {
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       role="switch"
+                                                       id="IsActive"
+                                                       checked
+                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                            }
+                                            else
+                                            {
+                                                <input class="form-check-input"
+                                                       type="checkbox"
+                                                       role="switch"
+                                                       id="IsActive"
+                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+                    }
+                </div>
+            </div>
+            <div class="flex-container-main ps-2">
+                <DepartmentDetails Info="DepartmentDetails" Loading="IsLoading" />
+                @if (!IsLoading && DepartmentDetails is not null)
+                {
+                    <div class="d-flex flex-row justify-content-end">
+                        <button type="button"
+                                class="btn btn-info btn-rounded text-white"
+                                @onclick="() => OpenModalUpdateAsync(DepartmentDetails.Id)">
+                            Update Details
+                        </button>
+                    </div>
+                }
+            </div>
+        </div>
+        <Toast />
+    </PageBody>
+    <PageFooter></PageFooter>
+</PageWrapper>
+<DepartmentModalAdd @ref="DepartmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
+<DepartmentModalUpdate @ref="DepartmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />

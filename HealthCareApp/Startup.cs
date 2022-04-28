@@ -54,6 +54,7 @@ namespace HealthCareApp
             services.AddScoped<ToastService>();
             services.AddScoped<SpinnerService>();
             services.AddScoped<LabelService>();
+            services.AddScoped<DepartmentService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
