@@ -26,6 +26,7 @@
     <None Remove="Newtonsoft.Json" />
     <None Remove="DotNetEnv" />
     <None Remove="Services\" />
+    <None Remove="Pages\LabelPage\" />
     <None Remove="Pages\DepartmentPage\" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +82,7 @@
     <Folder Include="Components\Badge\" />
     <Folder Include="Components\Spinner\" />
     <Folder Include="Services\" />
+    <Folder Include="Pages\LabelPage\" />
     <Folder Include="Pages\DepartmentPage\" />
   </ItemGroup>
   <ItemGroup>
