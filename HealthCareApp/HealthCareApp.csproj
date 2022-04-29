@@ -27,6 +27,7 @@
     <None Remove="DotNetEnv" />
     <None Remove="Services\" />
     <None Remove="Pages\LabelPage\" />
+    <None Remove="Pages\DepartmentPage\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
@@ -82,6 +83,7 @@
     <Folder Include="Components\Spinner\" />
     <Folder Include="Services\" />
     <Folder Include="Pages\LabelPage\" />
+    <Folder Include="Pages\DepartmentPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\js\" />
@@ -99,6 +101,9 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
     <ProjectReference Include="..\LabelLibrary\LabelLibrary.csproj">
+      <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
+    </ProjectReference>
+    <ProjectReference Include="..\DepartmentLibrary\DepartmentLibrary.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
