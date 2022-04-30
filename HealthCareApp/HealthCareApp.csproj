@@ -9,9 +9,13 @@
 
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
+    <None Remove="db\" />
   </ItemGroup>
   <ItemGroup>
-    <None Update="app.db" CopyToOutputDirectory="PreserveNewest" ExcludeFromSingleFile="true" />
+    <None Update="db\app.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
@@ -33,5 +37,8 @@
     <ProjectReference Include="..\LabelLibrary\LabelLibrary.csproj">
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="db\" />
   </ItemGroup>
 </Project>
