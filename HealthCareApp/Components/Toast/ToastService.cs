@@ -6,9 +6,9 @@ namespace HealthCareApp.Components.Toast
 {
     public class ToastService : IToastService, IDisposable
     {
-        public event Action<string, Level> OnShow;
-        public event Action OnHide;
-        private Timer Countdown;
+        public event Action<string, Level>? OnShow;
+        public event Action? OnHide;
+        private System.Timers.Timer? Countdown;
 
         public void ShowToast(string message, Level level)
         {
@@ -34,7 +34,7 @@ namespace HealthCareApp.Components.Toast
         {
             if (Countdown == null)
             {
-                Countdown = new Timer(2500);
+                Countdown = new System.Timers.Timer(2500);
                 Countdown.Elapsed += HideToast;
                 Countdown.AutoReset = false;
             }

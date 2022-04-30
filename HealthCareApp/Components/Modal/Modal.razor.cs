@@ -9,13 +9,13 @@ namespace HealthCareApp.Components.Modal
     public partial class Modal : ComponentBase
     {
         [Parameter]
-        public RenderFragment Title { get; set; }
+        public RenderFragment? Title { get; set; }
 
         [Parameter]
-        public RenderFragment Body { get; set; }
+        public RenderFragment? Body { get; set; }
 
         [Parameter]
-        public RenderFragment Footer { get; set; }
+        public RenderFragment? Footer { get; set; }
 
         [Parameter]
         public Theme Theme { get; set; } = Theme.App;

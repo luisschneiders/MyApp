@@ -10,16 +10,16 @@ namespace LocationLibrary.Models
         public Guid Id { get; set; }
 
         [Required]
-        public string Address { get; set; }
+        public string? Address { get; set; }
 
         [Required]
-        public string Suburb { get; set; }
+        public string? Suburb { get; set; }
 
         [Required]
-        public string Postcode { get; set; }
+        public string? Postcode { get; set; }
 
         [Required]
-        public string State { get; set; }
+        public string? State { get; set; }
 
         [Column(TypeName = "float(10,6)")]
         public float Lat { get; set; }

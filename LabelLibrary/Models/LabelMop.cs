@@ -9,7 +9,7 @@ namespace LabelLibrary.Models
         public Guid Id { get; set; }
 
         [Required]
-        public string Barcode { get; set; }
+        public string? Barcode { get; set; }
 
         [Required]
         public int Quantity { get; set; }
