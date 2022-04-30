@@ -1,27 +1,23 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore;
-using CustomerLibrary.Models;
-using EmployeeLibrary.Models;
-using SupplierLibrary.Models;
-using ContactDetailsLibrary.Models;
-using LocationLibrary.Models;
+﻿using ContactDetailsLibrary.Models;
 using DepartmentLibrary.Models;
+using EmployeeLibrary.Models;
+using LocationLibrary.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
-namespace HealthCareApp.Data
+namespace HealthCareApp.Data;
+
+public class ApplicationDbContext : IdentityDbContext
 {
-    public class ApplicationDbContext : IdentityDbContext
+    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
+        : base(options)
     {
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-            : base(options)
-        {
-        }
-
-        public DbSet<Customer> Customers { get; set; }
-        public DbSet<Supplier> Suppliers { get; set; }
-        public DbSet<Employee> Employees { get; set; }
-        public DbSet<ContactDetails> ContactDetails { get; set; }
-        public DbSet<Location> Location { get; set; }
-        public DbSet<Department> Department { get; set; }
-
     }
+
+    public DbSet<Employee> Employees { get; set; }
+    public DbSet<ContactDetails> ContactDetails { get; set; }
+    public DbSet<Location> Location { get; set; }
+    public DbSet<Department> Department { get; set; }
+
 }
+

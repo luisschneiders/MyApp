@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Page
 {
-    public partial class PageTitle
+    public partial class PageHeaderTitle : ComponentBase
     {         
         [Parameter]
         public string Title { get; set; } = "";

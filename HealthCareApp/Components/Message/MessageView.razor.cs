@@ -15,6 +15,6 @@ namespace HealthCareApp.Components.Message
         public string Message { get; set; } = "";
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        public RenderFragment? ChildContent { get; set; }
     }
 }

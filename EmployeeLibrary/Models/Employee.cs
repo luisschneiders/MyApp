@@ -12,16 +12,16 @@ namespace EmployeeLibrary.Models
         public Guid Id { get; set; }
 
         [Required]
-        public string EmployeeFirstName { get; set; }
+        public string? EmployeeFirstName { get; set; }
 
         [Required]
-        public string EmployeeLastName { get; set; }
+        public string? EmployeeLastName { get; set; }
 
         [Required]
-        public string EmployeeUsername { get; set; }
+        public string? EmployeeUsername { get; set; }
 
         [Required]
-        public string EmployeePassword { get; set; }
+        public string? EmployeePassword { get; set; }
 
         [ValidateComplexType]
         public ContactDetails ContactDetails { get; set; } = new();
