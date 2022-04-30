@@ -10,9 +10,9 @@ namespace ContactDetailsLibrary.Models
 
         [Required]
         [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
 
-        public string? Email { get; set; }
-
+#nullable enable
         public string? Phone { get; set; }
 
         public string? Mobile { get; set; }

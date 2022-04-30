@@ -12,11 +12,11 @@ namespace HealthCareApp.Components.Badge
         public Level Level { get; set; }
 
         [Parameter]
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
         AppSettings AppSettings { get; set; } = new();
 
-        private string? BackgroundColor { get; set; }
+        private string BackgroundColor { get; set; }
 
         protected override void OnInitialized()
         {

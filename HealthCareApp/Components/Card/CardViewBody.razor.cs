@@ -6,6 +6,6 @@ namespace HealthCareApp.Components.Card
     public partial class CardViewBody
     {
         [Parameter]
-        public RenderFragment? ChildContent { get; set; }
+        public RenderFragment ChildContent { get; set; }
     }
 }

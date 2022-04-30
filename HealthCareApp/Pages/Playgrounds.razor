@@ -5,11 +5,13 @@
 @using Microsoft.AspNetCore.Http;
 
 @inject IHttpContextAccessor httpContextAccessor
+@inject CustomerService customerService
 @inject UserService userService
+@inject SupplierService supplierService
 
 <PageWrapper>
     <PageHeader>
-        <PageHeaderTitle Title="Playgrounds"></PageHeaderTitle>
+        <PageTitle Title="Playgrounds"></PageTitle>
         <PageMenu />
     </PageHeader>
     <PageBody Styles="p-2">

@@ -24,7 +24,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Guid ModalUpdateTarget { get; set; }
 
-        private Employee employee { get; set; }
+        private Employee employee;
 
         private bool DisplayValidationErrorMessages { get; set; }
 

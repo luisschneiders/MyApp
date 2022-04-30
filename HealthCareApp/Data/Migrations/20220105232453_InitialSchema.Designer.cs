@@ -6,18 +6,17 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
-#nullable disable
-
 namespace HealthCareApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220430014756_CreateInitialSchema")]
-    partial class CreateInitialSchema
+    [Migration("20220105232453_InitialSchema")]
+    partial class InitialSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.4");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "5.0.11");
 
             modelBuilder.Entity("ContactDetailsLibrary.Models.ContactDetails", b =>
                 {
@@ -40,13 +39,27 @@ namespace HealthCareApp.Data.Migrations
                     b.ToTable("ContactDetails");
                 });
 
-            modelBuilder.Entity("DepartmentLibrary.Models.Department", b =>
+            modelBuilder.Entity("CustomerLibrary.Models.Customer", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CustomerDOB")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerFirstName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("CustomerLastName")
+                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("InsertedBy")
@@ -55,8 +68,7 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Name")
-                        .IsRequired()
+                    b.Property<Guid?>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -64,7 +76,11 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Customers");
                 });
 
             modelBuilder.Entity("EmployeeLibrary.Models.Employee", b =>
@@ -73,7 +89,7 @@ namespace HealthCareApp.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid>("ContactDetailsId")
+                    b.Property<Guid?>("ContactDetailsId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -101,7 +117,7 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<bool>("IsActive")
                         .HasColumnType("INTEGER");
 
-                    b.Property<Guid>("LocationId")
+                    b.Property<Guid?>("LocationId")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")
@@ -172,7 +188,7 @@ namespace HealthCareApp.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("RoleNameIndex");
 
-                    b.ToTable("AspNetRoles", (string)null);
+                    b.ToTable("AspNetRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -195,7 +211,7 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetRoleClaims", (string)null);
+                    b.ToTable("AspNetRoleClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
@@ -259,7 +275,7 @@ namespace HealthCareApp.Data.Migrations
                         .IsUnique()
                         .HasDatabaseName("UserNameIndex");
 
-                    b.ToTable("AspNetUsers", (string)null);
+                    b.ToTable("AspNetUsers");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -282,7 +298,7 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserClaims", (string)null);
+                    b.ToTable("AspNetUserClaims");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
@@ -306,7 +322,7 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("AspNetUserLogins", (string)null);
+                    b.ToTable("AspNetUserLogins");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
@@ -321,7 +337,7 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasIndex("RoleId");
 
-                    b.ToTable("AspNetUserRoles", (string)null);
+                    b.ToTable("AspNetUserRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -342,22 +358,74 @@ namespace HealthCareApp.Data.Migrations
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
-                    b.ToTable("AspNetUserTokens", (string)null);
+                    b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("SupplierLibrary.Models.Supplier", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid?>("ContactDetailsId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("InsertedBy")
+                        .HasColumnType("TEXT");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SupplierABN")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SupplierName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ContactDetailsId");
+
+                    b.HasIndex("LocationId");
+
+                    b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("CustomerLibrary.Models.Customer", b =>
+                {
+                    b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
+
+                    b.HasOne("LocationLibrary.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.Navigation("ContactDetails");
+
+                    b.Navigation("Location");
                 });
 
             modelBuilder.Entity("EmployeeLibrary.Models.Employee", b =>
                 {
                     b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
                         .WithMany()
-                        .HasForeignKey("ContactDetailsId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ContactDetailsId");
 
                     b.HasOne("LocationLibrary.Models.Location", "Location")
                         .WithMany()
-                        .HasForeignKey("LocationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("LocationId");
 
                     b.Navigation("ContactDetails");
 
@@ -413,6 +481,21 @@ namespace HealthCareApp.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("SupplierLibrary.Models.Supplier", b =>
+                {
+                    b.HasOne("ContactDetailsLibrary.Models.ContactDetails", "ContactDetails")
+                        .WithMany()
+                        .HasForeignKey("ContactDetailsId");
+
+                    b.HasOne("LocationLibrary.Models.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
+
+                    b.Navigation("ContactDetails");
+
+                    b.Navigation("Location");
                 });
 #pragma warning restore 612, 618
         }
