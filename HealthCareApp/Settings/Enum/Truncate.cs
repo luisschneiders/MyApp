@@ -5,6 +5,6 @@ namespace HealthCareApp.Settings.Enum
     {
         FirstName = 8,
         LastName = 12,
-        DepartmentName = 14
+        DepartmentName = 20
     }
 }

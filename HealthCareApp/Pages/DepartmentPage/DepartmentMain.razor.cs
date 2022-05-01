@@ -50,15 +50,29 @@ namespace HealthCareApp.Pages.DepartmentPage
             }
         }
 
+        private async Task SearchDepartmentAsync(ChangeEventArgs eventArgs)
+        {
+            var searchTerm = eventArgs.Value.ToString();
+
+            if (!string.IsNullOrWhiteSpace(searchTerm))
+            {
+                Results = await DepartmentService.SearchAsync(searchTerm);
+            }
+            else
+            {
+                Results = null;
+            }
+        }
+
         private async Task OpenModalAddAsync()
         {
-            //await Task.FromResult(DepartmentModalAdd.OpenModalAddAsync());
+            await Task.FromResult(DepartmentModalAdd.OpenModalAddAsync());
             await Task.CompletedTask;
         }
 
         private async Task OpenModalUpdateAsync(Guid id)
         {
-            //await Task.FromResult(DepartmentModalUpdate.OpenModalUpdateAsync(id));
+            await Task.FromResult(DepartmentModalUpdate.OpenModalUpdateAsync(id));
             await Task.CompletedTask;
         }
 
@@ -72,10 +86,30 @@ namespace HealthCareApp.Pages.DepartmentPage
             await Task.CompletedTask;
         }
 
-        //private async ValueTask<ItemsProviderResult<Department>> LoadDepartments(ItemsProviderRequest request)
-        //{
-        //    Departments = await DepartmentService.GetDepartmentsAsync();
-                
-        //}
+        private async Task UpdateDepartmentStatusAsync(Department department)
+        {
+            department.IsActive = !department.IsActive;
+            await Task.FromResult(DepartmentService.UpdateDepartmentAsync(department));
+            await Task.CompletedTask;
+        }
+
+        private async Task RefreshVirtualizeContainer()
+        {
+            DepartmentDetails = null;
+            await VirtualizeContainer.RefreshDataAsync();
+        }
+
+        private async ValueTask<ItemsProviderResult<Department>> LoadDepartments(ItemsProviderRequest request)
+        {
+            Departments = await DepartmentService.GetDepartmentsAsync();
+
+            await Task.Run(() => SpinnerService.HideSpinner());
+
+            await InvokeAsync(() => StateHasChanged());
+            return new ItemsProviderResult<Department>(
+                Departments.Skip(request.StartIndex).Take(request.Count), Departments.Count
+            );
+
+        }
     }
 }
