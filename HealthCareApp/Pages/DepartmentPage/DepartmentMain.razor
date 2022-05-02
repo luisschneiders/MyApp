@@ -126,7 +126,7 @@
                 </div>
             </div>
             <div class="flex-container-main ps-2">
-                @*<DepartmentDetails Info="DepartmentDetails" Loading="IsLoading" />
+                <DepartmentDetails Info="DepartmentDetails" Loading="IsLoading" />
                 @if (!IsLoading && DepartmentDetails is not null)
                 {
                     <div class="d-flex flex-row justify-content-end">
@@ -136,7 +136,7 @@
                             Update Details
                         </button>
                     </div>
-                }*@
+                }
             </div>
         </div>
         <Toast />
@@ -144,4 +144,4 @@
     <PageFooter></PageFooter>
 </PageWrapper>
 <DepartmentModalAdd @ref="DepartmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-@*<DepartmentModalUpdate @ref="DepartmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />*@
+<DepartmentModalUpdate @ref="DepartmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />

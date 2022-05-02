@@ -7,3 +7,6 @@
 .employee-details-info legend {
     color: #997588;
 }
+.employee-details-info i {
+    padding-right: 0.5rem;
+}

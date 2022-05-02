@@ -81,7 +81,7 @@ namespace HealthCareApp.Data
                 (
                     from department in _applicationDbContext.Set<Department>()
                     where department.InsertedBy == userService.UserId()
-                    && (EF.Functions.Like(department.Name, $"%{searchTerm}%"))
+                    && EF.Functions.Like(department.Name, $"%{searchTerm}%")
                     orderby department.CreatedAt descending
                     select new { department }
                 ).AsNoTracking();

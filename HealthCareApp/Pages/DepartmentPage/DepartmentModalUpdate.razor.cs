@@ -3,6 +3,7 @@ using DepartmentLibrary.Models;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
+using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.DepartmentPage
@@ -24,6 +25,8 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private Department department { get; set; }
 
+        private bool DisplayValidationErrorMessages { get; set; }
+
         public DepartmentModalUpdate()
         {
             department = new();
@@ -35,6 +38,35 @@ namespace HealthCareApp.Pages.DepartmentPage
 
             ModalUpdateTarget = id;
             await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
+            await Task.CompletedTask;
+        }
+
+        private async Task CloseModalUpdateAsync()
+        {
+            department = new Department();
+            await Task.FromResult(ModalUpdate.Close(ModalUpdateTarget));
+            await Task.CompletedTask;
+        }
+
+        private async Task HandleValidSubmitAsync()
+        {
+            DisplayValidationErrorMessages = false;
+
+            await DepartmentService.UpdateDepartmentAsync(department);
+            await OnSubmitSuccess.InvokeAsync();
+
+            ToastService.ShowToast("Department updated!", Level.Success);
+
+            await Task.Delay((int)Delay.DataSuccess);
+
+            await CloseModalUpdateAsync();
+            await Task.CompletedTask;
+
+        }
+
+        private async Task HandleInvalidSubmitAsync()
+        {
+            await Task.FromResult(DisplayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
     }
