@@ -1,0 +1,12 @@
+﻿.department-details-empty {
+    color: #ced4da;
+}
+.department-details-icon {
+    font-size: 12rem;
+}
+.department-details-info legend {
+    color: #997588;
+}
+.department-details-info i {
+    padding-right: 0.5rem;
+}
