@@ -8,6 +8,12 @@ namespace HealthCareApp.Shared
         public string BackgroundColor { get; set; }
         public string ComponentSize { get; set; }
 
+        public AppSettings()
+        {
+            BackgroundColor = string.Empty;
+            ComponentSize = string.Empty;
+        }
+
         public void BuildLevel(Level level)
         {
             switch (level)
