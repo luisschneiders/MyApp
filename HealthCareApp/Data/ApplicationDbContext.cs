@@ -14,10 +14,9 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    public DbSet<Employee> Employees { get; set; }
-    public DbSet<ContactDetails> ContactDetails { get; set; }
-    public DbSet<Location> Location { get; set; }
-    public DbSet<Department> Department { get; set; }
+    public DbSet<Employee> Employees => Set<Employee>();
+    public DbSet<ContactDetails> ContactDetails => Set<ContactDetails>();
+    public DbSet<Location> Location => Set<Location>();
+    public DbSet<Department> Department => Set<Department>();
 
 }
-
