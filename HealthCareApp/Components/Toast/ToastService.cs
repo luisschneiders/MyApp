@@ -8,7 +8,11 @@ namespace HealthCareApp.Components.Toast
     {
         public event Action<string, Level>? OnShow;
         public event Action? OnHide;
-        private System.Timers.Timer? Countdown;
+        private System.Timers.Timer? Countdown { get; set; }
+
+        public ToastService()
+        {
+        }
 
         public void ShowToast(string message, Level level)
         {
@@ -19,14 +23,14 @@ namespace HealthCareApp.Components.Toast
         private void StartCountDown()
         {
             SetCountDown();
-            if (Countdown.Enabled)
+            if (Countdown is not null && Countdown.Enabled)
             {
                 Countdown.Stop();
                 Countdown.Start();
             }
             else
             {
-                Countdown.Start();
+                Countdown?.Start();
             }
         }
 
@@ -40,7 +44,7 @@ namespace HealthCareApp.Components.Toast
             }
         }
 
-        private void HideToast(object source, ElapsedEventArgs args)
+        private void HideToast(object? source, ElapsedEventArgs args)
         {
             OnHide?.Invoke();
         }
