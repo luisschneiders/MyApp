@@ -17,14 +17,13 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Virtualize<Employee> _virtualizeContainer { get; set; }
 
-
         private bool _isLoading { get; set; }
         private bool _isSearchResults { get; set; }
 
         private string _searchTerm { get; set; }
 
-        private List<Employee> _employees { get; set; }
         private Employee? _employeeDetails { get; set; }
+        private List<Employee> _employees { get; set; }
         private List<Employee> _results { get; set; }
 
         /*
@@ -35,7 +34,6 @@ namespace HealthCareApp.Pages.EmployeePage
 
         public EmployeeMain()
         {
-
             _searchTerm = string.Empty;
 
             _spinnerService = new();
@@ -78,7 +76,6 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task ShowEmployeeDetails(Employee employee)
         {
-
             _employeeDetails = employee;
 
             _isLoading = true;
@@ -95,6 +92,7 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
+
             return new ItemsProviderResult<Employee>(
                 _employees.Skip(request.StartIndex).Take(request.Count), _employees.Count
             );
@@ -104,12 +102,6 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             _employeeDetails = null;
             await _virtualizeContainer.RefreshDataAsync();
-        }
-
-        public async Task VirtualizeContainerAsync()
-        {
-            await RefreshVirtualizeContainer();
-            await Task.CompletedTask;
         }
 
         private async Task SearchEmployeeAsync(ChangeEventArgs eventArgs)
