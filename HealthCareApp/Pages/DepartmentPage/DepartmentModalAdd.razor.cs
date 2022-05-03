@@ -12,42 +12,44 @@ namespace HealthCareApp.Pages.DepartmentPage
     {
 
         [Inject]
-        private DepartmentService DepartmentService { get; set; }
+        private DepartmentService _departmentService { get; set; }
 
         [Inject]
-        private ToastService ToastService { get; set; }
+        private ToastService _toastService { get; set; }
 
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private Modal ModalAdd { get; set; }
+        private Modal _modalAdd { get; set; }
 
-        private Guid ModalAddTarget { get; set; }
+        private Guid _modalAddTarget { get; set; }
 
-        private Department department;
+        private Department _department { get; set; }
 
-        private bool DisplayValidationErrorMessages { get; set; }
+        private bool _displayValidationErrorMessages { get; set; }
 
         public DepartmentModalAdd()
         {
-            department = new();
+            _toastService = new();
+            _modalAdd = new();
+            _department = new();
         }
 
         public async Task OpenModalAddAsync()
         {
-            ModalAddTarget = Guid.NewGuid();
-            await Task.FromResult(ModalAdd.Open(ModalAddTarget));
+            _modalAddTarget = Guid.NewGuid();
+            await Task.FromResult(_modalAdd.Open(_modalAddTarget));
             await Task.CompletedTask;
         }
 
         private async Task HandleValidSubmitAsync()
         {
-            DisplayValidationErrorMessages = false;
+            _displayValidationErrorMessages = false;
 
-            await DepartmentService.AddDepartmentAsync(department);
+            await _departmentService.AddDepartmentAsync(_department);
             await OnSubmitSuccess.InvokeAsync();
 
-            ToastService.ShowToast("Department added!", Level.Success);
+            _toastService.ShowToast("Department added!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 
@@ -57,16 +59,15 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private async Task HandleInvalidSubmitAsync()
         {
-            await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
 
         private async Task CloseModalAddAsync()
         {
-            department = new Department();
-            await Task.FromResult(ModalAdd.Close(ModalAddTarget));
+            _department = new Department();
+            await Task.FromResult(_modalAdd.Close(_modalAddTarget));
             await Task.CompletedTask;
         }
-
     }
 }

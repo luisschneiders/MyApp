@@ -1,12 +1,12 @@
 ﻿@using HealthCareApp.Components.Modal
 @using HealthCareApp.Settings.Theme
 
-<Modal @ref="ModalUpdate"
+<Modal @ref="_modalUpdate"
        Theme="Theme.Department"
        Size="ModalSize.lg">
     <Title>Update department</Title>
     <Body>
-        <EditForm Model="@department"
+        <EditForm Model="@_department"
                   OnValidSubmit="@HandleValidSubmitAsync"
                   OnInvalidSubmit="@HandleInvalidSubmitAsync"
                   autocomplete="off"
@@ -22,12 +22,12 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                        id="Name"
-                                       @bind-Value="department.Name" />
+                                       @bind-Value="_department.Name" />
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-4">
-                    @if (DisplayValidationErrorMessages)
+                    @if (_displayValidationErrorMessages)
                     {
                         <div class="row mb-3">
                             <div class="col">

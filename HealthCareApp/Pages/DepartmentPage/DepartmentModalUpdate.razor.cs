@@ -11,51 +11,53 @@ namespace HealthCareApp.Pages.DepartmentPage
     public partial class DepartmentModalUpdate : ComponentBase
     {
         [Inject]
-        private DepartmentService DepartmentService { get; set; }
+        private DepartmentService _departmentService { get; set; }
 
         [Inject]
-        private ToastService ToastService { get; set; }
+        private ToastService _toastService { get; set; }
 
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private Modal ModalUpdate { get; set; }
+        private Modal _modalUpdate { get; set; }
 
-        private Guid ModalUpdateTarget { get; set; }
+        private Guid _modalUpdateTarget { get; set; }
 
-        private Department department { get; set; }
+        private Department _department { get; set; }
 
-        private bool DisplayValidationErrorMessages { get; set; }
+        private bool _displayValidationErrorMessages { get; set; }
 
         public DepartmentModalUpdate()
         {
-            department = new();
+            _toastService = new();
+            _modalUpdate = new();
+            _department = new();
         }
 
         public async Task OpenModalUpdateAsync(Guid id)
         {
-            department = DepartmentService.GetDepartmentById(id);
+            _department = _departmentService.GetDepartmentById(id);
 
-            ModalUpdateTarget = id;
-            await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
+            _modalUpdateTarget = id;
+            await Task.FromResult(_modalUpdate.Open(_modalUpdateTarget));
             await Task.CompletedTask;
         }
 
         private async Task CloseModalUpdateAsync()
         {
-            department = new Department();
-            await Task.FromResult(ModalUpdate.Close(ModalUpdateTarget));
+            _department = new Department();
+            await Task.FromResult(_modalUpdate.Close(_modalUpdateTarget));
             await Task.CompletedTask;
         }
 
         private async Task HandleValidSubmitAsync()
         {
-            DisplayValidationErrorMessages = false;
+            _displayValidationErrorMessages = false;
 
-            await DepartmentService.UpdateDepartmentAsync(department);
+            await _departmentService.UpdateDepartmentAsync(_department);
             await OnSubmitSuccess.InvokeAsync();
 
-            ToastService.ShowToast("Department updated!", Level.Success);
+            _toastService.ShowToast("Department updated!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 
@@ -66,7 +68,7 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private async Task HandleInvalidSubmitAsync()
         {
-            await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
     }
