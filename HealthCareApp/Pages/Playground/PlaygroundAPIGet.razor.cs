@@ -10,59 +10,66 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundAPIGet : ComponentBase
     {
         [Inject]
-        private SpinnerService SpinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; }
 
-        private string _endpoint { get; set; } = String.Empty;
-        private string _route { get; set; } = String.Empty;
-        private string _languages { get; set; } = String.Empty;
+        private ComponentMarkup _componentMarkup { get; set; }
+        private List<ComponentMarkup> _componentMarkupList { get; set; }
+        private List<string> _codes { get; set; }
+
+        private string _endpoint { get; set; }
+        private string _route { get; set; }
+        private string _languages { get; set; }
         private int _selectedScope { get; set; }
 
         private bool _getLanguagesError;
         private bool _isDisabled { get; set; }
 
-        private ComponentMarkup ComponentMarkup { get; set; }
-        private List<ComponentMarkup> ComponentMarkupList { get; set; }
-        private List<string> Codes { get; set; }
 
         public PlaygroundAPIGet()
         {
+            _spinnerService = new();
+            _componentMarkup = new();
+            _componentMarkupList = new List<ComponentMarkup>();
+            _codes = new List<string>();
+
             _endpoint = "https://localhost:7086/";
             _route = "api/v1/Languages";
+            _languages = string.Empty;
             _selectedScope = 1;
         }
 
         protected override void OnInitialized()
         {
 
-            ComponentMarkupList = new List<ComponentMarkup>();
+            _componentMarkupList = new List<ComponentMarkup>();
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("Endpoint = 'https://localhost:7086/' ").ToString(),
                 new MarkupString("Route = 'api/v1/Language' ").ToString(),
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Endpoint, route",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("dictionary(value=1), translation(value=2), transliteration(value=3)").ToString()
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Scope (optional)",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
         }
 
         private async Task GetLanguages()
         {
-            await Task.Run(() => SpinnerService.ShowSpinner());
+            await Task.Run(() => _spinnerService.ShowSpinner());
 
             var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
 
@@ -92,18 +99,18 @@ namespace HealthCareApp.Pages.Playground
                 {
                     _getLanguagesError = true;
                 }
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
             catch (HttpRequestException e)
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 Console.WriteLine("Error: {0}", e.Message);
                 _getLanguagesError = true;
             }
             catch (Exception ex)
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 Console.WriteLine("Error: {0}", ex.Message);
                 _getLanguagesError = true;
             }
@@ -111,7 +118,7 @@ namespace HealthCareApp.Pages.Playground
 
         private async Task GetLanguagesByScope()
         {
-            await Task.Run(() => SpinnerService.ShowSpinner());
+            await Task.Run(() => _spinnerService.ShowSpinner());
 
             var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
 
@@ -141,18 +148,18 @@ namespace HealthCareApp.Pages.Playground
                 {
                     _getLanguagesError = true;
                 }
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
             catch (HttpRequestException e)
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 Console.WriteLine("Error: {0}", e.Message);
                 _getLanguagesError = true;
             }
             catch (Exception ex)
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 Console.WriteLine("Error: {0}", ex.Message);
                 _getLanguagesError = true;
             }

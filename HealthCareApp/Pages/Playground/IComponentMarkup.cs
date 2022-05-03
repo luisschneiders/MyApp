@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HealthCareApp.Pages.Playground
+﻿namespace HealthCareApp.Pages.Playground
 {
     public interface IComponentMarkup
     {

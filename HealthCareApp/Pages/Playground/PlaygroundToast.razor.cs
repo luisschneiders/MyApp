@@ -9,56 +9,64 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundToast : ComponentBase
     {
         [Inject]
-        private ToastService ToastService { get; set; }
+        private ToastService _toastService { get; set; }
 
-        private ComponentMarkup ComponentMarkup { get; set; }
-        private List<ComponentMarkup> ComponentMarkupList { get; set; }
-        private List<string> Codes { get; set; }
+        private ComponentMarkup _componentMarkup { get; set; }
+        private List<ComponentMarkup> _componentMarkupList { get; set; }
+        private List<string> _codes { get; set; }
+
+        public PlaygroundToast()
+        {
+            _toastService = new();
+            _componentMarkup = new();
+            _componentMarkupList = new();
+            _codes = new List<string>();
+        }
 
         protected override void OnInitialized()
         {
 
-            ComponentMarkup = new();
-            ComponentMarkupList = new List<ComponentMarkup>();
+            _componentMarkup = new();
+            _componentMarkupList = new List<ComponentMarkup>();
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("<Toast />").ToString()
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Component",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("ToastService.ShowToast('Toast message!', Level.Info)").ToString(),
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Service",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("ShowToast(string, enum)").ToString(),
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Method",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
         }
 
         private void ShowToast()
         {
-            ToastService.ShowToast("Toast message!", Level.Info);
+            _toastService.ShowToast("Toast message!", Level.Info);
         }
     }
 }

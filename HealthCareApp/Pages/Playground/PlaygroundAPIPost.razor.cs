@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using HealthCareApp.Components.Spinner;
+﻿using HealthCareApp.Components.Spinner;
 using HealthCareApp.Services;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
@@ -12,10 +8,10 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundAPIPost : ComponentBase
     {
         [Inject]
-        private LabelService LabelService { get; set; }
+        private LabelService _labelService { get; set; }
 
         [Inject]
-        private SpinnerService SpinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
         private LabelMop _labelMop { get; set; }
@@ -23,19 +19,28 @@ namespace HealthCareApp.Pages.Playground
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
 
-        private string _labelString { get; set; }
         private string _endpoint { get; set; }
         private string _route { get; set; }
         private string _fileName { get; set; }
+        private string _labelString { get; set; }
 
         private bool _displayValidationMessages { get; set; }
         private bool _labelError { get; set; }
 
         public PlaygroundAPIPost()
         {
+            _labelService = new();
+            _spinnerService = new();
+            _componentMarkup = new();
             _labelMop = new();
+
+            _componentMarkupList = new List<ComponentMarkup>();
+            _codes = new List<string>();
+
             _endpoint = "https://localhost:7086/";
             _route = "api/v1/Labels";
+            _fileName = string.Empty;
+            _labelString = string.Empty;
         }
 
         protected override void OnInitialized()
@@ -62,7 +67,7 @@ namespace HealthCareApp.Pages.Playground
             _fileName = String.Empty;
             _labelString = String.Empty;
 
-            await Task.Run(() => SpinnerService.ShowSpinner());
+            await Task.Run(() => _spinnerService.ShowSpinner());
 
             var timeOut = new DateTime(0001, 1, 1, 23, 00, 00);
             var timeIn = new DateTime(0001, 1, 1, 7, 30, 00);
@@ -75,11 +80,11 @@ namespace HealthCareApp.Pages.Playground
             _labelMop.TimeIn = timeIn;
             _labelMop.Quantity = 50;
 
-            HttpResponseMessage responseMessage = await LabelService.CreateLabelMopAsync(_labelMop);
+            HttpResponseMessage responseMessage = await _labelService.CreateLabelMopAsync(_labelMop);
 
             if ((int)responseMessage.StatusCode == 200)
             {
-                var fileName = await LabelService.DisplayLabelMopImageAsync(_labelMop);
+                var fileName = await _labelService.DisplayLabelMopImageAsync(_labelMop);
 
                 _labelString = await responseMessage.Content.ReadAsStringAsync();
 
@@ -91,7 +96,7 @@ namespace HealthCareApp.Pages.Playground
 
             _labelMop = new();
 
-            await Task.Run(() => SpinnerService.HideSpinner());
+            await Task.Run(() => _spinnerService.HideSpinner());
             await Task.CompletedTask;
 
         }
