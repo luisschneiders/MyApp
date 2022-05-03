@@ -1,10 +1,10 @@
-﻿<div class="modal fade @ModalClass"
+﻿<div class="modal fade @_modalClass"
          tabindex="-1"
          role="dialog"
-         style="display: @ModalStyleDisplay;
+         style="display: @_modalStyleDisplay;
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);"
-         id="@ModalId"
+         id="@_modalId"
     >
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-@Size"
             data-backdrop="static"
@@ -19,7 +19,7 @@
                         type="button"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                        @onclick="() => Close(ModalId)">
+                        @onclick="() => Close(_modalId)">
                 </button>
             </div>
             <div class="modal-body">
@@ -31,7 +31,7 @@
         </div>
     </div>
 </div>
-@if (ShowBackdrop)
+@if (_showBackdrop)
 {
-    <div class="modal-backdrop fade @ModalClass" style="display: @ModalStyleDisplay;"></div>
+    <div class="modal-backdrop fade @_modalClass" style="display: @_modalStyleDisplay;"></div>
 }

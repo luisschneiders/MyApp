@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using HealthCareApp.Settings.Enum;
+﻿using HealthCareApp.Settings.Enum;
 using HealthCareApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
@@ -18,37 +16,46 @@ namespace HealthCareApp.Components.Modal
         public RenderFragment? Footer { get; set; }
 
         [Parameter]
-        public Theme Theme { get; set; } = Theme.App;
+        public Theme Theme { get; set; }
 
         [Parameter]
-        public ModalSize Size { get; set; } = ModalSize.md;
+        public ModalSize Size { get; set; }
 
-        private ModalDisplay ModalStyleDisplay { get; set; } = ModalDisplay.none;
-        private string ModalClass { get; set; } = "";
-        private bool ShowBackdrop { get; set; } = false;
-        private Guid ModalId { get; set; } = Guid.Empty;
+        private ModalDisplay _modalStyleDisplay { get; set; }
+        private string _modalClass { get; set; }
+        private bool _showBackdrop { get; set; }
+        private Guid _modalId { get; set; }
+
+        public Modal()
+        {
+            Theme = Theme.App;
+            Size = ModalSize.md;
+            _modalStyleDisplay = ModalDisplay.none;
+            _modalClass = string.Empty;
+            _showBackdrop = false;
+            _modalId = Guid.Empty;
+        }
 
         public async Task Open(Guid target)
         {
-            ModalId = target;
-            ModalStyleDisplay = ModalDisplay.block;
+            _modalId = target;
+            _modalStyleDisplay = ModalDisplay.block;
             await Task.Delay((int)Delay.ModalOpen);
-            ModalClass = "show";
-            ShowBackdrop = true;
+            _modalClass = "show";
+            _showBackdrop = true;
 
             StateHasChanged();
         }
 
         public async Task Close(Guid target)
         {
-            ModalId = target;
-            ModalClass = "";
+            _modalId = target;
+            _modalClass = string.Empty;
             await Task.Delay((int)Delay.ModalClose);
-            ModalStyleDisplay = ModalDisplay.none;
-            ShowBackdrop = false;
+            _modalStyleDisplay = ModalDisplay.none;
+            _showBackdrop = false;
 
             StateHasChanged();
         }
-
     }
 }

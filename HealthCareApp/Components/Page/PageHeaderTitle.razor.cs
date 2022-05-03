@@ -7,10 +7,16 @@ namespace HealthCareApp.Components.Page
     public partial class PageHeaderTitle : ComponentBase
     {         
         [Parameter]
-        public string Title { get; set; } = "";
+        public string Title { get; set; }
 
         [Parameter]
-        public Theme Theme { get; set; } = Theme.App;
+        public Theme Theme { get; set; }
+
+        public PageHeaderTitle()
+        {
+            Title = string.Empty;
+            Theme = Theme.App;
+        }
 
         protected override void OnInitialized()
         {
