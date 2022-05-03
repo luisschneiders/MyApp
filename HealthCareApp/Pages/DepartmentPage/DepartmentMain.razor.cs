@@ -1,87 +1,103 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DepartmentLibrary.Models;
+﻿using DepartmentLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
- 
 
 namespace HealthCareApp.Pages.DepartmentPage
 {
     public partial class DepartmentMain : ComponentBase
     {
         [Inject]
-        private DepartmentService DepartmentService { get; set; }
+        private DepartmentService _departmentService { get; set; }
 
         [Inject]
-        private SpinnerService SpinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; }
 
-        private Virtualize<Department> VirtualizeContainer { get; set; }
+        private Virtualize<Department> _virtualizeContainer { get; set; }
 
-        private Department DepartmentDetails { get; set; }
+        private bool _isSearchResults { get; set; }
+        private bool _isLoading { get; set; }
 
-        private bool IsLoading { get; set; }
+        private string _searchTerm { get; set; }
 
-        private string SearchTerm { get; set; }
-
-        private List<Department> Results { get; set; }
-        private List<Department> Departments { get; set; }
+        private Department? _departmentDetails { get; set; }
+        private List<Department> _results { get; set; }
+        private List<Department> _departments { get; set; }
 
         /*
          * Add component DepartmentModalAdd & DepartmentModalUpdate reference
          */
-        private DepartmentModalAdd DepartmentModalAdd { get; set; }
-        private DepartmentModalUpdate DepartmentModalUpdate { get; set; }
+        private DepartmentModalAdd _departmentModalAdd { get; set; }
+        private DepartmentModalUpdate _departmentModalUpdate { get; set; }
+
+        public DepartmentMain()
+        {
+            _searchTerm = string.Empty;
+
+            _spinnerService = new();
+            _virtualizeContainer = new();
+            _departmentModalAdd = new();
+            _departmentModalUpdate = new();
+
+            _departments = new List<Department>();
+            _results = new List<Department>();
+
+            _departmentDetails = null;
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                await Task.Run(() => SpinnerService.ShowSpinner());
+                await Task.Run(() => _spinnerService.ShowSpinner());
                 await Task.CompletedTask;
             }
             else
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
         }
 
         private async Task SearchDepartmentAsync(ChangeEventArgs eventArgs)
         {
-            var searchTerm = eventArgs.Value.ToString();
+            var searchTerm = eventArgs?.Value?.ToString();
+            _isSearchResults = true;
 
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                Results = await DepartmentService.SearchAsync(searchTerm);
+                _results = new List<Department>();
+                _isSearchResults = false;
+                await Task.CompletedTask;
             }
             else
             {
-                Results = null;
+                _results = await _departmentService.SearchAsync(searchTerm);
+                await Task.CompletedTask;
             }
         }
 
         private async Task OpenModalAddAsync()
         {
-            await Task.FromResult(DepartmentModalAdd.OpenModalAddAsync());
+            await Task.FromResult(_departmentModalAdd.OpenModalAddAsync());
             await Task.CompletedTask;
         }
 
         private async Task OpenModalUpdateAsync(Guid id)
         {
-            await Task.FromResult(DepartmentModalUpdate.OpenModalUpdateAsync(id));
+            await Task.FromResult(_departmentModalUpdate.OpenModalUpdateAsync(id));
             await Task.CompletedTask;
         }
 
         private async Task ShowDepartmentDetails(Department department)
         {
-            DepartmentDetails = department;
-            IsLoading = true;
+            _departmentDetails = department;
+
+            _isLoading = true;
             await Task.Delay((int)Delay.DataLoading);
-            IsLoading = false;
+            _isLoading = false;
 
             await Task.CompletedTask;
         }
@@ -89,27 +105,27 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task UpdateDepartmentStatusAsync(Department department)
         {
             department.IsActive = !department.IsActive;
-            await Task.FromResult(DepartmentService.UpdateDepartmentAsync(department));
+            await Task.FromResult(_departmentService.UpdateDepartmentAsync(department));
             await Task.CompletedTask;
         }
 
         private async Task RefreshVirtualizeContainer()
         {
-            DepartmentDetails = null;
-            await VirtualizeContainer.RefreshDataAsync();
+            _departmentDetails = null;
+            await _virtualizeContainer.RefreshDataAsync();
         }
 
         private async ValueTask<ItemsProviderResult<Department>> LoadDepartments(ItemsProviderRequest request)
         {
-            Departments = await DepartmentService.GetDepartmentsAsync();
+            _departments = await _departmentService.GetDepartmentsAsync();
 
-            await Task.Run(() => SpinnerService.HideSpinner());
+            await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
-            return new ItemsProviderResult<Department>(
-                Departments.Skip(request.StartIndex).Take(request.Count), Departments.Count
-            );
 
+            return new ItemsProviderResult<Department>(
+                _departments.Skip(request.StartIndex).Take(request.Count), _departments.Count
+            );
         }
     }
 }

@@ -74,7 +74,7 @@ namespace HealthCareApp.Data
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                return null;
+                return departmentList;
             }
 
             var query =
@@ -156,9 +156,7 @@ namespace HealthCareApp.Data
 
         private static Department SetDepartmentDetails(Department department)
         {
-            Department departmentDetails;
-
-            departmentDetails = department;
+            Department departmentDetails = department;
 
             return departmentDetails;
         }
