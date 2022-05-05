@@ -55,7 +55,7 @@ namespace HealthCareApp.Data
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                return null;
+                return await Task.FromResult(employeeList);
             }
 
             var query =
@@ -177,9 +177,7 @@ namespace HealthCareApp.Data
 
         private static Employee SetEmployeeDetails(Employee employee, ContactDetails contactDetails, Location location)
         {
-            Employee employeeDetails;
-
-            employeeDetails = employee;
+            Employee employeeDetails = employee;
 
             if (employee.ContactDetailsId == contactDetails?.Id)
             {

@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using HealthCareApp.Components.Spinner;
+﻿using HealthCareApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.Playground
@@ -8,11 +6,16 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundSpinner
     {
         [Inject]
-        SpinnerService SpinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; }
+
+        public PlaygroundSpinner()
+        {
+            _spinnerService = new();
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            await Task.Run(() => SpinnerService.ShowSpinner());
+            await Task.Run(() => _spinnerService.ShowSpinner());
             await Task.CompletedTask;
         }
     }

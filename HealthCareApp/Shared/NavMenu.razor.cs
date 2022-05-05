@@ -11,29 +11,37 @@ namespace HealthCareApp.Shared
             Api
         };
 
-        private bool collapseNavMenu = true;
-        private bool collapseNavSubmenu = true;
+        private bool _collapseNavMenu { get; set; }
+        private bool _collapseNavSubmenu { get; set; }
 
-        private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
-        private NavSubmenu navSubmenu = NavSubmenu.None;
+        private NavSubmenu _navSubmenu { get; set; }
+
+        private string _navMenuCssClass => _collapseNavMenu ? "collapse" : string.Empty;
+
+        public NavMenu()
+        {
+            _collapseNavMenu = true;
+            _collapseNavSubmenu = true;
+            _navSubmenu = NavSubmenu.None;
+        }
 
 
         private void ToggleNavMenu()
         {
-            collapseNavMenu = !collapseNavMenu;
+            _collapseNavMenu = !_collapseNavMenu;
         }
 
         private void ToggleNavSubmenu(NavSubmenu submenu)
         {
-            collapseNavSubmenu = !collapseNavSubmenu;
+            _collapseNavSubmenu = !_collapseNavSubmenu;
 
-            if (navSubmenu == submenu)
+            if (_navSubmenu == submenu)
             {
-                navSubmenu = NavSubmenu.None;
+                _navSubmenu = NavSubmenu.None;
             }
             else
             {
-                navSubmenu = submenu;
+                _navSubmenu = submenu;
             }
         }
     }

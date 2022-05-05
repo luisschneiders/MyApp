@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EmployeeLibrary.Models;
+﻿using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
@@ -14,109 +10,122 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeMain : ComponentBase
     {
         [Inject]
-        private EmployeeService EmployeeService { get; set; }
+        private EmployeeService _employeeService { get; set; }
 
         [Inject]
-        private SpinnerService SpinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; }
 
-        [Parameter]
-        public Guid EmployeeId { get; set; } = Guid.Empty;
+        private Virtualize<Employee> _virtualizeContainer { get; set; }
 
-        private Virtualize<Employee> VirtualizeContainer { get; set; }
+        private bool _isLoading { get; set; }
+        private bool _isSearchResults { get; set; }
 
-        private Employee EmployeeDetails { get; set; }
+        private string _searchTerm { get; set; }
 
-        private bool IsLoading { get; set; }
-        private string SearchTerm { get; set; }
-        private List<Employee> Results { get; set; }
-        private List<Employee> Employees { get; set; }
+        private Employee? _employeeDetails { get; set; }
+        private List<Employee> _employees { get; set; }
+        private List<Employee> _results { get; set; }
 
         /*
          * Add component EmployeeModalAdd & EmployeeModalUpdate reference
          */
-        private EmployeeModalAdd EmployeeModalAdd { get; set; }
-        private EmployeeModalUpdate EmployeeModalUpdate { get; set; }
+        private EmployeeModalAdd _employeeModalAdd { get; set; }
+        private EmployeeModalUpdate _employeeModalUpdate { get; set; }
+
+        public EmployeeMain()
+        {
+            _searchTerm = string.Empty;
+
+            _spinnerService = new();
+            _virtualizeContainer = new();
+            _employeeModalAdd = new();
+            _employeeModalUpdate = new();
+
+            _employees = new List<Employee>();
+            _results = new List<Employee>();
+
+            _employeeDetails = null;
+        }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-                await Task.Run(() => SpinnerService.ShowSpinner());
+                await Task.Run(() => _spinnerService.ShowSpinner());
                 await Task.CompletedTask;
             }
             else
             {
-                await Task.Run(() => SpinnerService.HideSpinner());
+                await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
+
         }
 
         private async Task OpenModalAddAsync()
         {
-            await Task.FromResult(EmployeeModalAdd.OpenModalAddAsync());
+            await Task.FromResult(_employeeModalAdd.OpenModalAddAsync());
             await Task.CompletedTask;
         }
 
         private async Task OpenModalUpdateAsync(Guid id)
         {
-            await Task.FromResult(EmployeeModalUpdate.OpenModalUpdateAsync(id));
+            await Task.FromResult(_employeeModalUpdate.OpenModalUpdateAsync(id));
             await Task.CompletedTask;
         }
 
         private async Task ShowEmployeeDetails(Employee employee)
         {
+            _employeeDetails = employee;
 
-            EmployeeDetails = employee;
-
-            IsLoading = true;
+            _isLoading = true;
             await Task.Delay((int)Delay.DataLoading);
-            IsLoading = false;
+            _isLoading = false;
 
             await Task.CompletedTask;
         }
 
         private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
         {
-            Employees = await EmployeeService.GetEmployeesAsync();
+            _employees = await _employeeService.GetEmployeesAsync();
 
-            await Task.Run(() => SpinnerService.HideSpinner());
+            await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
+
             return new ItemsProviderResult<Employee>(
-                Employees.Skip(request.StartIndex).Take(request.Count), Employees.Count
+                _employees.Skip(request.StartIndex).Take(request.Count), _employees.Count
             );
         }
 
         private async Task RefreshVirtualizeContainer()
         {
-            EmployeeDetails = null;
-            await VirtualizeContainer.RefreshDataAsync();
-        }
-
-        public async Task VirtualizeContainerAsync()
-        {
-            await RefreshVirtualizeContainer();
-            await Task.CompletedTask;
+            _employeeDetails = null;
+            await _virtualizeContainer.RefreshDataAsync();
         }
 
         private async Task SearchEmployeeAsync(ChangeEventArgs eventArgs)
         {
-            var searchTerm = eventArgs.Value.ToString();
-            
-            if (!string.IsNullOrWhiteSpace(searchTerm))
+            var searchTerm = eventArgs?.Value?.ToString();
+            _isSearchResults = true;
+
+            if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                Results = await EmployeeService.SearchAsync(searchTerm);
+                _results = new List<Employee>();
+                _isSearchResults = false;
+                await Task.CompletedTask;
             }
             else
             {
-                Results = null;
+                _results = await _employeeService.SearchAsync(searchTerm);
+                await Task.CompletedTask;
             }
         }
 
         private async Task UpdateEmployeeStatusAsync(Employee employee)
         {
             employee.IsActive = !employee.IsActive;
-            await Task.FromResult(EmployeeService.UpdateEmployeeAsync(employee));
+            await Task.FromResult(_employeeService.UpdateEmployeeAsync(employee));
             await Task.CompletedTask;
         }
     }

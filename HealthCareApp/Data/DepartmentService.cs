@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
-using DepartmentLibrary.Models;
-using Microsoft.AspNetCore.Http;
+﻿using DepartmentLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthCareApp.Data
@@ -48,7 +44,7 @@ namespace HealthCareApp.Data
         {
             try
             {
-                UserService userService = new UserService(_httpContextAccessor);
+                UserService userService = new(_httpContextAccessor);
 
                 /* Raw query with joins, filters and ordering */
                 var query =
@@ -69,12 +65,12 @@ namespace HealthCareApp.Data
 
         public async Task<List<Department>> SearchAsync(string searchTerm)
         {
-            UserService userService = new UserService(_httpContextAccessor);
-            List<Department> departmentList = new List<Department>();
+            UserService userService = new(_httpContextAccessor);
+            List<Department> departmentList = new();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                return null;
+                return departmentList;
             }
 
             var query =
@@ -156,9 +152,7 @@ namespace HealthCareApp.Data
 
         private static Department SetDepartmentDetails(Department department)
         {
-            Department departmentDetails;
-
-            departmentDetails = department;
+            Department departmentDetails = department;
 
             return departmentDetails;
         }

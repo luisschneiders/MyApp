@@ -12,36 +12,38 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeModalAdd : ComponentBase
     {
         [Inject]
-        private EmployeeService EmployeeService { get; set; }
+        private EmployeeService _employeeService { get; set; }
 
         [Inject]
-        private ToastService ToastService { get; set; }
+        private ToastService _toastService { get; set; }
 
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private Modal ModalAdd { get; set; }
+        private Modal _modalAdd { get; set; }
 
-        private Guid ModalAddTarget { get; set; }
+        private Guid _modalAddTarget { get; set; }
 
-        private Employee employee;
+        private Employee _employee;
 
-        private bool DisplayValidationErrorMessages { get; set; }
+        private bool _displayValidationErrorMessages { get; set; }
 
         // Constructor
         public EmployeeModalAdd()
         {
-            employee = new();
+            _toastService = new();
+            _modalAdd = new();
+            _employee = new();
         }
 
         private async Task HandleValidSubmitAsync()
         {
-            DisplayValidationErrorMessages = false;
+            _displayValidationErrorMessages = false;
 
-            await EmployeeService.AddEmployeeAsync(employee);
+            await _employeeService.AddEmployeeAsync(_employee);
             await OnSubmitSuccess.InvokeAsync();
 
-            ToastService.ShowToast("Employee added!", Level.Success);
+            _toastService.ShowToast("Employee added!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 
@@ -51,21 +53,21 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task HandleInvalidSubmitAsync()
         {
-            await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
 
         public async Task OpenModalAddAsync()
         {
-            ModalAddTarget = Guid.NewGuid();
-            await Task.FromResult(ModalAdd.Open(ModalAddTarget));
+            _modalAddTarget = Guid.NewGuid();
+            await Task.FromResult(_modalAdd.Open(_modalAddTarget));
             await Task.CompletedTask;
         }
 
         private async Task CloseModalAddAsync()
         {
-            employee = new Employee();
-            await Task.FromResult(ModalAdd.Close(ModalAddTarget));
+            _employee = new Employee();
+            await Task.FromResult(_modalAdd.Close(_modalAddTarget));
             await Task.CompletedTask;
         }
     }

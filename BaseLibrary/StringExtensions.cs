@@ -6,7 +6,6 @@ namespace BaseLibrary
      */
     public static class StringExtensions
     {
-        #nullable enable
         public static string? Truncate(this string? value, int maxLength, string suffix = "...")
         {
             return value?.Length > maxLength ? value.Substring(0, maxLength) + suffix : value;

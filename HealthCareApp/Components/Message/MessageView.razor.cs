@@ -3,18 +3,25 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Message
 {
-    public partial class MessageView
+    public partial class MessageView : ComponentBase
     {
         [Parameter]
-        public string Icon { get; set; } = "";
+        public string Icon { get; set; }
 
         [Parameter]
-        public string Title { get; set; } = "";
+        public string Title { get; set; }
 
         [Parameter]
-        public string Message { get; set; } = "";
+        public string Message { get; set; }
 
         [Parameter]
         public RenderFragment? ChildContent { get; set; }
+
+        public MessageView()
+        {
+            Icon = string.Empty;
+            Title = string.Empty;
+            Message = string.Empty;
+        }
     }
 }

@@ -12,52 +12,54 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeModalUpdate : ComponentBase
     {
         [Inject]
-        private EmployeeService EmployeeService { get; set; }
+        private EmployeeService _employeeService { get; set; }
 
         [Inject]
-        private ToastService ToastService { get; set; }
+        private ToastService _toastService { get; set; }
 
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private Modal ModalUpdate { get; set; }
+        private Modal _modalUpdate { get; set; }
 
-        private Guid ModalUpdateTarget { get; set; }
+        private Guid _modalUpdateTarget { get; set; }
 
-        private Employee employee { get; set; }
+        private Employee _employee { get; set; }
 
-        private bool DisplayValidationErrorMessages { get; set; }
+        private bool _displayValidationErrorMessages { get; set; }
 
         // Constructor
         public EmployeeModalUpdate()
         {
-            employee = new();
+            _toastService = new();
+            _modalUpdate = new();
+            _employee = new();
         }
 
         public async Task OpenModalUpdateAsync(Guid id)
         {
-            employee = EmployeeService.GetEmployeeById(id);
+            _employee = _employeeService.GetEmployeeById(id);
 
-            ModalUpdateTarget = id;
-            await Task.FromResult(ModalUpdate.Open(ModalUpdateTarget));
+            _modalUpdateTarget = id;
+            await Task.FromResult(_modalUpdate.Open(_modalUpdateTarget));
             await Task.CompletedTask;
         }
 
         private async Task CloseModalUpdateAsync()
         {
-            employee = new Employee();
-            await Task.FromResult(ModalUpdate.Close(ModalUpdateTarget));
+            _employee = new Employee();
+            await Task.FromResult(_modalUpdate.Close(_modalUpdateTarget));
             await Task.CompletedTask;
         }
 
         private async Task HandleValidSubmitAsync()
         {
-            DisplayValidationErrorMessages = false;
+            _displayValidationErrorMessages = false;
 
-            await EmployeeService.UpdateEmployeeAsync(employee);
+            await _employeeService.UpdateEmployeeAsync(_employee);
             await OnSubmitSuccess.InvokeAsync();
 
-            ToastService.ShowToast("Employee updated!", Level.Success);
+            _toastService.ShowToast("Employee updated!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 
@@ -68,7 +70,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task HandleInvalidSubmitAsync()
         {
-            await Task.FromResult(DisplayValidationErrorMessages = true);
+            await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
     }

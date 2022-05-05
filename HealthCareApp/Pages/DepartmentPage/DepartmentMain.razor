@@ -29,7 +29,7 @@
                                    class="form-control"
                                    placeholder="Start typing to search departments..."
                                    aria-label="search"
-                                   @bind-value="SearchTerm"
+                                   @bind-value="_searchTerm"
                                    @oninput="SearchDepartmentAsync">
                         </div>
                     </div>
@@ -38,11 +38,11 @@
                     <Spinner Size="Size.Md" />
                 </div>
                 <div class="list-group gap-2">
-                    @if (Results is null)
+                    @if (!_isSearchResults)
                     {
                         <Virtualize Context="department"
                                     ItemsProvider="@LoadDepartments"
-                                    @ref="VirtualizeContainer">
+                                    @ref="_virtualizeContainer">
                             <ItemContent>
                                 <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
                                     <div class="d-flex w-100 justify-content-between align-items-center">
@@ -83,10 +83,10 @@
                             </Placeholder>
                         </Virtualize>
                     }
-                    @if (Results is not null)
+                    @if (_isSearchResults)
                     {
                         <div></div>
-                        @foreach (var department in Results)
+                        @foreach (var department in _results)
                         {
                             <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
                                 <div class="d-flex w-100 justify-content-between align-items-center">
@@ -126,13 +126,13 @@
                 </div>
             </div>
             <div class="flex-container-main ps-2">
-                <DepartmentDetails Info="DepartmentDetails" Loading="IsLoading" />
-                @if (!IsLoading && DepartmentDetails is not null)
+                <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" />
+                @if (!_isLoading && _departmentDetails is not null)
                 {
                     <div class="d-flex flex-row justify-content-end">
                         <button type="button"
                                 class="btn btn-info btn-rounded text-white"
-                                @onclick="() => OpenModalUpdateAsync(DepartmentDetails.Id)">
+                                @onclick="() => OpenModalUpdateAsync(_departmentDetails.Id)">
                             Update Details
                         </button>
                     </div>
@@ -143,5 +143,5 @@
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
-<DepartmentModalAdd @ref="DepartmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-<DepartmentModalUpdate @ref="DepartmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
+<DepartmentModalAdd @ref="_departmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
+<DepartmentModalUpdate @ref="_departmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />

@@ -1,12 +1,12 @@
 ﻿@using HealthCareApp.Components.Modal
 @using HealthCareApp.Settings.Theme
 
-<Modal @ref="ModalUpdate"
+<Modal @ref="_modalUpdate"
         Theme="Theme.Employee"
         Size="ModalSize.lg">
     <Title>Update employee</Title>
     <Body>
-        <EditForm Model="@employee"
+        <EditForm Model="@_employee"
                   OnValidSubmit="@HandleValidSubmitAsync"
                   OnInvalidSubmit="@HandleInvalidSubmitAsync"
                   autocomplete="off"
@@ -22,7 +22,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                         id="EmployeeFirstNameUpdate"
-                                        @bind-Value="employee.EmployeeFirstName" />
+                                        @bind-Value="_employee.EmployeeFirstName" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -33,7 +33,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                         id="EmployeeLastNameUpdate"
-                                        @bind-Value="employee.EmployeeLastName" />
+                                        @bind-Value="_employee.EmployeeLastName" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -44,7 +44,7 @@
                         <div class="col-sm-8">
                             <InputText class="form-control"
                                         id="EmployeeUsernameUpdate"
-                                        @bind-Value="employee.EmployeeUsername" />
+                                        @bind-Value="_employee.EmployeeUsername" />
                         </div>
                     </div>
                     <div class="row mb-3">
@@ -56,7 +56,7 @@
                             <InputText type="password"
                                         class="form-control"
                                         id="EmployeePasswordUpdate"
-                                        @bind-Value="employee.EmployeePassword" />
+                                        @bind-Value="_employee.EmployeePassword" />
                         </div>
                     </div>
 
@@ -71,7 +71,7 @@
                                 <InputText type="email"
                                             class="form-control"
                                             id="EmailUpdate"
-                                            @bind-Value="employee.ContactDetails.Email" />
+                                            @bind-Value="_employee.ContactDetails.Email" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -83,7 +83,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="MobileUpdate"
-                                            @bind-Value="employee.ContactDetails.Mobile" />
+                                            @bind-Value="_employee.ContactDetails.Mobile" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -95,7 +95,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="PhoneUpdate"
-                                            @bind-Value="employee.ContactDetails.Phone" />
+                                            @bind-Value="_employee.ContactDetails.Phone" />
                             </div>
                         </div>
                     </fieldset>
@@ -111,7 +111,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="AddressUpdate"
-                                            @bind-Value="employee.Location.Address" />
+                                            @bind-Value="_employee.Location.Address" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -123,7 +123,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="SuburbUpdate"
-                                            @bind-Value="employee.Location.Suburb" />
+                                            @bind-Value="_employee.Location.Suburb" />
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -135,7 +135,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="StateUpdate"
-                                            @bind-Value="employee.Location.State" />
+                                            @bind-Value="_employee.Location.State" />
                             </div>
                         </div>
 
@@ -148,7 +148,7 @@
                                 <InputText type="text"
                                             class="form-control"
                                             id="PostcodeUpdate"
-                                            @bind-Value="employee.Location.Postcode" />
+                                            @bind-Value="_employee.Location.Postcode" />
                             </div>
                         </div>
                     </fieldset>
@@ -166,7 +166,7 @@
                                                     type="checkbox"
                                                     role="switch"
                                                     id="IsActiveUpdate"
-                                                    @bind-Value="employee.IsActive" />
+                                                    @bind-Value="_employee.IsActive" />
                                 </div>
 
                             </div>
@@ -174,7 +174,7 @@
                     </fieldset>
                 </div>
                 <div class="col-sm-4">
-                    @if (DisplayValidationErrorMessages)
+                    @if (_displayValidationErrorMessages)
                     {
                         <div class="row mb-3">
                             <div class="col">

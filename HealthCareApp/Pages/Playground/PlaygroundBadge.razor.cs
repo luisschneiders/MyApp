@@ -7,38 +7,45 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundBadge : ComponentBase
     {
 
-        private ComponentMarkup ComponentMarkup { get; set; }
-        private List<ComponentMarkup> ComponentMarkupList { get; set; }
-        private List<string> Codes { get; set; }
+        private ComponentMarkup _componentMarkup { get; set; }
+        private List<ComponentMarkup> _componentMarkupList { get; set; }
+        private List<string> _codes { get; set; }
+
+        public PlaygroundBadge()
+        {
+            _componentMarkup = new();
+            _componentMarkupList = new();
+            _codes = new List<string>();
+        }
 
         protected override void OnInitialized()
         {
 
-            ComponentMarkup = new();
-            ComponentMarkupList = new List<ComponentMarkup>();
+            _componentMarkup = new();
+            _componentMarkupList = new List<ComponentMarkup>();
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("<Badge Level='Level.Info' Message='Info message!' />").ToString()
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Component",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
-            Codes = new()
+            _codes = new()
             {
                 new MarkupString("Level='enum'").ToString(),
                 new MarkupString("Message='string'").ToString()
             };
-            ComponentMarkup = new()
+            _componentMarkup = new()
             {
                 Title = "Parameter",
-                Code = Codes
+                Code = _codes
             };
-            ComponentMarkupList.Add(ComponentMarkup);
+            _componentMarkupList.Add(_componentMarkup);
 
         }
 

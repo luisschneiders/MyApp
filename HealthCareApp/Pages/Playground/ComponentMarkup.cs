@@ -1,11 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace HealthCareApp.Pages.Playground
+﻿namespace HealthCareApp.Pages.Playground
 {
     public class ComponentMarkup : IComponentMarkup
     {
         public string Title { get; set; }
         public List<string> Code { get; set; }
+
+        public ComponentMarkup()
+        {
+            Title = string.Empty;
+            Code = new List<string>();
+        }
     }
 }

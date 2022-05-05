@@ -7,14 +7,14 @@ namespace HealthCareApp.Pages.DepartmentPage
 	public partial class DepartmentDetails : ComponentBase
 	{
         [Parameter]
-        public Department Info { get; set; }
+        public Department? Info { get; set; }
 
         [Parameter]
         public bool Loading { get; set; }
 
         public DepartmentDetails()
         {
-            Info = new();
+            Info = null;
         }
     }
 }

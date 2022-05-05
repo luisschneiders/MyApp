@@ -8,10 +8,15 @@ namespace HealthCareApp.Pages.EmployeePage
     {
 
         [Parameter]
-        public Employee Info { get; set; }
+        public Employee? Info { get; set; }
 
         [Parameter]
         public bool Loading { get; set; }
+
+        public EmployeeDetails()
+        {
+            Info = null;
+        }
 
     }
 }

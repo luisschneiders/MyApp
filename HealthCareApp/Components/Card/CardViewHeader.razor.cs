@@ -4,22 +4,31 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Card
 {
-    public partial class CardViewHeader
+    public partial class CardViewHeader : ComponentBase
     {
         [Parameter]
-        public string ImageUrl { get; set; } = "";
+        public string ImageUrl { get; set; }
 
         [Parameter]
-        public string Icon { get; set; } = "";
+        public string Icon { get; set; }
 
         [Parameter]
-        public Theme IconTheme { get; set; } = Theme.App;
+        public Theme IconTheme { get; set; }
 
         [Parameter]
-        public string Title { get; set; } = "";
+        public string Title { get; set; }
 
         [Parameter]
-        public string ImageDescription { get; set; } = "Image description";
+        public string ImageDescription { get; set; }
+
+        public CardViewHeader()
+        {
+            ImageUrl = string.Empty;
+            Icon = string.Empty;
+            IconTheme = Theme.App;
+            Title = string.Empty;
+            ImageDescription = "Image description";
+        }
 
         protected override void OnInitialized()
         {
