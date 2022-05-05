@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Http;
-using System.Security.Claims;
+﻿using System.Security.Claims;
 
 namespace HealthCareApp.Data
 {
@@ -17,7 +15,7 @@ namespace HealthCareApp.Data
         public Guid UserId()
         {
 
-            var principal = _httpContextAccessor.HttpContext.User;
+            var principal = _httpContextAccessor?.HttpContext?.User;
             var loggedInUserId = principal.FindFirstValue(ClaimTypes.NameIdentifier);
 
             return new Guid(loggedInUserId);
