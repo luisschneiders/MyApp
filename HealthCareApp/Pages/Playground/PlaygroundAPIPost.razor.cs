@@ -1,5 +1,7 @@
 ﻿using HealthCareApp.Components.Spinner;
+using HealthCareApp.Components.Toast;
 using HealthCareApp.Services;
+using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
@@ -12,6 +14,9 @@ namespace HealthCareApp.Pages.Playground
 
         [Inject]
         private SpinnerService _spinnerService { get; set; }
+
+        [Inject]
+        private ToastService _toastService { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
         private LabelMop _labelMop { get; set; }
@@ -31,6 +36,7 @@ namespace HealthCareApp.Pages.Playground
         {
             _labelService = new();
             _spinnerService = new();
+            _toastService = new();
             _componentMarkup = new();
             _labelMop = new();
 
@@ -92,6 +98,11 @@ namespace HealthCareApp.Pages.Playground
                 {
                     _fileName = fileName;
                 }
+                _toastService.ShowToast($"Label created successfully!", Level.Success);
+            }
+            else
+            {
+                _toastService.ShowToast($"Error: {responseMessage.ReasonPhrase}", Level.Error);
             }
 
             _labelMop = new();
