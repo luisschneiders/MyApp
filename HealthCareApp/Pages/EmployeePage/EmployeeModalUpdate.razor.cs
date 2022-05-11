@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using EmployeeLibrary.Models;
+﻿using EmployeeLibrary.Models;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
@@ -28,7 +26,6 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private bool _displayValidationErrorMessages { get; set; }
 
-        // Constructor
         public EmployeeModalUpdate()
         {
             _toastService = new();
