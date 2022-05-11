@@ -10,6 +10,7 @@
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
     <None Remove="db\" />
+    <None Remove="CSharpVitamins.ShortGuid" />
   </ItemGroup>
   <ItemGroup>
     <None Update="db\app.db">
@@ -25,6 +26,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.4" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.4" />
     <PackageReference Include="Microsoft.AspNetCore.Components.Web.Extensions" Version="5.0.0-preview9.20513.1" />
+    <PackageReference Include="CSharpVitamins.ShortGuid" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
