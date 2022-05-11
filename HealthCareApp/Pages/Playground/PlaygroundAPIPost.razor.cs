@@ -84,7 +84,7 @@ namespace HealthCareApp.Pages.Playground
             _labelMop.Location = "Location";
             _labelMop.TimeOut = timeOut;
             _labelMop.TimeIn = timeIn;
-            _labelMop.Quantity = 50;
+            _labelMop.Quantity = 20;
 
             HttpResponseMessage responseMessage = await _labelService.CreateLabelMopAsync(_labelMop);
 
