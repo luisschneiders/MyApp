@@ -1,9 +1,10 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using BaseLibrary.Models;
 
 namespace LabelLibrary.Models
 {
-    public abstract class Label
+    public abstract class Label : Base
     {
         [Required]
         public string? CompanyName { get; set; }
@@ -14,13 +15,5 @@ namespace LabelLibrary.Models
         [Required]
         public string? Location { get; set; }
 
-        [Required]
-        public bool IsActive { get; set; }
-
-        [Required]
-        public DateTime CreatedAt { get; set; }
-
-        [Required]
-        public DateTime UpdatedAt { get; set; }
     }
 }
