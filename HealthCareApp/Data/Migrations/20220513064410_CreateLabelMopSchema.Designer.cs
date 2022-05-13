@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthCareApp.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220510051945_CreateLabelMopSchema")]
+    [Migration("20220513064410_CreateLabelMopSchema")]
     partial class CreateLabelMopSchema
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,7 +133,7 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Department")
+                    b.Property<string>("DepartmentId")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
@@ -150,10 +150,10 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<int>("Quantity")
                         .HasColumnType("INTEGER");
 
-                    b.Property<TimeOnly>("TimeIn")
+                    b.Property<DateTime>("TimeIn")
                         .HasColumnType("TEXT");
 
-                    b.Property<TimeOnly>("TimeOut")
+                    b.Property<DateTime>("TimeOut")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("UpdatedAt")

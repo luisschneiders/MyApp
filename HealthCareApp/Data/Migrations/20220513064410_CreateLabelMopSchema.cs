@@ -9,7 +9,6 @@ namespace HealthCareApp.Data.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-
             migrationBuilder.CreateTable(
                 name: "LabelMop",
                 columns: table => new
@@ -17,14 +16,14 @@ namespace HealthCareApp.Data.Migrations
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
                     Barcode = table.Column<string>(type: "TEXT", nullable: false),
                     Quantity = table.Column<int>(type: "INTEGER", nullable: false),
-                    TimeIn = table.Column<TimeOnly>(type: "TEXT", nullable: false),
-                    TimeOut = table.Column<TimeOnly>(type: "TEXT", nullable: false),
+                    TimeIn = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    TimeOut = table.Column<DateTime>(type: "TEXT", nullable: false),
                     IsActive = table.Column<bool>(type: "INTEGER", nullable: false),
                     InsertedBy = table.Column<Guid>(type: "TEXT", nullable: false),
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: false),
-                    Department = table.Column<string>(type: "TEXT", nullable: false),
+                    DepartmentId = table.Column<string>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
