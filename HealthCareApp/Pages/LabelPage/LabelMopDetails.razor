@@ -28,7 +28,7 @@ else
                     <div class="col-sm-12">
                         <label class="form-label fw-bolder"
                                for="CompanyName">
-                            CompanyName
+                            Company Name
                         </label>
                         <input type="text"
                                class="form-control-plaintext hca-form-control-plaintext"
@@ -38,7 +38,7 @@ else
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-12">
                         <label class="form-label fw-bolder"
                                for="Department">
                             Department
@@ -46,10 +46,12 @@ else
                         <input type="text"
                                class="form-control-plaintext hca-form-control-plaintext"
                                id="Department"
-                               value="@Info.Department"
+                               value="@Info.DepartmentId"
                                readonly />
                     </div>
-                    <div class="col-sm-6">
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
                         <label class="form-label fw-bolder"
                                for="Quantity">
                             Mops Quantity
@@ -58,6 +60,30 @@ else
                                class="form-control-plaintext hca-form-control-plaintext"
                                id="Quantity"
                                value="@Info.Quantity"
+                               readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-label fw-bolder"
+                               for="TimeOut">
+                            Pickup time
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="TimeOut"
+                               value="@Info.TimeOut.ToString("HH:mm tt")"
+                               readonly />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label fw-bolder"
+                               for="TimeIn">
+                            Return time
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="TimeIn"
+                               value="@Info.TimeIn.ToString("HH:mm tt")"
                                readonly />
                     </div>
                 </div>

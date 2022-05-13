@@ -29,13 +29,20 @@
                         </div>
                         <div class="row mb-3">
                             <label class="col-sm-4 col-form-label"
-                                   for="Department">
+                                   for="DepartmentId">
                                 Department
                             </label>
                             <div class="col-sm-8">
-                                <InputText class="form-control"
-                                           id="Department"
-                                           @bind-Value="_labelMop.Department" />
+                                <InputSelect class="form-control"
+                                             id="DepartmentId"
+                                             @bind-Value="_labelMop.DepartmentId"
+                                             disabled="@_isDisabled">
+                                    <option value="">-- Select department --</option>
+                                    @foreach (var department in _departments)
+                                    {
+                                        <option value="@department.Id">@department.Name</option>
+                                    }
+                                </InputSelect>
                             </div>
                         </div>
                         <div class="row mb-3">
@@ -106,7 +113,6 @@
                                         <button type="button"
                                                 class="btn btn-outline-primary btn-rounded"
                                                 @onclick="() => GenerateBarcodeAsync()">
-                                            @*<i class="bi bi-arrow-repeat"></i>*@
                                             Generate
                                         </button>
 
@@ -139,7 +145,8 @@
         </button>
         <button type="submit"
                 form="FormAddLabelMop"
-                class="btn btn-info btn-rounded text-white">
+                class="btn btn-info btn-rounded text-white"
+                disabled="@_isDisabled">
             Save
         </button>
     </Footer>

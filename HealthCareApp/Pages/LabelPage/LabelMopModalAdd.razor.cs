@@ -1,5 +1,6 @@
 ﻿using System;
 using CSharpVitamins;
+using DepartmentLibrary.Models;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
@@ -15,6 +16,9 @@ namespace HealthCareApp.Pages.LabelPage
         private LabelMopService _labelMopService { get; set; }
 
         [Inject]
+        private DepartmentService _departmentService { get; set; }
+
+        [Inject]
         private ToastService _toastService { get; set; }
 
         [Parameter]
@@ -26,13 +30,40 @@ namespace HealthCareApp.Pages.LabelPage
 
         private LabelMop _labelMop { get; set; }
 
+        private List<Department> _departments { get; set; }
+
         private bool _displayValidationErrorMessages { get; set; }
+        private bool _isDisabled { get; set; }
 
         public LabelMopModalAdd()
 		{
             _toastService = new();
             _modalAdd = new();
             _labelMop = new();
+            _departments = new List<Department>();
+        }
+
+        //protected override async Task OnAfterRenderAsync(bool firstRender)
+        //{
+        //    _departments = await _departmentService.GetActiveDepartmentsAsync();
+        //    if (_departments is null)
+        //    {
+        //        _isDisabled = true;
+        //    }
+        //    await Task.CompletedTask;
+        //}
+
+        protected override async Task OnInitializedAsync()
+        {
+            _departments = await _departmentService.GetActiveDepartmentsAsync();
+
+            if (_departments is null)
+            {
+                _isDisabled = true;
+            }
+
+            await Task.CompletedTask;
+
         }
 
         public async Task OpenModalAddAsync()

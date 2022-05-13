@@ -25,17 +25,22 @@
                                        @bind-Value="_labelMop.CompanyName" />
                         </div>
                     </div>
-                    <div class="row mb-3">
+                    @*<div class="row mb-3">
                         <label class="col-sm-4 col-form-label"
                                for="Department">
                             Department
                         </label>
                         <div class="col-sm-8">
-                            <InputText class="form-control"
-                                       id="Department"
-                                       @bind-Value="_labelMop.Department" />
+                            <InputSelect class="form-control"
+                                         id="Department"
+                                         @bind-Value="_labelMop.DepartmentId">
+                                @foreach (var department in _departments)
+                                {
+                                    <option value="@department.Id">@department.Name</option>
+                                }
+                            </InputSelect>
                         </div>
-                    </div>
+                    </div>*@
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label"
                                for="Location">

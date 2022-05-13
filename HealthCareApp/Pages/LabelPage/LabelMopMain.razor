@@ -48,9 +48,16 @@
                                         <div class="d-flex align-items-center @(labelMop.IsActive ? "" : "text-black-50")"
                                              role="button"
                                              @onclick="() => ShowLabelMopDetails(labelMop)">
-                                            <i class="bi bi-columns-gap md-icon"></i>
+                                            <i class="bi bi-upc-scan md-icon"></i>
                                             <div class="ps-1">
-                                                @labelMop.Barcode
+                                                <div class="mb-0 fs-5">
+                                                    @labelMop.Location
+                                                </div>
+                                                <div>
+                                                    <div class="text-muted">
+                                                        @labelMop.Barcode
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
