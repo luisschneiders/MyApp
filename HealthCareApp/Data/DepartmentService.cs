@@ -37,6 +37,30 @@ namespace HealthCareApp.Data
             return await Task.FromResult(departmentList);
         }
 
+        // async method to get list of departments active
+        public async Task<List<Department>> GetActiveDepartmentsAsync()
+        {
+            UserService userService = new UserService(_httpContextAccessor);
+            List<Department> departmentList = new List<Department>();
+
+            /* Raw query with joins, filters and ordering */
+            var query =
+                (
+                    from department in _applicationDbContext.Set<Department>()
+                    where department.InsertedBy == userService.UserId()
+                    && department.IsActive == true
+                    orderby department.Name ascending
+                    select new { department }
+                ).AsNoTracking();
+
+            foreach (var i in query)
+            {
+                departmentList.Add(SetDepartmentDetails(i.department));
+            }
+
+            return await Task.FromResult(departmentList);
+        }
+
         /*
          * method to get department by ID
          */

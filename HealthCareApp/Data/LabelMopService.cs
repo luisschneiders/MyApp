@@ -1,4 +1,5 @@
-﻿using LabelLibrary.Models;
+﻿using DepartmentLibrary.Models;
+using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace HealthCareApp.Data
@@ -52,7 +53,6 @@ namespace HealthCareApp.Data
                     from labelMop in _applicationDbContext.Set<LabelMop>()
                     where labelMop.InsertedBy == userService.UserId()
                     && (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
-                    || EF.Functions.Like(labelMop.Department, $"%{searchTerm}%")
                     || EF.Functions.Like(labelMop.Location, $"%{searchTerm}%"))
                     orderby labelMop.CreatedAt descending
                     select new { labelMop }
