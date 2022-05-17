@@ -29,7 +29,7 @@ namespace HealthCareApp.Services
                 httpClient.DefaultRequestHeaders.Add("Accept", "application/json");
                 httpClient.DefaultRequestHeaders.Add("User-Agent", "HealthCare App");
                 httpClient.DefaultRequestHeaders.Add("HealthCareAPIKey", healthCareApiKey);
-                Console.WriteLine("LFS - label: " + labelMop.TimeIn);
+
                 var queryString = new StringContent(JsonConvert.SerializeObject(labelMop), UnicodeEncoding.UTF8, "application/json");
 
                 var response = await httpClient.PostAsync(new Uri(_uri), queryString);

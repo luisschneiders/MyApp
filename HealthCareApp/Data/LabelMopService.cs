@@ -16,10 +16,10 @@ namespace HealthCareApp.Data
 		}
 
         // async method to get list of LabelMops
-        public async Task<List<LabelMop>> GetLabelMopsAsync()
+        public async Task<List<LabelMopDetailsDto>> GetLabelMopsAsync()
         {
             UserService userService = new UserService(_httpContextAccessor);
-            List<LabelMop> labelMopList = new List<LabelMop>();
+            List<LabelMopDetailsDto> labelMopList = new List<LabelMopDetailsDto>();
 
             /* Raw query with joins, filters and ordering */
             var query =
@@ -34,16 +34,16 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetails(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDetailsDto(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
         }
 
-        public async Task<List<LabelMop>> SearchAsync(string searchTerm)
+        public async Task<List<LabelMopDetailsDto>> SearchAsync(string searchTerm)
         {
             UserService userService = new UserService(_httpContextAccessor);
-            List<LabelMop> labelMopList = new List<LabelMop>();
+            List<LabelMopDetailsDto> labelMopList = new List<LabelMopDetailsDto>();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -64,7 +64,7 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetails(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDetailsDto(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -149,25 +149,80 @@ namespace HealthCareApp.Data
                  * to avoid exception when adding a record or updating the same record more than once
                  */
                 _applicationDbContext.Entry(labelMop).State = EntityState.Detached;
+
+                await Task.CompletedTask;
+                return true;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
+
+                return false;
             }
 
-            return true;
+        }
+
+        /*
+         * async method to update label status
+         */
+        public async Task UpdateLabelMopStatusAsync(LabelMop labelMop)
+        {
+            try
+            {
+
+                LabelMop labelMopUpdated = new();
+
+                labelMopUpdated = GetLabelMopById(labelMop.Id);
+                labelMopUpdated.IsActive = labelMop.IsActive;
+                labelMopUpdated.UpdatedAt = DateTime.UtcNow;
+
+                _applicationDbContext.LabelMop.Update(labelMopUpdated);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(labelMopUpdated).State = EntityState.Detached;
+
+                await Task.CompletedTask;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
+            }
         }
 
         private static LabelMop SetLabelMopDetails(LabelMop labelMop, Department department)
         {
             LabelMop labelMopDetails = labelMop;
 
-            //if (labelMop.DepartmentId == department?.Id.ToString())
-            //{
-                
-            //}
-
             return labelMopDetails;
+        }
+
+        private static LabelMopDetailsDto SetLabelMopDetailsDto(LabelMop labelMop, Department department)
+        {
+            LabelMopDetailsDto labelMopDetailsDto = new();
+            labelMopDetailsDto.Id = labelMop.Id;
+            labelMopDetailsDto.Barcode = labelMop.Barcode;
+            labelMopDetailsDto.Quantity = labelMop.Quantity;
+            labelMopDetailsDto.TimeIn = labelMop.TimeIn;
+            labelMopDetailsDto.TimeOut = labelMop.TimeOut;
+            labelMopDetailsDto.DepartmentId = labelMop.DepartmentId;
+            labelMopDetailsDto.IsActive = labelMop.IsActive;
+            labelMopDetailsDto.CompanyName = labelMop.CompanyName;
+            labelMopDetailsDto.Location = labelMop.Location;
+
+            if (labelMop.DepartmentId == department?.Id)
+            {
+                labelMopDetailsDto.DepartmentName = department.Name;
+            }
+
+            return labelMopDetailsDto;
         }
     }
 }

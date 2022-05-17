@@ -7,7 +7,7 @@ namespace HealthCareApp.Pages.LabelPage
 	public partial class LabelMopDetails : ComponentBase 
 	{
         [Parameter]
-        public LabelMop? Info { get; set; }
+        public LabelMopDetailsDto? Info { get; set; }
 
         [Parameter]
         public bool Loading { get; set; }

@@ -101,7 +101,14 @@
                                          @onclick="() => ShowLabelMopDetails(labelMop)">
                                         <i class="bi bi-columns-gap md-icon"></i>
                                         <div class="ps-1">
-                                            @labelMop.Barcode
+                                            <div class="mb-0 fs-5">
+                                                @labelMop.Location
+                                            </div>
+                                            <div>
+                                                <div class="text-muted">
+                                                    @labelMop.Barcode
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>

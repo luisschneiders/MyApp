@@ -15,16 +15,16 @@ namespace HealthCareApp.Pages.LabelPage
         [Inject]
         private SpinnerService _spinnerService { get; set; }
 
-        private Virtualize<LabelMop> _virtualizeContainer { get; set; }
+        private Virtualize<LabelMopDetailsDto> _virtualizeContainer { get; set; }
 
         private bool _isSearchResults { get; set; }
         private bool _isLoading { get; set; }
 
         private string _searchTerm { get; set; }
 
-        private LabelMop? _labelMopDetails { get; set; }
-        private List<LabelMop> _results { get; set; }
-        private List<LabelMop> _labelMops { get; set; }
+        private LabelMopDetailsDto? _labelMopDetails { get; set; }
+        private List<LabelMopDetailsDto> _results { get; set; }
+        private List<LabelMopDetailsDto> _labelMopsDetailsDto { get; set; }
 
         /*
          * Add component LabelMopModalAdd & LabelMopModalUpdate reference
@@ -41,8 +41,8 @@ namespace HealthCareApp.Pages.LabelPage
             _labelMopModalAdd = new();
             _labelMopModalUpdate = new();
 
-            _labelMops = new List<LabelMop>();
-            _results = new List<LabelMop>();
+            _labelMopsDetailsDto = new List<LabelMopDetailsDto>();
+            _results = new List<LabelMopDetailsDto>();
 
             _labelMopDetails = null;
         }
@@ -68,7 +68,7 @@ namespace HealthCareApp.Pages.LabelPage
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _results = new List<LabelMop>();
+                _results = new List<LabelMopDetailsDto>();
                 _isSearchResults = false;
                 await Task.CompletedTask;
             }
@@ -91,7 +91,7 @@ namespace HealthCareApp.Pages.LabelPage
             await Task.CompletedTask;
         }
 
-        private async Task ShowLabelMopDetails(LabelMop labelMop)
+        private async Task ShowLabelMopDetails(LabelMopDetailsDto labelMop)
         {
             _labelMopDetails = labelMop;
 
@@ -102,10 +102,17 @@ namespace HealthCareApp.Pages.LabelPage
             await Task.CompletedTask;
         }
 
-        private async Task UpdateLabelMopStatusAsync(LabelMop labelMop)
+        private async Task UpdateLabelMopStatusAsync(LabelMopDetailsDto labelMopDetailsDto)
         {
-            labelMop.IsActive = !labelMop.IsActive;
-            await Task.FromResult(_labelMopService.UpdateLabelMopAsync(labelMop));
+            labelMopDetailsDto.IsActive = !labelMopDetailsDto.IsActive;
+
+            LabelMop labelMop = new()
+            {
+                Id = labelMopDetailsDto.Id,
+                IsActive = labelMopDetailsDto.IsActive
+            };
+
+            await Task.FromResult(_labelMopService.UpdateLabelMopStatusAsync(labelMop));
             await Task.CompletedTask;
         }
 
@@ -115,16 +122,16 @@ namespace HealthCareApp.Pages.LabelPage
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async ValueTask<ItemsProviderResult<LabelMop>> LoadLabelMops(ItemsProviderRequest request)
+        private async ValueTask<ItemsProviderResult<LabelMopDetailsDto>> LoadLabelMops(ItemsProviderRequest request)
         {
-            _labelMops = await _labelMopService.GetLabelMopsAsync();
+            _labelMopsDetailsDto = await _labelMopService.GetLabelMopsAsync();
 
             await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
 
-            return new ItemsProviderResult<LabelMop>(
-                _labelMops.Skip(request.StartIndex).Take(request.Count), _labelMops.Count
+            return new ItemsProviderResult<LabelMopDetailsDto>(
+                _labelMopsDetailsDto.Skip(request.StartIndex).Take(request.Count), _labelMopsDetailsDto.Count
             );
         }
     }
