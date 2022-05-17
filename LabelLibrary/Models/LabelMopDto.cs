@@ -1,7 +1,7 @@
 ﻿using System;
 namespace LabelLibrary.Models
 {
-	public class LabelMopDetailsDto
+	public class LabelMopDto
 	{
 
         public Guid Id { get; set; }

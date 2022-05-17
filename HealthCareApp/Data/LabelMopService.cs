@@ -16,10 +16,10 @@ namespace HealthCareApp.Data
 		}
 
         // async method to get list of LabelMops
-        public async Task<List<LabelMopDetailsDto>> GetLabelMopsAsync()
+        public async Task<List<LabelMopDto>> GetLabelMopsAsync()
         {
             UserService userService = new UserService(_httpContextAccessor);
-            List<LabelMopDetailsDto> labelMopList = new List<LabelMopDetailsDto>();
+            List<LabelMopDto> labelMopList = new List<LabelMopDto>();
 
             /* Raw query with joins, filters and ordering */
             var query =
@@ -34,16 +34,16 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetailsDto(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDto(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
         }
 
-        public async Task<List<LabelMopDetailsDto>> SearchAsync(string searchTerm)
+        public async Task<List<LabelMopDto>> SearchAsync(string searchTerm)
         {
             UserService userService = new UserService(_httpContextAccessor);
-            List<LabelMopDetailsDto> labelMopList = new List<LabelMopDetailsDto>();
+            List<LabelMopDto> labelMopList = new List<LabelMopDto>();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
@@ -64,7 +64,7 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetailsDto(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDto(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -204,25 +204,25 @@ namespace HealthCareApp.Data
             return labelMopDetails;
         }
 
-        private static LabelMopDetailsDto SetLabelMopDetailsDto(LabelMop labelMop, Department department)
+        private static LabelMopDto SetLabelMopDto(LabelMop labelMop, Department department)
         {
-            LabelMopDetailsDto labelMopDetailsDto = new();
-            labelMopDetailsDto.Id = labelMop.Id;
-            labelMopDetailsDto.Barcode = labelMop.Barcode;
-            labelMopDetailsDto.Quantity = labelMop.Quantity;
-            labelMopDetailsDto.TimeIn = labelMop.TimeIn;
-            labelMopDetailsDto.TimeOut = labelMop.TimeOut;
-            labelMopDetailsDto.DepartmentId = labelMop.DepartmentId;
-            labelMopDetailsDto.IsActive = labelMop.IsActive;
-            labelMopDetailsDto.CompanyName = labelMop.CompanyName;
-            labelMopDetailsDto.Location = labelMop.Location;
+            LabelMopDto labelMopDto = new();
+            labelMopDto.Id = labelMop.Id;
+            labelMopDto.Barcode = labelMop.Barcode;
+            labelMopDto.Quantity = labelMop.Quantity;
+            labelMopDto.TimeIn = labelMop.TimeIn;
+            labelMopDto.TimeOut = labelMop.TimeOut;
+            labelMopDto.DepartmentId = labelMop.DepartmentId;
+            labelMopDto.IsActive = labelMop.IsActive;
+            labelMopDto.CompanyName = labelMop.CompanyName;
+            labelMopDto.Location = labelMop.Location;
 
             if (labelMop.DepartmentId == department?.Id)
             {
-                labelMopDetailsDto.DepartmentName = department.Name;
+                labelMopDto.DepartmentName = department.Name;
             }
 
-            return labelMopDetailsDto;
+            return labelMopDto;
         }
     }
 }
