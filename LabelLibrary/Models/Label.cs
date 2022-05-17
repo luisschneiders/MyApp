@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using BaseLibrary.Models;
 
 namespace LabelLibrary.Models
@@ -13,7 +14,8 @@ namespace LabelLibrary.Models
          * InputSelect does not validate type GUID at this stage, so we will use type String
          */
         [Required]
-        public string? DepartmentId { get; set; }
+        [ForeignKey("Department")]
+        public Guid DepartmentId { get; set; }
 
         [Required]
         public string? Location { get; set; }

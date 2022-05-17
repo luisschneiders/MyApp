@@ -7,6 +7,7 @@ using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
 
 namespace HealthCareApp.Pages.LabelPage
 {
@@ -23,6 +24,8 @@ namespace HealthCareApp.Pages.LabelPage
 
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
+
+        private EditContext _editContext;
 
         private Modal _modalAdd { get; set; }
 
@@ -43,27 +46,30 @@ namespace HealthCareApp.Pages.LabelPage
             _departments = new List<Department>();
         }
 
-        //protected override async Task OnAfterRenderAsync(bool firstRender)
-        //{
-        //    _departments = await _departmentService.GetActiveDepartmentsAsync();
-        //    if (_departments is null)
-        //    {
-        //        _isDisabled = true;
-        //    }
-        //    await Task.CompletedTask;
-        //}
-
-        protected override async Task OnInitializedAsync()
+        protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             _departments = await _departmentService.GetActiveDepartmentsAsync();
 
-            if (_departments is null)
+            if (_labelMop.DepartmentId == Guid.Empty)
             {
                 _isDisabled = true;
             }
 
             await Task.CompletedTask;
+        }
 
+        private void OnValueChanged(ChangeEventArgs args)
+        {
+            var valueChanged = args?.Value?.ToString();
+
+            if (string.IsNullOrEmpty(valueChanged) || new Guid(valueChanged) == Guid.Empty) 
+            {
+                _isDisabled = true;
+            }
+            else
+            {
+                _isDisabled = false;
+            }
         }
 
         public async Task OpenModalAddAsync()

@@ -25,14 +25,16 @@ namespace HealthCareApp.Data
             var query =
                 (
                     from labelMop in _applicationDbContext.Set<LabelMop>()
+                    join department in _applicationDbContext.Set<Department>()
+                        on labelMop.DepartmentId equals department.Id
                     where labelMop.InsertedBy == userService.UserId()
                     orderby labelMop.CreatedAt descending
-                    select new { labelMop }
+                    select new { labelMop, department }
                 ).AsNoTracking();
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetails(i.labelMop));
+                labelMopList.Add(SetLabelMopDetails(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -51,16 +53,18 @@ namespace HealthCareApp.Data
             var query =
                 (
                     from labelMop in _applicationDbContext.Set<LabelMop>()
+                    join department in _applicationDbContext.Set<Department>()
+                        on labelMop.DepartmentId equals department.Id
                     where labelMop.InsertedBy == userService.UserId()
                     && (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
                     || EF.Functions.Like(labelMop.Location, $"%{searchTerm}%"))
                     orderby labelMop.CreatedAt descending
-                    select new { labelMop }
+                    select new { labelMop, department }
                 ).AsNoTracking();
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDetails(i.labelMop));
+                labelMopList.Add(SetLabelMopDetails(i.labelMop, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -79,11 +83,13 @@ namespace HealthCareApp.Data
                 var query =
                     (
                         from labelMop in _applicationDbContext.Set<LabelMop>()
+                        join department in _applicationDbContext.Set<Department>()
+                          on labelMop.DepartmentId equals department.Id
                         where labelMop.Id == guid
-                        select new { labelMop }
+                        select new { labelMop, department }
                     ).AsNoTracking().FirstOrDefault();
 
-                return SetLabelMopDetails(query.labelMop);
+                return SetLabelMopDetails(query.labelMop, query.department);
 
             }
             catch (Exception)
@@ -152,9 +158,14 @@ namespace HealthCareApp.Data
             return true;
         }
 
-        private static LabelMop SetLabelMopDetails(LabelMop labelMop)
+        private static LabelMop SetLabelMopDetails(LabelMop labelMop, Department department)
         {
             LabelMop labelMopDetails = labelMop;
+
+            //if (labelMop.DepartmentId == department?.Id.ToString())
+            //{
+                
+            //}
 
             return labelMopDetails;
         }

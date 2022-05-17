@@ -23,7 +23,7 @@ namespace HealthCareApp.Data.Migrations
                     CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
                     CompanyName = table.Column<string>(type: "TEXT", nullable: false),
-                    DepartmentId = table.Column<string>(type: "TEXT", nullable: false),
+                    DepartmentId = table.Column<Guid>(type: "TEXT", nullable: false),
                     Location = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

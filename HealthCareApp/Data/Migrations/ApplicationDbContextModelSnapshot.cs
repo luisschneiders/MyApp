@@ -131,8 +131,7 @@ namespace HealthCareApp.Data.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("DepartmentId")
-                        .IsRequired()
+                    b.Property<Guid>("DepartmentId")
                         .HasColumnType("TEXT");
 
                     b.Property<Guid>("InsertedBy")
