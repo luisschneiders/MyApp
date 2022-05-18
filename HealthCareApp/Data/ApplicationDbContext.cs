@@ -1,4 +1,5 @@
-﻿using ContactDetailsLibrary.Models;
+﻿using AreaLibrary.Models;
+using ContactDetailsLibrary.Models;
 using DepartmentLibrary.Models;
 using EmployeeLibrary.Models;
 using LabelLibrary.Models;
@@ -20,5 +21,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Location> Location => Set<Location>();
     public DbSet<Department> Department => Set<Department>();
     public DbSet<LabelMop> LabelMop => Set<LabelMop>();
+    public DbSet<Area> Area => Set<Area>();
 
 }
