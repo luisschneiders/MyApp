@@ -32,9 +32,11 @@
                         </label>
                         <div class="col-sm-8">
                             <InputSelect class="form-control"
-                                         id="Department"
-                                         @bind-Value="_labelMop.DepartmentId">
-                                @foreach (var department in _departments)
+                                         id="DepartmentId"
+                                         @bind-Value="_labelMop.DepartmentId"
+                                         @oninput="OnValueChanged">
+                                <option value="@Guid.Empty.ToString()">-- Select department --</option>
+                                @foreach (var (department, index) in _departments.Select((value, index) => (value, index)))
                                 {
                                     <option value="@department.Id">@department.Name</option>
                                 }
