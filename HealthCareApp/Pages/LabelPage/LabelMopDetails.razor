@@ -1,0 +1,93 @@
+﻿@if (Info is null)
+{
+    <div class="label-mop-details label-mop-details-empty h-100 d-flex flex-column justify-content-center align-items-center">
+        <p>
+            <h4 class="text-secondary">Label Details</h4>
+            <i class="bi bi-body-text label-mop-details-icon icon"></i>
+            <span class="text-dark">Select label from the list to see more details.</span>
+        </p>
+    </div>
+}
+else
+{
+    @if (Loading)
+    {
+        <div class="label-mop-details label-mop-details-info h-100 d-flex flex-column justify-content-center align-items-center">
+            <div class="spinner-border text-info" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+            <div>Loading...</div>
+        </div>
+    }
+    else
+    {
+        <div class="label-mop-details label-mop-details-info">
+            <fieldset class="px-2 pb-3">
+                <legend><i class="bi bi-info-square"></i>Label details</legend>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="form-label fw-bolder"
+                               for="CompanyName">
+                            Company Name
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="CompanyName"
+                               value="@Info.CompanyName"
+                               readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="form-label fw-bolder"
+                               for="Department">
+                            Department
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="Department"
+                               value="@Info.DepartmentName"
+                               readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <label class="form-label fw-bolder"
+                               for="Quantity">
+                            Mops Quantity
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="Quantity"
+                               value="@Info.Quantity"
+                               readonly />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label class="form-label fw-bolder"
+                               for="TimeOut">
+                            Pickup time
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="TimeOut"
+                               value="@Info.TimeOut.ToString("hh:mm tt")"
+                               readonly />
+                    </div>
+                    <div class="col-sm-6">
+                        <label class="form-label fw-bolder"
+                               for="TimeIn">
+                            Return time
+                        </label>
+                        <input type="text"
+                               class="form-control-plaintext hca-form-control-plaintext"
+                               id="TimeIn"
+                               value="@Info.TimeIn.ToString("hh:mm tt")"
+                               readonly />
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    }
+}

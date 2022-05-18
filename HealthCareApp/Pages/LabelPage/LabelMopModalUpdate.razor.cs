@@ -1,16 +1,16 @@
-﻿using EmployeeLibrary.Models;
-using HealthCareApp.Components.Modal;
+﻿using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
+using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.EmployeePage
+namespace HealthCareApp.Pages.LabelPage
 {
-    public partial class EmployeeModalUpdate : ComponentBase
-    {
+	public partial class LabelMopModalUpdate : ComponentBase
+	{
         [Inject]
-        private EmployeeService _employeeService { get; set; }
+        private LabelMopService _labelMopService { get; set; }
 
         [Inject]
         private ToastService _toastService { get; set; }
@@ -22,20 +22,20 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Guid _modalUpdateTarget { get; set; }
 
-        private Employee _employee { get; set; }
+        private LabelMop _labelMop { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
 
-        public EmployeeModalUpdate()
-        {
+        public LabelMopModalUpdate()
+		{
             _toastService = new();
             _modalUpdate = new();
-            _employee = new();
+            _labelMop = new();
         }
 
         public async Task OpenModalUpdateAsync(Guid id)
         {
-            _employee = _employeeService.GetEmployeeById(id);
+            _labelMop = _labelMopService.GetLabelMopById(id);
 
             _modalUpdateTarget = id;
             await Task.FromResult(_modalUpdate.Open(_modalUpdateTarget));
@@ -44,7 +44,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task CloseModalUpdateAsync()
         {
-            _employee = new Employee();
+            _labelMop = new LabelMop();
             await Task.FromResult(_modalUpdate.Close(_modalUpdateTarget));
             await Task.CompletedTask;
         }
@@ -53,10 +53,10 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             _displayValidationErrorMessages = false;
 
-            await _employeeService.UpdateEmployeeAsync(_employee);
+            await _labelMopService.UpdateLabelMopAsync(_labelMop);
             await OnSubmitSuccess.InvokeAsync();
 
-            _toastService.ShowToast("Employee updated!", Level.Success);
+            _toastService.ShowToast("Label updated!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 

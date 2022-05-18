@@ -34,6 +34,7 @@ builder.Services.AddScoped<ToastService>();
 builder.Services.AddScoped<SpinnerService>();
 builder.Services.AddScoped<LabelService>();
 builder.Services.AddScoped<DepartmentService>();
+builder.Services.AddScoped<LabelMopService>();
 
 builder.Services.AddSingleton<WeatherForecastService>();
 

@@ -1,5 +1,4 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace LabelLibrary.Models
 {
@@ -12,6 +11,7 @@ namespace LabelLibrary.Models
         public string? Barcode { get; set; }
 
         [Required]
+        [Range(1, 30, ErrorMessage = "Quantity must be between 1 and 30")]
         public int Quantity { get; set; }
 
         [Required]

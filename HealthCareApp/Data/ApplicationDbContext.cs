@@ -1,6 +1,7 @@
 ﻿using ContactDetailsLibrary.Models;
 using DepartmentLibrary.Models;
 using EmployeeLibrary.Models;
+using LabelLibrary.Models;
 using LocationLibrary.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -18,5 +19,6 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<ContactDetails> ContactDetails => Set<ContactDetails>();
     public DbSet<Location> Location => Set<Location>();
     public DbSet<Department> Department => Set<Department>();
+    public DbSet<LabelMop> LabelMop => Set<LabelMop>();
 
 }
