@@ -11,6 +11,7 @@
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
     <None Remove="db\" />
     <None Remove="CSharpVitamins.ShortGuid" />
+    <None Remove="Pages\AreaPage\" />
   </ItemGroup>
   <ItemGroup>
     <None Update="db\app.db">
@@ -45,5 +46,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="db\" />
+    <Folder Include="Pages\AreaPage\" />
   </ItemGroup>
 </Project>

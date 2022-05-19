@@ -8,6 +8,7 @@ namespace HealthCareApp.Settings.Theme
         Department,
         Patient,
         Supplier,
-        Label
+        Label,
+        Area
     }
 }
