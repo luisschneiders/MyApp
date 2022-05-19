@@ -15,7 +15,9 @@ namespace HealthCareApp.Data
 			_httpContextAccessor = httpContextAccessor;
 		}
 
-        // async method to get list of LabelMops
+        /*
+         * async method to get list of LabelMops
+         */
         public async Task<List<LabelMopDto>> GetLabelMopsAsync()
         {
             UserService userService = new UserService(_httpContextAccessor);
@@ -40,6 +42,9 @@ namespace HealthCareApp.Data
             return await Task.FromResult(labelMopList);
         }
 
+        /*
+         * async method to search Label by barcode or area
+         */
         public async Task<List<LabelMopDto>> SearchAsync(string searchTerm)
         {
             UserService userService = new UserService(_httpContextAccessor);
@@ -99,7 +104,7 @@ namespace HealthCareApp.Data
         }
 
         /*
-         * async method to add new label
+         * async method to add new Label
          */
         public async Task<LabelMop> AddLabelMopAsync(LabelMop labelMop)
         {
@@ -132,7 +137,7 @@ namespace HealthCareApp.Data
         }
 
         /*
-         * async method to update label
+         * async method to update Label
          */
         public async Task<bool> UpdateLabelMopAsync(LabelMop labelMop)
         {
