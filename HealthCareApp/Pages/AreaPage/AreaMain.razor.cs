@@ -81,7 +81,7 @@ namespace HealthCareApp.Pages.AreaPage
 
         private async Task OpenModalAddAsync()
         {
-            //await Task.FromResult(_areaModalAdd.OpenModalAddAsync());
+            await Task.FromResult(_areaModalAdd.OpenModalAddAsync());
             await Task.CompletedTask;
         }
 

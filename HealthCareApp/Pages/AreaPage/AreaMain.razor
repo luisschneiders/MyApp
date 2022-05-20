@@ -51,7 +51,14 @@
                                              @onclick="() => ShowAreaDetails(area)">
                                             <i class="bi bi-columns-gap md-icon"></i>
                                             <div class="ps-1">
-                                                @area.Name.Truncate((int)Truncate.AreaName)
+                                                <div class="mb-0 fs-5">
+                                                    @area.Name.Truncate((int)Truncate.AreaName)
+                                                </div>
+                                                <div>
+                                                    <div class="text-muted">
+                                                        @area.DepartmentName
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
@@ -132,7 +139,8 @@
                     <div class="d-flex flex-row justify-content-end">
                         <button type="button"
                                 class="btn btn-info btn-rounded text-white"
-                                @onclick="() => OpenModalUpdateAsync(_areaDetails.Id)">
+                                @onclick="() => OpenModalUpdateAsync(_areaDetails.Id)"
+                                disabled>
                             Update Details
                         </button>
                     </div>
@@ -143,5 +151,5 @@
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
-@*<AreaModalAdd @ref="_areaModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-<AreaModalUpdate @ref="_areaModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />*@
+<AreaModalAdd @ref="_areaModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
+@*<AreaModalUpdate @ref="_areaModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />*@

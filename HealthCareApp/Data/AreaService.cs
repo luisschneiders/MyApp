@@ -106,7 +106,7 @@ namespace HealthCareApp.Data
         /*
          * async method to add new Area
          */
-        public async Task<Area> AddLabelMopAsync(Area area)
+        public async Task<Area> AddAreaAsync(Area area)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
