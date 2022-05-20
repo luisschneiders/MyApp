@@ -1,20 +1,18 @@
-﻿using System;
+﻿using AreaLibrary.Models;
 using CSharpVitamins;
 using DepartmentLibrary.Models;
 using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
-using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
 
-namespace HealthCareApp.Pages.LabelPage
+namespace HealthCareApp.Pages.AreaPage
 {
-	public partial class LabelMopModalAdd : ComponentBase
+	public partial class AreaModalAdd : ComponentBase
 	{
         [Inject]
-        private LabelMopService _labelMopService { get; set; }
+        private AreaService _areaService { get; set; }
 
         [Inject]
         private DepartmentService _departmentService { get; set; }
@@ -29,26 +27,26 @@ namespace HealthCareApp.Pages.LabelPage
 
         private Guid _modalAddTarget { get; set; }
 
-        private LabelMop _labelMop { get; set; }
+        private Area _area { get; set; }
 
         private List<Department> _departments { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
         private bool _isDisabled { get; set; }
 
-        public LabelMopModalAdd()
+        public AreaModalAdd()
 		{
             _toastService = new();
             _modalAdd = new();
-            _labelMop = new();
+            _area = new();
             _departments = new List<Department>();
-        }
+		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             _departments = await _departmentService.GetActiveDepartmentsAsync();
 
-            if (_labelMop.DepartmentId == Guid.Empty)
+            if (_area.DepartmentId == Guid.Empty)
             {
                 _isDisabled = true;
             }
@@ -60,7 +58,7 @@ namespace HealthCareApp.Pages.LabelPage
         {
             var valueChanged = args?.Value?.ToString();
 
-            if (string.IsNullOrEmpty(valueChanged) || new Guid(valueChanged) == Guid.Empty) 
+            if (string.IsNullOrEmpty(valueChanged) || new Guid(valueChanged) == Guid.Empty)
             {
                 _isDisabled = true;
             }
@@ -81,10 +79,10 @@ namespace HealthCareApp.Pages.LabelPage
         {
             _displayValidationErrorMessages = false;
 
-            await _labelMopService.AddLabelMopAsync(_labelMop);
+            await _areaService.AddAreaAsync(_area);
             await OnSubmitSuccess.InvokeAsync();
 
-            _toastService.ShowToast("Label added!", Level.Success);
+            _toastService.ShowToast("Area added!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
 
@@ -100,15 +98,8 @@ namespace HealthCareApp.Pages.LabelPage
 
         private async Task CloseModalAddAsync()
         {
-            _labelMop = new LabelMop();
+            _area = new Area();
             await Task.FromResult(_modalAdd.Close(_modalAddTarget));
-            await Task.CompletedTask;
-        }
-
-        private async Task GenerateBarcodeAsync()
-        {
-            ShortGuid sguid = ShortGuid.NewGuid();
-            await Task.FromResult(_labelMop.Barcode = sguid);
             await Task.CompletedTask;
         }
     }

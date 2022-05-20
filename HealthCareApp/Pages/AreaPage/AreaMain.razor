@@ -1,4 +1,4 @@
-﻿@page "/departments"
+﻿@page "/areas"
 @using HealthCareApp.Settings.Theme
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Toast
@@ -8,15 +8,12 @@
 
 <PageWrapper>
     <PageHeader>
-        <PageHeaderTitle Title="Departments"
-                   Theme="Theme.Department" />
+        <PageHeaderTitle Title="Areas"
+                         Theme="Theme.Area" />
         <PageMenu>
-            <NavLink class="btn btn-link text-info" href="/areas">
-                Add new areas <sup><i class="bi bi-info-square"></i></sup>
-            </NavLink>
             <button type="button"
                     class="btn btn-info btn-rounded btn-icon text-white"
-                    title="Add new department"
+                    title="Add new area"
                     @onclick="() => OpenModalAddAsync()">
                 <i class="bi bi-plus-lg"></i>
             </button>
@@ -30,10 +27,10 @@
                         <div class="col">
                             <input type="text"
                                    class="form-control"
-                                   placeholder="Start typing to search departments..."
+                                   placeholder="Start typing to search areas..."
                                    aria-label="search"
                                    @bind-value="_searchTerm"
-                                   @oninput="SearchDepartmentAsync">
+                                   @oninput="SearchAreaAsync">
                         </div>
                     </div>
                 </div>
@@ -43,30 +40,37 @@
                 <div class="list-group gap-2">
                     @if (!_isSearchResults)
                     {
-                        <Virtualize Context="department"
-                                    ItemsProvider="@LoadDepartments"
+                        <Virtualize Context="area"
+                                    ItemsProvider="@LoadAreas"
                                     @ref="_virtualizeContainer">
                             <ItemContent>
                                 <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
                                     <div class="d-flex w-100 justify-content-between align-items-center">
-                                        <div class="d-flex align-items-center @(department.IsActive ? "" : "text-black-50")"
+                                        <div class="d-flex align-items-center @(area.IsActive ? "" : "text-black-50")"
                                              role="button"
-                                             @onclick="() => ShowDepartmentDetails(department)">
+                                             @onclick="() => ShowAreaDetails(area)">
                                             <i class="bi bi-columns-gap md-icon"></i>
                                             <div class="ps-1">
-                                                @department.Name.Truncate((int)Truncate.DepartmentName)
+                                                <div class="mb-0 fs-5">
+                                                    @area.Name.Truncate((int)Truncate.AreaName)
+                                                </div>
+                                                <div>
+                                                    <div class="text-muted">
+                                                        @area.DepartmentName
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                         <div>
                                             <div class="form-check form-switch">
-                                                @if (department.IsActive)
+                                                @if (area.IsActive)
                                                 {
                                                     <input class="form-check-input"
                                                            type="checkbox"
                                                            role="switch"
                                                            id="IsActive"
                                                            checked
-                                                           @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                           @onclick="() => UpdateAreaStatusAsync(area)" />
                                                 }
                                                 else
                                                 {
@@ -74,7 +78,7 @@
                                                            type="checkbox"
                                                            role="switch"
                                                            id="IsActive"
-                                                           @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                           @onclick="() => UpdateAreaStatusAsync(area)" />
                                                 }
                                             </div>
                                         </div>
@@ -89,28 +93,28 @@
                     @if (_isSearchResults)
                     {
                         <div></div>
-                        @foreach (var department in _results)
+                        @foreach (var area in _results)
                         {
                             <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3">
                                 <div class="d-flex w-100 justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center @(department.IsActive ? "" : "text-black-50")"
+                                    <div class="d-flex align-items-center @(area.IsActive ? "" : "text-black-50")"
                                          role="button"
-                                         @onclick="() => ShowDepartmentDetails(department)">
+                                         @onclick="() => ShowAreaDetails(area)">
                                         <i class="bi bi-columns-gap md-icon"></i>
                                         <div class="ps-1">
-                                            @department.Name.Truncate((int)Truncate.DepartmentName)
+                                            @area.Name.Truncate((int)Truncate.AreaName)
                                         </div>
                                     </div>
                                     <div>
                                         <div class="form-check form-switch">
-                                            @if (department.IsActive)
+                                            @if (area.IsActive)
                                             {
                                                 <input class="form-check-input"
                                                        type="checkbox"
                                                        role="switch"
                                                        id="IsActive"
                                                        checked
-                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                       @onclick="() => UpdateAreaStatusAsync(area)" />
                                             }
                                             else
                                             {
@@ -118,7 +122,7 @@
                                                        type="checkbox"
                                                        role="switch"
                                                        id="IsActive"
-                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                       @onclick="() => UpdateAreaStatusAsync(area)" />
                                             }
                                         </div>
                                     </div>
@@ -129,13 +133,14 @@
                 </div>
             </div>
             <div class="flex-container-main ps-2">
-                <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" />
-                @if (!_isLoading && _departmentDetails is not null)
+                <AreaDetails Info="_areaDetails" Loading="_isLoading" />
+                @if (!_isLoading && _areaDetails is not null)
                 {
                     <div class="d-flex flex-row justify-content-end">
                         <button type="button"
                                 class="btn btn-info btn-rounded text-white"
-                                @onclick="() => OpenModalUpdateAsync(_departmentDetails.Id)">
+                                @onclick="() => OpenModalUpdateAsync(_areaDetails.Id)"
+                                disabled>
                             Update Details
                         </button>
                     </div>
@@ -146,5 +151,5 @@
     </PageBody>
     <PageFooter></PageFooter>
 </PageWrapper>
-<DepartmentModalAdd @ref="_departmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-<DepartmentModalUpdate @ref="_departmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
+<AreaModalAdd @ref="_areaModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
+@*<AreaModalUpdate @ref="_areaModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />*@

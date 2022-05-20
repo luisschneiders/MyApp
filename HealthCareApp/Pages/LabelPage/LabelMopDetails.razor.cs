@@ -1,5 +1,4 @@
-﻿using System;
-using LabelLibrary.Models;
+﻿using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.LabelPage
@@ -18,4 +17,3 @@ namespace HealthCareApp.Pages.LabelPage
         }
     }
 }
-

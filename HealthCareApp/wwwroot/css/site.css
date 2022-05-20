@@ -229,6 +229,9 @@ a:hover {
 .hca-Label-icon, .hca-Label-title {
     color: #997588;
 }
+.hca-Area-icon, .hca-Area-title {
+    color: #997588;
+}
 .hca-form-control-plaintext {
     padding: 0 0 1.5rem 0;
 }
