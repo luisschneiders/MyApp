@@ -25,8 +25,6 @@ namespace HealthCareApp.Pages.LabelPage
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private EditContext _editContext;
-
         private Modal _modalAdd { get; set; }
 
         private Guid _modalAddTarget { get; set; }
