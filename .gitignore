@@ -320,7 +320,7 @@ ServiceFabricBackup/
 *.ndf
 
 #SQLite
-db/
+# db/
 
 # Business Intelligence projects
 *.rdl.data
