@@ -80,8 +80,7 @@ namespace HealthCareApp.Pages.Playground
             _displayValidationMessages = false;
 
             _labelMop.CompanyName = "Company name";
-            _labelMop.DepartmentId = Guid.NewGuid();
-            _labelMop.Location = "Location";
+            _labelMop.AreaId = Guid.NewGuid();
             _labelMop.TimeOut = timeOut;
             _labelMop.TimeIn = timeIn;
             _labelMop.Quantity = 20;

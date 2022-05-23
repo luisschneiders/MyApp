@@ -91,9 +91,9 @@ namespace HealthCareApp.Pages.LabelPage
             await Task.CompletedTask;
         }
 
-        private async Task ShowLabelMopDetails(LabelMopDto labelMop)
+        private async Task ShowLabelMopDetails(LabelMopDto labelMopDto)
         {
-            _labelMopDetails = labelMop;
+            _labelMopDetails = labelMopDto;
 
             _isLoading = true;
             await Task.Delay((int)Delay.DataLoading);

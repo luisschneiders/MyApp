@@ -27,33 +27,22 @@
                     </div>
                     @*<div class="row mb-3">
                         <label class="col-sm-4 col-form-label"
-                               for="Department">
-                            Department
+                               for="AreaId">
+                            Area
                         </label>
                         <div class="col-sm-8">
                             <InputSelect class="form-control"
-                                         id="DepartmentId"
-                                         @bind-Value="_labelMop.DepartmentId"
+                                         id="AreaId"
+                                         @bind-Value="_labelMop.AreaId"
                                          @oninput="OnValueChanged">
-                                <option value="@Guid.Empty.ToString()">-- Select department --</option>
-                                @foreach (var (department, index) in _departments.Select((value, index) => (value, index)))
+                                <option value="@Guid.Empty.ToString()">-- Select area --</option>
+                                @foreach (var (area, index) in _areas.Select((value, index) => (value, index)))
                                 {
-                                    <option value="@department.Id">@department.Name</option>
+                                    <option value="@area.Id">@area.Name</option>
                                 }
                             </InputSelect>
                         </div>
                     </div>*@
-                    <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label"
-                               for="Location">
-                            Location
-                        </label>
-                        <div class="col-sm-8">
-                            <InputText class="form-control"
-                                       id="Location"
-                                       @bind-Value="_labelMop.Location" />
-                        </div>
-                    </div>
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label"
                                for="Quantity">

@@ -1,4 +1,5 @@
 ﻿using System;
+using AreaLibrary.Models;
 using CSharpVitamins;
 using DepartmentLibrary.Models;
 using HealthCareApp.Components.Modal;
@@ -17,7 +18,7 @@ namespace HealthCareApp.Pages.LabelPage
         private LabelMopService _labelMopService { get; set; }
 
         [Inject]
-        private DepartmentService _departmentService { get; set; }
+        private AreaService _areaService { get; set; }
 
         [Inject]
         private ToastService _toastService { get; set; }
@@ -31,7 +32,7 @@ namespace HealthCareApp.Pages.LabelPage
 
         private LabelMop _labelMop { get; set; }
 
-        private List<Department> _departments { get; set; }
+        private List<AreaDto> _areas { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
         private bool _isDisabled { get; set; }
@@ -41,14 +42,14 @@ namespace HealthCareApp.Pages.LabelPage
             _toastService = new();
             _modalAdd = new();
             _labelMop = new();
-            _departments = new List<Department>();
+            _areas = new List<AreaDto>();
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-            _departments = await _departmentService.GetActiveDepartmentsAsync();
+            _areas = await _areaService.GetActiveAreasAsync();
 
-            if (_labelMop.DepartmentId == Guid.Empty)
+            if (_labelMop.AreaId == Guid.Empty)
             {
                 _isDisabled = true;
             }

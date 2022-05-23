@@ -1,4 +1,5 @@
-﻿using DepartmentLibrary.Models;
+﻿using AreaLibrary.Models;
+using DepartmentLibrary.Models;
 using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -27,16 +28,18 @@ namespace HealthCareApp.Data
             var query =
                 (
                     from labelMop in _applicationDbContext.Set<LabelMop>()
+                    join area in _applicationDbContext.Set<Area>()
+                        on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
-                        on labelMop.DepartmentId equals department.Id
+                        on area.DepartmentId equals department.Id
                     where labelMop.InsertedBy == userService.UserId()
                     orderby labelMop.CreatedAt descending
-                    select new { labelMop, department }
+                    select new { labelMop, area, department }
                 ).AsNoTracking();
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDto(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDto(i.labelMop, i.area, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -58,18 +61,20 @@ namespace HealthCareApp.Data
             var query =
                 (
                     from labelMop in _applicationDbContext.Set<LabelMop>()
+                    join area in _applicationDbContext.Set<Area>()
+                        on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
-                        on labelMop.DepartmentId equals department.Id
+                        on area.DepartmentId equals department.Id
                     where labelMop.InsertedBy == userService.UserId()
                     && (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
-                    || EF.Functions.Like(labelMop.Location, $"%{searchTerm}%"))
+                    || EF.Functions.Like(area.Name, $"%{searchTerm}%"))
                     orderby labelMop.CreatedAt descending
-                    select new { labelMop, department }
+                    select new { labelMop, area, department }
                 ).AsNoTracking();
 
             foreach (var i in query)
             {
-                labelMopList.Add(SetLabelMopDto(i.labelMop, i.department));
+                labelMopList.Add(SetLabelMopDto(i.labelMop, i.area, i.department));
             }
 
             return await Task.FromResult(labelMopList);
@@ -88,13 +93,13 @@ namespace HealthCareApp.Data
                 var query =
                     (
                         from labelMop in _applicationDbContext.Set<LabelMop>()
-                        join department in _applicationDbContext.Set<Department>()
-                          on labelMop.DepartmentId equals department.Id
+                        join area in _applicationDbContext.Set<Area>()
+                          on labelMop.AreaId equals area.Id
                         where labelMop.Id == guid
-                        select new { labelMop, department }
+                        select new { labelMop, area }
                     ).AsNoTracking().FirstOrDefault();
 
-                return SetLabelMopDetails(query.labelMop, query.department);
+                return SetLabelMopDetails(query.labelMop, query.area);
 
             }
             catch (Exception)
@@ -202,14 +207,14 @@ namespace HealthCareApp.Data
             }
         }
 
-        private static LabelMop SetLabelMopDetails(LabelMop labelMop, Department department)
+        private static LabelMop SetLabelMopDetails(LabelMop labelMop, Area area)
         {
             LabelMop labelMopDetails = labelMop;
 
             return labelMopDetails;
         }
 
-        private static LabelMopDto SetLabelMopDto(LabelMop labelMop, Department department)
+        private static LabelMopDto SetLabelMopDto(LabelMop labelMop, Area area, Department department)
         {
             LabelMopDto labelMopDto = new();
             labelMopDto.Id = labelMop.Id;
@@ -217,12 +222,16 @@ namespace HealthCareApp.Data
             labelMopDto.Quantity = labelMop.Quantity;
             labelMopDto.TimeIn = labelMop.TimeIn;
             labelMopDto.TimeOut = labelMop.TimeOut;
-            labelMopDto.DepartmentId = labelMop.DepartmentId;
+            labelMopDto.DepartmentId = labelMop.AreaId;
             labelMopDto.IsActive = labelMop.IsActive;
             labelMopDto.CompanyName = labelMop.CompanyName;
-            labelMopDto.Location = labelMop.Location;
 
-            if (labelMop.DepartmentId == department?.Id)
+            if (labelMop.AreaId == area?.Id)
+            {
+                labelMopDto.AreaName = area.Name;
+            }
+
+            if (department?.Id == area?.DepartmentId)
             {
                 labelMopDto.DepartmentName = department.Name;
             }

@@ -37,7 +37,33 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                areaList.Add(SetAreaDto(i.area, i.department));
+                areaList.Add(SetAreaDetailsDto(i.area, i.department));
+            }
+
+            return await Task.FromResult(areaList);
+        }
+
+        // async method to get list of Areas active
+        public async Task<List<AreaDto>> GetActiveAreasAsync()
+        {
+            UserService userService = new UserService(_httpContextAccessor);
+            List<AreaDto> areaList = new List<AreaDto>();
+
+            /* Raw query with joins, filters and ordering */
+            var query =
+                (
+                    from area in _applicationDbContext.Set<Area>()
+                    join department in _applicationDbContext.Set<Department>()
+                        on area.DepartmentId equals department.Id
+                    where area.InsertedBy == userService.UserId()
+                    && area.IsActive == true
+                    orderby area.Name ascending
+                    select new { area, department }
+                ).AsNoTracking();
+
+            foreach (var i in query)
+            {
+                areaList.Add(SetAreaDetailsDto(i.area, i.department));
             }
 
             return await Task.FromResult(areaList);
@@ -69,7 +95,7 @@ namespace HealthCareApp.Data
 
             foreach (var i in query)
             {
-                areaList.Add(SetAreaDto(i.area, i.department));
+                areaList.Add(SetAreaDetailsDto(i.area, i.department));
             }
 
             return await Task.FromResult(areaList);
@@ -208,7 +234,7 @@ namespace HealthCareApp.Data
             return areaDetails;
         }
 
-        private static AreaDto SetAreaDto(Area area, Department department)
+        private static AreaDto SetAreaDetailsDto(Area area, Department department)
         {
             AreaDto areaDto = new();
             areaDto.Id = area.Id;

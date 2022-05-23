@@ -16,12 +16,13 @@ namespace LabelLibrary.Models
 
         public Guid DepartmentId { get; set; }
 
+        public string? AreaName { get; set; }
+
         public string? DepartmentName { get; set; }
 
         public bool IsActive { get; set; }
 
         public string? CompanyName { get; set; }
 
-        public string? Location { get; set; }
     }
 }

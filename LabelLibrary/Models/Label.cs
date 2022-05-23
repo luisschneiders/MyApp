@@ -10,11 +10,7 @@ namespace LabelLibrary.Models
         public string? CompanyName { get; set; }
 
         [Required]
-        [ForeignKey("Department")]
-        public Guid DepartmentId { get; set; }
-
-        [Required]
-        public string? Location { get; set; }
-
+        [ForeignKey("Area")]
+        public Guid AreaId { get; set; }
     }
 }
