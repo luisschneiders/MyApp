@@ -12,7 +12,7 @@ using HealthCareApp.Services;
 using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
-
+var config = builder.Configuration;
 // Load env variables
 Env.Load();
 
@@ -24,6 +24,12 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages();
+builder.Services.AddAuthentication()
+    .AddMicrosoftAccount(microsoftOptions =>
+    {
+        microsoftOptions.ClientId = config["Authentication:Microsoft:ClientId"];
+        microsoftOptions.ClientSecret = config["Authentication:Microsoft:ClientSecret"];
+    });
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
