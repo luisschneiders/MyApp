@@ -7,7 +7,6 @@
     <UserSecretsId>aspnet-HealthCareApp-AF68910A-C987-43A5-9A6F-2B45E18FE85B</UserSecretsId>
   </PropertyGroup>
 
-  <PropertyGroup Condition=" '$(RunConfiguration)' == 'HealthCareApp-Production' " />
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
     <None Remove="CSharpVitamins.ShortGuid" />
