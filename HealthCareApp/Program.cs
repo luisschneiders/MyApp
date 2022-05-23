@@ -13,6 +13,7 @@ using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
+
 // Load env variables
 Env.Load();
 
@@ -27,8 +28,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddAuthentication()
     .AddMicrosoftAccount(microsoftOptions =>
     {
-        microsoftOptions.ClientId = config["Authentication:Microsoft:ClientId"];
-        microsoftOptions.ClientSecret = config["Authentication:Microsoft:ClientSecret"];
+        microsoftOptions.ClientId = config["Authentication_Microsoft_ClientId"];
+        microsoftOptions.ClientSecret = config["Authentication_Microsoft_ClientSecret"];
     });
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
