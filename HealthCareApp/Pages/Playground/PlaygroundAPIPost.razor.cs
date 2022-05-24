@@ -22,7 +22,7 @@ namespace HealthCareApp.Pages.Playground
         private ToastService _toastService { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
-        private LabelMop _labelMop { get; set; }
+        private LabelMopDto _labelMop { get; set; }
 
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
@@ -83,7 +83,8 @@ namespace HealthCareApp.Pages.Playground
             _displayValidationMessages = false;
 
             _labelMop.CompanyName = "Company name";
-            _labelMop.AreaId = Guid.NewGuid();
+            _labelMop.AreaName = "Area/Location/Sector";
+            _labelMop.DepartmentName = "Department";
             _labelMop.TimeOut = timeOut;
             _labelMop.TimeIn = timeIn;
             _labelMop.Quantity = 20;

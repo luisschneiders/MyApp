@@ -23,7 +23,7 @@ namespace HealthCareApp.Services
             _config = configuration;
         }
 
-        public async Task<HttpResponseMessage> CreateLabelMopAsync(LabelMop labelMop)
+        public async Task<HttpResponseMessage> CreateLabelMopAsync(LabelMopDto labelMop)
         {
 
             var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
@@ -42,7 +42,7 @@ namespace HealthCareApp.Services
             };
         }
 
-        public async Task<string> DisplayLabelMopImageAsync(LabelMop labelMop)
+        public async Task<string> DisplayLabelMopImageAsync(LabelMopDto labelMop)
         {
 
             var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
