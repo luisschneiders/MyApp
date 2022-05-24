@@ -9,6 +9,9 @@ namespace HealthCareApp.Pages.Playground
 {
     public partial class PlaygroundAPIPost : ComponentBase
     {
+        // Retrieve API keys from user-secrets
+        private readonly IConfiguration _config;
+
         [Inject]
         private LabelService _labelService { get; set; }
 
@@ -34,7 +37,7 @@ namespace HealthCareApp.Pages.Playground
 
         public PlaygroundAPIPost()
         {
-            _labelService = new();
+            _labelService = new(_config);
             _spinnerService = new();
             _toastService = new();
             _componentMarkup = new();

@@ -9,13 +9,9 @@ using HealthCareApp.Data;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Services;
-using DotNetEnv;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
-
-// Load env variables
-Env.Load();
 
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");

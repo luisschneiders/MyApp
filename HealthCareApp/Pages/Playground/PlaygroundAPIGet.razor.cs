@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Net.Http;
-using System.Threading.Tasks;
-using HealthCareApp.Components.Spinner;
+﻿using HealthCareApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.Playground
@@ -11,6 +7,10 @@ namespace HealthCareApp.Pages.Playground
     {
         [Inject]
         private SpinnerService _spinnerService { get; set; }
+
+        // Retrieve API keys from user-secrets
+        [Inject]
+        private IConfiguration _config { get; set; }
 
         private ComponentMarkup _componentMarkup { get; set; }
         private List<ComponentMarkup> _componentMarkupList { get; set; }
@@ -36,6 +36,7 @@ namespace HealthCareApp.Pages.Playground
             _route = "api/v1/Languages";
             _languages = string.Empty;
             _selectedScope = 1;
+
         }
 
         protected override void OnInitialized()
@@ -71,7 +72,7 @@ namespace HealthCareApp.Pages.Playground
         {
             await Task.Run(() => _spinnerService.ShowSpinner());
 
-            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
+            var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
 
             var URI = $"{_endpoint}{_route}";
 
@@ -120,7 +121,7 @@ namespace HealthCareApp.Pages.Playground
         {
             await Task.Run(() => _spinnerService.ShowSpinner());
 
-            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
+            var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
 
             var URI = $"{_endpoint}{_route}/{_selectedScope}";
 

@@ -6,23 +6,27 @@ namespace HealthCareApp.Services
 {
     public class LabelService
     {
+        // Retrieve API keys from user-secrets
+        private readonly IConfiguration _config;
 
         private string _endpoint { get; set; }
         private string _route { get; set; }
         private string _uri { get; set; }
         private string _filePath { get; set; }
 
-        public LabelService()
+        public LabelService(IConfiguration configuration)
         {
             _endpoint = "https://localhost:7086/";
             _route = "api/v1/Labels";
             _uri = $"{_endpoint}{_route}";
             _filePath = "./wwwroot/images/";
+            _config = configuration;
         }
 
         public async Task<HttpResponseMessage> CreateLabelMopAsync(LabelMop labelMop)
         {
-            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
+
+            var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
 
             using (var httpClient = new HttpClient())
             {
@@ -40,7 +44,8 @@ namespace HealthCareApp.Services
 
         public async Task<string> DisplayLabelMopImageAsync(LabelMop labelMop)
         {
-            var healthCareApiKey = Environment.GetEnvironmentVariable("HEALTH_CARE_API_KEY");
+
+            var healthCareApiKey = _config["HEALTH_CARE_API_KEY"];
 
             using (var httpClient = new HttpClient())
             {
