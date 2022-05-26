@@ -6,30 +6,11 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HealthCareApp.Migrations
 {
-    public partial class InitialMigrationMysql : Migration
+    public partial class InitialMigrationsMysql : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AlterDatabase()
-                .Annotation("MySql:CharSet", "utf8mb4");
-
-            migrationBuilder.CreateTable(
-                name: "Area",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Name = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    DepartmentId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
-                    InsertedBy = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Area", x => x.Id);
-                })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
@@ -87,7 +68,26 @@ namespace HealthCareApp.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "ContactDetails",
+                name: "HcaArea",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Name = table.Column<string>(type: "longtext", nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    DepartmentId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    InsertedBy = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_HcaArea", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
+                name: "HcaContactDetails",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -100,12 +100,12 @@ namespace HealthCareApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_ContactDetails", x => x.Id);
+                    table.PrimaryKey("PK_HcaContactDetails", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Department",
+                name: "HcaDepartment",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -118,12 +118,12 @@ namespace HealthCareApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Department", x => x.Id);
+                    table.PrimaryKey("PK_HcaDepartment", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "LabelMop",
+                name: "HcaLabelMop",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -142,12 +142,12 @@ namespace HealthCareApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LabelMop", x => x.Id);
+                    table.PrimaryKey("PK_HcaLabelMop", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Location",
+                name: "HcaLocation",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -164,7 +164,7 @@ namespace HealthCareApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Location", x => x.Id);
+                    table.PrimaryKey("PK_HcaLocation", x => x.Id);
                 })
                 .Annotation("MySql:CharSet", "utf8mb4");
 
@@ -296,7 +296,7 @@ namespace HealthCareApp.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
-                name: "Employees",
+                name: "HcaEmployee",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
@@ -317,17 +317,17 @@ namespace HealthCareApp.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Employees", x => x.Id);
+                    table.PrimaryKey("PK_HcaEmployee", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Employees_ContactDetails_ContactDetailsId",
+                        name: "FK_HcaEmployee_HcaContactDetails_ContactDetailsId",
                         column: x => x.ContactDetailsId,
-                        principalTable: "ContactDetails",
+                        principalTable: "HcaContactDetails",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Employees_Location_LocationId",
+                        name: "FK_HcaEmployee_HcaLocation_LocationId",
                         column: x => x.LocationId,
-                        principalTable: "Location",
+                        principalTable: "HcaLocation",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 })
@@ -371,21 +371,18 @@ namespace HealthCareApp.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_ContactDetailsId",
-                table: "Employees",
+                name: "IX_HcaEmployee_ContactDetailsId",
+                table: "HcaEmployee",
                 column: "ContactDetailsId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Employees_LocationId",
-                table: "Employees",
+                name: "IX_HcaEmployee_LocationId",
+                table: "HcaEmployee",
                 column: "LocationId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Area");
-
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");
 
@@ -402,13 +399,16 @@ namespace HealthCareApp.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Department");
+                name: "HcaArea");
 
             migrationBuilder.DropTable(
-                name: "Employees");
+                name: "HcaDepartment");
 
             migrationBuilder.DropTable(
-                name: "LabelMop");
+                name: "HcaEmployee");
+
+            migrationBuilder.DropTable(
+                name: "HcaLabelMop");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -417,10 +417,10 @@ namespace HealthCareApp.Migrations
                 name: "AspNetUsers");
 
             migrationBuilder.DropTable(
-                name: "ContactDetails");
+                name: "HcaContactDetails");
 
             migrationBuilder.DropTable(
-                name: "Location");
+                name: "HcaLocation");
         }
     }
 }

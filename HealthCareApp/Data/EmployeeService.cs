@@ -100,8 +100,9 @@ namespace HealthCareApp.Data
                 return SetEmployeeDetails(query.employee, query.contactDetails, query.location);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
         }
@@ -109,7 +110,7 @@ namespace HealthCareApp.Data
         /*
          * async method to add new employee
          */
-        public async Task<Employee> AddEmployeeAsync(Employee employee)
+        public async Task AddEmployeeAsync(Employee employee)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
@@ -121,7 +122,7 @@ namespace HealthCareApp.Data
 
             try
             {
-                _applicationDbContext.Employees.Add(employee);
+                _applicationDbContext.HcaEmployee.Add(employee);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -132,25 +133,27 @@ namespace HealthCareApp.Data
                 _applicationDbContext.Entry(employee).State = EntityState.Detached;
                 _applicationDbContext.Entry(employee.ContactDetails).State = EntityState.Detached;
                 _applicationDbContext.Entry(employee.Location).State = EntityState.Detached;
+
+                await Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
             }
 
-            return employee;
         }
 
         /*
          * async method to update employee
          */
-        public async Task<bool> UpdateEmployeeAsync(Employee employee)
+        public async Task UpdateEmployeeAsync(Employee employee)
         {
             employee.UpdatedAt = DateTime.UtcNow;
 
             try
             {
-                _applicationDbContext.Employees.Update(employee);
+                _applicationDbContext.HcaEmployee.Update(employee);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -161,13 +164,15 @@ namespace HealthCareApp.Data
                 _applicationDbContext.Entry(employee).State = EntityState.Detached;
                 _applicationDbContext.Entry(employee.ContactDetails).State = EntityState.Detached;
                 _applicationDbContext.Entry(employee.Location).State = EntityState.Detached;
+
+                await Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
             }
 
-            return true;
         }
 
         private static Employee SetEmployeeDetails(Employee employee, ContactDetails contactDetails, Location location)

@@ -16,11 +16,11 @@ public class ApplicationDbContext : IdentityDbContext
     {
     }
 
-    public DbSet<Employee> Employees => Set<Employee>();
-    public DbSet<ContactDetails> ContactDetails => Set<ContactDetails>();
-    public DbSet<Location> Location => Set<Location>();
-    public DbSet<Department> Department => Set<Department>();
-    public DbSet<LabelMop> LabelMop => Set<LabelMop>();
-    public DbSet<Area> Area => Set<Area>();
+    public DbSet<Employee> HcaEmployee => Set<Employee>();
+    public DbSet<ContactDetails> HcaContactDetails => Set<ContactDetails>();
+    public DbSet<Location> HcaLocation => Set<Location>();
+    public DbSet<Department> HcaDepartment => Set<Department>();
+    public DbSet<LabelMop> HcaLabelMop => Set<LabelMop>();
+    public DbSet<Area> HcaArea => Set<Area>();
 
 }

@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HealthCareApp.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220526023211_InitialMigrationMysql")]
-    partial class InitialMigrationMysql
+    [Migration("20220526110155_InitialMigrationsMysql")]
+    partial class InitialMigrationsMysql
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -48,7 +48,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Area");
+                    b.ToTable("HcaArea");
                 });
 
             modelBuilder.Entity("ContactDetailsLibrary.Models.ContactDetails", b =>
@@ -69,7 +69,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactDetails");
+                    b.ToTable("HcaContactDetails");
                 });
 
             modelBuilder.Entity("DepartmentLibrary.Models.Department", b =>
@@ -96,7 +96,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Department");
+                    b.ToTable("HcaDepartment");
                 });
 
             modelBuilder.Entity("EmployeeLibrary.Models.Employee", b =>
@@ -145,7 +145,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasIndex("LocationId");
 
-                    b.ToTable("Employees");
+                    b.ToTable("HcaEmployee");
                 });
 
             modelBuilder.Entity("LabelLibrary.Models.LabelMop", b =>
@@ -188,7 +188,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("LabelMop");
+                    b.ToTable("HcaLabelMop");
                 });
 
             modelBuilder.Entity("LocationLibrary.Models.Location", b =>
@@ -221,7 +221,7 @@ namespace HealthCareApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Location");
+                    b.ToTable("HcaLocation");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

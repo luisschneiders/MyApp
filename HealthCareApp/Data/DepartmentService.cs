@@ -48,7 +48,7 @@ namespace HealthCareApp.Data
                 (
                     from department in _applicationDbContext.Set<Department>()
                     where department.InsertedBy == userService.UserId()
-                    && department.IsActive == true
+                        && department.IsActive == true
                     orderby department.Name ascending
                     select new { department }
                 ).AsNoTracking();
@@ -81,8 +81,9 @@ namespace HealthCareApp.Data
                 return SetDepartmentDetails(query.employee);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
         }
@@ -117,7 +118,7 @@ namespace HealthCareApp.Data
         /*
          * async method to add new department
          */
-        public async Task<Department> AddDepartmentAsync(Department department)
+        public async Task AddDepartmentAsync(Department department)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
@@ -129,7 +130,7 @@ namespace HealthCareApp.Data
 
             try
             {
-                _applicationDbContext.Department.Add(department);
+                _applicationDbContext.HcaDepartment.Add(department);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -138,25 +139,26 @@ namespace HealthCareApp.Data
                  * to avoid exception when adding a record or updating the same record more than once
                  */
                 _applicationDbContext.Entry(department).State = EntityState.Detached;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
 
-            return department;
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
+            }
         }
 
         /*
          * async method to update department
          */
-        public async Task<bool> UpdateDepartmentAsync(Department department)
+        public async Task UpdateDepartmentAsync(Department department)
         {
             department.UpdatedAt = DateTime.UtcNow;
 
             try
             {
-                _applicationDbContext.Department.Update(department);
+                _applicationDbContext.HcaDepartment.Update(department);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -165,13 +167,13 @@ namespace HealthCareApp.Data
                  * to avoid exception when adding a record or updating the same record more than once
                  */
                 _applicationDbContext.Entry(department).State = EntityState.Detached;
+                await Task.CompletedTask;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                throw;
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
             }
-
-            return true;
         }
 
         private static Department SetDepartmentDetails(Department department)

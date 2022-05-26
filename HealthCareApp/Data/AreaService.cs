@@ -123,8 +123,9 @@ namespace HealthCareApp.Data
                 return SetAreaDetails(query.area, query.department);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
         }
@@ -132,7 +133,7 @@ namespace HealthCareApp.Data
         /*
          * async method to add new Area
          */
-        public async Task<Area> AddAreaAsync(Area area)
+        public async Task AddAreaAsync(Area area)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
@@ -144,34 +145,7 @@ namespace HealthCareApp.Data
 
             try
             {
-                _applicationDbContext.Area.Add(area);
-                await _applicationDbContext.SaveChangesAsync();
-
-                /*
-                 * Because we are using AsNoTracking() in our query, 
-                 * we need to detach all state entities with EntityState.Detached
-                 * to avoid exception when adding a record or updating the same record more than once
-                 */
-                _applicationDbContext.Entry(area).State = EntityState.Detached;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            return area;
-        }
-
-        /*
-         * async method to update Area
-         */
-        public async Task<bool> UpdateAreaAsync(Area area)
-        {
-            area.UpdatedAt = DateTime.UtcNow;
-
-            try
-            {
-                _applicationDbContext.Area.Update(area);
+                _applicationDbContext.HcaArea.Add(area);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -182,14 +156,41 @@ namespace HealthCareApp.Data
                 _applicationDbContext.Entry(area).State = EntityState.Detached;
 
                 await Task.CompletedTask;
-                return true;
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: {0}", ex.Message);
                 await Task.CompletedTask;
+            }
+        }
 
-                return false;
+        /*
+         * async method to update Area
+         */
+        public async Task UpdateAreaAsync(Area area)
+        {
+            area.UpdatedAt = DateTime.UtcNow;
+
+            try
+            {
+                _applicationDbContext.HcaArea.Update(area);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(area).State = EntityState.Detached;
+
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+
+                await Task.CompletedTask;
             }
         }
 
@@ -207,7 +208,7 @@ namespace HealthCareApp.Data
                 areaUpdated.IsActive = area.IsActive;
                 areaUpdated.UpdatedAt = DateTime.UtcNow;
 
-                _applicationDbContext.Area.Update(areaUpdated);
+                _applicationDbContext.HcaArea.Update(areaUpdated);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -251,4 +252,3 @@ namespace HealthCareApp.Data
         }
     }
 }
-

@@ -102,8 +102,9 @@ namespace HealthCareApp.Data
                 return SetLabelMopDetails(query.labelMop, query.area);
 
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
         }
@@ -111,7 +112,7 @@ namespace HealthCareApp.Data
         /*
          * async method to add new Label
          */
-        public async Task<LabelMop> AddLabelMopAsync(LabelMop labelMop)
+        public async Task AddLabelMopAsync(LabelMop labelMop)
         {
 
             UserService userService = new UserService(_httpContextAccessor);
@@ -123,7 +124,7 @@ namespace HealthCareApp.Data
 
             try
             {
-                _applicationDbContext.LabelMop.Add(labelMop);
+                _applicationDbContext.HcaLabelMop.Add(labelMop);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
@@ -132,45 +133,41 @@ namespace HealthCareApp.Data
                  * to avoid exception when adding a record or updating the same record more than once
                  */
                 _applicationDbContext.Entry(labelMop).State = EntityState.Detached;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-
-            return labelMop;
-        }
-
-        /*
-         * async method to update Label
-         */
-        public async Task<bool> UpdateLabelMopAsync(LabelMop labelMop)
-        {
-            labelMop.UpdatedAt = DateTime.UtcNow;
-
-            try
-            {
-                _applicationDbContext.LabelMop.Update(labelMop);
-                await _applicationDbContext.SaveChangesAsync();
-
-                /*
-                 * Because we are using AsNoTracking() in our query, 
-                 * we need to detach all state entities with EntityState.Detached
-                 * to avoid exception when adding a record or updating the same record more than once
-                 */
-                _applicationDbContext.Entry(labelMop).State = EntityState.Detached;
-
                 await Task.CompletedTask;
-                return true;
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Error: {0}", ex.Message);
                 await Task.CompletedTask;
-
-                return false;
             }
+        }
 
+        /*
+         * async method to update Label
+         */
+        public async Task UpdateLabelMopAsync(LabelMop labelMop)
+        {
+            labelMop.UpdatedAt = DateTime.UtcNow;
+
+            try
+            {
+                _applicationDbContext.HcaLabelMop.Update(labelMop);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(labelMop).State = EntityState.Detached;
+
+                await Task.CompletedTask;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
+            }
         }
 
         /*
@@ -187,7 +184,7 @@ namespace HealthCareApp.Data
                 labelMopUpdated.IsActive = labelMop.IsActive;
                 labelMopUpdated.UpdatedAt = DateTime.UtcNow;
 
-                _applicationDbContext.LabelMop.Update(labelMopUpdated);
+                _applicationDbContext.HcaLabelMop.Update(labelMopUpdated);
                 await _applicationDbContext.SaveChangesAsync();
 
                 /*
