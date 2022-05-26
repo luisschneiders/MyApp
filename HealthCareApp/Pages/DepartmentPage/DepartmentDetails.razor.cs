@@ -12,6 +12,9 @@ namespace HealthCareApp.Pages.DepartmentPage
         [Parameter]
         public bool Loading { get; set; }
 
+        [Parameter]
+        public bool HasRecord { get; set; }
+
         public DepartmentDetails()
         {
             Info = null;

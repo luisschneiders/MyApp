@@ -11,9 +11,12 @@
         <PageHeaderTitle Title="Departments"
                    Theme="Theme.Department" />
         <PageMenu>
-            <NavLink class="btn btn-link text-info" href="/areas">
-                Add new areas <sup><i class="bi bi-info-square"></i></sup>
-            </NavLink>
+            @if(_departments.Count > 0)
+            {
+                <NavLink class="btn btn-link text-info" href="/areas">
+                    Add new areas <sup><i class="bi bi-info-square"></i></sup>
+                </NavLink>
+            }
             <button type="button"
                     class="btn btn-info btn-rounded btn-icon text-white"
                     title="Add new department"
@@ -129,7 +132,7 @@
                 </div>
             </div>
             <div class="flex-container-main ps-2">
-                <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" />
+                <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" HasRecord="_departments.Count > 0" />
                 @if (!_isLoading && _departmentDetails is not null)
                 {
                     <div class="d-flex flex-row justify-content-end">
