@@ -25,12 +25,6 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.Requ
 
 builder.Services.AddRazorPages();
 
-builder.Services.AddAuthentication()
-    .AddMicrosoftAccount(microsoftOptions =>
-    {
-        microsoftOptions.ClientId = config["Authentication_Microsoft_ClientId"];
-        microsoftOptions.ClientSecret = config["Authentication_Microsoft_ClientSecret"];
-    });
 builder.Services.AddServerSideBlazor();
 builder.Services.AddHttpClient();
 builder.Services.AddScoped<AuthenticationStateProvider, RevalidatingIdentityAuthenticationStateProvider<IdentityUser>>();
