@@ -40,7 +40,8 @@ namespace HealthCareApp.Pages.AreaPage
             _modalAdd = new();
             _area = new();
             _departments = new List<Department>();
-		}
+            _isDisabled = true;
+        }
 
         protected override async Task OnInitializedAsync()
         {
@@ -99,6 +100,7 @@ namespace HealthCareApp.Pages.AreaPage
         private async Task CloseModalAddAsync()
         {
             _area = new Area();
+            _isDisabled = true;
             await Task.FromResult(_modalAdd.Close(_modalAddTarget));
             await Task.CompletedTask;
         }
