@@ -67,7 +67,8 @@ namespace HealthCareApp.Data
                         on area.DepartmentId equals department.Id
                     where labelMop.InsertedBy == userService.UserId()
                     && (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
-                    || EF.Functions.Like(area.Name, $"%{searchTerm}%"))
+                    || EF.Functions.Like(area.Name, $"%{searchTerm}%")
+                    || EF.Functions.Like(department.Name, $"%{searchTerm}%"))
                     orderby labelMop.CreatedAt descending
                     select new { labelMop, area, department }
                 ).AsNoTracking();
