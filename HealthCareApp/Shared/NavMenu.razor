@@ -46,45 +46,6 @@
                     </li>
                 }
                 <li class="nav-item px-3 nav-link-submenu">
-                    <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Playground)">
-                        <i class="bi bi-controller sm-icon"></i>Playgrounds
-                    </NavLink>
-                </li>
-                @if (_navSubmenu == NavSubmenu.Playground)
-                {
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/card">
-                            <i class="bi bi-card-heading sm-icon"></i>Cards
-                        </NavLink>
-                    </li>
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/page">
-                            <i class="bi bi-layout-text-window-reverse sm-icon"></i>Pages
-                        </NavLink>
-                    </li>
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/modal">
-                            <i class="bi bi-window sm-icon"></i>Modals
-                        </NavLink>
-                    </li>
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/toast">
-                            <i class="bi bi-collection sm-icon"></i>Toasts
-                        </NavLink>
-                    </li>
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/badge">
-                            <i class="bi bi-usb-c sm-icon"></i>Badges
-                        </NavLink>
-                    </li>
-                    <li class="nav-item px-5">
-                        <NavLink class="nav-link" href="/playground/spinner">
-                            <i class="bi bi-arrow-clockwise sm-icon"></i>Spinners
-                        </NavLink>
-                    </li>
-                }
-                <li class="nav-item px-3 nav-link-submenu">
-                    <hr />
                     <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Api)">
                         <i class="bi bi-share sm-icon"></i>APIs
                     </NavLink>
@@ -121,11 +82,50 @@
                     <NavLink class="nav-link" href="/contact-us">
                         <i class="bi bi-envelope sm-icon"></i>Contact us
                     </NavLink>
-                    <NavLink class="nav-link" href="/map">
-                        <i class="bi bi-map sm-icon"></i>Map
+                    <NavLink class="nav-link" href="/location">
+                        <i class="bi bi-map sm-icon"></i>Location
                     </NavLink>
                 </li>
             </NotAuthorized>
         </AuthorizeView>
+        <li class="nav-item px-3 nav-link-submenu">
+            <hr/>
+            <NavLink class="nav-link" @onclick="() => ToggleNavSubmenu(NavSubmenu.Playground)">
+                <i class="bi bi-controller sm-icon"></i>Playgrounds
+            </NavLink>
+        </li>
+        @if (_navSubmenu == NavSubmenu.Playground)
+        {
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/card">
+                    <i class="bi bi-card-heading sm-icon"></i>Cards
+                </NavLink>
+            </li>
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/page">
+                    <i class="bi bi-layout-text-window-reverse sm-icon"></i>Pages
+                </NavLink>
+            </li>
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/modal">
+                    <i class="bi bi-window sm-icon"></i>Modals
+                </NavLink>
+            </li>
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/toast">
+                    <i class="bi bi-collection sm-icon"></i>Toasts
+                </NavLink>
+            </li>
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/badge">
+                    <i class="bi bi-usb-c sm-icon"></i>Badges
+                </NavLink>
+            </li>
+            <li class="nav-item px-5">
+                <NavLink class="nav-link" href="/playground/spinner">
+                    <i class="bi bi-arrow-clockwise sm-icon"></i>Spinners
+                </NavLink>
+            </li>
+        }
     </ul>
 </div>
