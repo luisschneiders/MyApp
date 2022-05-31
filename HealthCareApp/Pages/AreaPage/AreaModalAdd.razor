@@ -16,31 +16,31 @@
                 <div class="col-sm-8">
                     <div class="row mb-3">
                         <label class="col-sm-4 col-form-label"
-                                for="Name">
-                            Name
-                        </label>
-                        <div class="col-sm-8">
-                            <InputText class="form-control"
-                                        id="Name"
-                                        @bind-Value="_area.Name" />
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-sm-4 col-form-label"
-                                for="DepartmentId">
+                               for="DepartmentId">
                             Department
                         </label>
                         <div class="col-sm-8">
                             <InputSelect class="form-control"
-                                            id="DepartmentId"
-                                            @bind-Value="_area.DepartmentId"
-                                            @oninput="OnValueChanged">
+                                         id="DepartmentId"
+                                         @bind-Value="_area.DepartmentId"
+                                         @oninput="OnValueChanged">
                                 <option value="@Guid.Empty.ToString()">-- Select department --</option>
                                 @foreach (var (department, index) in _departments.Select((value, index) => (value, index)))
                                 {
                                     <option value="@department.Id">@department.Name</option>
                                 }
                             </InputSelect>
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="Name">
+                            Name
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText class="form-control"
+                                       id="Name"
+                                       @bind-Value="_area.Name" />
                         </div>
                     </div>
                 </div>
