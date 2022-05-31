@@ -102,7 +102,14 @@
                                          @onclick="() => ShowAreaDetails(area)">
                                         <i class="bi bi-columns-gap md-icon"></i>
                                         <div class="ps-1">
-                                            @area.Name.Truncate((int)Truncate.AreaName)
+                                            <div class="mb-0 fs-5">
+                                                @area.Name.Truncate((int)Truncate.AreaName)
+                                            </div>
+                                            <div>
+                                                <div class="text-muted">
+                                                    @area.DepartmentName
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div>

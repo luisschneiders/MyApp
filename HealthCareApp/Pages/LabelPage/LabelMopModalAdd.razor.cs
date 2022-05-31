@@ -43,6 +43,7 @@ namespace HealthCareApp.Pages.LabelPage
             _modalAdd = new();
             _labelMop = new();
             _areas = new List<AreaDto>();
+            _isDisabled = true;
         }
 
         protected override async Task OnInitializedAsync()
@@ -102,6 +103,7 @@ namespace HealthCareApp.Pages.LabelPage
         private async Task CloseModalAddAsync()
         {
             _labelMop = new LabelMop();
+            _isDisabled = true;
             await Task.FromResult(_modalAdd.Close(_modalAddTarget));
             await Task.CompletedTask;
         }
