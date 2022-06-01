@@ -71,7 +71,7 @@ namespace HealthCareApp.Pages.Playground
 
         }
 
-        private async Task HandleValidSubmitAsync()
+        private async Task GetLabelAsync()
         {
             _fileName = String.Empty;
             _labelString = String.Empty;
@@ -113,12 +113,6 @@ namespace HealthCareApp.Pages.Playground
             await Task.Run(() => _spinnerService.HideSpinner());
             await Task.CompletedTask;
 
-        }
-
-        private async Task HandleInvalidSubmitAsync()
-        {
-            await Task.FromResult(_displayValidationMessages = true);
-            await Task.CompletedTask;
         }
 
     }
