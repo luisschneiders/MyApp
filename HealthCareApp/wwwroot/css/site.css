@@ -121,7 +121,7 @@ a:hover {
     height: calc(100% - (86px - 1rem));
     margin: auto;
     background-color: #f3f2f1;
-    border-radius: 1.8rem;
+    border-radius: 0.8rem;
 }
 
 .form-control {
@@ -164,7 +164,7 @@ a:hover {
 }
 .markup-example {
     background-color: #f4fdff;
-    border-radius: 1.8rem;
+    border-radius: 0.8rem;
 }
 .flex-container {
     display: grid;
@@ -236,17 +236,17 @@ a:hover {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-    border-radius: 1.8rem;
+    border-radius: 0.8rem;
     background-color: #ffffff;
     border: none;
 }
 .hca-list-group-item:first-child {
-    border-top-left-radius: 1.8rem;
-    border-top-right-radius: 1.8rem;
+    border-top-left-radius: 0.8rem;
+    border-top-right-radius: 0.8rem;
 }
 .hca-list-group-item:last-child {
-    border-bottom-left-radius: 1.8rem;
-    border-bottom-right-radius: 1.8rem;
+    border-bottom-left-radius: 0.8rem;
+    border-bottom-right-radius: 0.8rem;
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
     background-color: #dbe0e1;
