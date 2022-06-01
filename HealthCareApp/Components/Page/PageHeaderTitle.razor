@@ -2,9 +2,11 @@
 @inject NavigationManager navigationManager
 
 <Title value="@Title"></Title>
-
-<h2>
-    <span class="hca-@Theme-title text-capitalize">
-        @Title
-    </span>
-</h2>
+@if (IsVisible)
+{
+    <h2>
+        <span class="hca-@Theme-title text-capitalize">
+            @Title
+        </span>
+    </h2>
+}

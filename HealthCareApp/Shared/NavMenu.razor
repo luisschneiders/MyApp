@@ -1,8 +1,18 @@
 ﻿<div class="top-row pl-4 px-4 navbar navbar-dark">
-    <a class="navbar-brand" href="">
-        <span class="px-1">HealthCare</span>
-        <span class="oi oi-medical-cross logo-icon" aria-hidden="true"></span>
-    </a>
+    <AuthorizeView>
+        <Authorized>
+            <a class="navbar-brand" href="dashboard">
+                <span class="px-1">HealthCare</span>
+                <span class="oi oi-medical-cross logo-icon" aria-hidden="true"></span>
+            </a>
+        </Authorized>
+        <NotAuthorized>
+            <a class="navbar-brand" href="">
+                <span class="px-1">HealthCare</span>
+                <span class="oi oi-medical-cross logo-icon" aria-hidden="true"></span>
+            </a>
+        </NotAuthorized>
+    </AuthorizeView>
     <button class="navbar-toggler" @onclick="ToggleNavMenu">
         <i class="bi bi-justify"></i>
     </button>
@@ -13,7 +23,7 @@
         <AuthorizeView>
             <Authorized>
                 <li class="nav-item px-3">
-                    <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
+                    <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">
                         <i class="bi bi-house sm-icon"></i>Dashboard
                     </NavLink>
                 </li>
