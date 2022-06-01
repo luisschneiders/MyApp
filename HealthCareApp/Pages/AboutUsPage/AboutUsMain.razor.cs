@@ -3,11 +3,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.AboutUsPage
 {
-	public partial class AboutUs : ComponentBase
+	public partial class AboutUsMain : ComponentBase
 	{
-		public AboutUs()
+		public AboutUsMain()
 		{
 		}
 	}
 }
-

@@ -17,6 +17,8 @@
     <None Remove="Pomelo.EntityFrameworkCore.MySql" />
     <None Remove="Migrations\" />
     <None Remove="Pages\AboutUsPage\" />
+    <None Remove="Pages\ContactUsPage\" />
+    <None Remove="Pages\MapLocationPage\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -51,6 +53,8 @@
     <Folder Include="Pages\AreaPage\" />
     <Folder Include="Migrations\" />
     <Folder Include="Pages\AboutUsPage\" />
+    <Folder Include="Pages\ContactUsPage\" />
+    <Folder Include="Pages\MapLocationPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />
