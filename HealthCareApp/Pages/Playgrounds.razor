@@ -7,64 +7,52 @@
 
 @inject IHttpContextAccessor httpContextAccessor
 @inject UserService userService
-<AuthorizeView>
-    <Authorized>
-        <PageWrapper>
-            <PageHeader>
-                <PageHeaderTitle Title="Playgrounds"></PageHeaderTitle>
-                <PageMenu />
-            </PageHeader>
-            <PageBody Styles="p-2">
-                <h3 class="text-center hca-app-title py-4">List of components used in the Healthcare App</h3>
-                <CardWrapper>
-                    <CardView Link="/playground/card">
-                        <CardViewHeader Icon="bi bi-card-heading" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Cards</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/page">
-                        <CardViewHeader Icon="bi bi-layout-text-window-reverse" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Pages</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/modal">
-                        <CardViewHeader Icon="bi bi-window" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Modals</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/toast">
-                        <CardViewHeader Icon="bi bi-collection" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Toast</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/badge">
-                        <CardViewHeader Icon="bi bi-usb-c" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Badge</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/spinner">
-                        <CardViewHeader Icon="bi bi-arrow-clockwise" />
-                        <CardViewBody>
-                            <p>UI layout for <b>Spinner</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                    <CardView Link="/playground/api">
-                        <CardViewHeader Icon="bi bi-share" />
-                        <CardViewBody>
-                            <p>List of <b>APIs</b>.</p>
-                        </CardViewBody>
-                    </CardView>
-                </CardWrapper>
-            </PageBody>
-            <PageFooter />
-        </PageWrapper>
-    </Authorized>
-    <NotAuthorized>
-        <NotAuthorizedMessage />
-    </NotAuthorized>
-</AuthorizeView>
+
+<PageWrapper>
+    <PageHeader>
+        <PageHeaderTitle Title="Playgrounds"></PageHeaderTitle>
+        <PageMenu />
+    </PageHeader>
+    <PageBody Styles="p-2">
+        <h3 class="text-center hca-app-title py-4">List of components used in the Healthcare App</h3>
+        <CardWrapper>
+            <CardView Link="/playground/card">
+                <CardViewHeader Icon="bi bi-card-heading" />
+                <CardViewBody>
+                    <p>UI layout for <b>Cards</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/page">
+                <CardViewHeader Icon="bi bi-layout-text-window-reverse" />
+                <CardViewBody>
+                    <p>UI layout for <b>Pages</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/modal">
+                <CardViewHeader Icon="bi bi-window" />
+                <CardViewBody>
+                    <p>UI layout for <b>Modals</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/toast">
+                <CardViewHeader Icon="bi bi-collection" />
+                <CardViewBody>
+                    <p>UI layout for <b>Toast</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/badge">
+                <CardViewHeader Icon="bi bi-usb-c" />
+                <CardViewBody>
+                    <p>UI layout for <b>Badge</b>.</p>
+                </CardViewBody>
+            </CardView>
+            <CardView Link="/playground/spinner">
+                <CardViewHeader Icon="bi bi-arrow-clockwise" />
+                <CardViewBody>
+                    <p>UI layout for <b>Spinner</b>.</p>
+                </CardViewBody>
+            </CardView>
+        </CardWrapper>
+    </PageBody>
+    <PageFooter />
+</PageWrapper>
