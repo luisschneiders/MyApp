@@ -55,9 +55,11 @@
     <Folder Include="Pages\AboutUsPage\" />
     <Folder Include="Pages\ContactUsPage\" />
     <Folder Include="Pages\MapLocationPage\" />
+    <Folder Include="wwwroot\icon\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />
     <Content Remove="wwwroot\db\app.db-wal" />
+    <Content Remove="wwwroot\icon\" />
   </ItemGroup>
 </Project>
