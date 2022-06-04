@@ -71,3 +71,9 @@
         display: block;
     }
 }
+
+@media (max-width: 640.98px) {
+    .navbar-brand-title {
+        display: none;
+    }
+}
