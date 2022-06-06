@@ -4,9 +4,10 @@
 <Title value="@Title"></Title>
 @if (IsVisible)
 {
-    <h2>
-        <span class="hca-@Theme-title text-capitalize">
-            @Title
-        </span>
-    </h2>
+    <nav class="@(ParentTitle.Length > 0 ? "breadcrumb-divider" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
+        <ul class="breadcrumb mb-0 display-6">
+            <li class="breadcrumb-item"><a href="@ParentLink">@ParentTitle</a></li>
+            <li class="breadcrumb-item active" aria-current="@Title">@Title</li>
+        </ul>
+    </nav>
 }

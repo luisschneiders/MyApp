@@ -115,7 +115,12 @@ a:hover {
 .btn-icon i {
     margin-left: -2px;
 }
-
+.breadcrumb-divider {
+    --bs-breadcrumb-divider: '/';
+}
+.breadcrumb-no-divider {
+    --bs-breadcrumb-divider: '';
+}
 .content {
     width: calc(100% - 1rem);
     height: calc(100% - (86px - 1rem));
@@ -210,25 +215,13 @@ a:hover {
 .hca-app-icon, .hca-app-title {
     color: #0dcaf0;
 }
-.hca-App-icon, .hca-App-title {
-    color: #997588;
-}
-.hca-Employee-icon, .hca-Employee-title {
-    color: #997588;
-}
-.hca-Department-icon, .hca-Department-title {
-    color: #997588;
-}
-.hca-Patient-icon, .hca-Patient-title {
-    color: #997588;
-}
-.hca-Supplier-icon, .hca-Supplier-title {
-    color: #997588;
-}
-.hca-Label-icon, .hca-Label-title {
-    color: #997588;
-}
-.hca-Area-icon, .hca-Area-title {
+.hca-App-icon,
+.hca-Employee-icon,
+.hca-Department-icon,
+.hca-Patient-icon,
+.hca-Supplier-icon,
+.hca-Label-icon,
+.hca-Area-icon {
     color: #997588;
 }
 .hca-form-control-plaintext {
