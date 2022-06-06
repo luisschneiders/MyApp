@@ -31,7 +31,10 @@
     }
 
 @media (max-width: 640.98px) {
-    .top-row:not(.auth) {
+    .top-row.auth {
+        display: none;
+    }
+/*    .top-row:not(.auth) {
         display: none;
     }
 
@@ -41,7 +44,7 @@
 
     .top-row a, .top-row .btn-link {
         margin-left: 0;
-    }
+    }*/
 }
 
 @media (min-width: 641px) {

@@ -53,7 +53,7 @@
         color: #493640;
     }
 
-.nav-item a i {
+.nav-item a i, .nav-item button i {
     margin-right: 8px;
 }
 
@@ -62,7 +62,7 @@
 }
 
 @media (min-width: 641px) {
-    .navbar-toggler {
+    .navbar-toggler, .nav-item-logout {
         display: none;
     }
 
