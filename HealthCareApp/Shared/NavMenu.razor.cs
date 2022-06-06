@@ -1,8 +1,11 @@
 ﻿using System;
+using Microsoft.AspNetCore.Components;
+
 namespace HealthCareApp.Shared
 {
-    public partial class NavMenu
+    public partial class NavMenu : ComponentBase
     {
+
         private enum NavSubmenu
         {
             None,
