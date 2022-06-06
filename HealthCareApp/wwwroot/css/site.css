@@ -173,7 +173,6 @@ a:hover {
 }
 .flex-container .flex-container-list {
     overflow-y: auto;
-    border-right: 1px solid #d6c1b8;
 }
 .flex-container .flex-container-list-search {
     position: sticky;
