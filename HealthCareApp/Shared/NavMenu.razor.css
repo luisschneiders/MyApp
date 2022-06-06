@@ -1,5 +1,10 @@
 ﻿.navbar-toggler {
     background-color: rgba(255, 255, 255, 0.1);
+    border: 1px solid #997588;
+    padding: 0.25rem;
+}
+.navbar-toggler:focus {
+    box-shadow: 0 0 0 0.05rem;
 }
 
 .top-row {
