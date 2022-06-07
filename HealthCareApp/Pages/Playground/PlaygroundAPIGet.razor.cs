@@ -6,11 +6,11 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundAPIGet : ComponentBase
     {
         [Inject]
-        private SpinnerService _spinnerService { get; set; }
+        private SpinnerService _spinnerService { get; set; } = default!;
 
         // Retrieve API keys from user-secrets
         [Inject]
-        private IConfiguration _config { get; set; }
+        private IConfiguration _config { get; set; } = default!;
 
         private ComponentMarkup _componentMarkup { get; set; }
         private List<ComponentMarkup> _componentMarkupList { get; set; }

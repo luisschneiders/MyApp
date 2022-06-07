@@ -10,7 +10,7 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeMain : ComponentBase
     {
         [Inject]
-        private EmployeeService _employeeService { get; set; }
+        private EmployeeService _employeeService { get; set; } = default!;
 
         [Inject]
         private SpinnerService _spinnerService { get; set; }

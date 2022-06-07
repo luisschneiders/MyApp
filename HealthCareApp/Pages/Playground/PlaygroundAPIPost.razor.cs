@@ -10,7 +10,7 @@ namespace HealthCareApp.Pages.Playground
     public partial class PlaygroundAPIPost : ComponentBase
     {
         // Retrieve API keys from user-secrets
-        private readonly IConfiguration _config;
+        private readonly IConfiguration _config = default!;
 
         [Inject]
         private LabelService _labelService { get; set; }
