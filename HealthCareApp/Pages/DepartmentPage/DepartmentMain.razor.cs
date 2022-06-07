@@ -10,7 +10,7 @@ namespace HealthCareApp.Pages.DepartmentPage
     public partial class DepartmentMain : ComponentBase
     {
         [Inject]
-        private DepartmentService _departmentService { get; set; }
+        private DepartmentService _departmentService { get; set; } = default!;
 
         [Inject]
         private SpinnerService _spinnerService { get; set; }

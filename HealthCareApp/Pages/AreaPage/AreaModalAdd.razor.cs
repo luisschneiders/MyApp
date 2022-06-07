@@ -12,10 +12,10 @@ namespace HealthCareApp.Pages.AreaPage
 	public partial class AreaModalAdd : ComponentBase
 	{
         [Inject]
-        private AreaService _areaService { get; set; }
+        private AreaService _areaService { get; set; } = default!;
 
         [Inject]
-        private DepartmentService _departmentService { get; set; }
+        private DepartmentService _departmentService { get; set; } = default!;
 
         [Inject]
         private ToastService _toastService { get; set; }

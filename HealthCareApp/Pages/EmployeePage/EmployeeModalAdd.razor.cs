@@ -12,7 +12,7 @@ namespace HealthCareApp.Pages.EmployeePage
     public partial class EmployeeModalAdd : ComponentBase
     {
         [Inject]
-        private EmployeeService _employeeService { get; set; }
+        private EmployeeService _employeeService { get; set; } = default!;
 
         [Inject]
         private ToastService _toastService { get; set; }

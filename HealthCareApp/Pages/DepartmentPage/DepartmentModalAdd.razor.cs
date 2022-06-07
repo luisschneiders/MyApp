@@ -12,7 +12,7 @@ namespace HealthCareApp.Pages.DepartmentPage
     {
 
         [Inject]
-        private DepartmentService _departmentService { get; set; }
+        private DepartmentService _departmentService { get; set; } = default!;
 
         [Inject]
         private ToastService _toastService { get; set; }

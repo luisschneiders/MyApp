@@ -10,7 +10,7 @@ namespace HealthCareApp.Pages.AreaPage
 	public partial class AreaMain : ComponentBase
 	{
         [Inject]
-        private AreaService _areaService { get; set; }
+        private AreaService _areaService { get; set; } = default!;
 
         [Inject]
         private SpinnerService _spinnerService { get; set; }

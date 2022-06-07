@@ -11,7 +11,7 @@ namespace HealthCareApp.Pages.DepartmentPage
     public partial class DepartmentModalUpdate : ComponentBase
     {
         [Inject]
-        private DepartmentService _departmentService { get; set; }
+        private DepartmentService _departmentService { get; set; } = default!;
 
         [Inject]
         private ToastService _toastService { get; set; }

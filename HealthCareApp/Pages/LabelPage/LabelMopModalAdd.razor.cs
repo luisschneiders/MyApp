@@ -15,10 +15,10 @@ namespace HealthCareApp.Pages.LabelPage
 	public partial class LabelMopModalAdd : ComponentBase
 	{
         [Inject]
-        private LabelMopService _labelMopService { get; set; }
+        private LabelMopService _labelMopService { get; set; } = default!;
 
         [Inject]
-        private AreaService _areaService { get; set; }
+        private AreaService _areaService { get; set; } = default!;
 
         [Inject]
         private ToastService _toastService { get; set; }
