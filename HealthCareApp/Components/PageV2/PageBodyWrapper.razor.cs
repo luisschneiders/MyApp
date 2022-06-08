@@ -1,20 +1,21 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.PageNew
+namespace HealthCareApp.Components.PageV2
 {
-	public partial class PageFooterWrapper : ComponentBase
+	public partial class PageBodyWrapper : ComponentBase
 	{
-		[Parameter]
+        [Parameter]
 		public RenderFragment? ChildContent { get; set; }
 
 		[Parameter]
 		public string Styles { get; set; }
 
-		public PageFooterWrapper()
-		{
+		public PageBodyWrapper()
+        {
 			Styles = string.Empty;
-		}
+        }
+
 	}
 }
 

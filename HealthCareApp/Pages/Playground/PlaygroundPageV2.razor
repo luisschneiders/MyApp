@@ -1,12 +1,14 @@
-﻿@page "/playground/page-new"
+﻿@page "/playground/page-v2"
 
-@using HealthCareApp.Components.PageNew;
+@using HealthCareApp.Components.PageV2;
 
 <PageWrapper>
+
+    @* Header View*@
     <PageHeaderView>
         <PageHeaderWrapper Styles="page-header-background">
 
-            <PageHeaderTitle Title="Page New"
+            <PageHeaderTitle Title="Page v2"
                              ParentLink="/playgrounds"
                              ParentTitle="Playgrounds" />
 
@@ -40,10 +42,7 @@
         </PageHeaderWrapper>
     </PageHeaderView>
 
-
-
-
-
+    @* Body View*@
     <PageBodyView>
         <PageBodyWrapper Styles="page-body-background">
             <div class="h-100 d-flex justify-content-center align-items-center">
@@ -52,11 +51,7 @@
         </PageBodyWrapper>
     </PageBodyView>
 
-
-
-
-
-
+    @* Footer View*@
     <PageFooterView>
         <PageFooterWrapper Styles="page-footer-background">
             <span>

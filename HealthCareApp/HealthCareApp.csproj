@@ -20,7 +20,6 @@
     <None Remove="Pages\ContactUsPage\" />
     <None Remove="Pages\MapLocationPage\" />
     <None Remove="Shared\images\" />
-    <None Remove="Components\PageNew\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -59,7 +58,6 @@
     <Folder Include="Pages\MapLocationPage\" />
     <Folder Include="wwwroot\icon\" />
     <Folder Include="Shared\images\" />
-    <Folder Include="Components\PageNew\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.Playground
 {
-	public partial class PlaygroundPageNew : ComponentBase
+	public partial class PlaygroundPageV2 : ComponentBase
 	{
 
-		public PlaygroundPageNew()
+		public PlaygroundPageV2()
 		{
 
 		}
