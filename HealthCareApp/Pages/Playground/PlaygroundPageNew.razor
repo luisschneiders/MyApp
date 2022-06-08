@@ -5,7 +5,38 @@
 <PageWrapper>
     <PageHeaderView>
         <PageHeaderWrapper Styles="page-header-background">
-            <h1>Page header here...</h1>
+
+            <PageHeaderTitle Title="Page New"
+                             ParentLink="/playgrounds"
+                             ParentTitle="Playgrounds" />
+
+
+            <PageHeaderMenu>
+                <button type="button" class="btn btn-outline-danger btn-rounded btn-icon">
+                    <i class="bi bi-trash"></i>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-icon">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+                <button type="button" class="btn btn-light btn-rounded btn-icon">
+                    <i class="bi bi-search"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-rounded">
+                    <i class="bi bi-trash"></i>
+                    Delete
+                </button>
+
+                <button type="button" class="btn btn-outline-primary btn-rounded">
+                    <i class="bi bi-plus-lg"></i>
+                    Save
+                </button>
+                <button type="button" class="btn btn-light btn-rounded">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </PageHeaderMenu>
+
         </PageHeaderWrapper>
     </PageHeaderView>
 
