@@ -1,0 +1,11 @@
+﻿.page-footer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+}
+
+.page-footer-background {
+    border: 1px dashed #b11b61;
+}
