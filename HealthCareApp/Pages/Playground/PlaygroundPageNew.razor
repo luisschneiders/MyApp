@@ -1,0 +1,44 @@
+﻿@page "/playground/page-new"
+@using HealthCareApp.Components.Page
+@using HealthCareApp.Components.PageNew;
+
+<PageNewWrapper>
+    <PageNewHeaderView>
+
+
+            <PageHeaderTitle Title="Page"
+                             ParentLink="/playgrounds"
+                             ParentTitle="Playgrounds" />
+            <PageMenu>
+                <button type="button" class="btn btn-outline-danger btn-rounded btn-icon">
+                    <i class="bi bi-trash"></i>
+                </button>
+
+                <button type="button" class="btn btn-outline-primary btn-rounded btn-icon">
+                    <i class="bi bi-plus-lg"></i>
+                </button>
+                <button type="button" class="btn btn-light btn-rounded btn-icon">
+                    <i class="bi bi-search"></i>
+                </button>
+                <button type="button" class="btn btn-outline-danger btn-rounded">
+                    <i class="bi bi-trash"></i>
+                    Delete
+                </button>
+
+                <button type="button" class="btn btn-outline-primary btn-rounded">
+                    <i class="bi bi-plus-lg"></i>
+                    Save
+                </button>
+                <button type="button" class="btn btn-light btn-rounded">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </PageMenu>
+
+    </PageNewHeaderView>
+    <PageNewBodyView>
+        <p>
+            Body here...
+        </p>
+    </PageNewBodyView>
+</PageNewWrapper>
