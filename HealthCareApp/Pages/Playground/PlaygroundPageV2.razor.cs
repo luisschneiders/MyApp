@@ -26,18 +26,18 @@ namespace HealthCareApp.Pages.Playground
             {
                 new MarkupString("<PageWrapper>").ToString(),
                 new MarkupString("<PageHeaderView>").ToString(),
-                new MarkupString("<PageHeaderWrapper Styles=''>").ToString(),
-                new MarkupString("<PageHeaderTitle Title='Page v2' />").ToString(),
+                new MarkupString("<PageHeaderWrapper>").ToString(),
+                new MarkupString("<PageHeaderTitle />").ToString(),
                 new MarkupString("<PageHeaderMenu>").ToString(),
                 new MarkupString("</PageHeaderMenu>").ToString(),
                 new MarkupString("</PageHeaderWrapper>").ToString(),
                 new MarkupString("</PageHeaderView>").ToString(),
                 new MarkupString("<PageBodyView>").ToString(),
-                new MarkupString("<PageBodyWrapper Styles=''>").ToString(),
+                new MarkupString("<PageBodyWrapper>").ToString(),
                 new MarkupString("</PageBodyWrapper>").ToString(),
                 new MarkupString("</PageBodyView>").ToString(),
                 new MarkupString("<PageFooterView>").ToString(),
-                new MarkupString("<PageFooterWrapper Styles=''>").ToString(),
+                new MarkupString("<PageFooterWrapper>").ToString(),
                 new MarkupString("</PageFooterWrapper>").ToString(),
                 new MarkupString("</PageFooterView>").ToString(),
                 new MarkupString("</PageWrapper>").ToString(),
@@ -94,7 +94,54 @@ namespace HealthCareApp.Pages.Playground
             };
             _componentMarkupList.Add(_componentMarkup);
 
+            _codes = new()
+            {
+                new MarkupString("<PageWrapper Styles='' />").ToString(),
+                new MarkupString("<PageHeaderWrapper Styles='' />").ToString(),
+                new MarkupString("<PageBodyWrapper Styles='' />").ToString(),
+                new MarkupString("<PageFooterWrapper Styles='' />").ToString(),
+                new MarkupString("<PageHeaderTitle ").ToString(),
+                new MarkupString("                 ParentLink='' ").ToString(),
+                new MarkupString("                 ParentTitle='' ").ToString(),
+                new MarkupString("                 Title='' ").ToString(),
+                new MarkupString("                 IsVisible='' />").ToString(),
+            };
 
+            _cssStyle = new()
+            {
+                "",
+                "",
+                "",
+                "",
+                "",
+                "ps-5",
+                "ps-5",
+                "ps-5",
+                "ps-5",
+
+            };
+
+            _newLine = new()
+            {
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+            };
+
+            _componentMarkup = new()
+            {
+                Title = "Parameters",
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
+            };
+            _componentMarkupList.Add(_componentMarkup);
         }
     }
 }
