@@ -15,5 +15,13 @@ namespace HealthCareApp.Components.PageV2
         [Parameter]
         public RenderFragment? PageFooterView { get; set; }
 
+        [Parameter]
+        public string Styles { get; set; }
+
+        public PageWrapper()
+        {
+            Styles = string.Empty;
+        }
+
     }
 }
