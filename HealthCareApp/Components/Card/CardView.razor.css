@@ -1,15 +1,7 @@
 ﻿.hca-card-view {
-    box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
     border: none;
     min-width: 220px;
     border-radius: 0.8rem;
     background-color: #f7eee7;
     color: #997588;
-}
-a.hca-card-view:hover {
-    cursor: pointer;
-    transform: scale(1.02, 1.02);
-    box-shadow: 0px 17px 20px -12px rgb(0 0 0 / 50%);
-    text-decoration: none;
-    transition: all .1s ease-in-out;
 }

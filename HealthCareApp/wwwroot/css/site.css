@@ -240,6 +240,16 @@ a:hover {
     border-bottom-left-radius: 0.8rem;
     border-bottom-right-radius: 0.8rem;
 }
+.hca-box-shadow {
+    box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
+}
+a.hca-box-shadow:hover {
+    cursor: pointer;
+    transform: scale(1.02, 1.02);
+    box-shadow: 0px 17px 20px -12px rgb(0 0 0 / 50%);
+    text-decoration: none;
+    transition: all .1s ease-in-out;
+}
 .list-group-item-action:focus, .list-group-item-action:hover {
     background-color: #dbe0e1;
 }
