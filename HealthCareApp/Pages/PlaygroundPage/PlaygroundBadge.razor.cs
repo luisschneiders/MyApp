@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.Playground
+namespace HealthCareApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundBadge : ComponentBase
     {

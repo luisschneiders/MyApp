@@ -1,6 +1,6 @@
 ﻿using HealthCareApp.Components.Modal;
 
-namespace HealthCareApp.Pages.Playground
+namespace HealthCareApp.Pages.PlaygroundPage
 {
 	public partial class PlaygroundModal
 	{

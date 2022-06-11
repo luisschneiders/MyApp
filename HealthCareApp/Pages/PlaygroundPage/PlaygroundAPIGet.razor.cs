@@ -1,7 +1,7 @@
 ﻿using HealthCareApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.Playground
+namespace HealthCareApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundAPIGet : ComponentBase
     {

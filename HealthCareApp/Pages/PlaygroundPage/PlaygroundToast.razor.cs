@@ -4,7 +4,7 @@ using HealthCareApp.Components.Toast;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.Playground
+namespace HealthCareApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundToast : ComponentBase
     {

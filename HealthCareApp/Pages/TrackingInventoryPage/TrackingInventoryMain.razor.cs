@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.TrackingInventory
+namespace HealthCareApp.Pages.TrackingInventoryPage
 {
 	public partial class TrackingInventoryMain : ComponentBase
 	{
@@ -10,4 +10,3 @@ namespace HealthCareApp.Pages.TrackingInventory
 		}
 	}
 }
-
