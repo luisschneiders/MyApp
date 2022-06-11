@@ -129,11 +129,18 @@ a:hover {
     height: calc(100% - (86px - 1rem));
     margin: auto;
     background-color: #f3f2f1;
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
 }
 
 .form-control {
     border-radius: 1.8rem;
+}
+
+.hca-form-control-lg {
+    min-height: calc(1.5em + 1rem + 5px);
+    padding: 0.5rem 1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -172,7 +179,7 @@ a:hover {
 }
 .markup-example {
     background-color: #f4fdff;
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
 }
 .flex-container {
     display: grid;
@@ -231,7 +238,7 @@ a:hover {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
     background-color: #ffffff;
     border: none;
 }
@@ -245,6 +252,9 @@ a:hover {
 }
 .hca-box-shadow {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
+}
+.hca-border-radius {
+    border-radius: 0.8rem;
 }
 a.hca-box-shadow:hover {
     cursor: pointer;
