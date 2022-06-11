@@ -1,0 +1,54 @@
+﻿@page "/tracking-inventory/mops"
+@using HealthCareApp.Components.PageV2
+@using HealthCareApp.Components.Message
+
+<AuthorizeView>
+    <Authorized>
+
+        <PageWrapper>
+
+            <PageHeaderView>
+                <PageHeaderWrapper>
+                    <PageHeaderTitle Title="Mops"
+                                     ParentTitle="Tracking inventory"
+                                     ParentLink="/tracking-inventory"/>
+                    <PageHeaderMenu>
+                    </PageHeaderMenu>
+                </PageHeaderWrapper>
+            </PageHeaderView>
+
+            <PageBodyView>
+                <PageBodyWrapper>
+                    <div class="h-100 d-flex justify-content-center align-items-center p-5">
+                        <div class="row d-flex align-items-center w-100 p-5 bg-opacity-25 hca-bg-label-scan @(_isInputFocus ? "bg-success" : "bg-warning")">
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control"
+                                       placeholder="Scan label..."
+                                       id="Barcode"
+                                       @onfocusin="SetInputFocusInAsync"
+                                       @onfocusout="SetInputFocusOutAsync" />
+
+                            </div>
+                            <div class="col-auto">
+                                <button type="button"
+                                        class="btn btn-light btn-rounded"
+                                        @onclick="() => OpenModalAsync()">
+                                    Start
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </PageBodyWrapper>
+            </PageBodyView>
+
+            <PageFooterView />
+
+        </PageWrapper>
+        
+    </Authorized>
+
+    <NotAuthorized>
+        <NotAuthorizedMessage />
+    </NotAuthorized>
+
+</AuthorizeView>

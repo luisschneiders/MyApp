@@ -256,6 +256,9 @@ a:hover {
 .hca-border-radius {
     border-radius: 0.8rem;
 }
+.hca-bg-label-scan {
+    border-radius: 4rem;
+}
 a.hca-box-shadow:hover {
     cursor: pointer;
     transform: scale(1.02, 1.02);
