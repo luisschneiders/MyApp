@@ -1,6 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
+﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace HealthCareApp.Pages.TrackingInventoryPage
@@ -14,7 +12,13 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             _isInputFocus = false;
 		}
 
-        private async Task OpenModalAsync()
+        private async Task OpenModalStartAsync()
+        {
+
+            await Task.CompletedTask;
+        }
+
+        private async Task OpenModalDateRangeAsync ()
         {
 
             await Task.CompletedTask;

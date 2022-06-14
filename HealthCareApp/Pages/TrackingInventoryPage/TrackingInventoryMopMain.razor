@@ -8,7 +8,7 @@
         <PageWrapper>
 
             <PageHeaderView>
-                <PageHeaderWrapper>
+                <PageHeaderWrapper Styles="">
                     <PageHeaderTitle Title="Mops"
                                      ParentTitle="Tracking inventory"
                                      ParentLink="/tracking-inventory"/>
@@ -18,25 +18,39 @@
             </PageHeaderView>
 
             <PageBodyView>
-                <PageBodyWrapper>
-                    <div class="h-100 d-flex justify-content-center align-items-center p-5">
-                        <div class="row d-flex align-items-center w-100 p-5 bg-opacity-25 hca-bg-label-scan @(_isInputFocus ? "bg-success" : "bg-warning")">
-                            <div class="col-sm-10">
+                <PageBodyWrapper Styles="pt-3">
+                    <div class="container">
+                        <div class="row align-items-center sticky-top hca-bg-default">
+                            <div class="col-sm-8 bg-opacity-25 hca-bg-label-scan p-2 @(_isInputFocus ? "bg-success" : "bg-warning")">
                                 <input type="text" class="form-control"
-                                       placeholder="Scan label..."
-                                       id="Barcode"
-                                       @onfocusin="SetInputFocusInAsync"
-                                       @onfocusout="SetInputFocusOutAsync" />
+                                        placeholder="Scan label..."
+                                        id="Barcode"
+                                        @onfocusin="SetInputFocusInAsync"
+                                        @onfocusout="SetInputFocusOutAsync" />
 
                             </div>
                             <div class="col-auto">
                                 <button type="button"
-                                        class="btn btn-light btn-rounded"
-                                        @onclick="() => OpenModalAsync()">
+                                        class="btn btn-info btn-rounded text-white"
+                                        @onclick="() => OpenModalStartAsync()">
                                     Start
                                 </button>
                             </div>
+                            <div class="col-auto">
+                                <button type="button"
+                                        class="btn btn-light btn-rounded "
+                                        @onclick="() => OpenModalDateRangeAsync()">
+                                    <i class="bi bi-calendar-range"></i>
+                                    Date range
+                                </button>
+                            </div>
                         </div>
+                        <div class="row hca-data-list-body">
+                            <div class="col-auto">
+                                Data list here...
+                            </div>
+                        </div>
+
                     </div>
                 </PageBodyWrapper>
             </PageBodyView>
