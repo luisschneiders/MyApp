@@ -7,14 +7,17 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 	{
 		private bool _isInputFocus { get; set; }
 
-		public TrackingInventoryMopMain()
+        private TrackingInventoryMopModalStart _trackingInventoryMopModalStart { get; set; }
+
+        public TrackingInventoryMopMain()
 		{
+            _trackingInventoryMopModalStart = new();
             _isInputFocus = false;
 		}
 
         private async Task OpenModalStartAsync()
         {
-
+            await Task.FromResult(_trackingInventoryMopModalStart.OpenModalStartAsync());
             await Task.CompletedTask;
         }
 

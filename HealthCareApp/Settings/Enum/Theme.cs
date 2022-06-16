@@ -9,6 +9,7 @@ namespace HealthCareApp.Settings.Theme
         Patient,
         Supplier,
         Label,
-        Area
+        Area,
+        TrackingInventory
     }
 }
