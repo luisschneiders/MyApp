@@ -6,6 +6,7 @@ using LabelLibrary.Models;
 using LocationLibrary.Models;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using TrackingInventoryLibrary.Models;
 
 namespace HealthCareApp.Data;
 
@@ -22,5 +23,5 @@ public class ApplicationDbContext : IdentityDbContext
     public DbSet<Department> HcaDepartment => Set<Department>();
     public DbSet<LabelMop> HcaLabelMop => Set<LabelMop>();
     public DbSet<Area> HcaArea => Set<Area>();
-
+    public DbSet<TrackingInventoryMop> HcaTrackingInvetoryMop => Set<TrackingInventoryMop>();
 }
