@@ -1,23 +1,57 @@
-﻿using Microsoft.AspNetCore.Components;
+﻿using HealthCareApp.Components.Toast;
+using HealthCareApp.Data;
+using HealthCareApp.Settings.Enum;
+using LabelLibrary.Models;
+using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 
 namespace HealthCareApp.Pages.TrackingInventoryPage
 {
 	public partial class TrackingInventoryMopMain : ComponentBase
 	{
-		private bool _isInputFocus { get; set; }
+
+        [Inject]
+        private LabelMopService _labelMopService { get; set; } = default!;
+
+        [Inject]
+        private ToastService _toastService { get; set; } = default!;
+
+        private LabelMopDto _labelMopDto { get; set; }
+
+        private string _barcode { get; set; }
+        private bool _isInputFocus { get; set; }
+        private bool _isDisabled { get; set; }
+        private bool _isLoading { get; set; }
 
         private TrackingInventoryMopModalStart _trackingInventoryMopModalStart { get; set; }
 
         public TrackingInventoryMopMain()
 		{
+            _labelMopDto = new();
+            _barcode = string.Empty;
             _trackingInventoryMopModalStart = new();
             _isInputFocus = false;
 		}
 
         private async Task OpenModalStartAsync()
         {
-            await Task.FromResult(_trackingInventoryMopModalStart.OpenModalStartAsync());
+            _isLoading = true;
+
+            _labelMopDto = await _labelMopService.GetLabelMopByBarcodeAsync(_barcode);
+
+            if (_labelMopDto?.Barcode?.Length > 0)
+            {
+                await Task.FromResult(_trackingInventoryMopModalStart.OpenModalStartAsync(_labelMopDto));
+            }
+            else
+            {
+                _toastService.ShowToast($"Barcode not found!", Level.Warning);
+            }
+
+            await Task.Delay((int)Delay.DataLoading);
+
+            _isLoading = false;
+
             await Task.CompletedTask;
         }
 
@@ -47,6 +81,26 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             }
 
             await Task.CompletedTask;
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            _isDisabled = true;
+            await Task.CompletedTask;
+        }
+
+        private void OnValueChanged(ChangeEventArgs args)
+        {
+            var valueChanged = args?.Value?.ToString();
+
+            if (string.IsNullOrEmpty(valueChanged))
+            {
+                _isDisabled = true;
+            }
+            else
+            {
+                _isDisabled = false;
+            }
         }
     }
 }

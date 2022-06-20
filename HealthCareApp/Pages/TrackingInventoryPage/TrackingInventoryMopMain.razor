@@ -1,6 +1,7 @@
 ﻿@page "/tracking-inventory/mops"
 @using HealthCareApp.Components.PageV2
 @using HealthCareApp.Components.Message
+@using HealthCareApp.Components.Toast
 
 <AuthorizeView>
     <Authorized>
@@ -11,7 +12,7 @@
                 <PageHeaderWrapper Styles="">
                     <PageHeaderTitle Title="Mops"
                                      ParentTitle="Tracking inventory"
-                                     ParentLink="/tracking-inventory"/>
+                                     ParentLink="/tracking-inventory" />
                     <PageHeaderMenu>
                     </PageHeaderMenu>
                 </PageHeaderWrapper>
@@ -21,19 +22,23 @@
                 <PageBodyWrapper Styles="pt-3">
                     <div class="container">
                         <div class="row align-items-center sticky-top hca-bg-default">
-                            <div class="col-sm-8 bg-opacity-25 hca-bg-label-scan p-2 @(_isInputFocus ? "bg-success" : "bg-warning")">
+                            <div class="col-sm-8 bg-opacity-25 hca-bg-label-scan p-2 @(_isInputFocus ? "bg-info" : "bg-warning")">
                                 <input type="text" class="form-control"
-                                        placeholder="Scan label..."
-                                        id="Barcode"
-                                        @onfocusin="SetInputFocusInAsync"
-                                        @onfocusout="SetInputFocusOutAsync" />
+                                       placeholder="Scan label..."
+                                       autocomplete="off"
+                                       id="Barcode"
+                                       @bind="_barcode"
+                                       @onfocusin="SetInputFocusInAsync"
+                                       @onfocusout="SetInputFocusOutAsync"
+                                       @oninput="OnValueChanged" />
 
                             </div>
                             <div class="col-auto">
                                 <button type="button"
-                                        class="btn btn-info btn-rounded text-white"
-                                        @onclick="() => OpenModalStartAsync()">
-                                    Start
+                                        class="btn btn-info btn-rounded text-white w-120"
+                                        @onclick="() => OpenModalStartAsync()"
+                                        disabled="@_isDisabled">
+                                    @(_isLoading ? "Searching..." : "Start")
                                 </button>
                             </div>
                             <div class="col-auto">
@@ -59,6 +64,7 @@
 
         </PageWrapper>
         <TrackingInventoryMopModalStart @ref="_trackingInventoryMopModalStart" />
+        <Toast />
     </Authorized>
 
     <NotAuthorized>

@@ -1,11 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BaseLibrary.Models;
 
 namespace TrackingInventoryLibrary.Models
 {
-	public class TrackingInventoryMops : TrackingInventory
+	public class TrackingInventoryMop : Base
 	{
+		[Key]
+		public Guid Id { get; set; }
 
 		[Required]
 		public DateTime TimeIn { get; set; }
