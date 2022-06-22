@@ -11,17 +11,17 @@ namespace TrackingInventoryLibrary.Models
 		public Guid Id { get; set; }
 
 		[Required]
-		public DateTime TimeIn { get; set; }
+		public DateTime PickupTime { get; set; }
 
 		[Required]
-		public DateTime TimeOut { get; set; }
+		public DateTime ReturnTime { get; set; }
 
 		[Required]
-		[Range(1, 30, ErrorMessage = "Quantity must be between 1 and 30")]
+		[Range(0, 30, ErrorMessage = "Quantity must be between 0 and 30")]
 		public int CleanMopQuantity { get; set; }
 
 		[Required]
-		[Range(1, 30, ErrorMessage = "Quantity must be between 1 and 30")]
+		[Range(0, 30, ErrorMessage = "Quantity must be between 0 and 30")]
 		public int DirtyMopQuantity { get; set; }
 
 		[Required]

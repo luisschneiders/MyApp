@@ -23,17 +23,17 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         private bool _isDisabled { get; set; }
         private bool _isLoading { get; set; }
 
-        private TrackingInventoryMopModalStart _trackingInventoryMopModalStart { get; set; }
+        private TrackingInventoryMopModalPickup _trackingInventoryMopModalPickup { get; set; }
 
         public TrackingInventoryMopMain()
 		{
             _labelMopDto = new();
             _barcode = string.Empty;
-            _trackingInventoryMopModalStart = new();
+            _trackingInventoryMopModalPickup = new();
             _isInputFocus = false;
 		}
 
-        private async Task OpenModalStartAsync()
+        private async Task OpenModalPickupAsync()
         {
             _isLoading = true;
 
@@ -41,7 +41,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
             if (_labelMopDto?.Barcode?.Length > 0)
             {
-                await Task.FromResult(_trackingInventoryMopModalStart.OpenModalStartAsync(_labelMopDto));
+                await Task.FromResult(_trackingInventoryMopModalPickup.OpenModalPickupAsync(_labelMopDto));
             }
             else
             {

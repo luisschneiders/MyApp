@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaLibrary", "AreaLibrary\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrackingInventoryLibrary", "TrackingInventoryLibrary\TrackingInventoryLibrary.csproj", "{F8A9C78D-4434-4D52-A799-BBF0B2769472}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeLibrary", "DateTimeLibrary\DateTimeLibrary.csproj", "{771F2B6D-DBC8-4F91-8AD8-3B3589B5FB70}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{F8A9C78D-4434-4D52-A799-BBF0B2769472}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F8A9C78D-4434-4D52-A799-BBF0B2769472}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F8A9C78D-4434-4D52-A799-BBF0B2769472}.Release|Any CPU.Build.0 = Release|Any CPU
+		{771F2B6D-DBC8-4F91-8AD8-3B3589B5FB70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{771F2B6D-DBC8-4F91-8AD8-3B3589B5FB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{771F2B6D-DBC8-4F91-8AD8-3B3589B5FB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{771F2B6D-DBC8-4F91-8AD8-3B3589B5FB70}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

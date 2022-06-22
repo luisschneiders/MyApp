@@ -7,7 +7,7 @@ using TrackingInventoryLibrary.Models;
 
 namespace HealthCareApp.Pages.TrackingInventoryPage
 {
-	public partial class TrackingInventoryMopModalStart : ComponentBase
+	public partial class TrackingInventoryMopModalPickup : ComponentBase
 	{
 
         //[Inject]
@@ -15,24 +15,24 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
 		private TrackingInventoryMop _trackingInventoryMop { get; set; }
         private LabelMopDto _labelMopDto { get; set; }
-		private Modal _modalStart { get; set; }
+		private Modal _modalPickup { get; set; }
 
-		private Guid _modalStartTarget { get; set; }
+		private Guid _modalPickupTarget { get; set; }
 
 
-		public TrackingInventoryMopModalStart()
+		public TrackingInventoryMopModalPickup()
 		{
             _trackingInventoryMop = new();
             _labelMopDto = new();
-			_modalStart = new();
+            _modalPickup = new();
 		}
 
-		public async Task OpenModalStartAsync(LabelMopDto labelMopDto)
+		public async Task OpenModalPickupAsync(LabelMopDto labelMopDto)
 		{
-			_modalStartTarget = Guid.NewGuid();
+			_modalPickupTarget = Guid.NewGuid();
             _labelMopDto = labelMopDto;
 
-			await Task.FromResult(_modalStart.Open(_modalStartTarget));
+			await Task.FromResult(_modalPickup.Open(_modalPickupTarget));
             await Task.CompletedTask;
         }
 

@@ -1,4 +1,7 @@
 ﻿using System;
+using DateTimeLibrary;
+using TrackingInventoryLibrary.Models;
+
 namespace HealthCareApp.Data
 {
 	public class TrackingInventoryMopService
@@ -12,13 +15,13 @@ namespace HealthCareApp.Data
 			_httpContextAccessor = httpContextAccessor;
 		}
 
-		/*
-		 * async method to get label by barcode
+        /*
+		 * async method to get mop tracking inventory by date
 		 */
 
-		//public async Task<> GetLabelMopAsync()
-  //      {
-		//	await Task.CompletedTask;
-  //      }
-	}
+        //public async Task<TrackingInventoryMopDto> GetBarcodeByDateAsync(IDateTimeRange dateTime)
+        //{
+        //    await Task.CompletedTask;
+        //}
+    }
 }

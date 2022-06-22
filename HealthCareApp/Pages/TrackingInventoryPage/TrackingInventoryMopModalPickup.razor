@@ -1,0 +1,53 @@
+﻿@using HealthCareApp.Components.Modal
+@using HealthCareApp.Settings.Theme
+@using HealthCareApp.Pages.LabelPage
+
+<Modal @ref="_modalPickup"
+       Theme="Theme.TrackingInventory"
+       Size="ModalSize.lg">
+    <Title>Add new tracking inventory</Title>
+    <Body>
+        <EditForm Model="@_trackingInventoryMop"
+                  OnValidSubmit="@HandleValidSubmitAsync"
+                  OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                  autocomplete="off"
+                  id="FormStartTrackingInventoryMop">
+            <ObjectGraphDataAnnotationsValidator />
+            <div class="row">
+                <div class="col-lg-7 col-sm-12">
+                    Form here...
+                </div>
+                <div class="col-lg-5 col-sm-12">
+                    <MopDetails Model="_labelMopDto"
+                                FieldsetStyle="markup-background hca-border-radius p-2"
+                                Icon="bi bi-upc-scan" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    @*@if (_displayValidationErrorMessages)
+                        {
+                            <div class="row mb-3">
+                                <div class="col">
+                                    <label>Validation Messages: </label>
+                                    <ValidationSummary />
+                                </div>
+                            </div>
+                        }*@
+                </div>
+            </div>
+        </EditForm>
+    </Body>
+    <Footer>
+        <button type="button"
+                class="btn btn-light btn-rounded"
+                data-dismiss="modal">
+            Cancel
+        </button>
+        <button type="submit"
+                form="FormStartTrackingInventoryMop"
+                class="btn btn-info btn-rounded text-white">
+            Save
+        </button>
+    </Footer>
+</Modal>
