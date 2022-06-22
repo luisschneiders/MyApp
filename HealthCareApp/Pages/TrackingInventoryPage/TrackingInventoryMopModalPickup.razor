@@ -5,7 +5,7 @@
 <Modal @ref="_modalPickup"
        Theme="Theme.TrackingInventory"
        Size="ModalSize.lg">
-    <Title>Add new tracking inventory</Title>
+    <Title>Add new pickup time</Title>
     <Body>
         <EditForm Model="@_trackingInventoryMop"
                   OnValidSubmit="@HandleValidSubmitAsync"
@@ -15,10 +15,45 @@
             <ObjectGraphDataAnnotationsValidator />
             <div class="row">
                 <div class="col-lg-7 col-sm-12">
-                    Form here...
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="Barcode">
+                            Barcode
+                        </label>
+                        <div class="col-sm-8">
+                            <InputText class="form-control"
+                                       id="Barcode"
+                                       disabled="true"
+                                       @bind-Value="_labelMopDto.Barcode" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="PickupTime">
+                            Pickup time
+                        </label>
+                        <div class="col-sm-8">
+                            <input class="form-control"
+                                   id="PickupTime"
+                                   type="time"
+                                   @bind-value="_trackingInventoryMop.PickupTime" />
+                        </div>
+                    </div>
+                    <div class="row mb-3">
+                        <label class="col-sm-4 col-form-label"
+                               for="CleanMopQuantity">
+                            Clean mops
+                        </label>
+                        <div class="col-sm-8">
+                            <InputNumber class="form-control"
+                                         id="CleanMopQuantity"
+                                         max="@_labelMopDto.Quantity"
+                                         @bind-Value="_trackingInventoryMop.CleanMopQuantity" />
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-5 col-sm-12">
-                    <MopDetails Model="_labelMopDto"
+                    <ComponentMopDetails Model="_labelMopDto"
                                 FieldsetStyle="markup-background hca-border-radius p-2"
                                 Icon="bi bi-upc-scan" />
                 </div>
@@ -41,7 +76,8 @@
     <Footer>
         <button type="button"
                 class="btn btn-light btn-rounded"
-                data-dismiss="modal">
+                data-dismiss="modal"
+                @onclick="() => CloseModalPickupAsync()">
             Cancel
         </button>
         <button type="submit"

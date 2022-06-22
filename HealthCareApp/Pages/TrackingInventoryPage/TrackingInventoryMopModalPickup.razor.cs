@@ -29,8 +29,12 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
 		public async Task OpenModalPickupAsync(LabelMopDto labelMopDto)
 		{
-			_modalPickupTarget = Guid.NewGuid();
+            string timeNow = DateTime.Now.ToString("hh:mm tt");
+
+            _modalPickupTarget = Guid.NewGuid();
             _labelMopDto = labelMopDto;
+            _trackingInventoryMop.PickupTime = DateTime.Parse(timeNow);
+            _trackingInventoryMop.CleanMopQuantity = labelMopDto.Quantity;
 
 			await Task.FromResult(_modalPickup.Open(_modalPickupTarget));
             await Task.CompletedTask;
@@ -57,6 +61,13 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             //await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
+
+        private async Task CloseModalPickupAsync()
+        {
+            _trackingInventoryMop = new TrackingInventoryMop();
+
+            await Task.FromResult(_modalPickup.Close(_modalPickupTarget));
+            await Task.CompletedTask;
+        }
     }
 }
-
