@@ -43,6 +43,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 		{
             _spinnerService = new();
             _labelMopDto = new();
+            _virtualizeContainer = new();
             _trackingInventoryMopDto = new();
             _barcode = string.Empty;
             _trackingInventoryMopModalPickup = new();
