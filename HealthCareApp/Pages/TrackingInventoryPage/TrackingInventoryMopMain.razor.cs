@@ -1,10 +1,13 @@
-﻿using HealthCareApp.Components.Spinner;
+﻿using DateTimeLibrary;
+using HealthCareApp.Components.Spinner;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
+using Microsoft.AspNetCore.Components.Web.Virtualization;
+using TrackingInventoryLibrary.Models;
 
 namespace HealthCareApp.Pages.TrackingInventoryPage
 {
@@ -15,12 +18,19 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         private LabelMopService _labelMopService { get; set; } = default!;
 
         [Inject]
+        private TrackingInventoryMopService _trackingInventoryMopService { get; set; } = default!;
+
+        [Inject]
         private ToastService _toastService { get; set; } = default!;
 
         [Inject]
         private SpinnerService _spinnerService { get; set; }
 
         private LabelMopDto _labelMopDto { get; set; }
+
+        private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
+
+        private List<TrackingInventoryMopDto> _trackingInventoryMopDto { get; set; }
 
         private string _barcode { get; set; }
         private bool _isInputFocus { get; set; }
@@ -33,6 +43,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 		{
             _spinnerService = new();
             _labelMopDto = new();
+            _trackingInventoryMopDto = new();
             _barcode = string.Empty;
             _trackingInventoryMopModalPickup = new();
             _isInputFocus = false;
@@ -111,6 +122,28 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             {
                 _isDisabled = false;
             }
+        }
+
+        private async Task RefreshVirtualizeContainer()
+        {
+            await _virtualizeContainer.RefreshDataAsync();
+        }
+
+        private async ValueTask<ItemsProviderResult<TrackingInventoryMopDto>> LoadTrackingInventoryMops(ItemsProviderRequest request)
+        {
+            IDateTimeRange dateTimeRange = new DateTimeRange();
+            dateTimeRange.Start = DateTime.Now;
+            dateTimeRange.End = DateTime.Now;
+
+            _trackingInventoryMopDto = await _trackingInventoryMopService.GetTrackingInventoryMopByDateAsync(dateTimeRange);
+
+            await Task.Run(() => _spinnerService.HideSpinner());
+
+            await InvokeAsync(() => StateHasChanged());
+
+            return new ItemsProviderResult<TrackingInventoryMopDto>(
+                _trackingInventoryMopDto.Skip(request.StartIndex).Take(request.Count), _trackingInventoryMopDto.Count
+            );
         }
     }
 }
