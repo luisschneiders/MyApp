@@ -13,9 +13,13 @@ namespace HealthCareApp.Components.Spinner
         [Parameter]
         public Size Size { get; set; }
 
+        [Parameter]
+        public Level Color { get; set; } = default!;
+
         private AppSettings _appSettings { get; set; }
 
         private string _componentSize { get; set; }
+        private string _componentColor { get; set; }
 
         private bool _isVisible { get; set; }
 
@@ -24,6 +28,7 @@ namespace HealthCareApp.Components.Spinner
             _spinnerService = new();
             _appSettings = new();
             _componentSize = string.Empty;
+            _componentColor = string.Empty;
         }
 
         protected override void OnInitialized()
@@ -33,8 +38,10 @@ namespace HealthCareApp.Components.Spinner
             _spinnerService.OnShow += ShowSpinner;
             _spinnerService.OnHide += HideSpinner;
 
+            _appSettings.BuildLevel(Color);
             _appSettings.BuildSize(Size);
             _componentSize = _appSettings.ComponentSize;
+            _componentColor = _appSettings.BackgroundColor;
         }
 
         public void ShowSpinner()

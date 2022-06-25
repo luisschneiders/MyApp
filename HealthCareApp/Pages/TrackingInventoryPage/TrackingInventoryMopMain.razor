@@ -2,6 +2,8 @@
 @using HealthCareApp.Components.PageV2
 @using HealthCareApp.Components.Message
 @using HealthCareApp.Components.Toast
+@using HealthCareApp.Components.Spinner
+@using HealthCareApp.Settings.Enum
 
 <AuthorizeView>
     <Authorized>
@@ -37,8 +39,21 @@
                                 <button type="button"
                                         class="btn btn-info btn-rounded text-white w-140"
                                         @onclick="() => OpenModalPickupAsync()"
-                                        disabled="@_isDisabled">
-                                    @(_isLoading ? "Searching..." : "Set pickup time")
+                                        disabled="@_isDisabled"
+                                    >
+                                    @if (_isLoading)
+                                    {
+                                        <span>
+                                            <Spinner Size="Size.Sm" Color="Level.White" />
+                                            Searching...
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span>
+                                            Set pickup time
+                                        </span>
+                                    }
                                 </button>
                             </div>
                             <div class="col-auto">

@@ -1,4 +1,5 @@
-﻿using HealthCareApp.Components.Toast;
+﻿using HealthCareApp.Components.Spinner;
+using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
 using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
@@ -16,6 +17,9 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         [Inject]
         private ToastService _toastService { get; set; } = default!;
 
+        [Inject]
+        private SpinnerService _spinnerService { get; set; }
+
         private LabelMopDto _labelMopDto { get; set; }
 
         private string _barcode { get; set; }
@@ -27,16 +31,22 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
         public TrackingInventoryMopMain()
 		{
+            _spinnerService = new();
             _labelMopDto = new();
             _barcode = string.Empty;
             _trackingInventoryMopModalPickup = new();
             _isInputFocus = false;
 		}
 
+        protected override async Task OnAfterRenderAsync(bool firstRender)
+        {
+            await Task.Run(() => _spinnerService.ShowSpinner());
+            await Task.CompletedTask;
+        }
+
         private async Task OpenModalPickupAsync()
         {
             _isLoading = true;
-
             _labelMopDto = await _labelMopService.GetLabelMopByBarcodeAsync(_barcode);
 
             if (_labelMopDto?.Barcode?.Length > 0)
@@ -51,7 +61,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             await Task.Delay((int)Delay.DataLoading);
 
             _isLoading = false;
-
+            await Task.Run(() => _spinnerService.HideSpinner());
             await Task.CompletedTask;
         }
 

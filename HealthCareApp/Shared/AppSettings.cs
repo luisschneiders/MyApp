@@ -30,6 +30,9 @@ namespace HealthCareApp.Shared
                 case Level.Success:
                     BackgroundColor = "success";
                     break;
+                case Level.White:
+                    BackgroundColor = "white";
+                    break;
             }
         }
 
