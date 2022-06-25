@@ -1,6 +1,8 @@
 ﻿using System;
 using HealthCareApp.Components.Modal;
+using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
+using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using TrackingInventoryLibrary.Models;
@@ -9,18 +11,23 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 {
 	public partial class TrackingInventoryMopModalPickup : ComponentBase
 	{
+        [Inject]
+        private ToastService _toastService { get; set; } = default!;
 
-        //[Inject]
-        //private LabelMopService _labelMopService { get; set; } = default!;
+        [Inject]
+        private TrackingInventoryMopService _trackingInventoryMopService { get; set; } = default!;
 
-		private TrackingInventoryMop _trackingInventoryMop { get; set; }
+        [Parameter]
+        public EventCallback OnSubmitSuccess { get; set; }
+
+        private TrackingInventoryMop _trackingInventoryMop { get; set; }
         private LabelMopDto _labelMopDto { get; set; }
 		private Modal _modalPickup { get; set; }
 
 		private Guid _modalPickupTarget { get; set; }
+        private bool _displayValidationErrorMessages { get; set; }
 
-
-		public TrackingInventoryMopModalPickup()
+        public TrackingInventoryMopModalPickup()
 		{
             _trackingInventoryMop = new();
             _labelMopDto = new();
@@ -29,12 +36,15 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
 		public async Task OpenModalPickupAsync(LabelMopDto labelMopDto)
 		{
-            string timeNow = DateTime.Now.ToString("hh:mm tt");
+            string pickupTime = DateTime.Now.ToString("hh:mm tt");
+            string returnTime = DateTime.Now.ToShortDateString();
 
             _modalPickupTarget = Guid.NewGuid();
             _labelMopDto = labelMopDto;
-            _trackingInventoryMop.PickupTime = DateTime.Parse(timeNow);
+            _trackingInventoryMop.PickupTime = DateTime.Parse(pickupTime);
+            _trackingInventoryMop.ReturnTime = DateTime.Parse(returnTime);
             _trackingInventoryMop.CleanMopQuantity = labelMopDto.Quantity;
+            _trackingInventoryMop.LabelMopId = labelMopDto.Id;
 
 			await Task.FromResult(_modalPickup.Open(_modalPickupTarget));
             await Task.CompletedTask;
@@ -42,23 +52,23 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
         private async Task HandleValidSubmitAsync()
         {
-            //_displayValidationErrorMessages = false;
+            _displayValidationErrorMessages = false;
 
-            //await _employeeService.UpdateEmployeeAsync(_employee);
-            //await OnSubmitSuccess.InvokeAsync();
+            await _trackingInventoryMopService.AddTrackingInventoryMopAsync(_trackingInventoryMop);
+            await OnSubmitSuccess.InvokeAsync();
 
-            //_toastService.ShowToast("Employee updated!", Level.Success);
+            _toastService.ShowToast("New pickup added!", Level.Success);
 
-            //await Task.Delay((int)Delay.DataSuccess);
+            await Task.Delay((int)Delay.DataSuccess);
 
-            //await CloseModalUpdateAsync();
+            await CloseModalPickupAsync();
             await Task.CompletedTask;
 
         }
 
         private async Task HandleInvalidSubmitAsync()
         {
-            //await Task.FromResult(_displayValidationErrorMessages = true);
+            await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
         }
 

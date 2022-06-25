@@ -17,11 +17,9 @@ namespace TrackingInventoryLibrary.Models
 		public DateTime ReturnTime { get; set; }
 
 		[Required]
-		[Range(0, 30, ErrorMessage = "Quantity must be between 0 and 30")]
 		public int CleanMopQuantity { get; set; }
 
 		[Required]
-		[Range(0, 30, ErrorMessage = "Quantity must be between 0 and 30")]
 		public int DirtyMopQuantity { get; set; }
 
 		[Required]

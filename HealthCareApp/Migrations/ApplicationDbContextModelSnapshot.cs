@@ -442,10 +442,10 @@ namespace HealthCareApp.Migrations
                     b.Property<Guid>("LabelMopId")
                         .HasColumnType("char(36)");
 
-                    b.Property<DateTime>("TimeIn")
+                    b.Property<DateTime>("PickupTime")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<DateTime>("TimeOut")
+                    b.Property<DateTime>("ReturnTime")
                         .HasColumnType("datetime(6)");
 
                     b.Property<DateTime>("UpdatedAt")

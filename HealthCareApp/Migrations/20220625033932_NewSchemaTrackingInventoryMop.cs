@@ -14,8 +14,8 @@ namespace HealthCareApp.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    TimeIn = table.Column<DateTime>(type: "datetime(6)", nullable: false),
-                    TimeOut = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    PickupTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    ReturnTime = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     CleanMopQuantity = table.Column<int>(type: "int", nullable: false),
                     DirtyMopQuantity = table.Column<int>(type: "int", nullable: false),
                     LabelMopId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),

@@ -11,8 +11,8 @@
                   OnValidSubmit="@HandleValidSubmitAsync"
                   OnInvalidSubmit="@HandleInvalidSubmitAsync"
                   autocomplete="off"
-                  id="FormStartTrackingInventoryMop">
-            <ObjectGraphDataAnnotationsValidator />
+                  id="FormPickupTrackingInventoryMop">
+            <DataAnnotationsValidator />
             <div class="row">
                 <div class="col-lg-7 col-sm-12">
                     <div class="row mb-3">
@@ -47,6 +47,7 @@
                         <div class="col-sm-8">
                             <InputNumber class="form-control"
                                          id="CleanMopQuantity"
+                                         min="0"
                                          max="@_labelMopDto.Quantity"
                                          @bind-Value="_trackingInventoryMop.CleanMopQuantity" />
                         </div>
@@ -60,15 +61,15 @@
             </div>
             <div class="row">
                 <div class="col-sm-12">
-                    @*@if (_displayValidationErrorMessages)
-                        {
-                            <div class="row mb-3">
-                                <div class="col">
-                                    <label>Validation Messages: </label>
-                                    <ValidationSummary />
-                                </div>
+                    @if (_displayValidationErrorMessages)
+                    {
+                        <div class="row mb-3">
+                            <div class="col">
+                                <label>Validation Messages: </label>
+                                <ValidationSummary />
                             </div>
-                        }*@
+                        </div>
+                    }
                 </div>
             </div>
         </EditForm>
@@ -81,7 +82,7 @@
             Cancel
         </button>
         <button type="submit"
-                form="FormStartTrackingInventoryMop"
+                form="FormPickupTrackingInventoryMop"
                 class="btn btn-info btn-rounded text-white">
             Save
         </button>
