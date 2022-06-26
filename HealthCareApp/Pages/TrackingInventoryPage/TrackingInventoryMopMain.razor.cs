@@ -7,6 +7,7 @@ using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
+//using Microsoft.JSInterop;
 using TrackingInventoryLibrary.Models;
 
 namespace HealthCareApp.Pages.TrackingInventoryPage
@@ -26,6 +27,10 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         [Inject]
         private SpinnerService _spinnerService { get; set; }
 
+        private TrackingInventoryMopModalPickup _trackingInventoryMopModalPickup { get; set; }
+
+        //private IJSObjectReference? _module;
+
         private LabelMopDto _labelMopDto { get; set; }
 
         private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
@@ -36,8 +41,6 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         private bool _isInputFocus { get; set; }
         private bool _isDisabled { get; set; }
         private bool _isLoading { get; set; }
-
-        private TrackingInventoryMopModalPickup _trackingInventoryMopModalPickup { get; set; }
 
         public TrackingInventoryMopMain()
 		{
@@ -53,8 +56,29 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             await Task.Run(() => _spinnerService.ShowSpinner());
+
+            /*
+             * async import js file
+             */
+            //if (firstRender)
+            //{
+            //    _module = await JS.InvokeAsync<IJSObjectReference>("import",
+            //        "./Pages/TrackingInventoryPage/TrackingInventoryMopMain.razor.js");
+            //}
+
             await Task.CompletedTask;
         }
+
+        /*
+         * async dispose module
+         */
+        //async ValueTask IAsyncDisposable.DisposeAsync()
+        //{
+        //    if (_module is not null)
+        //    {
+        //        await _module.DisposeAsync();
+        //    }
+        //}
 
         private async Task OpenModalPickupAsync()
         {
@@ -64,6 +88,8 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             if (_labelMopDto?.Barcode?.Length > 0)
             {
                 await Task.FromResult(_trackingInventoryMopModalPickup.OpenModalPickupAsync(_labelMopDto));
+                _isDisabled = true;
+                _barcode = string.Empty;
             }
             else
             {

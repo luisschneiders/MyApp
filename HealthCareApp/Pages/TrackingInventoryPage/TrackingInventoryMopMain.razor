@@ -4,6 +4,8 @@
 @using HealthCareApp.Components.Toast
 @using HealthCareApp.Components.Spinner
 @using HealthCareApp.Settings.Enum
+@*@implements IAsyncDisposable
+@inject IJSRuntime JS*@
 
 <AuthorizeView>
     <Authorized>
@@ -21,10 +23,10 @@
             </PageHeaderView>
 
             <PageBodyView>
-                <PageBodyWrapper Styles="mt-3">
+                <PageBodyWrapper Styles="mt-2">
                     <div class="container">
-                        <div class="row align-items-center sticky-top hca-bg-default">
-                            <div class="col-sm-8 bg-opacity-25 hca-bg-label-scan p-2 @(_isInputFocus ? "bg-info" : "bg-warning")">
+                        <div class="row align-items-center sticky-top hca-bg-default border-bottom pb-2">
+                            <div class="col-sm-8 bg-opacity-25 hca-bg-label-scan ms-2 p-2 @(_isInputFocus ? "bg-info" : "bg-warning")">
                                 <input type="text" class="form-control"
                                        placeholder="Scan label..."
                                        autocomplete="off"
@@ -39,8 +41,7 @@
                                 <button type="button"
                                         class="btn btn-info btn-rounded text-white w-140"
                                         @onclick="() => OpenModalPickupAsync()"
-                                        disabled="@_isDisabled"
-                                    >
+                                        disabled="@_isDisabled">
                                     @if (_isLoading)
                                     {
                                         <span>
@@ -66,51 +67,71 @@
                             </div>
                         </div>
                         <div class="row hca-data-list-body">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 g-0">
                                 <Virtualize Context="trackinInventoryMop"
                                             ItemsProvider="@LoadTrackingInventoryMops"
                                             @ref="_virtualizeContainer">
                                     <ItemContent>
-                                        <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
-                                            <div class="d-flex w-100 justify-content-between align-items-center">
-                                                <div class="d-flex align-items-center @(trackinInventoryMop.IsActive ? "" : "text-black-50")"
-                                                     role="button">
-                                                    <i class="bi bi-upc-scan md-icon"></i>
-                                                    <div class="ps-1">
-                                                        <div class="mb-0 fs-5">
-                                                            @trackinInventoryMop.AreaName
-                                                        </div>
-                                                        <div>
-                                                            <div class="text-muted">
-                                                                @trackinInventoryMop.Barcode
-                                                            </div>
-                                                            <div>
-                                                                @trackinInventoryMop.DepartmentName
-                                                            </div>
-                                                        </div>
+                                        <div class="list-group-item list-group-item-action hca-list-group-item d-flex border-bottom overflow-auto">
+                                            <div class="d-flex w-100 justify-content-between align-items-start p-2 g-4"
+                                                 role="button">
+                                                <div class="pe-4">
+                                                    <span class="text-info">
+                                                        <i class="bi bi-calendar3 md-icon pe-2"></i>Date
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.PickupTime.Date.ToShortDateString()
                                                     </div>
                                                 </div>
-                                                @*<div>
-                                                    <div class="form-check form-switch">
-                                                        @if (trackinInventoryMop.IsActive)
-                                                        {
-                                                            <input class="form-check-input"
-                                                                   type="checkbox"
-                                                                   role="switch"
-                                                                   id="IsActive"
-                                                                   checked
-                                                                   @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
-                                                        }
-                                                        else
-                                                        {
-                                                            <input class="form-check-input"
-                                                                   type="checkbox"
-                                                                   role="switch"
-                                                                   id="IsActive"
-                                                                   @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
-                                                        }
+                                                <div class="pe-4">
+                                                    <span class="text-info">
+                                                        <i class="bi bi-upc-scan md-icon pe-2"></i>Barcode
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.Barcode
                                                     </div>
-                                                </div>*@
+                                                </div>
+                                                <div class="pe-4">
+                                                    <span class="text-info">
+                                                        <i class="bi bi-columns-gap md-icon pe-2"></i>Area
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.AreaName
+                                                    </div>
+                                                    <small>
+                                                        @trackinInventoryMop.DepartmentName
+                                                    </small>
+                                                </div>
+                                                <div class="pe-4">
+                                                    <span class="text-info">
+                                                        <i class="bi bi-list-check md-icon pe-2"></i>Mops
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.MopQuantity
+                                                    </div>
+                                                    <small>
+                                                        Clean: @trackinInventoryMop.CleanMopQuantity
+                                                    </small>
+                                                    <small>
+                                                        Dirty: @trackinInventoryMop.DirtyMopQuantity
+                                                    </small>
+                                                </div>
+                                                <div class="pe-4">
+                                                    <span class="text-success">
+                                                        <i class="bi bi-clock md-icon pe-2"></i>Pickup time
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.PickupTime.ToString("hh:mm tt")
+                                                    </div>
+                                                </div>
+                                                <div class="pe-4">
+                                                    <span class="text-warning">
+                                                        <i class="bi bi-clock-fill md-icon pe-2"></i>Return time
+                                                    </span>
+                                                    <div class="mb-0 fs-5">
+                                                        @trackinInventoryMop.ReturnTime.ToString("hh:mm tt")
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
                                     </ItemContent>
@@ -131,9 +152,7 @@
         <TrackingInventoryMopModalPickup @ref="_trackingInventoryMopModalPickup" OnSubmitSuccess="RefreshVirtualizeContainer" />
         <Toast />
     </Authorized>
-
     <NotAuthorized>
         <NotAuthorizedMessage />
     </NotAuthorized>
-
 </AuthorizeView>
