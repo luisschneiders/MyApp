@@ -1,10 +1,11 @@
-﻿@page "/playground/toast"
+﻿@page "/playground/badge"
+@using HealthCareApp.Settings.Enum
 @using HealthCareApp.Components.Page
-@using HealthCareApp.Components.Toast
+@using HealthCareApp.Components.Badge
 
 <PageWrapper>
     <PageHeader>
-        <PageHeaderTitle Title="Toast"
+        <PageHeaderTitle Title="Badge"
                          ParentLink="/playgrounds"
                          ParentTitle="Playgrounds" />
         <PageMenu />
@@ -31,22 +32,21 @@
                         </div>
                     }
                 </div>
-                <div class="col markup-example">
+                <div class="col markup-background hca-border-radius">
                     <p>
                         <h4 class="text-black-50">Example</h4>
                         <hr />
                     </p>
                     <div class="d-flex flex-column justify-content-evenly align-items-center">
-                        <button type="button"
-                                class="btn btn-light btn-rounded"
-                                @onclick="() => ShowToast()">
-                            Show toast
-                        </button>
-
+                        <div>
+                            <Badge Level="Level.Info" Message="Info message!" />
+                            <Badge Level="Level.Success" Message="Success message!" />
+                            <Badge Level="Level.Warning" Message="Warning message!" />
+                            <Badge Level="Level.Error" Message="Error message!" />
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <Toast />
     </PageBody>
 </PageWrapper>

@@ -121,16 +121,31 @@ a:hover {
 .breadcrumb-no-divider {
     --bs-breadcrumb-divider: '';
 }
+.hca-breadcrumb {
+    padding-left: 0.5rem;
+}
 .content {
     width: calc(100% - 1rem);
     height: calc(100% - (86px - 1rem));
     margin: auto;
     background-color: #f3f2f1;
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
 }
 
 .form-control {
     border-radius: 1.8rem;
+}
+.form-control:focus {
+    border-color: #0dcaf0;
+    outline: 0;
+    box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 4px rgb(13 202 240 / 60%);
+}
+
+.hca-form-control-lg {
+    min-height: calc(1.5em + 1rem + 5px);
+    padding: 0.5rem 1rem;
+    font-size: 2.0rem;
+    font-weight: 300;
 }
 
 .valid.modified:not([type=checkbox]) {
@@ -167,9 +182,9 @@ a:hover {
     background-color: #dbe0e1;
     border-radius: 8px;
 }
-.markup-example {
+.markup-background {
     background-color: #f4fdff;
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
 }
 .flex-container {
     display: grid;
@@ -228,7 +243,7 @@ a:hover {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-    border-radius: 0.8rem;
+/*    border-radius: 0.8rem;*/
     background-color: #ffffff;
     border: none;
 }
@@ -243,6 +258,18 @@ a:hover {
 .hca-box-shadow {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
 }
+.hca-border-radius {
+    border-radius: 0.8rem;
+}
+.hca-bg-label-scan {
+    border-radius: 4rem;
+}
+.hca-bg-default {
+    background-color: #f3f2f1;
+}
+.hca-data-list-body {
+    top: 86px;
+}
 a.hca-box-shadow:hover {
     cursor: pointer;
     transform: scale(1.02, 1.02);
@@ -256,7 +283,12 @@ a.hca-box-shadow:hover {
 .zpl-format {
     word-break: break-all;
 }
-
+.w-120 {
+    width: 120px;
+}
+.w-140 {
+    width: 140px;
+}
 @media (min-width: 641px) {
     .content {
         width: calc(100% - 3rem);

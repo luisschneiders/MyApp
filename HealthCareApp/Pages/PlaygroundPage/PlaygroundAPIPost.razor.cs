@@ -5,7 +5,7 @@ using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.Playground
+namespace HealthCareApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundAPIPost : ComponentBase
     {

@@ -1,8 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
-using Microsoft.AspNetCore.Components.Authorization;
+﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using HealthCareApp.Areas.Identity;
 using HealthCareApp.Data;
@@ -37,6 +34,7 @@ builder.Services.AddScoped<LabelService>();
 builder.Services.AddScoped<DepartmentService>();
 builder.Services.AddScoped<LabelMopService>();
 builder.Services.AddScoped<AreaService>();
+builder.Services.AddScoped<TrackingInventoryMopService>();
 
 //builder.Services.AddSingleton<WeatherForecastService>();
 

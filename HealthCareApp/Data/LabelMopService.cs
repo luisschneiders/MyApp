@@ -1,4 +1,5 @@
-﻿using AreaLibrary.Models;
+﻿
+using AreaLibrary.Models;
 using DepartmentLibrary.Models;
 using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +11,7 @@ namespace HealthCareApp.Data
 		private readonly ApplicationDbContext _applicationDbContext;
 		private readonly IHttpContextAccessor _httpContextAccessor;
 
-		public LabelMopService(ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
+        public LabelMopService(ApplicationDbContext applicationDbContext, IHttpContextAccessor httpContextAccessor)
 		{
 			_applicationDbContext = applicationDbContext;
 			_httpContextAccessor = httpContextAccessor;
@@ -86,9 +87,10 @@ namespace HealthCareApp.Data
          */
         public LabelMop GetLabelMopById(Guid guid)
         {
+            UserService userService = new UserService(_httpContextAccessor);
+
             try
             {
-                UserService userService = new UserService(_httpContextAccessor);
 
                 /* Raw query with joins, filters and ordering */
                 var query =
@@ -108,6 +110,44 @@ namespace HealthCareApp.Data
                 Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
+        }
+
+        /*
+         * async method to get label mop by barcode
+         */
+
+        public async Task<LabelMopDto> GetLabelMopByBarcodeAsync(string barcode)
+        {
+
+            UserService userService = new UserService(_httpContextAccessor);
+
+            try
+            {
+                LabelMopDto labelMopDto = new();
+
+                /* Raw query with joins, filters and ordering */
+                var query =
+                    (
+                        from labelMop in _applicationDbContext.Set<LabelMop>()
+                        join area in _applicationDbContext.Set<Area>()
+                          on labelMop.AreaId equals area.Id
+                        join department in _applicationDbContext.Set<Department>()
+                          on area.DepartmentId equals department.Id
+                        where labelMop.InsertedBy == userService.UserId()
+                        && labelMop.Barcode == barcode
+                        select new { labelMop, area, department }
+                    ).AsNoTracking().FirstOrDefault();
+
+                labelMopDto = SetLabelMopDto(query.labelMop, query.area, query.department);
+
+                return await Task.FromResult(labelMopDto);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+                return await Task.FromResult(new LabelMopDto());
+            }
+
         }
 
         /*
