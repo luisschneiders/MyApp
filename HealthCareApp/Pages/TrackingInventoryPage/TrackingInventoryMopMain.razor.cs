@@ -93,7 +93,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             }
             else
             {
-                _toastService.ShowToast($"Barcode not found!", Level.Warning);
+                _toastService.ShowToast($"Barcode not found!", Level.Error);
             }
 
             await Task.Delay((int)Delay.DataLoading);
