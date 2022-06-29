@@ -5,7 +5,7 @@
     border-left: 1px dashed #f8d3e4;
 }
 
-@media (min-width: 641px) {
+@media (min-width: 992px) {
     .page-body {
         overflow: auto;
         height: calc(100vh - 196px);

@@ -289,7 +289,8 @@ a.hca-box-shadow:hover {
 .w-140 {
     width: 140px;
 }
-@media (min-width: 641px) {
+
+@media (min-width: 992px) {
     .content {
         width: calc(100% - 1.5rem);
     }
