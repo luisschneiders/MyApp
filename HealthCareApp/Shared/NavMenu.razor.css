@@ -17,7 +17,8 @@
     display: flex;
     flex-direction: row;
     align-items: flex-end;
-    color: #997588;
+    color: #FFFFFF;
+    text-shadow: 1px 1px 8px black;
 }
 
 .oi {
@@ -50,12 +51,12 @@
     }
 
     .nav-item ::deep a.active {
-        background-color: rgba(255,255,255,0.25);
+        background-color: rgba(117 87 103 / 10%);
         color: #755767;
     }
 
     .nav-item ::deep a:hover {
-        background-color: rgba(255,255,255,0.1);
+        background-color: rgba(117 87 103 / 25%);
         color: #493640;
     }
 
@@ -75,6 +76,10 @@
     .collapse {
         /* Never collapse the sidebar for wide screens */
         display: block;
+    }
+    .hca-collapse {
+        background-color: #f3f2f1;
+        margin-left: 0.75rem;
     }
 }
 

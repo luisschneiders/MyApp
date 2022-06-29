@@ -272,10 +272,10 @@ a:hover {
 }
 a.hca-box-shadow:hover {
     cursor: pointer;
-    transform: scale(1.02, 1.02);
+    transform: scale(1.01, 1.01);
     box-shadow: 0px 17px 20px -12px rgb(0 0 0 / 50%);
     text-decoration: none;
-    transition: all .1s ease-in-out;
+    transition: all .3s ease-in-out;
 }
 .list-group-item-action:focus, .list-group-item-action:hover {
     background-color: #dbe0e1;
@@ -291,7 +291,7 @@ a.hca-box-shadow:hover {
 }
 @media (min-width: 641px) {
     .content {
-        width: calc(100% - 3rem);
+        width: calc(100% - 1.5rem);
     }
 }
 @media (min-width: 1200px) {
