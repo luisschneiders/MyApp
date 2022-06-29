@@ -30,7 +30,7 @@
         text-overflow: ellipsis;
     }
 
-@media (max-width: 640.98px) {
+@media (max-width: 990.98px) {
     .top-row.auth {
         display: none;
     }
