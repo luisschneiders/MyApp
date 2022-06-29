@@ -290,7 +290,7 @@ a.hca-box-shadow:hover {
     width: 140px;
 }
 .table-md > :not(caption) > * > * {
-    padding: 1rem 0;
+    padding: 1rem;
 }
 
 @media (min-width: 992px) {
