@@ -75,77 +75,75 @@
                         </div>
                         <div class="row hca-data-list-body">
                             <div class="col-sm-12 g-0">
-                                <Virtualize Context="trackinInventoryMop"
-                                            ItemsProvider="@LoadTrackingInventoryMops"
-                                            @ref="_virtualizeContainer">
-                                    <ItemContent>
-                                        <div class="list-group-item list-group-item-action hca-list-group-item border-bottom">
-                                            <div class="row g-0"
-                                                 role="button">
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-info">
-                                                        <i class="bi bi-calendar3 md-icon pe-2"></i>Date
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.PickupTime.Date.ToShortDateString()
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-info">
-                                                        <i class="bi bi-upc-scan md-icon pe-2"></i>Barcode
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.Barcode
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-info">
-                                                        <i class="bi bi-columns-gap md-icon pe-2"></i>Area
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.AreaName
-                                                    </div>
-                                                    <small>
-                                                        @trackinInventoryMop.DepartmentName
-                                                    </small>
-                                                </div>
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-info">
-                                                        <i class="bi bi-clipboard-check md-icon pe-2"></i>Mops
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.MopQuantity
-                                                    </div>
-                                                    <small>
-                                                        Clean: @trackinInventoryMop.CleanMopQuantity
-                                                    </small>
-                                                    <small>
-                                                        Dirty: @trackinInventoryMop.DirtyMopQuantity
-                                                    </small>
-                                                </div>
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-success">
-                                                        <i class="bi bi-clock md-icon pe-2"></i>Pickup time
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.PickupTime.ToString("hh:mm tt")
-                                                    </div>
-                                                </div>
-                                                <div class="col-auto pe-4">
-                                                    <span class="text-warning">
-                                                        <i class="bi bi-clock-fill md-icon pe-2"></i>Return time
-                                                    </span>
-                                                    <div class="mb-0 fs-5">
-                                                        @trackinInventoryMop.ReturnTime.ToString("hh:mm tt")
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ItemContent>
-                                    <Placeholder>
-                                        <Spinner Size="Size.Md" />
-                                    </Placeholder>
-                                </Virtualize>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-nowrap">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th scope="col">Date</th>
+                                                <th scope="col">Barcode</th>
+                                                <th scope="col">Area</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Time</th>
+                                                <th scope="col">Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <Virtualize Context="trackinInventoryMop"
+                                                        ItemsProvider="@LoadTrackingInventoryMops"
+                                                        @ref="_virtualizeContainer">
+                                                <ItemContent>
+                                                    <tr>
+                                                        <td>
+                                                            @trackinInventoryMop.PickupTime.Date.ToShortDateString()
+                                                        </td>
+                                                        <td>
+                                                            @trackinInventoryMop.Barcode
+                                                        </td>
+                                                        <td>
+                                                            @trackinInventoryMop.AreaName
+                                                        </td>
+                                                        <td>
+                                                            @trackinInventoryMop.MopQuantity
+                                                        </td>
+                                                        <td>
+                                                            @trackinInventoryMop.PickupTime.ToString("hh:mm tt")
+                                                        </td>
+                                                        <td>
+                                                            Pending
+                                                        </td>
+                                                    </tr>
+                                                    @*<div class="list-group-item list-group-item-action hca-list-group-item border-bottom">
+                                                        <div class="row g-0"
+                                                             role="button">
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.PickupTime.Date.ToShortDateString()
+                                                            </div>
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.Barcode
+                                                            </div>
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.AreaName
+                                                            </div>
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.MopQuantity
+                                                            </div>
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.PickupTime.ToString("hh:mm tt")
+                                                            </div>
+                                                            <div class="col-auto p-2">
+                                                                @trackinInventoryMop.ReturnTime.ToString("hh:mm tt")
+                                                            </div>
+                                                        </div>
+                                                    </div>*@
+                                                </ItemContent>
+                                                @*<Placeholder>
+                                                    <Spinner Size="Size.Md" />
+                                                </Placeholder>*@
+                                            </Virtualize>
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
 
