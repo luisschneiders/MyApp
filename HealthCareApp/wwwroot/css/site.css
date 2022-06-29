@@ -289,14 +289,19 @@ a.hca-box-shadow:hover {
 .w-140 {
     width: 140px;
 }
+.table-md > :not(caption) > * > * {
+    padding: 1rem 0;
+}
 
 @media (min-width: 992px) {
     .content {
         width: calc(100% - 1.5rem);
     }
+
 }
 @media (min-width: 1200px) {
     .flex-container {
         grid-template-columns: 40% auto;
     }
 }
+
