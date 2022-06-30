@@ -1,16 +1,5 @@
-﻿/*
-    App Main Colors
-    #997588;
-    #f7eee7;
-    #d6c1b8;
-    #755767;
-*/
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(
+﻿body {
+    /*    background: linear-gradient(
         0deg, rgba(248, 184, 139,0) 20%,
         rgba(248, 184, 139,.1) 20%,
         rgba(248, 184, 139,.1) 40%,
@@ -82,24 +71,20 @@ body {
         rgba(250, 248, 132,.4) 60%,
         rgba(250, 248, 132,.4) 80%,
         rgba(250, 248, 132,.6) 80%);
-    background-color: #f3f2f1;
+
     background-size: 100% 100%;
-    min-height: 100vh;
+    min-height: 100vh;*/
+
+    background-color: #f8f9fa;
 }
 
 a, .btn-link {
-    color: #755767;
+/*    color: #755767;*/
     text-decoration: none;
 }
 
 a:hover {
     color: #493640;
-}
-
-.btn-primary {
-    color: #fff;
-    background: linear-gradient(135deg,#0a7fd8 0,#0a7fd8 29%,#0069b9 76%,#0069b9 100%);
-    border-color: #1861ac;
 }
 
 .btn-rounded {
@@ -114,7 +99,7 @@ a:hover {
     margin-left: -2px;
 }
 .breadcrumb-divider {
-    --bs-breadcrumb-divider: '/';
+    --bs-breadcrumb-divider: '>';
 }
 .breadcrumb-no-divider {
     --bs-breadcrumb-divider: '';
@@ -127,7 +112,6 @@ a:hover {
     height: calc(100% - (86px - 1rem));
     margin: auto;
     background-color: #f3f2f1;
-/*    border-radius: 0.8rem;*/
 }
 
 .form-control {
@@ -241,7 +225,6 @@ a:hover {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-/*    border-radius: 0.8rem;*/
     background-color: #ffffff;
     border: none;
 }
@@ -302,4 +285,3 @@ a.hca-box-shadow:hover {
         grid-template-columns: 40% auto;
     }
 }
-
