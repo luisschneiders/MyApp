@@ -191,6 +191,9 @@ a.hca-box-shadow:hover {
 .table-md > :not(caption) > * > * {
     padding: 1rem;
 }
+.text-shadow {
+    text-shadow: 1px 1px 2px #000;
+}
 
 @media (min-width: 992px) {
     .content {

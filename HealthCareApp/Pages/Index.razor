@@ -4,26 +4,42 @@
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Settings.Theme
 
-<div class="container col-xxl-8 px-4 py-5">
-    <h2 class="text-center pb-4 lead display-6">This web application is using the following technologies</h2>
-    <section>
-        <div class="pt-5 text-center border-bottom">
-            <h3 class="display-4 fw-bold">.Net</h3>
-            <div class="col-lg-6 mx-auto">
+<div class="container-fluid g-0">
+    <section class="hero-section">
+        <div class="hero-section-left d-flex align-items-center">
+            <h1 class="p-5 display-3">
+                This web application is using <strong>.Net</strong>, <strong>Blazor</strong> and
+                <strong>C#</strong> technologies
+            </h1>
+        </div>
+        <div class="hero-section-right d-flex align-items-end justify-content-end"
+             style="background-image: url('https://burst.shopifycdn.com/photos/pink-brick-wall-texture.jpg?width=925&exif=1&iptc=1'); background-size: cover; ">
+            <div class="p-5 text-white text-end">
+                <p class="fs-5 text-shadow">
+                    Deployed on <span class="fw-semibold">Microsoft Azure</span>
+                </p>
+
+            </div>
+        </div>
+
+    </section>
+</div>
+<div class="container col-xxl-12 px-4 py-5">
+    <section class="my-5 py-5">
+        <div class="row flex-lg-row-reverse justify-content-center align-items-center g-0">
+            <div class="col-lg-6 p-5">
+                <h3 class="display-5 fw-bold lh-1 mb-3">.Net</h3>
                 <p class="lead mb-4">.NET is a developer platform with tools and libraries for building any type of app, including web, mobile, desktop, games, IoT, cloud, and microservices.</p>
                 <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
                     <a class="btn btn-outline-info btn-lg px-4" href="https://dotnet.microsoft.com/" target="_blank">Read more</a>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-12 mx-auto">
-                    <img src="https://burst.shopifycdn.com/photos/floating-cubes-on-blue.jpg?width=925&exif=1&iptc=1"
-                            class="img-fluid rounded-3 shadow-lg mb-4"
-                            alt="image"
-                            width="700" height="500"
-                            loading="lazy">
-
-                </div>
+            <div class="col-12 col-sm-12 col-lg-6">
+                <img src="https://burst.shopifycdn.com/photos/floating-cubes-on-blue.jpg?width=925&exif=1&iptc=1"
+                     class="img-fluid rounded-3 shadow-lg mb-4"
+                     alt="image"
+                     width="700" height="500"
+                     loading="lazy">
             </div>
         </div>
     </section>
