@@ -1,15 +1,14 @@
 ﻿@using HealthCareApp.Components.Message
+@using HealthCareApp.Components.Footer
 
 @inherits LayoutComponentBase
 
-<NavMenu />
-<div class="page">
-
-    <div class="main">
-
-        <div class="content py-2 hca-border-radius">
-            @Body
-        </div>
-
-    </div>
+<header>
+    <NavMenu />
+</header>
+<div class="main container-fluid">
+    @Body
+</div>
+<div class="container">
+    <Footer />
 </div>

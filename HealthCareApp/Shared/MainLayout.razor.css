@@ -1,8 +1,8 @@
-﻿
+﻿.main {
+    margin-top: 58px;
+}
+
 @media (min-width: 992px) {
 
-    .main > div {
-        padding-left: 2rem !important;
-        padding-right: 1.5rem !important;
-    }
+
 }

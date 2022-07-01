@@ -4,61 +4,64 @@
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Settings.Theme
 
+<div class="container col-xxl-8 px-4 py-5">
+    <h2 class="text-center pb-4 lead display-6">This web application is using the following technologies</h2>
+    <section>
+        <div class="pt-5 text-center border-bottom">
+            <h3 class="display-4 fw-bold">.Net</h3>
+            <div class="col-lg-6 mx-auto">
+                <p class="lead mb-4">.NET is a developer platform with tools and libraries for building any type of app, including web, mobile, desktop, games, IoT, cloud, and microservices.</p>
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
+                    <a class="btn btn-outline-info btn-lg px-4" href="https://dotnet.microsoft.com/" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12 mx-auto">
+                    <img src="https://burst.shopifycdn.com/photos/floating-cubes-on-blue.jpg?width=925&exif=1&iptc=1"
+                            class="img-fluid rounded-3 shadow-lg mb-4"
+                            alt="image"
+                            width="700" height="500"
+                            loading="lazy">
 
-<PageWrapper>
-    <PageHeader>
-        <PageHeaderTitle Title="Welcome" IsVisible="false"></PageHeaderTitle>
-    </PageHeader>
-    <PageBody Styles="p-2">
-        <div class="d-flex flex-column justify-content-center align-items-center">
-            <h2 class="text-center pb-4 lead display-6">This web application is using the following technologies</h2>
-
-            <CardFeatureWrapper>
-                <CardFeatureView BackgroundImage="https://burst.shopifycdn.com/photos/purple-led-lights-reflect-in-bubbles.jpg?width=925&exif=1&iptc=1">
-                    <CardFeatureViewHeader Title="Blazor"></CardFeatureViewHeader>
-                    <CardFeatureViewBody>
-                        Blazor is a feature of ASP.NET, the popular web development framework that extends the .NET developer platform with tools and libraries for building web apps.
-                    </CardFeatureViewBody>
-                    <CardFeatureViewFooter>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-info-square"></i>
-                                <span class="px-1"><a href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" target="_blank" class="text-white">Read more</a></span>
-                            </li>
-                        </ul>
-                    </CardFeatureViewFooter>
-                </CardFeatureView>
-                <CardFeatureView BackgroundImage="https://burst.shopifycdn.com/photos/a-green-triangle-and-an-orange-triangle-on-paper.jpg?width=925&exif=1&iptc=1">
-                    <CardFeatureViewHeader Title="C#"></CardFeatureViewHeader>
-                    <CardFeatureViewBody>
-                        C# is a general-purpose, multi-paradigm programming language that  encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines.
-                    </CardFeatureViewBody>
-                    <CardFeatureViewFooter>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-info-square"></i>
-                                <span class="px-1"><a href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank" class="text-white">Read more</a></span>
-                            </li>
-                        </ul>
-                    </CardFeatureViewFooter>
-                </CardFeatureView>
-                <CardFeatureView BackgroundImage="https://burst.shopifycdn.com/photos/metallic-looking-flower-petals-enveloped-by-pink-smoke.jpg?width=925&exif=1&iptc=1">
-                    <CardFeatureViewHeader Title=".Net"></CardFeatureViewHeader>
-                    <CardFeatureViewBody>
-                        .NET is a developer platform with tools and libraries for building any type of app, including web, mobile, desktop, games, IoT, cloud, and microservices.
-                    </CardFeatureViewBody>
-                    <CardFeatureViewFooter>
-                        <ul class="d-flex list-unstyled mt-auto">
-                            <li class="d-flex align-items-center">
-                                <i class="bi bi-info-square"></i>
-                                <span class="px-1"><a href="https://dotnet.microsoft.com/" target="_blank" class="text-white">Read more</a></span>
-                            </li>
-                        </ul>
-                    </CardFeatureViewFooter>
-                </CardFeatureView>
-            </CardFeatureWrapper>
-
+                </div>
+            </div>
         </div>
-    </PageBody>
-    <PageFooter></PageFooter>
-</PageWrapper>
+    </section>
+    <section class="my-5 py-5">
+        <div class="row flex-lg-row-reverse justify-content-center align-items-center g-0">
+            <div class="col-12 col-sm-12 col-lg-6">
+                <img src="https://burst.shopifycdn.com/photos/purple-led-lights-reflect-in-bubbles.jpg?width=925&exif=1&iptc=1"
+                     class="img-fluid rounded-3 shadow-lg"
+                     alt="image"
+                     width="700" height="500"
+                     loading="lazy">
+            </div>
+            <div class="col-lg-6 p-5">
+                <h3 class="display-5 fw-bold lh-1 mb-3">Blazor</h3>
+                <p class="lead">Blazor is a feature of ASP.NET, the popular web development framework that extends the .NET developer platform with tools and libraries for building web apps.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-outline-info btn-lg px-4" href="https://dotnet.microsoft.com/en-us/apps/aspnet/web-apps/blazor" target="_blank">Read more</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="my-5 py-5">
+        <div class="row flex-lg-row-reverse justify-content-center align-items-center g-0">
+            <div class="col-lg-6 p-5">
+                <h3 class="display-5 fw-bold lh-1 mb-3">C#</h3>
+                <p class="lead">C# is a general-purpose, multi-paradigm programming language that  encompasses static typing, strong typing, lexically scoped, imperative, declarative, functional, generic, object-oriented, and component-oriented programming disciplines.</p>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+                    <a class="btn btn-outline-info btn-lg px-4" href="https://docs.microsoft.com/en-us/dotnet/csharp/" target="_blank">Read more</a>
+                </div>
+            </div>
+            <div class="col-12 col-sm-12 col-lg-6">
+                <img src="https://burst.shopifycdn.com/photos/a-green-triangle-and-an-orange-triangle-on-paper.jpg?width=925&exif=1&iptc=1"
+                     class="img-fluid rounded-3 shadow-lg"
+                     alt="image"
+                     width="700" height="500"
+                     loading="lazy">
+            </div>
+        </div>
+    </section>
+
+</div>
