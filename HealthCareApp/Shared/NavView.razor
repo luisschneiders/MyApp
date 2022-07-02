@@ -18,102 +18,119 @@
                 </a>
             </NotAuthorized>
         </AuthorizeView>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft"
+                aria-controls="offcanvasLeft">
             <i class="bi bi-justify"></i>
         </button>
 
-        <div class="collapse navbar-collapse" id="navbarApp">
-            <ul class="navbar-nav me-auto justify-content-end">
-                <AuthorizeView>
-                    <Authorized>
-                        <li class="nav-item px-3">
-                            <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">
-                                Dashboard
-                            </NavLink>
-                        </li>
-                        <li class="nav-item dropdown-center px-3">
-                            <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-grid-3x3-gap pe-1"></i>Admin<i class="bi bi-chevron-down ps-2"></i>
-                            </NavLink>
-                            <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownSettingsLink">
-                                <li>
-                                    <NavLink class="nav-link" href="/employees">
-                                        Employees
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="/departments">
-                                        Departments
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink class="nav-link" href="/labels">
-                                        Labels
-                                    </NavLink>
-                                </li>
-                            </ul>
+        <div class="offcanvas-lg offcanvas-start flex-grow-1" id="offcanvasLeft" aria-labelledby="offcanvasLeftLabel" data-bs-scroll="true">
+            <div class="offcanvas-header px-4 pb-0">
+                <h5 class="offcanvas-title" id="offcanvasLeftLabel">HealthCare</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#offcanvasLeft"></button>
+            </div>
 
-                        </li>
-                        <li class="nav-item px-3">
-                            <NavLink class="nav-link" href="tracking-inventory">
-                                Inventory
-                            </NavLink>
-                        </li>
-                        @if (_env.IsDevelopment())
-                        {
-                            <li class="nav-item dropdown-center px-3">
-                                <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    APIs<i class="bi bi-chevron-down ps-2"></i>
+            <div class="offcanvas-body p-4 pt-0 p-lg-0">
+                <hr class="d-lg-none">
+                <ul class="navbar-nav me-auto justify-content-end">
+                    <AuthorizeView>
+                        <Authorized>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">
+                                    Dashboard
                                 </NavLink>
-                                <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownAPILink">
+                            </li>
+                            <li class="nav-item dropdown px-3">
+                                <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-grid-3x3-gap pe-1"></i>Admin<i class="bi bi-chevron-down ps-2"></i>
+                                </NavLink>
+                                <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownSettingsLink">
                                     <li>
-                                        <NavLink class="nav-link" href="/playground/api-get">
-                                            Get
+                                        <NavLink class="nav-link" href="/employees">
+                                            Employees
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink class="nav-link" href="/playground/api-post">
-                                            Post
+                                        <NavLink class="nav-link" href="/departments">
+                                            Departments
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink class="nav-link" href="/playground/api-put">
-                                            Put
-                                        </NavLink>
-                                    </li>
-                                    <li>
-                                        <NavLink class="nav-link" href="/playground/api-delete">
-                                            Delete
+                                        <NavLink class="nav-link" href="/labels">
+                                            Labels
                                         </NavLink>
                                     </li>
                                 </ul>
 
                             </li>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="tracking-inventory">
+                                    Inventory
+                                </NavLink>
+                            </li>
+                            @if (_env.IsDevelopment())
+                            {
+                                <li class="nav-item dropdown px-3">
+                                    <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        APIs<i class="bi bi-chevron-down ps-2"></i>
+                                    </NavLink>
+                                    <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownAPILink">
+                                        <li>
+                                            <NavLink class="nav-link" href="/playground/api-get">
+                                                Get
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="nav-link" href="/playground/api-post">
+                                                Post
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="nav-link" href="/playground/api-put">
+                                                Put
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="nav-link" href="/playground/api-delete">
+                                                Delete
+                                            </NavLink>
+                                        </li>
+                                    </ul>
 
-                        }
-                    </Authorized>
-                    <NotAuthorized>
-                        <li class="nav-item px-3">
-                            <NavLink class="nav-link" href="/about">
-                                About
-                            </NavLink>
-                        </li>
-                    </NotAuthorized>
-                </AuthorizeView>
-                <li class="nav-item col-12 col-lg-auto">
-                    <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
+                                </li>
+
+                            }
+                        </Authorized>
+                        <NotAuthorized>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="/about">
+                                    About
+                                </NavLink>
+                            </li>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                    <li class="nav-item col-12 col-lg-auto">
+                        <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
+                        <hr class="d-lg-none">
+                    </li>
+                    <li class="nav-item col-12 col-lg-auto ps-3">
+                        <NavLink class="nav-link" href="/playground">
+                            <i class="bi bi-controller pe-1"></i>Playground
+                        </NavLink>
+                    </li>
+                </ul>
+
+                <div>
                     <hr class="d-lg-none">
-                </li>
-                <li class="nav-item px-3 nav-link-submenu">
-                    <NavLink class="nav-link" href="/playground">
-                        <i class="bi bi-controller pe-1"></i>Playground
-                    </NavLink>
-                </li>
-            </ul>
-            <span class="">
-                <LoginDisplay />
-                <LoginOrRegister />
-            </span>
+                    <LoginDisplay />
+                    <LoginOrRegister />
+                </div>
+
+            </div>
         </div>
+
     </div>
 </nav>
