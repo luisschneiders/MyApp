@@ -32,10 +32,10 @@
                             </NavLink>
                         </li>
                         <li class="nav-item dropdown-center px-3">
-                            <NavLink class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-grid-3x3-gap pe-1"></i>Setup
+                            <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="bi bi-grid-3x3-gap pe-1"></i>Admin<i class="bi bi-chevron-down ps-2"></i>
                             </NavLink>
-                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownSettingsLink">
+                            <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownSettingsLink">
                                 <li>
                                     <NavLink class="nav-link" href="/employees">
                                         Employees
@@ -62,10 +62,10 @@
                         @if (_env.IsDevelopment())
                         {
                             <li class="nav-item dropdown-center px-3">
-                                <NavLink class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                    <i class="bi bi-share pe-1"></i>APIs
+                                <NavLink class="nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    APIs<i class="bi bi-chevron-down ps-2"></i>
                                 </NavLink>
-                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownAPILink">
+                                <ul class="dropdown-menu hca-dropdown-menu px-4" aria-labelledby="navbarDropdownAPILink">
                                     <li>
                                         <NavLink class="nav-link" href="/playground/api-get">
                                             Get
@@ -90,30 +90,6 @@
 
                             </li>
 
-                            @*@if (_navSubmenu == NavSubmenu.Api)
-            {
-                <li class="nav-item px-5">
-                    <NavLink class="nav-link" href="/playground/api-get">
-                        <i class="bi bi-terminal sm-icon"></i>Get
-                    </NavLink>
-                </li>
-                <li class="nav-item px-5">
-                    <NavLink class="nav-link" href="/playground/api-post">
-                        <i class="bi bi-terminal-plus sm-icon"></i>Post
-                    </NavLink>
-                </li>
-                <li class="nav-item px-5">
-                    <NavLink class="nav-link" href="/playground/api-put">
-                        <i class="bi bi-terminal-fill sm-icon"></i>Put
-                    </NavLink>
-                </li>
-                <li class="nav-item px-5">
-                    <NavLink class="nav-link" href="/playground/api-delete">
-                        <i class="bi bi-terminal-x sm-icon"></i>Delete
-                    </NavLink>
-                </li>
-            }*@
-
                         }
                     </Authorized>
                     <NotAuthorized>
@@ -124,9 +100,13 @@
                         </li>
                     </NotAuthorized>
                 </AuthorizeView>
+                <li class="nav-item col-12 col-lg-auto">
+                    <div class="vr d-none d-lg-flex h-100 mx-lg-2"></div>
+                    <hr class="d-lg-none">
+                </li>
                 <li class="nav-item px-3 nav-link-submenu">
-                    <NavLink class="nav-link" href="/playgrounds">
-                        <i class="bi bi-controller pe-1"></i>Playgrounds
+                    <NavLink class="nav-link" href="/playground">
+                        <i class="bi bi-controller pe-1"></i>Playground
                     </NavLink>
                 </li>
             </ul>

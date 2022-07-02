@@ -1,8 +1,10 @@
-﻿<AuthorizeView>
+﻿@using HealthCareApp.Settings.Enum
+@using BaseLibrary
+<AuthorizeView>
     <Authorized>
         <div class="dropdown">
             <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuUser" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                Hello, @context.User.Identity?.Name!
+                Hello, @context.User.Identity?.Name.Truncate((int)Truncate.FirstName)!
             </button>
             <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuUser">
                 <li>
