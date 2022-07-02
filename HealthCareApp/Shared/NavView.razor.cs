@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Shared
 {
-    public partial class NavMenu : ComponentBase
+    public partial class NavView : ComponentBase
     {
 
         private enum NavSubmenu
@@ -21,7 +21,7 @@ namespace HealthCareApp.Shared
 
         //private string _navMenuCssClass => _collapseNavMenu ? "collapse" : string.Empty;
 
-        public NavMenu()
+        public NavView()
         {
             //_collapseNavMenu = true;
             //_collapseNavSubmenu = true;

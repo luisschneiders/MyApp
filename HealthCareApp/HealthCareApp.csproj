@@ -21,6 +21,9 @@
     <None Remove="Pages\MapLocationPage\" />
     <None Remove="Shared\images\" />
     <None Remove="Components\Footer\" />
+    <None Remove="Components\PageV3\" />
+    <None Remove="Pages\DashboardPage\" />
+    <None Remove="Components\Breadcrumb\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -66,6 +69,9 @@
     <Folder Include="wwwroot\icon\" />
     <Folder Include="Shared\images\" />
     <Folder Include="Components\Footer\" />
+    <Folder Include="Components\PageV3\" />
+    <Folder Include="Pages\DashboardPage\" />
+    <Folder Include="Components\Breadcrumb\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

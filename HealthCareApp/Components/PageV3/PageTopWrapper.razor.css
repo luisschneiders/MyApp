@@ -1,0 +1,12 @@
+﻿.page-top {
+}
+
+.page-top-background {
+    border: 1px dashed #ef95bf;
+}
+
+@media (min-width: 992px) {
+    .page-top {
+
+    }
+}

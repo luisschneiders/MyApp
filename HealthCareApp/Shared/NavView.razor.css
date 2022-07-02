@@ -9,8 +9,9 @@
 }
 
 .navbar-brand {
-    color: #FFFFFF;
-    text-shadow: 1px 1px 8px black;
+    display: flex;
+    align-items: center;
+    color: #9f2b2c;
 }
 
 .oi {
