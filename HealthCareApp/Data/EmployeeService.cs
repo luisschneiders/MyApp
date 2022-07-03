@@ -107,6 +107,21 @@ namespace HealthCareApp.Data
             }
         }
 
+        public async Task<int> CountActiveEmployeeAsync()
+        {
+            UserService userService = new UserService(_httpContextAccessor);
+
+            int countUsers =
+                (
+                    from employee in _applicationDbContext.Set<Employee>()
+                    where employee.InsertedBy == userService.UserId()
+                    && employee.IsActive == true
+                    select new { employee }
+                ).AsNoTracking().Count();
+
+            return await Task.FromResult(countUsers);
+        }
+
         /*
          * async method to add new employee
          */
