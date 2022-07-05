@@ -68,7 +68,7 @@
                                                                     ItemsProvider="@LoadEmployees"
                                                                     @ref="_virtualizeContainer">
                                                             <ItemContent>
-                                                                <tr>
+                                                                <tr class="py-5">
                                                                     <td>
                                                                         @person.EmployeeFirstName
                                                                     </td>
@@ -99,21 +99,26 @@
                                                                                 }
                                                                         </div>
                                                                     </td>
-                                                                    <td>
-                                                                        <button class="btn btn-link"
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-link p-0 text-info"
                                                                                 type="button"
                                                                                 data-bs-toggle="offcanvas"
                                                                                 data-bs-target="#offcanvasRight"
-                                                                                aria-controls="offcanvasRight">
-                                                                            <span title="View details">
-                                                                                <i class="bi bi-eye pe-1"></i>
-                                                                            </span>
+                                                                                aria-controls="offcanvasRight"
+                                                                                title="View details">
+                                                                                <i class="bi bi-eye"></i>
+
                                                                         </button>
                                                                     </td>
-                                                                    <td>
-                                                                        <span title="Edit">
-                                                                            <i class="bi bi-pencil pe-1"></i>
-                                                                        </span>
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-link p-0 text-danger"
+                                                                                type="button"
+                                                                                data-bs-toggle="offcanvas"
+                                                                                data-bs-target="#offcanvasRight"
+                                                                                aria-controls="offcanvasRight"
+                                                                                title="Edit">
+                                                                                <i class="bi bi-pencil"></i>
+                                                                        </button>
                                                                     </td>
                                                                 </tr>
                                                             </ItemContent>
