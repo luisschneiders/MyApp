@@ -26,6 +26,7 @@
     <None Remove="Components\Breadcrumb\" />
     <None Remove="Components\CardV3\" />
     <None Remove="Components\OffCanvas\" />
+    <None Remove="Pages\AdminPage\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -76,6 +77,7 @@
     <Folder Include="Components\Breadcrumb\" />
     <Folder Include="Components\CardV3\" />
     <Folder Include="Components\OffCanvas\" />
+    <Folder Include="Pages\AdminPage\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />
