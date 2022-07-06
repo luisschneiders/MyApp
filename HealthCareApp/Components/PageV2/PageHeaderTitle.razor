@@ -5,9 +5,32 @@
 @if (IsVisible)
 {
     <nav class="@(ParentTitle.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
-        <ul class="breadcrumb mb-0 display-6 text-capitalize">
-            <li class="breadcrumb-item"><a href="@ParentLink">@ParentTitle</a></li>
-            <li class="breadcrumb-item active" aria-current="@Title">@Title</li>
-        </ul>
-    </nav>
+            <ul class="breadcrumb mb-0 display-6 text-capitalize">
+                <li class="breadcrumb-item"><a href="@ParentLink">@ParentTitle</a></li>
+                <li class="breadcrumb-item active" aria-current="@Title">@Title</li>
+            </ul>
+        </nav>
+
+
+    @*<nav class="@(_path.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
+        <ol class="breadcrumb text-capitalize">
+            @foreach (var urlPath in _path.Select((x, i) => new { Value = x, Index = i }))
+            {
+                int lastIndex = _path.Count();
+
+                <li class="breadcrumb-item @((urlPath.Index + 1) < lastIndex ) ? " " : "active") ">
+                    @if ((urlPath.Index + 1) < lastIndex)
+                    {
+                        <a href="@(_baseUri+@urlPath.Value)">@urlPath.Value</a>
+                    }
+                    else
+                    {
+                        @urlPath.Value
+                    }
+
+                </li>
+
+            }
+        </ol>
+    </nav>*@
 }

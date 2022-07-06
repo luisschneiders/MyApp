@@ -1,0 +1,12 @@
+﻿@if (Link != string.Empty)
+{
+    <a href="@Link" class="card">
+        @ChildContent
+    </a>
+}
+else
+{
+    <div class="card border-light">
+        @ChildContent
+    </div>
+}

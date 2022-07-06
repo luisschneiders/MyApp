@@ -1,107 +1,14 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
-/*
-    App Main Colors
-    #997588;
-    #f7eee7;
-    #d6c1b8;
-    #755767;
-*/
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(
-        0deg, rgba(248, 184, 139,0) 20%,
-        rgba(248, 184, 139,.1) 20%,
-        rgba(248, 184, 139,.1) 40%,
-        rgba(248, 184, 139,.2) 40%,
-        rgba(248, 184, 139,.2) 60%,
-        rgba(248, 184, 139,.4) 60%,
-        rgba(248, 184, 139,.4) 80%,
-        rgba(248, 184, 139,.6) 80%),
-        linear-gradient(
-        45deg, rgba(250, 248, 132,0) 20%,
-        rgba(250, 248, 132,.1) 20%,
-        rgba(250, 248, 132,.1) 40%,
-        rgba(250, 248, 132,.2) 40%,
-        rgba(250, 248, 132,.2) 60%,
-        rgba(250, 248, 132,.4) 60%,
-        rgba(250, 248, 132,.4) 80%,
-        rgba(250, 248, 132,.6) 80%),
-        linear-gradient(
-        90deg, rgba(186, 237, 145,0) 20%,
-        rgba(186, 237, 145,.1) 20%,
-        rgba(186, 237, 145,.1) 40%,
-        rgba(186, 237, 145,.2) 40%,
-        rgba(186, 237, 145,.2) 60%,
-        rgba(186, 237, 145,.4) 60%,
-        rgba(186, 237, 145,.4) 80%,
-        rgba(186, 237, 145,.6) 80%),
-        linear-gradient(
-        135deg, rgba(178, 206, 254,0) 20%,
-        rgba(178, 206, 254,.1) 20%,
-        rgba(178, 206, 254,.1) 40%,
-        rgba(178, 206, 254,.2) 40%,
-        rgba(178, 206, 254,.2) 60%,
-        rgba(178, 206, 254,.4) 60%,
-        rgba(178, 206, 254,.4) 80%,
-        rgba(178, 206, 254,.6) 80%),
-        linear-gradient(
-        180deg, rgba(242, 162, 232,0) 20%,
-        rgba(242, 162, 232,.1) 20%,
-        rgba(242, 162, 232,.1) 40%,
-        rgba(242, 162, 232,.2) 40%,
-        rgba(242, 162, 232,.2) 60%,
-        rgba(242, 162, 232,.4) 60%,
-        rgba(242, 162, 232,.4) 80%,
-        rgba(242, 162, 232,.6) 80%),
-        linear-gradient(
-        225deg, rgba(254, 163, 170,0) 20%,
-        rgba(254, 163, 170,.1) 20%,
-        rgba(254, 163, 170,.1) 40%,
-        rgba(254, 163, 170,.2) 40%,
-        rgba(254, 163, 170,.2) 60%,
-        rgba(254, 163, 170,.4) 60%,
-        rgba(254, 163, 170,.4) 80%,
-        rgba(254, 163, 170,.6) 80%),
-        linear-gradient(270deg,
-        rgba(248, 184, 139,0) 20%,
-        rgba(248, 184, 139,.1) 20%,
-        rgba(248, 184, 139,.1) 40%,
-        rgba(248, 184, 139,.2) 40%,
-        rgba(248, 184, 139,.2) 60%,
-        rgba(248, 184, 139,.4) 60%,
-        rgba(248, 184, 139,.4) 80%,
-        rgba(248, 184, 139,.6) 80%),
-        linear-gradient(315deg,
-        rgba(250, 248, 132,0) 20%,
-        rgba(250, 248, 132,.1) 20%,
-        rgba(250, 248, 132,.1) 40%,
-        rgba(250, 248, 132,.2) 40%,
-        rgba(250, 248, 132,.2) 60%,
-        rgba(250, 248, 132,.4) 60%,
-        rgba(250, 248, 132,.4) 80%,
-        rgba(250, 248, 132,.6) 80%);
-    background-color: #f3f2f1;
-    background-size: 100% 100%;
-    min-height: 100vh;
+﻿html, body {
+    height: 100%;
+    background-color: #efefef;
 }
 
 a, .btn-link {
-    color: #755767;
     text-decoration: none;
 }
 
 a:hover {
     color: #493640;
-}
-
-.btn-primary {
-    color: #fff;
-    background: linear-gradient(135deg,#0a7fd8 0,#0a7fd8 29%,#0069b9 76%,#0069b9 100%);
-    border-color: #1861ac;
 }
 
 .btn-rounded {
@@ -116,20 +23,13 @@ a:hover {
     margin-left: -2px;
 }
 .breadcrumb-divider {
-    --bs-breadcrumb-divider: '/';
+    --bs-breadcrumb-divider: '>';
 }
 .breadcrumb-no-divider {
     --bs-breadcrumb-divider: '';
 }
 .hca-breadcrumb {
     padding-left: 0.5rem;
-}
-.content {
-    width: calc(100% - 1rem);
-    height: calc(100% - (86px - 1rem));
-    margin: auto;
-    background-color: #f3f2f1;
-/*    border-radius: 0.8rem;*/
 }
 
 .form-control {
@@ -243,7 +143,6 @@ a:hover {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-/*    border-radius: 0.8rem;*/
     background-color: #ffffff;
     border: none;
 }
@@ -292,6 +191,9 @@ a.hca-box-shadow:hover {
 .table-md > :not(caption) > * > * {
     padding: 1rem;
 }
+.text-shadow {
+    text-shadow: 1px 1px 2px #000;
+}
 
 @media (min-width: 992px) {
     .content {
@@ -304,4 +206,3 @@ a.hca-box-shadow:hover {
         grid-template-columns: 40% auto;
     }
 }
-

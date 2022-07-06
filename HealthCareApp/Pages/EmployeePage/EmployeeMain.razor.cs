@@ -15,7 +15,7 @@ namespace HealthCareApp.Pages.EmployeePage
         [Inject]
         private SpinnerService _spinnerService { get; set; }
 
-        private Virtualize<Employee> _virtualizeContainer { get; set; }
+        private Virtualize<EmployeeListDto> _virtualizeContainer { get; set; }
 
         private bool _isLoading { get; set; }
         private bool _isSearchResults { get; set; }
@@ -23,8 +23,9 @@ namespace HealthCareApp.Pages.EmployeePage
         private string _searchTerm { get; set; }
 
         private Employee? _employeeDetails { get; set; }
-        private List<Employee> _employees { get; set; }
-        private List<Employee> _results { get; set; }
+
+        private List<EmployeeListDto> _employeeListDto { get; set; }
+        private List<EmployeeListDto> _results { get; set; }
 
         /*
          * Add component EmployeeModalAdd & EmployeeModalUpdate reference
@@ -41,8 +42,8 @@ namespace HealthCareApp.Pages.EmployeePage
             _employeeModalAdd = new();
             _employeeModalUpdate = new();
 
-            _employees = new List<Employee>();
-            _results = new List<Employee>();
+            _employeeListDto = new();
+            _results = new List<EmployeeListDto>();
 
             _employeeDetails = null;
         }
@@ -85,16 +86,17 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.CompletedTask;
         }
 
-        private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
+        private async ValueTask<ItemsProviderResult<EmployeeListDto>> LoadEmployees(ItemsProviderRequest request)
         {
-            _employees = await _employeeService.GetEmployeesAsync();
+
+            _employeeListDto = await _employeeService.GetEmployeeListDtoAsync();
 
             await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
 
-            return new ItemsProviderResult<Employee>(
-                _employees.Skip(request.StartIndex).Take(request.Count), _employees.Count
+            return new ItemsProviderResult<EmployeeListDto>(
+                _employeeListDto.Skip(request.StartIndex).Take(request.Count), _employeeListDto.Count
             );
         }
 
@@ -111,21 +113,28 @@ namespace HealthCareApp.Pages.EmployeePage
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _results = new List<Employee>();
+                _results = new ();
                 _isSearchResults = false;
                 await Task.CompletedTask;
             }
             else
             {
-                _results = await _employeeService.SearchAsync(searchTerm);
+                _results = await _employeeService.SearchEmployeeListDtoAsync(searchTerm);
                 await Task.CompletedTask;
             }
         }
 
-        private async Task UpdateEmployeeStatusAsync(Employee employee)
+        private async Task UpdateEmployeeStatusAsync(EmployeeListDto employeeListDto)
         {
-            employee.IsActive = !employee.IsActive;
-            await Task.FromResult(_employeeService.UpdateEmployeeAsync(employee));
+            employeeListDto.IsActive = !employeeListDto.IsActive;
+
+            Employee employee = new()
+            {
+                Id = employeeListDto.Id,
+                IsActive = employeeListDto.IsActive
+            };
+
+            await Task.FromResult(_employeeService.UpdateEmployeeStatusAsync(employee));
             await Task.CompletedTask;
         }
     }
