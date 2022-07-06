@@ -25,6 +25,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
         {
             _codes = new()
             {
+                new MarkupString("<div class=\"container-lg\">").ToString(),
                 new MarkupString("<PageWrapper>").ToString(),
                 new MarkupString("<PageTopView>").ToString(),
                 new MarkupString("<PageTopWrapper>").ToString(),
@@ -41,10 +42,12 @@ namespace HealthCareApp.Pages.PlaygroundPage
                 new MarkupString("</PageBottomWrapper>").ToString(),
                 new MarkupString("</PageBottomView>").ToString(),
                 new MarkupString("</PageWrapper>").ToString(),
+                new MarkupString("</div>").ToString()
             };
 
             _cssStyle = new()
             {
+                "",
                 "",
                 "ps-2",
                 "ps-4",
@@ -60,6 +63,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
                 "ps-4",
                 "ps-4",
                 "ps-2",
+                "",
                 "",
                 ""
             };
@@ -67,6 +71,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
             _newLine = new()
             {
                 true,
+                true,
                 false,
                 false,
                 false,
@@ -80,6 +85,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
                 false,
                 false,
                 false,
+                true,
                 true,
                 false
             };
