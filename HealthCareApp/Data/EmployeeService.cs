@@ -168,8 +168,7 @@ namespace HealthCareApp.Data
             int countUsers =
                 (
                     from employee in _applicationDbContext.Set<Employee>()
-                    where employee.InsertedBy == userService.UserId()
-                    && employee.IsActive == true
+                    where employee.IsActive == true
                     select new { employee }
                 ).AsNoTracking().Count();
 
