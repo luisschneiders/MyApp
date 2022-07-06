@@ -1,6 +1,8 @@
 ﻿.page-bottom {
 }
-
 .page-bottom-background {
-    border: 1px dashed #b11b61;
+    background-color: #b11b61;
+}
+
+@media (min-width: 992px) {
 }

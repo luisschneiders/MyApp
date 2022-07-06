@@ -1,11 +1,8 @@
 ﻿.page-middle {
 }
-
 .page-middle-background {
-    border-right: 1px dashed #f8d3e4;
-    border-left: 1px dashed #f8d3e4;
+    background-color: #f8d3e4;
 }
+
 @media (min-width: 992px) {
-    .page-middle {
-    }
 }

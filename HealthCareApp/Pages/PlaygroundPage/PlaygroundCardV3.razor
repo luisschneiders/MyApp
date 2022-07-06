@@ -1,22 +1,20 @@
-﻿@page "/playground/page-v3"
-
+﻿@page "/playground/card-v3";
 @using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Breadcrumb;
 
 <div class="container-lg">
     <PageWrapper>
 
-        @* Header View*@
         <PageTopView>
             <PageTopWrapper>
 
-                <PageTopTitle Title="Page V3" />
+                <PageTopTitle Title="Card V3" />
                 <Breadcrumb />
 
             </PageTopWrapper>
         </PageTopView>
 
-        @* Body View*@
         <PageMiddleView>
             <PageMiddleWrapper>
 
@@ -57,27 +55,30 @@
                             </p>
                             <div class="container-lg">
 
-                                <PageWrapper Styles="">
-                                    <PageTopView>
-                                        <PageTopWrapper Styles="page-top-background">
-                                            <PageTopTitle Title="Page V3" />
-                                            <Breadcrumb />
-                                        </PageTopWrapper>
-                                    </PageTopView>
-                                    <PageMiddleView>
-                                        <PageMiddleWrapper Styles="page-middle-background">
-                                            <div class="d-flex justify-content-center align-items-center">Page body...</div>
-                                        </PageMiddleWrapper>
-                                    </PageMiddleView>
-                                    <PageBottomView>
-                                        <PageBottomWrapper Styles="page-bottom-background text-white">
-                                            <div class="d-flex justify-content-center align-items-center">
-                                                Page footer...
-                                            </div>
-                                        </PageBottomWrapper>
-                                    </PageBottomView>
-                                </PageWrapper>
-
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-10 py-2">
+                                        <CardView Link="/">
+                                            <CardMiddle>
+                                                <CardProfile CardProfileTitle="Card with link" CardProfileIcon="bi bi-image">
+                                                    <div class="lead p-2">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    </div>
+                                                </CardProfile>
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                    <div class="col-sm-10 py-2">
+                                        <CardView>
+                                            <CardMiddle>
+                                                <CardProfile CardProfileTitle="Card without link" CardProfileIcon="bi bi-image-fill">
+                                                    <div class="lead p-2">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    </div>
+                                                </CardProfile>
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -86,7 +87,6 @@
             </PageMiddleWrapper>
         </PageMiddleView>
 
-        @* Footer View*@
         <PageBottomView>
             <PageBottomWrapper />
         </PageBottomView>

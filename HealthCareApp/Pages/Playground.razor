@@ -1,58 +1,101 @@
-﻿@page "/playground"
-@using HealthCareApp.Components.Message
-@using HealthCareApp.Components.Card
-@using HealthCareApp.Components.Page
-@using HealthCareApp.Data
-@using Microsoft.AspNetCore.Http;
+﻿@page "/playground";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Breadcrumb
 
-@inject IHttpContextAccessor httpContextAccessor
-@inject UserService userService
 
-<PageWrapper>
-    <PageHeader>
-        <PageHeaderTitle Title="Playground"></PageHeaderTitle>
-        <PageMenu />
-    </PageHeader>
-    <PageBody Styles="p-2">
-        <h3 class="text-center py-4 lead display-6">List of components used in the HealthCare App</h3>
-        <CardWrapper>
-            <CardView Link="/playground/card">
-                <CardViewHeader Icon="bi bi-card-heading" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Cards</b></p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/playground/page-v3">
-                <CardViewHeader Icon="bi bi-layout-text-window-reverse" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Page</b><sup class="badge bg-info">New</sup></p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/playground/modal">
-                <CardViewHeader Icon="bi bi-window" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Modals</b></p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/playground/toast">
-                <CardViewHeader Icon="bi bi-collection" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Toast</b></p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/playground/badge">
-                <CardViewHeader Icon="bi bi-usb-c" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Badge</b></p>
-                </CardViewBody>
-            </CardView>
-            <CardView Link="/playground/spinner">
-                <CardViewHeader Icon="bi bi-arrow-clockwise" />
-                <CardViewBody Styles="text-center">
-                    <p>UI layout for <b>Spinner</b></p>
-                </CardViewBody>
-            </CardView>
-        </CardWrapper>
-    </PageBody>
-    <PageFooter />
-</PageWrapper>
+<div class="container-lg">
+
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+                <PageTopTitle Title="Playground"/>
+                <Breadcrumb />
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/card-v3">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Card" CardProfileIcon="bi bi-card-heading">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Card</b><sup class="badge bg-warning">New</sup>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/page-v3">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Pages" CardProfileIcon="bi bi-layout-text-window-reverse">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Page</b><sup class="badge bg-warning">New</sup>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/modal">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Modal" CardProfileIcon="bi bi-window">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Modals</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/toast">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Toast" CardProfileIcon="bi bi-collection">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Toast</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/badge">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Badge" CardProfileIcon="bi bi-usb-c">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Badge</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="/playground/spinner">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Spinner" CardProfileIcon="bi bi-arrow-clockwise">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Spinner</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        <PageBottomView>
+            <PageBottomWrapper>
+            </PageBottomWrapper>
+        </PageBottomView>
+
+    </PageWrapper>
+
+</div>
