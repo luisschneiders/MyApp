@@ -1,55 +1,110 @@
 ﻿using HealthCareApp.Components.Modal;
+using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.PlaygroundPage
 {
-	public partial class PlaygroundModal
+	public partial class PlaygroundModal : ComponentBase
 	{
-        private Modal _modalSmall { get; set; }
-        private Modal _modalMedium { get; set; }
-        private Modal _modalLarge { get; set; }
+        private Modal _modal { get; set; }
+        private Guid _modalTarget { get; set; }
 
-        private Guid _modalSmallTarget { get; set; }
-        private Guid _modalMediumTarget { get; set; }
-        private Guid _modalLargeTarget { get; set; }
+        private ComponentMarkup _componentMarkup { get; set; }
+        private List<ComponentMarkup> _componentMarkupList { get; set; }
+        private List<string> _codes { get; set; }
+        private List<bool> _newLine { get; set; }
+        private List<string> _cssStyle { get; set; }
 
         public PlaygroundModal()
 		{
-            _modalSmall = new();
-            _modalMedium = new();
-            _modalLarge = new();
+            _modal = new();
+
+            _componentMarkup = new();
+            _componentMarkupList = new();
+            _codes = new List<string>();
+            _cssStyle = new List<string>();
+            _newLine = new List<bool>();
         }
 
-        private async Task OpenSmallModalAsync()
+        private async Task OpenModalAsync()
         {
-            _modalSmallTarget = Guid.NewGuid();
-            await Task.FromResult(_modalSmall.Open(_modalSmallTarget));
+            _modalTarget = Guid.NewGuid();
+            await Task.FromResult(_modal.Open(_modalTarget));
         }
 
-        private async Task CloseSmallModalAsync()
+        private async Task CloseModalAsync()
         {
-            await Task.FromResult(_modalSmall.Close(_modalSmallTarget));
+            await Task.FromResult(_modal.Close(_modalTarget));
         }
 
-        private async Task OpenMediumModalAsync()
+        protected override void OnInitialized()
         {
-            _modalMediumTarget = Guid.NewGuid();
-            await Task.FromResult(_modalMedium.Open(_modalMediumTarget));
-        }
+            _codes = new()
+            {
 
-        private async Task CloseMediumModalAsync()
-        {
-            await Task.FromResult(_modalMedium.Close(_modalMediumTarget));
-        }
+                new MarkupString("<Modal>").ToString(),
+                new MarkupString("<Title></Title>").ToString(),
+                new MarkupString("<Body>").ToString(),
+                new MarkupString("</Body>").ToString(),
+                new MarkupString("<Footer>").ToString(),
+                new MarkupString("</Footer>").ToString(),
+                new MarkupString("</Modal>").ToString(),
 
-        private async Task OpenLargeModalAsync()
-        {
-            _modalLargeTarget = Guid.NewGuid();
-            await Task.FromResult(_modalLarge.Open(_modalLargeTarget));
-        }
+            };
 
-        private async Task CloseLargeModalAsync()
-        {
-            await Task.FromResult(_modalLarge.Close(_modalLargeTarget));
+            _cssStyle = new()
+            {
+                "",
+                "ps-2",
+                "ps-2",
+                "ps-2",
+                "ps-2",
+                "ps-2",
+                ""
+            };
+
+            _newLine = new()
+            {
+                true,
+                true,
+                false,
+                true,
+                false,
+                true,
+                false,
+            };
+
+            _componentMarkup = new()
+            {
+                Title = "Modal",
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
+            };
+            _componentMarkupList.Add(_componentMarkup);
+
+            _codes = new()
+            {
+                new MarkupString("<Modal @ref='' Size='' >").ToString(),
+            };
+
+            _cssStyle = new()
+            {
+                "",
+            };
+
+            _newLine = new()
+            {
+                false,
+            };
+
+            _componentMarkup = new()
+            {
+                Title = "Parameters",
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
+            };
+            _componentMarkupList.Add(_componentMarkup);
         }
     }
 }
