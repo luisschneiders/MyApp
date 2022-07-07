@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
@@ -14,6 +13,8 @@ namespace HealthCareApp.Pages.PlaygroundPage
         private ComponentMarkup _componentMarkup { get; set; }
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
+        private List<bool> _newLine { get; set; }
+        private List<string> _cssStyle { get; set; }
 
         public PlaygroundToast()
         {
@@ -21,22 +22,34 @@ namespace HealthCareApp.Pages.PlaygroundPage
             _componentMarkup = new();
             _componentMarkupList = new();
             _codes = new List<string>();
+            _cssStyle = new List<string>();
+            _newLine = new List<bool>();
         }
 
         protected override void OnInitialized()
         {
 
-            _componentMarkup = new();
-            _componentMarkupList = new List<ComponentMarkup>();
-
             _codes = new()
             {
-                new MarkupString("<Toast />").ToString()
+                new MarkupString("<Toast />").ToString(),
             };
+
+            _cssStyle = new()
+            {
+                "",
+            };
+
+            _newLine = new()
+            {
+                false,
+            };
+
             _componentMarkup = new()
             {
-                Title = "Component",
-                Code = _codes
+                Title = "Toast",
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
             };
             _componentMarkupList.Add(_componentMarkup);
 
@@ -44,10 +57,23 @@ namespace HealthCareApp.Pages.PlaygroundPage
             {
                 new MarkupString("ToastService.ShowToast('Toast message!', Level.Info)").ToString(),
             };
+
+            _cssStyle = new()
+            {
+                "",
+            };
+
+            _newLine = new()
+            {
+                false,
+            };
+
             _componentMarkup = new()
             {
                 Title = "Service",
-                Code = _codes
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
             };
             _componentMarkupList.Add(_componentMarkup);
 
@@ -55,10 +81,23 @@ namespace HealthCareApp.Pages.PlaygroundPage
             {
                 new MarkupString("ShowToast(string, enum)").ToString(),
             };
+
+            _cssStyle = new()
+            {
+                "",
+            };
+
+            _newLine = new()
+            {
+                false,
+            };
+
             _componentMarkup = new()
             {
                 Title = "Method",
-                Code = _codes
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
             };
             _componentMarkupList.Add(_componentMarkup);
 
