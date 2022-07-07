@@ -67,7 +67,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
 
             _componentMarkup = new()
             {
-                Title = "Parameter",
+                Title = "Parameters",
                 Code = _codes,
                 NewLine = _newLine,
                 CssStyle = _cssStyle
