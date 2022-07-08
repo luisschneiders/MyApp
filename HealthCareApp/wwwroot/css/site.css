@@ -32,9 +32,6 @@ a:hover {
     padding-left: 0.5rem;
 }
 
-.form-control {
-    border-radius: 1.8rem;
-}
 .form-control:focus {
     border-color: #0dcaf0;
     outline: 0;
