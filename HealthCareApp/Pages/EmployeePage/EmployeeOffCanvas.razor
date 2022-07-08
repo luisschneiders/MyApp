@@ -1,0 +1,56 @@
+﻿@using HealthCareApp.Components.OffCanvas;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum;
+
+<OffCanvas @ref="_offCanvas" Position="end">
+    <div class="row">
+        <div class="col-12 mb-4">
+            <hr />
+            <Badge BackgroundColor="@_badgeBackground" Message="@($"{_offCanvasViewType}ing...")" />
+        </div>
+        <div class="col-12">
+            <EditForm Model="@_employee"
+                      OnValidSubmit="@HandleValidSubmitAsync"
+                      OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                      autocomplete="off"
+                      id="FormEmploye">
+                <ObjectGraphDataAnnotationsValidator />
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_isReadOnly ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeFirstName"
+                               placeholder="First name"
+                               readonly="@(_isReadOnly ? true: false)"
+                               @bind-Value="_employee.EmployeeFirstName" />
+                    <label for="EmployeeFirstName">First name</label>
+                </div>
+
+
+                @if (_isReadOnly)
+                {
+                    <button class="btn btn-info text-white"
+                            form="FormEmploye"
+                            @onclick="() => UpdateEditFormState(OffCanvasViewType.Edit, Level.Danger, _isReadOnly)">
+                        Edit
+                    </button>
+                }
+                else
+                {
+                    <button class="btn btn-link"
+                            form="FormEmploye"
+                            @onclick="() => CloseOffCanvasAsync()">
+                        Cancel
+                    </button>
+                    <button class="btn btn-info text-white"
+                            form="FormEmploye"
+                            type="submit">
+                        Update
+                    </button>
+
+                }
+            </EditForm>
+
+        </div>
+    </div>
+
+</OffCanvas>
