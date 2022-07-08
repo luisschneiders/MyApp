@@ -6,6 +6,8 @@ namespace HealthCareApp.Settings.Enum
         ModalOpen = 100,
         ModalClose = 250,
         DataSuccess = 1000,
-        DataLoading = 500
+        DataLoading = 500,
+        OffCanvasOpen = 100,
+        OffCanvasClose = 250,
     }
 }
