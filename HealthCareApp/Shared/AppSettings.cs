@@ -24,7 +24,7 @@ namespace HealthCareApp.Shared
                 case Level.Warning:
                     BackgroundColor = "warning";
                     break;
-                case Level.Error:
+                case Level.Danger:
                     BackgroundColor = "danger";
                     break;
                 case Level.Success:

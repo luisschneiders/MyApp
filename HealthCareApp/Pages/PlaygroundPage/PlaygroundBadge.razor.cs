@@ -25,7 +25,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
         {
             _codes = new()
             {
-                new MarkupString("<Badge Level='Level.Info' Message='Info message!' />").ToString(),
+                new MarkupString("<Badge Background='Level.Info.ToString().ToLower()' Message='Info message!' />").ToString(),
             };
 
             _cssStyle = new()
@@ -49,7 +49,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
 
             _codes = new()
             {
-                new MarkupString("Level='enum'").ToString(),
+                new MarkupString("Background='string'").ToString(),
                 new MarkupString("Message='string'").ToString()
             };
 

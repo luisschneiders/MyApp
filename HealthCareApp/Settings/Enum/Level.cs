@@ -6,7 +6,7 @@ namespace HealthCareApp.Settings.Enum
         Info,
         Success,
         Warning,
-        Error,
+        Danger,
         White
     }
 }
