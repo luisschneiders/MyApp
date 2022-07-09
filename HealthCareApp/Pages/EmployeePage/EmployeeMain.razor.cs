@@ -1,7 +1,6 @@
 ﻿using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -17,21 +16,17 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Virtualize<EmployeeListDto> _virtualizeContainer { get; set; }
 
-        private bool _isLoading { get; set; }
         private bool _isSearchResults { get; set; }
 
         private string _searchTerm { get; set; }
-
-        private Employee? _employeeDetails { get; set; }
 
         private List<EmployeeListDto> _employeeListDto { get; set; }
         private List<EmployeeListDto> _results { get; set; }
 
         /*
-         * Add component EmployeeModalAdd & EmployeeModalUpdate reference
+         * Add component EmployeeOffCanvas reference
          */
-        private EmployeeModalAdd _employeeModalAdd { get; set; }
-        private EmployeeModalUpdate _employeeModalUpdate { get; set; }
+        private EmployeeOffCanvas _employeeOffCanvas { get; set; }
 
         public EmployeeMain()
         {
@@ -39,13 +34,28 @@ namespace HealthCareApp.Pages.EmployeePage
 
             _spinnerService = new();
             _virtualizeContainer = new();
-            _employeeModalAdd = new();
-            _employeeModalUpdate = new();
+            _employeeOffCanvas = new();
 
             _employeeListDto = new();
             _results = new List<EmployeeListDto>();
+        }
 
-            _employeeDetails = null;
+        private async Task AddRecordAsync()
+        {
+            await Task.FromResult(_employeeOffCanvas.AddRecordOffCanvasAsync());
+            await Task.CompletedTask;
+        }
+
+        private async Task ViewDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_employeeOffCanvas.ViewDetailsOffCanvasAsync(id));
+            await Task.CompletedTask;
+        }
+
+        private async Task EditDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_employeeOffCanvas.EditDetailsOffCanvasAsync(id));
+            await Task.CompletedTask;
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -60,30 +70,6 @@ namespace HealthCareApp.Pages.EmployeePage
                 await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
-
-        }
-
-        private async Task OpenModalAddAsync()
-        {
-            await Task.FromResult(_employeeModalAdd.OpenModalAddAsync());
-            await Task.CompletedTask;
-        }
-
-        private async Task OpenModalUpdateAsync(Guid id)
-        {
-            await Task.FromResult(_employeeModalUpdate.OpenModalUpdateAsync(id));
-            await Task.CompletedTask;
-        }
-
-        private async Task ShowEmployeeDetails(Employee employee)
-        {
-            _employeeDetails = employee;
-
-            _isLoading = true;
-            await Task.Delay((int)Delay.DataLoading);
-            _isLoading = false;
-
-            await Task.CompletedTask;
         }
 
         private async ValueTask<ItemsProviderResult<EmployeeListDto>> LoadEmployees(ItemsProviderRequest request)
@@ -102,7 +88,6 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private async Task RefreshVirtualizeContainer()
         {
-            _employeeDetails = null;
             await _virtualizeContainer.RefreshDataAsync();
         }
 
@@ -113,7 +98,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _results = new ();
+                _results = new();
                 _isSearchResults = false;
                 await Task.CompletedTask;
             }

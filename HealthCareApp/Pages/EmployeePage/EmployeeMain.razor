@@ -1,14 +1,13 @@
-﻿@page "/admin/employees"
-@using HealthCareApp.Settings.Theme
-@using HealthCareApp.Components.Message
-@using HealthCareApp.Components.PageV3
-@using HealthCareApp.Components.CardV3
-@using HealthCareApp.Components.Breadcrumb
-@using HealthCareApp.Components.Toast
-@using HealthCareApp.Components.Spinner
-@using HealthCareApp.Components.OffCanvas
-@using HealthCareApp.Settings.Enum
-@using BaseLibrary
+﻿@page "/admin/employees";
+@using HealthCareApp.Settings.Theme;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.OffCanvas;
+@using HealthCareApp.Settings.Enum;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -24,8 +23,15 @@
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-4 pb-4">
+                        <div class="row flex-row-reverse justify-content-between pb-2">
+                            <div class="col-sm-12 col-md-3 col-lg-3 pb-4">
+                                <button class="btn btn-success w-100"
+                                        @onclick="() => AddRecordAsync()">
+                                    <i class="bi bi-plus-lg pe-2"></i>
+                                    New employee
+                                </button>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4 pb-2">
                                 <input type="text"
                                        class="form-control"
                                        placeholder="Start typing to search employees..."
@@ -36,7 +42,6 @@
                         </div>
                         <div class="row">
                             <div class="col-12">
-
                                 <CardView>
                                     <CardMiddle>
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
@@ -61,7 +66,6 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-
                                                     @if (!_isSearchResults)
                                                     {
                                                         <Virtualize Context="person"
@@ -102,22 +106,18 @@
                                                                     <td class="text-center">
                                                                         <button class="btn btn-link p-0 text-info"
                                                                                 type="button"
-                                                                                data-bs-toggle="offcanvas"
-                                                                                data-bs-target="#offcanvasRight"
-                                                                                aria-controls="offcanvasRight"
-                                                                                title="View details">
-                                                                                <i class="bi bi-eye-fill"></i>
+                                                                                title="View details"
+                                                                                @onclick="() => ViewDetailsAsync(person.Id)">
+                                                                            <i class="bi bi-eye-fill"></i>
 
                                                                         </button>
                                                                     </td>
                                                                     <td class="text-center">
                                                                         <button class="btn btn-link p-0 text-danger"
                                                                                 type="button"
-                                                                                data-bs-toggle="offcanvas"
-                                                                                data-bs-target="#offcanvasRight"
-                                                                                aria-controls="offcanvasRight"
-                                                                                title="Edit">
-                                                                                <i class="bi bi-pencil"></i>
+                                                                                title="Edit"
+                                                                                @onclick="() => EditDetailsAsync(person.Id)">
+                                                                            <i class="bi bi-pencil"></i>
                                                                         </button>
                                                                     </td>
                                                                 </tr>
@@ -170,10 +170,8 @@
                                                                 <td>
                                                                     <button class="btn btn-link p-0 text-info"
                                                                             type="button"
-                                                                            data-bs-toggle="offcanvas"
-                                                                            data-bs-target="#offcanvasRight"
-                                                                            aria-controls="offcanvasRight"
-                                                                            title="View details">
+                                                                            title="View details"
+                                                                            @onclick="() => ViewDetailsAsync(person.Id)">
                                                                         <i class="bi bi-eye-fill"></i>
 
                                                                     </button>
@@ -181,10 +179,8 @@
                                                                 <td>
                                                                     <button class="btn btn-link p-0 text-danger"
                                                                             type="button"
-                                                                            data-bs-toggle="offcanvas"
-                                                                            data-bs-target="#offcanvasRight"
-                                                                            aria-controls="offcanvasRight"
-                                                                            title="Edit">
+                                                                            title="Edit"
+                                                                            @onclick="() => EditDetailsAsync(person.Id)">
                                                                         <i class="bi bi-pencil"></i>
                                                                     </button>
                                                                 </td>
@@ -196,10 +192,7 @@
                                         </div>
                                     </CardMiddle>
                                 </CardView>
-
-
                             </div>
-
                         </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
@@ -208,174 +201,10 @@
 
             </PageWrapper>
 
-
-            @*<PageWrapper>
-                    <PageHeader>
-                        <PageHeaderTitle Title="Employees" />
-                        <PageMenu>
-                            <button type="button"
-                                    class="btn btn-info btn-rounded btn-icon text-white"
-                                    title="Add new employee"
-                                    @onclick="() => OpenModalAddAsync()">
-                                <i class="bi bi-plus-lg"></i>
-                            </button>
-                        </PageMenu>
-                    </PageHeader>
-                    <PageBody Styles="p-2">
-                        <div class="flex-container">
-                            <div class="flex-container-list ps-1 pe-2 border-end">
-                                <div class="flex-container-list-search py-1">
-                                    <div class="row g-0">
-                                        <div class="col">
-                                            <input type="text"
-                                                   class="form-control"
-                                                   placeholder="Start typing to search employees..."
-                                                   aria-label="search"
-                                                   @bind-value="_searchTerm"
-                                                   @oninput="SearchEmployeeAsync">
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-row justify-content-evenly align-items-center">
-                                    <Spinner Size="Size.Md" />
-                                </div>
-                                <div class="list-group gap-2">
-                                    @if (!_isSearchResults)
-                                    {
-                                        <Virtualize Context="person"
-                                                    ItemsProvider="@LoadEmployees"
-                                                    @ref="_virtualizeContainer">
-                                            <ItemContent>
-                                                <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
-                                                    <div class="d-flex w-100 justify-content-between align-items-center">
-                                                        <div class="d-flex @(person.IsActive ? "" : "text-black-50")"
-                                                             role="button"
-                                                             @onclick="() => ShowEmployeeDetails(person)">
-                                                            <i class="bi bi-person md-icon"></i>
-                                                            <div class="ps-1">
-                                                                <div class="mb-0 fs-5">
-                                                                    @person.EmployeeFirstName.Truncate((int)Truncate.FirstName) @person.EmployeeLastName.Truncate((int)Truncate.LastName)
-                                                                </div>
-                                                                <div>
-                                                                    <div class="text-muted">
-                                                                        @person.EmployeeUsername
-                                                                    </div>
-                                                                    <div>
-                                                                        @person.ContactDetails.Email
-                                                                    </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div>
-                                                            <div class="form-check form-switch">
-                                                                @if (person.IsActive)
-                                                                    {
-                                                                    <input class="form-check-input"
-                                                                           type="checkbox"
-                                                                           role="switch"
-                                                                           id="IsActive"
-                                                                           checked
-                                                                           @onclick="() => UpdateEmployeeStatusAsync(person)" />
-                                                                    }
-                                                                    else
-                                                                    {
-                                                                    <input class="form-check-input"
-                                                                           type="checkbox"
-                                                                           role="switch"
-                                                                           id="IsActive"
-                                                                           @onclick="() => UpdateEmployeeStatusAsync(person)" />
-                                                                    }
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </ItemContent>
-                                            <Placeholder>
-                                                <Spinner Size="Size.Md" />
-                                            </Placeholder>
-                                        </Virtualize>
-                                    }
-                                    @if (_isSearchResults)
-                                    {
-                                        <div></div>
-                                        @foreach (var person in _results)
-                                        {
-                                            <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
-                                                <div class="d-flex w-100 justify-content-between align-items-center">
-                                                    <div class="d-flex @(person.IsActive ? "" : "text-black-50")"
-                                                         role="button"
-                                                         @onclick="() => ShowEmployeeDetails(person)">
-                                                        <i class="bi bi-person md-icon"></i>
-                                                        <div class="ps-1">
-                                                            <div class="mb-0 fs-5">
-                                                                @person.EmployeeFirstName.Truncate((int)Truncate.FirstName) @person.EmployeeLastName.Truncate((int)Truncate.LastName)
-                                                            </div>
-                                                            <div>
-                                                                <div class="text-muted">
-                                                                    @person.EmployeeUsername
-                                                                </div>
-                                                                <div>
-                                                                    @person.ContactDetails.Email
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div>
-                                                        <div class="form-check form-switch">
-                                                            @if (person.IsActive)
-                                                            {
-                                                                <input class="form-check-input"
-                                                                       type="checkbox"
-                                                                       role="switch"
-                                                                       id="IsActive"
-                                                                       checked
-                                                                       @onclick="() => UpdateEmployeeStatusAsync(person)" />
-                                                            }
-                                                            else
-                                                            {
-                                                                <input class="form-check-input"
-                                                                       type="checkbox"
-                                                                       role="switch"
-                                                                       id="IsActive"
-                                                                       @onclick="() => UpdateEmployeeStatusAsync(person)" />
-                                                            }
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        }
-                                    }
-
-                                </div>
-                            </div>
-                            <div class="flex-container-main ps-2">
-                                <EmployeeDetails Info="_employeeDetails" Loading="_isLoading" />
-                                @if (!_isLoading && _employeeDetails is not null)
-                                {
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <button type="button"
-                                                class="btn btn-info btn-rounded text-white"
-                                                @onclick="() => OpenModalUpdateAsync(_employeeDetails.Id)">
-                                            Update Details
-                                        </button>
-                                    </div>
-                                }
-                            </div>
-                        </div>
-                        <Toast />
-                    </PageBody>
-                    <PageFooter></PageFooter>
-                </PageWrapper>*@
-            <EmployeeModalAdd @ref="_employeeModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-            <EmployeeModalUpdate @ref="_employeeModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
-            <OffCanvas Position="end" Id="offcanvasRight" LabelId="offcanvasRightLabel">
-                <hr />
-                <span>
-                    Details
-                </span>
-
-            </OffCanvas>
+            <Toast />
+            <EmployeeOffCanvas @ref="_employeeOffCanvas" OnSubmitSuccess="RefreshVirtualizeContainer" />
         </Authorized>
+
         <NotAuthorized>
             <NotAuthorizedMessage />
         </NotAuthorized>
