@@ -29,7 +29,7 @@
                 @if (_isReadOnly)
                 {
                     <button class="btn btn-info text-white"
-                            form="FormEmploye"
+                            type="button"
                             @onclick="() => UpdateEditFormState(OffCanvasViewType.Edit, Level.Danger, _isReadOnly)">
                         Edit
                     </button>
@@ -37,12 +37,10 @@
                 else
                 {
                     <button class="btn btn-link"
-                            form="FormEmploye"
                             @onclick="() => CloseOffCanvasAsync()">
                         Cancel
                     </button>
                     <button class="btn btn-info text-white"
-                            form="FormEmploye"
                             type="submit">
                         Update
                     </button>
