@@ -39,6 +39,16 @@ namespace HealthCareApp.Pages.EmployeePage
             _isReadOnly = true;
         }
 
+        public async Task AddRecordOffCanvasAsync()
+        {
+            _employee = new();
+
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Add, Level.Success, false));
+
+            await Task.FromResult(_offCanvas.Open(Guid.NewGuid()));
+            await Task.CompletedTask;
+        }
+
         public async Task ViewDetailsOffCanvasAsync(Guid id)
         {
             await Task.FromResult(SetOffCanvasState(OffCanvasViewType.View, Level.Info, true));
@@ -93,10 +103,20 @@ namespace HealthCareApp.Pages.EmployeePage
         {
             _displayValidationErrorMessages = false;
 
-            await _employeeService.UpdateEmployeeAsync(_employee);
-            await OnSubmitSuccess.InvokeAsync();
+            if (_offCanvasViewType == OffCanvasViewType.Add)
+            {
+                await _employeeService.AddEmployeeAsync(_employee);
 
-            _toastService.ShowToast("Employee updated!", Level.Success);
+                _toastService.ShowToast("Employee added!", Level.Success);
+            }
+            else if (_offCanvasViewType == OffCanvasViewType.Edit)
+            {
+                await _employeeService.UpdateEmployeeAsync(_employee);
+
+                _toastService.ShowToast("Employee updated!", Level.Success);
+            }
+
+            await OnSubmitSuccess.InvokeAsync();
 
             await Task.Delay((int)Delay.DataSuccess);
 

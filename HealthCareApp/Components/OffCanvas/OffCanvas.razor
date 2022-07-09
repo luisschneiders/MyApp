@@ -1,8 +1,8 @@
 ﻿<div class="offcanvas offcanvas-@Position flex-grow-1 @_offCanvasClass"
      id="@_offCanvasId"
      aria-labelledby="offcanvasRightLabel-@_offCanvasId"
-     data-bs-scroll="true">
-    <div class="offcanvas-header px-4 pb-0">
+     data-bs-scroll="false">
+    <div class="offcanvas-header px-4 border-bottom">
         <h5 class="offcanvas-title" id="offcanvasRightLabel-@_offCanvasId">HealthCare</h5>
         <button type="button"
                 class="btn-close"
@@ -10,7 +10,6 @@
                 data-bs-target="#@_offCanvasId"
                 @onclick="() => Close(_offCanvasId)"></button>
     </div>
-
     <div class="offcanvas-body p-4 pt-0">
         @ChildContent
     </div>
