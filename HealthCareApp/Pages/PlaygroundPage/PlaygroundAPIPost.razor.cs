@@ -105,7 +105,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
             }
             else
             {
-                _toastService.ShowToast($"Error: {responseMessage.ReasonPhrase}", Level.Error);
+                _toastService.ShowToast($"Error: {responseMessage.ReasonPhrase}", Level.Danger);
             }
 
             _labelMop = new();

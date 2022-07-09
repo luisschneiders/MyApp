@@ -71,7 +71,7 @@
                                 @if (_labelError)
                                 {
                                     <div class="d-flex flex-column justify-content-evenly align-items-center">
-                                        <Badge Level='Level.Error' Message='Unable to create label. Please try again later!' />
+                                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to create label. Please try again later!' />
                                     </div>
                                 }
                                 else
