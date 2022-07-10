@@ -1,8 +1,4 @@
 ﻿.main {
     margin-top: 58px;
-}
-
-@media (min-width: 992px) {
-
-
+    background-color: #efefef;
 }
