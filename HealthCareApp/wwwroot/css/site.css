@@ -21,14 +21,13 @@ a:hover {
 .btn-icon i {
     margin-left: -2px;
 }
+
 .breadcrumb-divider {
     --bs-breadcrumb-divider: '>';
 }
+
 .breadcrumb-no-divider {
     --bs-breadcrumb-divider: '';
-}
-.hca-breadcrumb {
-    padding-left: 0.5rem;
 }
 
 .form-control:focus {
