@@ -10,6 +10,14 @@ namespace HealthCareApp.Settings.Theme
         Supplier,
         Label,
         Area,
-        TrackingInventory
+        TrackingInventory,
+        primary,
+        secondary,
+        success,
+        info,
+        warning,
+        danger,
+        light,
+        dark,
     }
 }
