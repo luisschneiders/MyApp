@@ -91,7 +91,7 @@ namespace HealthCareApp.Pages.EmployeePage
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async Task SearchEmployeeAsync(ChangeEventArgs eventArgs)
+        private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
             _isSearchResults = true;

@@ -28,7 +28,7 @@
                                 <button class="btn btn-success w-100"
                                         title="Add new employee"
                                         @onclick="() => AddRecordAsync()">
-                                    <i class="bi bi-plus-lg pe-1"></i>
+                                    <i class="bi bi-plus-lg"></i>
                                     Employee
                                 </button>
                             </div>
@@ -38,7 +38,7 @@
                                        placeholder="Start typing to search employees..."
                                        aria-label="search"
                                        @bind-value="_searchTerm"
-                                       @oninput="SearchEmployeeAsync">
+                                       @oninput="SearchAsync">
                             </div>
                         </div>
                         <div class="row">
