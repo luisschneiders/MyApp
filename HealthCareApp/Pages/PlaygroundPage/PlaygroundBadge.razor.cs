@@ -25,7 +25,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
         {
             _codes = new()
             {
-                new MarkupString("<Badge Background='Level.Info.ToString().ToLower()' Message='Info message!' />").ToString(),
+                new MarkupString("<Badge BackgroundColor=\"@Level.Info.ToString().ToLower()\" Message=\"Info message!\" />").ToString(),
             };
 
             _cssStyle = new()
@@ -49,8 +49,8 @@ namespace HealthCareApp.Pages.PlaygroundPage
 
             _codes = new()
             {
-                new MarkupString("Background='string'").ToString(),
-                new MarkupString("Message='string'").ToString()
+                new MarkupString("BackgroundColor=\"string\"").ToString(),
+                new MarkupString("Message=\"string\"").ToString()
             };
 
             _cssStyle = new()

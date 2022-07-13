@@ -7,6 +7,7 @@
 @using HealthCareApp.Components.Toast;
 @using HealthCareApp.Components.Spinner;
 @using HealthCareApp.Components.Tooltip;
+@using HealthCareApp.Components.Badge;
 @using HealthCareApp.Settings.Enum;
 
 <AuthorizeView>
@@ -17,7 +18,13 @@
 
                 <PageTopView>
                     <PageTopWrapper>
-                        <PageTopTitle Title="Departments" />
+                        <div class="d-flex flex-row">
+                            <PageTopTitle Title="Departments" />
+                            <sup class="d-none d-lg-block">
+                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message="Work in progress" />
+                            </sup>
+
+                        </div>
                         <Breadcrumb />
                     </PageTopWrapper>
                 </PageTopView>
