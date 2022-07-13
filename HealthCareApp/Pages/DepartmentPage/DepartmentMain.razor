@@ -1,57 +1,247 @@
-﻿@page "/departments"
-@using HealthCareApp.Settings.Theme
-@using HealthCareApp.Components.Message
-@using HealthCareApp.Components.Page
-@using HealthCareApp.Components.Toast
-@using HealthCareApp.Components.Spinner
-@using HealthCareApp.Settings.Enum
-@using BaseLibrary
+﻿@page "/admin/departments";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Settings.Theme;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.Tooltip;
+@using HealthCareApp.Settings.Enum;
 
 <AuthorizeView>
     <Authorized>
-        <PageWrapper>
-            <PageHeader>
-                <PageHeaderTitle Title="Departments" />
-                <PageMenu>
-                    @if (_departments.Count > 0)
-                    {
-                        <NavLink class="btn btn-link text-info" href="/areas">
-                            Add new areas <sup><i class="bi bi-info-square"></i></sup>
-                        </NavLink>
-                    }
-                    <button type="button"
-                            class="btn btn-info btn-rounded btn-icon text-white"
-                            title="Add new department"
-                            @onclick="() => OpenModalAddAsync()">
-                        <i class="bi bi-plus-lg"></i>
-                    </button>
-                </PageMenu>
-            </PageHeader>
-            <PageBody Styles="p-2">
-                <div class="flex-container">
-                    <div class="flex-container-list ps-1 pe-2 border-end">
-                        <div class="flex-container-list-search py-1">
-                            <div class="row g-0">
-                                <div class="col">
-                                    <input type="text"
-                                           class="form-control"
-                                           placeholder="Start typing to search departments..."
-                                           aria-label="search"
-                                           @bind-value="_searchTerm"
-                                           @oninput="SearchDepartmentAsync">
-                                </div>
+        <div class="container-lg">
+
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <PageTopTitle Title="Departments" />
+                        <Breadcrumb />
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+                        <div class="row flex-row-reverse justify-content-between pb-2">
+                            <div class="col-sm-12 col-md-3 col-lg-2 pb-4">
+                                <button class="btn btn-success w-100"
+                                        title="Add new department"
+                                        @onclick="() => AddRecordAsync()">
+                                    <i class="bi bi-plus-lg"></i>
+                                    Department
+                                </button>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4 pb-2">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Start typing to search areas or departments..."
+                                       aria-label="search"
+                                       @bind-value="_searchTerm"
+                                       @oninput="SearchAreaAsync">
                             </div>
                         </div>
-                        <div class="d-flex flex-row justify-content-evenly align-items-center">
-                            <Spinner Size="Size.Md" />
+                        <div class="row">
+                            <div class="col-12">
+                                <CardView>
+                                    <CardMiddle>
+                                        <div class="d-flex flex-row justify-content-evenly align-items-center">
+                                            <Spinner Size="Size.Md" />
+                                        </div>
+                                        <div class="table-responsive hca-table-wrap">
+                                            <table class="table table-hover">
+                                                <thead class="text-muted">
+                                                    <tr>
+                                                        <th>
+                                                            Department
+                                                        </th>
+                                                        <th>
+                                                            <Tooltip Position="Position.top"
+                                                                     BackgroundColor="Theme.light"
+                                                                     Title="Areas are sectors or locations within each department in the organization." />
+                                                            Areas
+                                                        </th>
+                                                        <th colspan="3">
+                                                            Active?
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    @if (!_isSearchResults)
+                                                    {
+                                                        <Virtualize Context="area"
+                                                                    ItemsProvider="@LoadAreas"
+                                                                    @ref="_virtualizeContainer">
+                                                            <ItemContent>
+                                                                <tr class="py-5">
+                                                                    <td class="col-2">
+                                                                        @area.DepartmentName
+                                                                    </td>
+                                                                    <td class="col-7">
+                                                                        @area.Name
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-check form-switch">
+                                                                            @if (area.IsActive)
+                                                                                {
+                                                                                <input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       role="switch"
+                                                                                       id="IsActive"
+                                                                                       checked
+                                                                                       @onclick="() => UpdateAreaStatusAsync(area)" />
+                                                                                }
+                                                                                else
+                                                                                {
+                                                                                <input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       role="switch"
+                                                                                       id="IsActive"
+                                                                                       @onclick="() => UpdateAreaStatusAsync(area)" />
+                                                                                }
+                                                                        </div>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-link p-0 text-info"
+                                                                                type="button"
+                                                                                title="View details"
+                                                                                @onclick="() => ViewDetailsAsync(area.Id)">
+                                                                            <i class="bi bi-eye-fill"></i>
+
+                                                                        </button>
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        <button class="btn btn-link p-0 text-danger"
+                                                                                type="button"
+                                                                                title="Edit"
+                                                                                @onclick="() => EditDetailsAsync(area.Id)">
+                                                                            <i class="bi bi-pencil"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemContent>
+                                                            <Placeholder>
+                                                                <tr>
+                                                                    <td colspan="5">
+                                                                        <Spinner Size="Size.Md" />
+                                                                    </td>
+                                                                </tr>
+                                                            </Placeholder>
+                                                        </Virtualize>
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
                         </div>
-                        <div class="list-group gap-2">
-                            @if (!_isSearchResults)
-                            {
-                                <Virtualize Context="department"
-                                            ItemsProvider="@LoadDepartments"
-                                            @ref="_virtualizeContainer">
-                                    <ItemContent>
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView>
+                    <PageBottomWrapper />
+                </PageBottomView>
+
+            </PageWrapper>
+
+        </div>
+    </Authorized>
+    <NotAuthorized>
+        <NotAuthorizedMessage />
+    </NotAuthorized>
+</AuthorizeView>
+
+@*<AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+                <PageHeader>
+                    <PageHeaderTitle Title="Departments" />
+                    <PageMenu>
+                        @if (_departments.Count > 0)
+                        {
+                            <NavLink class="btn btn-link text-info" href="/areas">
+                                Add new areas <sup><i class="bi bi-info-square"></i></sup>
+                            </NavLink>
+                        }
+                        <button type="button"
+                                class="btn btn-info btn-rounded btn-icon text-white"
+                                title="Add new department"
+                                @onclick="() => OpenModalAddAsync()">
+                            <i class="bi bi-plus-lg"></i>
+                        </button>
+                    </PageMenu>
+                </PageHeader>
+                <PageBody Styles="p-2">
+                    <div class="flex-container">
+                        <div class="flex-container-list ps-1 pe-2 border-end">
+                            <div class="flex-container-list-search py-1">
+                                <div class="row g-0">
+                                    <div class="col">
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="Start typing to search departments..."
+                                               aria-label="search"
+                                               @bind-value="_searchTerm"
+                                               @oninput="SearchDepartmentAsync">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex flex-row justify-content-evenly align-items-center">
+                                <Spinner Size="Size.Md" />
+                            </div>
+                            <div class="list-group gap-2">
+                                @if (!_isSearchResults)
+                                {
+                                    <Virtualize Context="department"
+                                                ItemsProvider="@LoadDepartments"
+                                                @ref="_virtualizeContainer">
+                                        <ItemContent>
+                                            <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
+                                                <div class="d-flex w-100 justify-content-between align-items-center">
+                                                    <div class="d-flex align-items-center @(department.IsActive ? "" : "text-black-50")"
+                                                         role="button"
+                                                         @onclick="() => ShowDepartmentDetails(department)">
+                                                        <i class="bi bi-columns-gap md-icon"></i>
+                                                        <div class="ps-1">
+                                                            @department.Name.Truncate((int)Truncate.DepartmentName)
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="form-check form-switch">
+                                                            @if (department.IsActive)
+                                                                {
+                                                                <input class="form-check-input"
+                                                                       type="checkbox"
+                                                                       role="switch"
+                                                                       id="IsActive"
+                                                                       checked
+                                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                                }
+                                                                else
+                                                                {
+                                                                <input class="form-check-input"
+                                                                       type="checkbox"
+                                                                       role="switch"
+                                                                       id="IsActive"
+                                                                       @onclick="() => UpdateDepartmentStatusAsync(department)" />
+                                                                }
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </ItemContent>
+                                        <Placeholder>
+                                            <Spinner Size="Size.Md" />
+                                        </Placeholder>
+                                    </Virtualize>
+                                }
+                                @if (_isSearchResults)
+                                {
+                                    <div></div>
+                                    @foreach (var department in _results)
+                                    {
                                         <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
                                             <div class="d-flex w-100 justify-content-between align-items-center">
                                                 <div class="d-flex align-items-center @(department.IsActive ? "" : "text-black-50")"
@@ -65,96 +255,52 @@
                                                 <div>
                                                     <div class="form-check form-switch">
                                                         @if (department.IsActive)
-                                                            {
+                                                        {
                                                             <input class="form-check-input"
                                                                    type="checkbox"
                                                                    role="switch"
                                                                    id="IsActive"
                                                                    checked
                                                                    @onclick="() => UpdateDepartmentStatusAsync(department)" />
-                                                            }
-                                                            else
-                                                            {
+                                                        }
+                                                        else
+                                                        {
                                                             <input class="form-check-input"
                                                                    type="checkbox"
                                                                    role="switch"
                                                                    id="IsActive"
                                                                    @onclick="() => UpdateDepartmentStatusAsync(department)" />
-                                                            }
+                                                        }
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </ItemContent>
-                                    <Placeholder>
-                                        <Spinner Size="Size.Md" />
-                                    </Placeholder>
-                                </Virtualize>
-                            }
-                            @if (_isSearchResults)
-                            {
-                                <div></div>
-                                @foreach (var department in _results)
-                                {
-                                    <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
-                                        <div class="d-flex w-100 justify-content-between align-items-center">
-                                            <div class="d-flex align-items-center @(department.IsActive ? "" : "text-black-50")"
-                                                 role="button"
-                                                 @onclick="() => ShowDepartmentDetails(department)">
-                                                <i class="bi bi-columns-gap md-icon"></i>
-                                                <div class="ps-1">
-                                                    @department.Name.Truncate((int)Truncate.DepartmentName)
-                                                </div>
-                                            </div>
-                                            <div>
-                                                <div class="form-check form-switch">
-                                                    @if (department.IsActive)
-                                                    {
-                                                        <input class="form-check-input"
-                                                               type="checkbox"
-                                                               role="switch"
-                                                               id="IsActive"
-                                                               checked
-                                                               @onclick="() => UpdateDepartmentStatusAsync(department)" />
-                                                    }
-                                                    else
-                                                    {
-                                                        <input class="form-check-input"
-                                                               type="checkbox"
-                                                               role="switch"
-                                                               id="IsActive"
-                                                               @onclick="() => UpdateDepartmentStatusAsync(department)" />
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    }
                                 }
+                            </div>
+                        </div>
+                        <div class="flex-container-main ps-2">
+                            <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" HasRecord="_departments.Count > 0" />
+                            @if (!_isLoading && _departmentDetails is not null)
+                            {
+                                <div class="d-flex flex-row justify-content-end">
+                                    <button type="button"
+                                            class="btn btn-info btn-rounded text-white"
+                                            @onclick="() => OpenModalUpdateAsync(_departmentDetails.Id)">
+                                        Update Details
+                                    </button>
+                                </div>
                             }
                         </div>
                     </div>
-                    <div class="flex-container-main ps-2">
-                        <DepartmentDetails Info="_departmentDetails" Loading="_isLoading" HasRecord="_departments.Count > 0" />
-                        @if (!_isLoading && _departmentDetails is not null)
-                        {
-                            <div class="d-flex flex-row justify-content-end">
-                                <button type="button"
-                                        class="btn btn-info btn-rounded text-white"
-                                        @onclick="() => OpenModalUpdateAsync(_departmentDetails.Id)">
-                                    Update Details
-                                </button>
-                            </div>
-                        }
-                    </div>
-                </div>
-                <Toast />
-            </PageBody>
-            <PageFooter></PageFooter>
-        </PageWrapper>
-        <DepartmentModalAdd @ref="_departmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-        <DepartmentModalUpdate @ref="_departmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
-    </Authorized>
-    <NotAuthorized>
-        <NotAuthorizedMessage />
-    </NotAuthorized>
-</AuthorizeView>
+                    <Toast />
+                </PageBody>
+                <PageFooter></PageFooter>
+            </PageWrapper>
+            <DepartmentModalAdd @ref="_departmentModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
+            <DepartmentModalUpdate @ref="_departmentModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>*@
