@@ -183,9 +183,24 @@ a.hca-box-shadow:hover {
 .w-140 {
     width: 140px;
 }
-.table-md > :not(caption) > * > * {
-    padding: 1rem;
+
+/*
+* The component Virtualize won't work if we don't set a fix height for tables
+*/
+.hca-table-wrap {
+    height: calc(100vh - (3rem + 323px));
+    overflow-y: auto;
 }
+
+.hca-table-wrap thead tr th {
+    position: sticky;
+    top: 0;
+}
+
+.hca-table-wrap th {
+    background-color: #fff;
+}
+
 .text-shadow {
     text-shadow: 1px 1px 2px #000;
 }
@@ -199,5 +214,11 @@ a.hca-box-shadow:hover {
 @media (min-width: 1200px) {
     .flex-container {
         grid-template-columns: 40% auto;
+    }
+}
+
+@media (min-width: 992px) {
+    .hca-table-wrap {
+        height: calc(100vh - (3rem + 285px));
     }
 }

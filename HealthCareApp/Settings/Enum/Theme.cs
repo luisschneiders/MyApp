@@ -1,8 +1,10 @@
-﻿using System;
-namespace HealthCareApp.Settings.Theme
+﻿namespace HealthCareApp.Settings.Theme
 {
     public enum Theme
     {
+/*
+ *      Remove start
+ */
         App,
         Employee,
         Department,
@@ -11,6 +13,9 @@ namespace HealthCareApp.Settings.Theme
         Label,
         Area,
         TrackingInventory,
+/*
+ *      Remove end
+ */
         primary,
         secondary,
         success,
