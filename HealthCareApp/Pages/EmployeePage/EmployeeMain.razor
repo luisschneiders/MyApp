@@ -8,6 +8,7 @@
 @using HealthCareApp.Components.Spinner;
 @using HealthCareApp.Components.OffCanvas;
 @using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Components.Badge
 
 <div class="container-lg">
     <AuthorizeView>
@@ -16,7 +17,12 @@
 
                 <PageTopView>
                     <PageTopWrapper>
-                        <PageTopTitle Title="Employees" />
+                        <div class="d-flex flex-row">
+                            <PageTopTitle Title="Employees" />
+                            <sup class="d-none d-lg-block">
+                                <Badge BackgroundColor="@Level.Info.ToString().ToLower()" Message="New" />
+                            </sup>
+                        </div>
                         <Breadcrumb />
                     </PageTopWrapper>
                 </PageTopView>
