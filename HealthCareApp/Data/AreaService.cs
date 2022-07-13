@@ -30,7 +30,6 @@ namespace HealthCareApp.Data
                     from area in _applicationDbContext.Set<Area>()
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where area.InsertedBy == userService.UserId()
                     orderby area.CreatedAt descending
                     select new { area, department }
                 ).AsNoTracking();
@@ -55,8 +54,7 @@ namespace HealthCareApp.Data
                     from area in _applicationDbContext.Set<Area>()
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where area.InsertedBy == userService.UserId()
-                    && area.IsActive == true
+                    where area.IsActive == true
                     orderby area.Name ascending
                     select new { area, department }
                 ).AsNoTracking();
@@ -87,8 +85,7 @@ namespace HealthCareApp.Data
                     from area in _applicationDbContext.Set<Area>()
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where area.InsertedBy == userService.UserId()
-                    && EF.Functions.Like(area.Name, $"%{searchTerm}%")
+                    where EF.Functions.Like(area.Name, $"%{searchTerm}%")
                     orderby area.CreatedAt descending
                     select new { area, department }
                 ).AsNoTracking();

@@ -9,6 +9,15 @@
 <div class="main">
     @Body
 </div>
-<footer class="bg-light">
-    <FooterView />
-</footer>
+<AuthorizeView>
+    <Authorized>
+        <footer class="bg-light py-3 fixed-bottom">
+            <FooterViewAuthorized />
+        </footer>
+    </Authorized>
+    <NotAuthorized>
+        <footer class="bg-light py-3">
+            <FooterViewNotAuthorized />
+        </footer>
+    </NotAuthorized>
+</AuthorizeView>

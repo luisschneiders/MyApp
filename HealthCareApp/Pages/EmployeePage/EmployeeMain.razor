@@ -28,7 +28,7 @@
                                 <button class="btn btn-success w-100"
                                         title="Add new employee"
                                         @onclick="() => AddRecordAsync()">
-                                    <i class="bi bi-plus-lg pe-1"></i>
+                                    <i class="bi bi-plus-lg"></i>
                                     Employee
                                 </button>
                             </div>
@@ -38,7 +38,7 @@
                                        placeholder="Start typing to search employees..."
                                        aria-label="search"
                                        @bind-value="_searchTerm"
-                                       @oninput="SearchEmployeeAsync">
+                                       @oninput="SearchAsync">
                             </div>
                         </div>
                         <div class="row">
@@ -48,7 +48,7 @@
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
                                             <Spinner Size="Size.Md" />
                                         </div>
-                                        <div class="table-responsive">
+                                        <div class="table-responsive hca-table-wrap">
                                             <table class="table table-hover">
                                                 <thead class="text-muted">
                                                     <tr>

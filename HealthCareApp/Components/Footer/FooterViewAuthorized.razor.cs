@@ -3,9 +3,9 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Footer
 {
-	public partial class FooterView : ComponentBase
+	public partial class FooterViewAuthorized : ComponentBase
 	{
-		public FooterView()
+		public FooterViewAuthorized()
 		{
 		}
 	}
