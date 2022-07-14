@@ -47,7 +47,7 @@
                                             ItemsProvider="@LoadLabelMops"
                                             @ref="_virtualizeContainer">
                                     <ItemContent>
-                                        <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
+                                        <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 rounded">
                                             <div class="d-flex w-100 justify-content-between align-items-center">
                                                 <div class="d-flex align-items-center @(labelMop.IsActive ? "" : "text-black-50")"
                                                      role="button"
@@ -101,7 +101,7 @@
                                 <div></div>
                                 @foreach (var labelMop in _results)
                                 {
-                                    <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 hca-border-radius">
+                                    <div class="list-group-item list-group-item-action hca-list-group-item d-flex gap-3 py-3 rounded">
                                         <div class="d-flex w-100 justify-content-between align-items-center">
                                             <div class="d-flex align-items-center @(labelMop.IsActive ? "" : "text-black-50")"
                                                  role="button"
