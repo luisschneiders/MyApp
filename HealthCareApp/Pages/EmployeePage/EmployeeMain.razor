@@ -8,7 +8,7 @@
 @using HealthCareApp.Components.Spinner;
 @using HealthCareApp.Components.OffCanvas;
 @using HealthCareApp.Settings.Enum;
-@using HealthCareApp.Components.Badge
+@using HealthCareApp.Components.Badge;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -19,7 +19,7 @@
                     <PageTopWrapper>
                         <div class="d-flex flex-row">
                             <PageTopTitle Title="Employees" />
-                            <sup class="d-none d-lg-block">
+                            <sup>
                                 <Badge BackgroundColor="@Level.Info.ToString().ToLower()" Message="New" />
                             </sup>
                         </div>
@@ -30,18 +30,35 @@
                 <PageMiddleView>
                     <PageMiddleWrapper>
                         <div class="row flex-row-reverse justify-content-between pb-2">
-                            <div class="col-sm-12 col-md-3 col-lg-2 pb-4">
-                                <button class="btn btn-success w-100"
+                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                                <button class="btn btn-success w-100 d-none d-lg-block"
                                         title="Add new employee"
                                         @onclick="() => AddRecordAsync()">
                                     <i class="bi bi-plus-lg"></i>
                                     Employee
                                 </button>
+                                <div class="dropdown d-lg-none">
+                                    <button class="btn btn-link pe-2"
+                                            title="Menu Options"
+                                            id="dropdownMenuOptions"
+                                            data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical text-success"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end border-light shadow-lg" aria-labelledby="dropdownMenuOptions">
+                                        <li class="py-2">
+                                            <button class="dropdown-item"
+                                                    @onclick="() => AddRecordAsync()">
+                                                Add employee
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 pb-2">
+                            <div class="col-10 col-md-6 col-lg-4 pb-2">
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Start typing to search employees..."
+                                       placeholder="Search for employees..."
                                        aria-label="search"
                                        @bind-value="_searchTerm"
                                        @oninput="SearchAsync">

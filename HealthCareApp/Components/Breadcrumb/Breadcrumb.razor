@@ -1,6 +1,6 @@
 ﻿@if (IsVisible)
 {
-    <nav class="@(_path.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
+    <nav class="d-none d-lg-block @(_path.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
         <ol class="breadcrumb text-capitalize">
             @foreach (var urlPath in _path.Select((x, i) => new { Value = x, Index = i }))
             {

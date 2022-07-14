@@ -19,8 +19,8 @@
                 <PageTopView>
                     <PageTopWrapper>
                         <div class="d-flex flex-row">
-                            <PageTopTitle Title="Departments" />
-                            <sup class="d-none d-lg-block">
+                            <PageTopTitle Title="Departments & areas" />
+                            <sup>
                                 <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message="Work in progress" />
                             </sup>
                         </div>
@@ -30,19 +30,36 @@
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
-                        <div class="row flex-row-reverse justify-content-between pb-2">
-                            <div class="col-sm-12 col-md-3 col-lg-2 pb-4">
-                                <button class="btn btn-success w-100"
-                                        title="Add new department"
-                                        @onclick="() => AddRecordAsync()">
-                                    <i class="bi bi-plus-lg"></i>
-                                    Department
-                                </button>
+                        <div class="row flex-row-reverse justify-content-between align-items-center pb-2">
+                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                                <div class="dropdown">
+                                    <button class="btn btn-link pe-2"
+                                       title="Menu Options"
+                                       id="dropdownMenuOptions"
+                                       data-bs-toggle="dropdown"
+                                       aria-expanded="false">
+                                        <i class="bi bi-three-dots-vertical text-success"></i>
+                                    </button>
+                                    <ul class="dropdown-menu dropdown-menu-end border-light shadow-lg" aria-labelledby="dropdownMenuOptions">
+                                        <li class="py-2">
+                                            <button class="dropdown-item"
+                                                    @onclick="() => AddRecordAsync()">
+                                                Add department
+                                            </button>
+                                        </li>
+                                        <li class="pb-2">
+                                            <button class="dropdown-item"
+                                                    @onclick="() => AddRecordAsync()">
+                                                Add area
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 pb-2">
+                            <div class="col-10 col-md-6 col-lg-4 pb-2">
                                 <input type="text"
                                        class="form-control"
-                                       placeholder="Start typing to search areas or departments..."
+                                       placeholder="Search for areas or departments..."
                                        aria-label="search"
                                        @bind-value="_searchTerm"
                                        @oninput="SearchAreaAsync">
@@ -66,7 +83,7 @@
                                                             <Tooltip Position="Position.top"
                                                                      BackgroundColor="Theme.light"
                                                                      Title="Areas are sectors or locations within each department in the organization." />
-                                                            Areas
+                                                            Area
                                                         </th>
                                                         <th colspan="3">
                                                             Active?
