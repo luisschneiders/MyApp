@@ -28,6 +28,8 @@
     <None Remove="Pages\AdminPage\" />
     <None Remove="Components\Tooltip\" />
     <None Remove="Components\Popover\" />
+    <None Remove="Pages\ApiPage\" />
+    <None Remove="Components\Markup\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -80,6 +82,8 @@
     <Folder Include="Pages\AdminPage\" />
     <Folder Include="Components\Tooltip\" />
     <Folder Include="Components\Popover\" />
+    <Folder Include="Pages\ApiPage\" />
+    <Folder Include="Components\Markup\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

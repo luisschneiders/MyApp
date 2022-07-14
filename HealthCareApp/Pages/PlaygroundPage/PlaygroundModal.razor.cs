@@ -1,4 +1,5 @@
-﻿using HealthCareApp.Components.Modal;
+﻿using HealthCareApp.Components.Markup;
+using HealthCareApp.Components.Modal;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.PlaygroundPage

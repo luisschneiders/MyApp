@@ -1,0 +1,237 @@
+﻿@page "/API/post";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Breadcrumb
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Settings.Enum;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+
+                        <PageTopTitle Title="API Post" />
+                        <Breadcrumb />
+
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-sm-12 col-md-6">
+                                    <p>
+                                        <h4 class="hca-app-title">How to use</h4>
+                                        <hr />
+                                    </p>
+
+                                    @foreach (var markupString in _componentMarkupList)
+                                    {
+                                        <div>
+                                            <h5>@markupString.Title</h5>
+                                            <p class="highlight p-2">
+                                                <code>
+                                                    @foreach (var (item, index) in markupString.Code.Select((value, index) => (value, index)))
+                                                    {
+                                                        <span class="@markupString.CssStyle[index]">
+                                                            @item
+                                                        </span>
+                                                        <br />
+                                                        @if (@markupString.NewLine[index])
+                                                        {
+                                                            <br />
+                                                        }
+                                                    }
+                                                </code>
+                                            </p>
+                                        </div>
+                                    }
+
+                                    <form>
+                                        <div class="row g-3 mb-5 align-items-center">
+
+
+                                            <label class="col-auto col-form-label"
+                                                   for="Barcode">
+                                                Barcode
+                                            </label>
+                                            <div class="col-auto">
+                                                <input type="text" class="form-control"
+                                                       placeholder="Scan label..."
+                                                       id="Barcode"
+                                                       @bind="_labelMop.Barcode" />
+                                            </div>
+                                            <div class="col-auto">
+                                                <button type="button"
+                                                        class="btn btn-info text-white"
+                                                        @onclick="() => GetLabelAsync()">
+                                                    Test endpoint
+                                                </button>
+                                            </div>
+
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="col-sm-12 col-md-6 markup-background rounded">
+                                    <p>
+                                        <h4 class="text-black-50">Example</h4>
+                                        <hr />
+                                    </p>
+                                    <div class="container-lg">
+
+                                        <div class="row">
+                                            <div class="col-12 py-2">
+                                                <CardView>
+                                                    <CardMiddle>
+
+
+                                                        <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                                            <Spinner Size="Size.Md" />
+                                                        </div>
+                                                        @if (_labelError)
+                                                        {
+                                                            <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to create label. Please try again later!' />
+                                                            </div>
+                                                        }
+                                                        else
+                                                        {
+
+                                                            if (_fileName?.Length > 0)
+                                                            {
+                                                                <h5>ZPL code</h5>
+                                                                <code class="zpl-format">
+                                                                    @_labelString
+                                                                </code>
+                                                                <hr />
+                                                                <h5>Label Image</h5>
+                                                                <img src="/images/@_fileName" class="img-fluid" />
+                                                            }
+                                                        }
+                                                    </CardMiddle>
+                                                </CardView>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView>
+                    <PageBottomWrapper />
+                </PageBottomView>
+            </PageWrapper>
+        </Authorized>
+
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
+
+@*<AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+                <PageHeader>
+                    <PageHeaderTitle Title="API - Post"></PageHeaderTitle>
+                    <PageMenu />
+                </PageHeader>
+                <PageBody>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <h4 class="hca-app-title">How to use</h4>
+                                    <hr />
+                                </p>
+                                @foreach (var markupString in _componentMarkupList)
+                                {
+                                    <div>
+                                        <h5>@markupString.Title</h5>
+
+                                        @foreach (var item in markupString.Code)
+                                        {
+                                            <p class="highlight p-2">
+                                                <code>@item</code>
+                                            </p>
+                                        }
+                                    </div>
+                                }
+                                <form>
+                                    <div class="row g-3 mb-5 align-items-center">
+
+
+                                        <label class="col-auto col-form-label"
+                                               for="Barcode">
+                                            Barcode
+                                        </label>
+                                        <div class="col-auto">
+                                            <input type="text" class="form-control"
+                                                       placeholder="Scan label..."
+                                                       id="Barcode"
+                                                       @bind="_labelMop.Barcode" />
+                                        </div>
+                                        <div class="col-auto">
+                                            <button type="button"
+                                                    class="btn btn-info btn-rounded text-white"
+                                                    @onclick="() => GetLabelAsync()">
+                                                Test endpoint
+                                            </button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-6 markup-background rounded">
+                                <p>
+                                    <h4 class="text-black-50">Example</h4>
+                                    <hr />
+                                </p>
+                                <div>
+                                    <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                        <Spinner Size="Size.Md" />
+                                    </div>
+                                    @if (_labelError)
+                                    {
+                                        <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to create label. Please try again later!' />
+                                        </div>
+                                    }
+                                    else
+                                    {
+
+                                        if (_fileName?.Length > 0)
+                                        {
+                                            <h5>ZPL code</h5>
+                                            <code class="zpl-format">
+                                                @_labelString
+                                            </code>
+                                            <hr />
+                                            <h5>Label Image</h5>
+                                            <img src="/images/@_fileName" class="img-fluid p-4" />
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <Toast />
+                </PageBody>
+            </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>*@

@@ -1,4 +1,4 @@
-﻿namespace HealthCareApp.Pages.PlaygroundPage
+﻿namespace HealthCareApp.Components.Markup
 {
     public class ComponentMarkup : IComponentMarkup
     {
