@@ -188,7 +188,7 @@ a.hca-box-shadow:hover {
 * The component Virtualize won't work if we don't set a fix height for tables
 */
 .hca-table-wrap {
-    height: calc(100vh - (3rem + 330px));
+    height: calc(100vh - (3rem + 252px));
     overflow-y: auto;
 }
 
@@ -219,6 +219,6 @@ a.hca-box-shadow:hover {
 
 @media (min-width: 992px) {
     .hca-table-wrap {
-        height: calc(100vh - (3rem + 285px));
+        height: calc(100vh - (3rem + 260px));
     }
 }
