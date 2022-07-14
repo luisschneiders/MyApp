@@ -1,9 +1,10 @@
-﻿using HealthCareApp.Components.Spinner;
+﻿using HealthCareApp.Components.Markup;
+using HealthCareApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.PlaygroundPage
+namespace HealthCareApp.Pages.ApiPage
 {
-    public partial class PlaygroundAPIGet : ComponentBase
+    public partial class APIGet : ComponentBase
     {
         [Inject]
         private SpinnerService _spinnerService { get; set; } = default!;
@@ -25,7 +26,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
         private bool _isDisabled { get; set; }
 
 
-        public PlaygroundAPIGet()
+        public APIGet()
         {
             _spinnerService = new();
             _componentMarkup = new();

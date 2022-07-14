@@ -1,16 +1,15 @@
-﻿@page "/playground/api-post"
+﻿@page "/API/get"
 @using HealthCareApp.Components.Message
 @using HealthCareApp.Components.Page
 @using HealthCareApp.Components.Spinner
 @using HealthCareApp.Components.Badge
-@using HealthCareApp.Components.Toast
 @using HealthCareApp.Settings.Enum
 
 <AuthorizeView>
     <Authorized>
         <PageWrapper>
             <PageHeader>
-                <PageHeaderTitle Title="API - Post"></PageHeaderTitle>
+                <PageHeaderTitle Title="API - Get"></PageHeaderTitle>
                 <PageMenu />
             </PageHeader>
             <PageBody>
@@ -35,31 +34,50 @@
                                 </div>
                             }
                             <form>
-                                <div class="row g-3 mb-5 align-items-center">
-
-
-                                    <label class="col-auto col-form-label"
-                                           for="Barcode">
-                                        Barcode
-                                    </label>
-                                    <div class="col-auto">
-                                        <input type="text" class="form-control"
-                                                   placeholder="Scan label..."
-                                                   id="Barcode"
-                                                   @bind="_labelMop.Barcode" />
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-4">
+                                        <label class="col-form-label"
+                                               for="scope">
+                                            Get languages
+                                        </label>
                                     </div>
-                                    <div class="col-auto">
+                                    <div class="col-4 offset-4">
                                         <button type="button"
                                                 class="btn btn-info btn-rounded text-white"
-                                                @onclick="() => GetLabelAsync()">
+                                                @onclick="() => GetLanguages()">
                                             Test endpoint
                                         </button>
                                     </div>
-
+                                </div>
+                                <hr />
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-4">
+                                        <label class="col-form-label"
+                                               for="scope">
+                                            Select scope language
+                                        </label>
+                                    </div>
+                                    <div class="col-4">
+                                        <select class="form-select form-control"
+                                                aria-label="Select scope"
+                                                @bind="_selectedScope">
+                                            <option value="1" selected>Dictionary</option>
+                                            <option value="2">Translation</option>
+                                            <option value="3">Transliteration</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <button type="button"
+                                                disabled="@_isDisabled"
+                                                class="btn btn-info btn-rounded text-white"
+                                                @onclick="() => GetLanguagesByScope()">
+                                            Test endpoint
+                                        </button>
+                                    </div>
                                 </div>
                             </form>
                         </div>
-                        <div class="col-6 markup-background hca-border-radius">
+                        <div class="col-6 markup-background rounded">
                             <p>
                                 <h4 class="text-black-50">Example</h4>
                                 <hr />
@@ -68,31 +86,22 @@
                                 <div class="d-flex flex-column justify-content-evenly align-items-center">
                                     <Spinner Size="Size.Md" />
                                 </div>
-                                @if (_labelError)
+                                @if (_getLanguagesError)
                                 {
                                     <div class="d-flex flex-column justify-content-evenly align-items-center">
-                                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to create label. Please try again later!' />
+                                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to get languages. Please try again later!' />
                                     </div>
                                 }
                                 else
                                 {
-
-                                    if (_fileName?.Length > 0)
-                                    {
-                                        <h5>ZPL code</h5>
-                                        <code class="zpl-format">
-                                            @_labelString
-                                        </code>
-                                        <hr />
-                                        <h5>Label Image</h5>
-                                        <img src="/images/@_fileName" class="img-fluid p-4" />
-                                    }
+                                    <code>
+                                        @_languages
+                                    </code>
                                 }
                             </div>
                         </div>
                     </div>
                 </div>
-                <Toast />
             </PageBody>
         </PageWrapper>
     </Authorized>

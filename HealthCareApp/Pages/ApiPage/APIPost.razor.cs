@@ -1,13 +1,14 @@
 ﻿using HealthCareApp.Components.Spinner;
 using HealthCareApp.Components.Toast;
+using HealthCareApp.Components.Markup;
 using HealthCareApp.Services;
 using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.PlaygroundPage
+namespace HealthCareApp.Pages.ApiPage
 {
-    public partial class PlaygroundAPIPost : ComponentBase
+    public partial class APIPost : ComponentBase
     {
         // Retrieve API keys from user-secrets
         private readonly IConfiguration _config = default!;
@@ -21,11 +22,13 @@ namespace HealthCareApp.Pages.PlaygroundPage
         [Inject]
         private ToastService _toastService { get; set; }
 
-        private ComponentMarkup _componentMarkup { get; set; }
         private LabelMopDto _labelMop { get; set; }
 
+        private ComponentMarkup _componentMarkup { get; set; }
         private List<ComponentMarkup> _componentMarkupList { get; set; }
         private List<string> _codes { get; set; }
+        private List<bool> _newLine { get; set; }
+        private List<string> _cssStyle { get; set; }
 
         private string _endpoint { get; set; }
         private string _route { get; set; }
@@ -35,16 +38,18 @@ namespace HealthCareApp.Pages.PlaygroundPage
         private bool _displayValidationMessages { get; set; }
         private bool _labelError { get; set; }
 
-        public PlaygroundAPIPost()
+        public APIPost()
         {
             _labelService = new(_config);
             _spinnerService = new();
             _toastService = new();
-            _componentMarkup = new();
             _labelMop = new();
 
+            _componentMarkup = new();
             _componentMarkupList = new List<ComponentMarkup>();
             _codes = new List<string>();
+            _cssStyle = new List<string>();
+            _newLine = new List<bool>();
 
             _endpoint = "https://localhost:7086/";
             _route = "api/v1/Labels";
@@ -54,20 +59,45 @@ namespace HealthCareApp.Pages.PlaygroundPage
 
         protected override void OnInitialized()
         {
-
-            _componentMarkupList = new List<ComponentMarkup>();
-
             _codes = new()
             {
-                new MarkupString($"Endpoint = '{_endpoint}' ").ToString(),
-                new MarkupString($"Route = '{_route}' ").ToString(),
+                new MarkupString($"Endpoint = \"{_endpoint}\" ").ToString(),
+                new MarkupString($"Route = \"{_route}\" ").ToString(),
             };
+
+            _cssStyle = new()
+            {
+                "",
+                ","
+            };
+
+            _newLine = new()
+            {
+                false,
+                false,
+            };
+
             _componentMarkup = new()
             {
                 Title = "Endpoint and route",
-                Code = _codes
+                Code = _codes,
+                NewLine = _newLine,
+                CssStyle = _cssStyle
             };
             _componentMarkupList.Add(_componentMarkup);
+            //_componentMarkupList = new List<ComponentMarkup>();
+
+            //_codes = new()
+            //{
+            //    new MarkupString($"Endpoint = '{_endpoint}' ").ToString(),
+            //    new MarkupString($"Route = '{_route}' ").ToString(),
+            //};
+            //_componentMarkup = new()
+            //{
+            //    Title = "Endpoint and route",
+            //    Code = _codes
+            //};
+            //_componentMarkupList.Add(_componentMarkup);
 
         }
 
