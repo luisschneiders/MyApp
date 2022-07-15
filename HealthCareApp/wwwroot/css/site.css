@@ -122,18 +122,6 @@ a:hover {
 .logo-icon {
     color: #ff2f2f;
 }
-.hca-app-icon, .hca-app-title {
-    color: #0dcaf0;
-}
-.hca-App-icon,
-.hca-Employee-icon,
-.hca-Department-icon,
-.hca-Patient-icon,
-.hca-Supplier-icon,
-.hca-Label-icon,
-.hca-Area-icon {
-    color: #997588;
-}
 .hca-form-control-plaintext {
     padding: 0 0 1.5rem 0;
 }
