@@ -21,7 +21,7 @@ namespace HealthCareApp.Pages.EmployeePage
         private string _searchTerm { get; set; }
 
         private List<EmployeeListDto> _employeeListDto { get; set; }
-        private List<EmployeeListDto> _results { get; set; }
+        private List<EmployeeListDto> _searchResults { get; set; }
 
         /*
          * Add component EmployeeOffCanvas reference
@@ -37,7 +37,7 @@ namespace HealthCareApp.Pages.EmployeePage
             _employeeOffCanvas = new();
 
             _employeeListDto = new();
-            _results = new List<EmployeeListDto>();
+            _searchResults = new List<EmployeeListDto>();
         }
 
         private async Task AddRecordAsync()
@@ -98,13 +98,13 @@ namespace HealthCareApp.Pages.EmployeePage
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _results = new();
+                _searchResults = new();
                 _isSearchResults = false;
                 await Task.CompletedTask;
             }
             else
             {
-                _results = await _employeeService.SearchEmployeeListDtoAsync(searchTerm);
+                _searchResults = await _employeeService.SearchEmployeeListDtoAsync(searchTerm);
                 await Task.CompletedTask;
             }
         }
