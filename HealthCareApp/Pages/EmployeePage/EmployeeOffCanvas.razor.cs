@@ -95,7 +95,6 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.CompletedTask;
         }
 
-
         private async Task HandleValidSubmitAsync()
         {
             _displayValidationErrorMessages = false;
