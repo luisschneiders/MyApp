@@ -30,6 +30,10 @@ a:hover {
     --bs-breadcrumb-divider: '';
 }
 
+.hca-outline-none {
+    outline: none;
+}
+
 .form-control:focus {
     border-color: #0dcaf0;
     outline: 0;
