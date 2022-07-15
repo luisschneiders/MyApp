@@ -15,7 +15,6 @@ namespace HealthCareApp.Pages.EmployeePage
         [Inject]
         private ToastService _toastService { get; set; }
 
-
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
@@ -25,7 +24,6 @@ namespace HealthCareApp.Pages.EmployeePage
         private Employee _employee { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
-        private bool _isReadOnly { get; set; }
 
         private OffCanvasViewType _offCanvasViewType { get; set; }
         private string _badgeBackground { get; set; }
@@ -36,14 +34,14 @@ namespace HealthCareApp.Pages.EmployeePage
             _offCanvas = new();
             _employee = new();
             _badgeBackground = Level.Info.ToString().ToLower();
-            _isReadOnly = true;
+            _displayValidationErrorMessages = false;
         }
 
         public async Task AddRecordOffCanvasAsync()
         {
             _employee = new();
 
-            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Add, Level.Success, false));
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Add, Level.Success));
 
             await Task.FromResult(_offCanvas.Open(Guid.NewGuid()));
             await Task.CompletedTask;
@@ -51,7 +49,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         public async Task ViewDetailsOffCanvasAsync(Guid id)
         {
-            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.View, Level.Info, true));
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.View, Level.Info));
             await Task.FromResult(SetOffCanvasInfo(id));
 
             await Task.FromResult(_offCanvas.Open(_offCanvasTarget));
@@ -60,18 +58,17 @@ namespace HealthCareApp.Pages.EmployeePage
 
         public async Task EditDetailsOffCanvasAsync(Guid id)
         {
-            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Edit, Level.Danger, false));
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Edit, Level.Danger));
             await Task.FromResult(SetOffCanvasInfo(id));
 
             await Task.FromResult(_offCanvas.Open(_offCanvasTarget));
             await Task.CompletedTask;
         }
 
-        private async Task SetOffCanvasState(OffCanvasViewType offCanvasViewType, Level level, bool isReadOnly)
+        private async Task SetOffCanvasState(OffCanvasViewType offCanvasViewType, Level level)
         {
             _offCanvasViewType = offCanvasViewType;
             _badgeBackground = level.ToString().ToLower();
-            _isReadOnly = isReadOnly;
 
             await Task.CompletedTask;
         }
@@ -92,10 +89,10 @@ namespace HealthCareApp.Pages.EmployeePage
             await Task.CompletedTask;
         }
 
-        private async Task UpdateEditFormState(OffCanvasViewType offCanvasViewType, Level level, bool isReadOnly)
+        private async Task UpdateFormState(OffCanvasViewType offCanvasViewType, Level level)
         {
-            _isReadOnly = !isReadOnly;
-            await Task.FromResult(SetOffCanvasState(offCanvasViewType, level, _isReadOnly));
+            await Task.FromResult(SetOffCanvasState(offCanvasViewType, level));
+            await Task.CompletedTask;
         }
 
 
