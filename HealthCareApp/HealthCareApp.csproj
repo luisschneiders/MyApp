@@ -30,6 +30,7 @@
     <None Remove="Components\Popover\" />
     <None Remove="Pages\ApiPage\" />
     <None Remove="Components\Markup\" />
+    <None Remove="Components\Dropdown\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -84,6 +85,7 @@
     <Folder Include="Components\Popover\" />
     <Folder Include="Pages\ApiPage\" />
     <Folder Include="Components\Markup\" />
+    <Folder Include="Components\Dropdown\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

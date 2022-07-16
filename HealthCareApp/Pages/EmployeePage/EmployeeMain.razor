@@ -9,6 +9,7 @@
 @using HealthCareApp.Components.OffCanvas;
 @using HealthCareApp.Settings.Enum;
 @using HealthCareApp.Components.Badge;
+@using HealthCareApp.Components.Dropdown;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -20,7 +21,7 @@
                         <div class="d-flex flex-row">
                             <PageTopTitle Title="Employees" />
                             <sup>
-                                <Badge BackgroundColor="@Level.Info.ToString().ToLower()" Message="New" />
+                                <Badge BackgroundColor="@Level.Info.ToString()" Message="New" />
                             </sup>
                         </div>
                         <Breadcrumb />
@@ -37,23 +38,14 @@
                                     <i class="bi bi-plus-lg"></i>
                                     Employee
                                 </button>
-                                <div class="dropdown d-lg-none">
-                                    <button class="btn btn-link pe-2"
-                                            title="Menu Options"
-                                            id="dropdownMenuOptions"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                        <i class="bi bi-three-dots-vertical text-success"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end border-light shadow-lg" aria-labelledby="dropdownMenuOptions">
-                                        <li class="py-2">
-                                            <button class="dropdown-item"
-                                                    @onclick="() => AddRecordAsync()">
-                                                Add employee
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <DropdownActions IsDisplayLargeNone="true" IconColor="Theme.success">
+                                    <li>
+                                        <button class="dropdown-item"
+                                                @onclick="() => AddRecordAsync()">
+                                            <i class="bi bi-plus-lg pe-1"></i>New Employee
+                                        </button>
+                                    </li>
+                                </DropdownActions>
                             </div>
                             <div class="col-10 col-md-6 col-lg-4 pb-2">
                                 <input type="text"
@@ -69,7 +61,7 @@
                                 <CardView>
                                     <CardMiddle>
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
-                                            <Spinner Size="Size.Md" />
+                                            <Spinner Size="Size.md" />
                                         </div>
                                         <div class="table-responsive hca-table-wrap">
                                             <table class="table table-hover">
@@ -150,7 +142,7 @@
                                                             <Placeholder>
                                                                 <tr>
                                                                     <td colspan="6">
-                                                                        <Spinner Size="Size.Md" />
+                                                                        <Spinner Size="Size.md" />
                                                                     </td>
                                                                 </tr>
                                                             </Placeholder>
@@ -158,7 +150,7 @@
                                                     }
                                                     @if (_isSearchResults)
                                                     {
-                                                        @foreach (var person in _results)
+                                                        @foreach (var person in _searchResults)
                                                         {
                                                             <tr>
                                                                 <td>

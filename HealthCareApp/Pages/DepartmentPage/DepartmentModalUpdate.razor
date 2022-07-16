@@ -1,9 +1,8 @@
-﻿@using HealthCareApp.Components.Modal
-@using HealthCareApp.Settings.Theme
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
 
 <Modal @ref="_modalUpdate"
-       Theme="Theme.Department"
-       Size="ModalSize.lg">
+       Size="Size.lg">
     <Title>Update department</Title>
     <Body>
         <EditForm Model="@_department"

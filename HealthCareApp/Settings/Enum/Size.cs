@@ -3,8 +3,10 @@ namespace HealthCareApp.Settings.Enum
 {
     public enum Size
     {
-        Sm,
-        Md,
-        Lg
+        sm,
+        md,
+        lg,
+        xl,
+        fullscreen
     }
 }

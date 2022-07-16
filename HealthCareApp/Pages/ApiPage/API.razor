@@ -3,7 +3,7 @@
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Message;
 @using HealthCareApp.Components.Breadcrumb;
-
+@using HealthCareApp.Settings.Theme;
 
 <div class="container-lg">
 
@@ -22,7 +22,10 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
                         <CardView>
                             <CardMiddle>
-                                <CardProfile CardProfileTitle="Get" CardProfileIcon="bi bi-share">
+                                <CardProfile
+                                             CardProfileTitle="Get"
+                                             CardProfileIcon="bi bi-share"
+                                             CardProfileIconColor="@Theme.light">
                                     <div class="lead p-2">
                                         API <b>Get</b> example
                                     </div>
@@ -33,7 +36,10 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
                         <CardView Link="/API/post">
                             <CardMiddle>
-                                <CardProfile CardProfileTitle="Post" CardProfileIcon="bi bi-share-fill">
+                                <CardProfile
+                                             CardProfileTitle="Post"
+                                             CardProfileIcon="bi bi-share-fill"
+                                             CardProfileIconColor="@Theme.info">
                                     <div class="lead p-2">
                                         API <b>Post</b> example<sup class="badge bg-warning">New</sup>
                                     </div>
@@ -46,7 +52,10 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
                         <CardView>
                             <CardMiddle>
-                                <CardProfile CardProfileTitle="Put" CardProfileIcon="bi bi-share-fill">
+                                <CardProfile
+                                             CardProfileTitle="Put"
+                                             CardProfileIcon="bi bi-share-fill"
+                                             CardProfileIconColor="@Theme.light">
                                     <div class="lead p-2">
                                         API <b>Put</b> example
                                     </div>
@@ -57,7 +66,10 @@
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
                         <CardView>
                             <CardMiddle>
-                                <CardProfile CardProfileTitle="Delete" CardProfileIcon="bi bi-share">
+                                <CardProfile
+                                             CardProfileTitle="Delete"
+                                             CardProfileIcon="bi bi-share"
+                                             CardProfileIconColor="@Theme.light">
                                     <div class="lead p-2">
                                         API <b>Delete</b> example
                                     </div>

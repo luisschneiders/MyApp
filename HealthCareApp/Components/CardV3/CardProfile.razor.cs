@@ -1,4 +1,5 @@
 ﻿using System;
+using HealthCareApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.CardV3
@@ -12,12 +13,16 @@ namespace HealthCareApp.Components.CardV3
 		public string CardProfileIcon { get; set; }
 
         [Parameter]
+		public Theme CardProfileIconColor { get; set; }
+
+        [Parameter]
 		public string CardProfileTitle { get; set; }
 
 		public CardProfile()
 		{
             CardProfileIcon = string.Empty;
-			CardProfileTitle = string.Empty;
+            CardProfileTitle = string.Empty;
+			CardProfileIconColor = Theme.info;
 		}
 	}
 }

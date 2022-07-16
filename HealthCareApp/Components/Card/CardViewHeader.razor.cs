@@ -25,7 +25,7 @@ namespace HealthCareApp.Components.Card
         {
             ImageUrl = string.Empty;
             Icon = string.Empty;
-            IconTheme = Theme.App;
+            IconTheme = Theme.primary;
             Title = string.Empty;
             ImageDescription = "Image description";
         }

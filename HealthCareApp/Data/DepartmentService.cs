@@ -17,7 +17,6 @@ namespace HealthCareApp.Data
         // async method to get list of departments
         public async Task<List<Department>> GetDepartmentsAsync()
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<Department> departmentList = new List<Department>();
 
             /* Raw query with joins, filters and ordering */
@@ -39,7 +38,6 @@ namespace HealthCareApp.Data
         // async method to get list of departments active
         public async Task<List<Department>> GetActiveDepartmentsAsync()
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<Department> departmentList = new List<Department>();
 
             /* Raw query with joins, filters and ordering */
@@ -66,8 +64,6 @@ namespace HealthCareApp.Data
         {
             try
             {
-                UserService userService = new(_httpContextAccessor);
-
                 /* Raw query with joins, filters and ordering */
                 var query =
                     (
@@ -88,7 +84,7 @@ namespace HealthCareApp.Data
 
         public async Task<List<Department>> SearchAsync(string searchTerm)
         {
-            UserService userService = new(_httpContextAccessor);
+
             List<Department> departmentList = new();
 
             if (string.IsNullOrWhiteSpace(searchTerm))

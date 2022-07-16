@@ -2,20 +2,6 @@
 {
     public enum Theme
     {
-/*
- *      Remove start
- */
-        App,
-        Employee,
-        Department,
-        Patient,
-        Supplier,
-        Label,
-        Area,
-        TrackingInventory,
-/*
- *      Remove end
- */
         primary,
         secondary,
         success,
