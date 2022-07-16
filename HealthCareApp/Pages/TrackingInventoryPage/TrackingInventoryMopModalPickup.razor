@@ -1,10 +1,9 @@
-﻿@using HealthCareApp.Components.Modal
-@using HealthCareApp.Settings.Theme
-@using HealthCareApp.Pages.LabelPage
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Pages.LabelPage;
 
 <Modal @ref="_modalPickup"
-       Theme="Theme.TrackingInventory"
-       Size="ModalSize.lg">
+       Size="Size.lg">
     <Title>Add new pickup time</Title>
     <Body>
         <EditForm Model="@_trackingInventoryMop"

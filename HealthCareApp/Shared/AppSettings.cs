@@ -40,13 +40,13 @@ namespace HealthCareApp.Shared
         {
             switch (size)
             {
-                case Size.Sm:
+                case Size.sm:
                     ComponentSize = "sm";
                     break;
-                case Size.Md:
+                case Size.md:
                     ComponentSize = "md";
                     break;
-                case Size.Lg:
+                case Size.lg:
                     ComponentSize = "lg";
                     break;
             }

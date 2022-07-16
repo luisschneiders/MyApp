@@ -1,10 +1,9 @@
-﻿@page "/labels/label-mop"
-@using HealthCareApp.Settings.Theme
-@using HealthCareApp.Components.Message
-@using HealthCareApp.Components.Page
-@using HealthCareApp.Components.Toast
-@using HealthCareApp.Components.Spinner
-@using HealthCareApp.Settings.Enum
+﻿@page "/labels/label-mop";
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Page;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Settings.Enum;
 
 <AuthorizeView>
     <Authorized>
@@ -38,7 +37,7 @@
                             </div>
                         </div>
                         <div class="d-flex flex-row justify-content-evenly align-items-center">
-                            <Spinner Size="Size.Md" />
+                            <Spinner Size="Size.md" />
                         </div>
                         <div class="list-group gap-2">
                             @if (!_isSearchResults)
@@ -92,7 +91,7 @@
                                         </div>
                                     </ItemContent>
                                     <Placeholder>
-                                        <Spinner Size="Size.Md" />
+                                        <Spinner Size="Size.md" />
                                     </Placeholder>
                                 </Virtualize>
                             }

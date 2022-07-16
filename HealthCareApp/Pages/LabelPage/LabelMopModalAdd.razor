@@ -1,9 +1,8 @@
-﻿@using HealthCareApp.Components.Modal
-@using HealthCareApp.Settings.Theme
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
 
 <Modal @ref="_modalAdd"
-       Theme="Theme.Label"
-       Size="ModalSize.lg">
+       Size="Size.lg">
     <Title>Add new label</Title>
     <Body>
         <EditForm Model="@_labelMop"

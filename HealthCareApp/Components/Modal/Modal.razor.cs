@@ -16,10 +16,7 @@ namespace HealthCareApp.Components.Modal
         public RenderFragment? Footer { get; set; }
 
         [Parameter]
-        public Theme Theme { get; set; }
-
-        [Parameter]
-        public ModalSize Size { get; set; }
+        public Size Size { get; set; }
 
         private ModalDisplay _modalStyleDisplay { get; set; }
         private string _modalClass { get; set; }
@@ -28,8 +25,7 @@ namespace HealthCareApp.Components.Modal
 
         public Modal()
         {
-            Theme = Theme.App;
-            Size = ModalSize.md;
+            Size = Size.md;
             _modalStyleDisplay = ModalDisplay.none;
             _modalClass = string.Empty;
             _showBackdrop = false;
