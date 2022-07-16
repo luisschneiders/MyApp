@@ -9,13 +9,12 @@
 @using HealthCareApp.Components.Tooltip;
 @using HealthCareApp.Components.Badge;
 @using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Components.Dropdown;
 
-<AuthorizeView>
-    <Authorized>
-        <div class="container-lg">
-
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
             <PageWrapper>
-
                 <PageTopView>
                     <PageTopWrapper>
                         <div class="d-flex flex-row">
@@ -32,29 +31,20 @@
                     <PageMiddleWrapper>
                         <div class="row flex-row-reverse justify-content-between align-items-center pb-2">
                             <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
-                                <div class="dropdown">
-                                    <button class="btn btn-link pe-2"
-                                            title="Menu Options"
-                                            id="dropdownMenuOptions"
-                                            data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                        <i class="bi bi-three-dots-vertical text-success"></i>
-                                    </button>
-                                    <ul class="dropdown-menu dropdown-menu-end border-light shadow-lg" aria-labelledby="dropdownMenuOptions">
-                                        <li class="py-2">
-                                            <button class="dropdown-item"
-                                                    @onclick="() => AddRecordAsync()">
-                                                Add department
-                                            </button>
-                                        </li>
-                                        <li class="pb-2">
-                                            <button class="dropdown-item"
-                                                    @onclick="() => AddRecordAsync()">
-                                                Add area
-                                            </button>
-                                        </li>
-                                    </ul>
-                                </div>
+                                <DropdownActions IconColor="Theme.success">
+                                    <li>
+                                        <button class="dropdown-item"
+                                                @onclick="() => AddAreaAsync()">
+                                            <i class="bi bi-plus-lg pe-1"></i>New Area
+                                        </button>
+                                    </li>
+                                    <li class="pb-1">
+                                        <button class="dropdown-item"
+                                                @onclick="() => ViewDepartmentAsync()">
+                                            <i class="bi bi-eye-fill pe-1"></i>View Departments
+                                        </button>
+                                    </li>
+                                </DropdownActions>
                             </div>
                             <div class="col-10 col-md-6 col-lg-4 pb-2">
                                 <input type="text"
@@ -62,7 +52,7 @@
                                        placeholder="Search for areas or departments..."
                                        aria-label="search"
                                        @bind-value="_searchTerm"
-                                       @oninput="SearchAreaAsync">
+                                       @oninput="SearchAsync">
                             </div>
                         </div>
                         <div class="row">
@@ -70,7 +60,7 @@
                                 <CardView>
                                     <CardMiddle>
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
-                                            <Spinner Size="Size.Md" />
+                                            <Spinner Size="Size.md" />
                                         </div>
                                         <div class="table-responsive hca-table-wrap">
                                             <table class="table table-hover">
@@ -107,22 +97,22 @@
                                                                     <td>
                                                                         <div class="form-check form-switch">
                                                                             @if (area.IsActive)
-                                                                                {
+                                                                            {
                                                                                 <input class="form-check-input"
                                                                                        type="checkbox"
                                                                                        role="switch"
                                                                                        id="IsActive"
                                                                                        checked
                                                                                        @onclick="() => UpdateAreaStatusAsync(area)" />
-                                                                                }
-                                                                                else
-                                                                                {
+                                                                            }
+                                                                            else
+                                                                            {
                                                                                 <input class="form-check-input"
                                                                                        type="checkbox"
                                                                                        role="switch"
                                                                                        id="IsActive"
                                                                                        @onclick="() => UpdateAreaStatusAsync(area)" />
-                                                                                }
+                                                                            }
                                                                         </div>
                                                                     </td>
                                                                     <td class="text-center">
@@ -147,7 +137,7 @@
                                                             <Placeholder>
                                                                 <tr>
                                                                     <td colspan="5">
-                                                                        <Spinner Size="Size.Md" />
+                                                                        <Spinner Size="Size.md" />
                                                                     </td>
                                                                 </tr>
                                                             </Placeholder>
@@ -166,15 +156,16 @@
                 <PageBottomView>
                     <PageBottomWrapper />
                 </PageBottomView>
-
             </PageWrapper>
-
-        </div>
-    </Authorized>
-    <NotAuthorized>
-        <NotAuthorizedMessage />
-    </NotAuthorized>
-</AuthorizeView>
+            <Toast />
+            <AreaOffCanvas @ref="_areaOffCanvas" OnSubmitSuccess="RefreshVirtualizeContainer" />
+            <DepartmentModal @ref="_departmentModal" OnSubmitSuccess="RefreshVirtualizeContainer" />
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
 
 @*<AuthorizeView>
         <Authorized>
@@ -212,7 +203,7 @@
                                 </div>
                             </div>
                             <div class="d-flex flex-row justify-content-evenly align-items-center">
-                                <Spinner Size="Size.Md" />
+                                <Spinner Size="Size.md" />
                             </div>
                             <div class="list-group gap-2">
                                 @if (!_isSearchResults)
@@ -256,7 +247,7 @@
                                             </div>
                                         </ItemContent>
                                         <Placeholder>
-                                            <Spinner Size="Size.Md" />
+                                            <Spinner Size="Size.md" />
                                         </Placeholder>
                                     </Virtualize>
                                 }
