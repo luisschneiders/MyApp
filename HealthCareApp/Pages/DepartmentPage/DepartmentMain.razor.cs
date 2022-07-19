@@ -74,13 +74,13 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private async Task ViewDetailsAsync(Guid id)
         {
-            //await Task.FromResult(_employeeOffCanvas.ViewDetailsOffCanvasAsync(id));
+            await Task.FromResult(_areaOffCanvas.ViewDetailsOffCanvasAsync(id));
             await Task.CompletedTask;
         }
 
         private async Task EditDetailsAsync(Guid id)
         {
-            //await Task.FromResult(_employeeOffCanvas.EditDetailsOffCanvasAsync(id));
+            await Task.FromResult(_areaOffCanvas.EditDetailsOffCanvasAsync(id));
             await Task.CompletedTask;
         }
 
