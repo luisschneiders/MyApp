@@ -42,7 +42,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
             _codes = new()
             {
 
-                new MarkupString("<Modal>").ToString(),
+                new MarkupString("<Modal @ref=\"_modal\" Size=\"Size.fullscreen\" IsCloseButtonVisible=\"true\">").ToString(),
                 new MarkupString("<Title></Title>").ToString(),
                 new MarkupString("<Body>").ToString(),
                 new MarkupString("</Body>").ToString(),
@@ -85,16 +85,22 @@ namespace HealthCareApp.Pages.PlaygroundPage
 
             _codes = new()
             {
-                new MarkupString("<Modal @ref='' Size='' >").ToString(),
+                new MarkupString("@ref=\"The modal instance\"").ToString(),
+                new MarkupString("Size=\"enum\"").ToString(),
+                new MarkupString("IsCloseButtonVisible=\"bool\"").ToString(),
             };
 
             _cssStyle = new()
             {
                 "",
+                "",
+                "",
             };
 
             _newLine = new()
             {
+                false,
+                false,
                 false,
             };
 
