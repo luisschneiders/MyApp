@@ -30,7 +30,6 @@ namespace HealthCareApp.Pages.AreaPage
          * Add component ModalAdd & ModalUpdate reference
          */
         private AreaModalAdd _areaModalAdd { get; set; }
-        private AreaModalUpdate _areaModalUpdate { get; set; }
 
         public AreaMain()
 		{
@@ -39,7 +38,6 @@ namespace HealthCareApp.Pages.AreaPage
             _spinnerService = new();
             _virtualizeContainer = new();
             _areaModalAdd = new();
-            _areaModalUpdate = new();
 
             _areasDetailsDto = new List<AreaDto>();
             _results = new List<AreaDto>();
