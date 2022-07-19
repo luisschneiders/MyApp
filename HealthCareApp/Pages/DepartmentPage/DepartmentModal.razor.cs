@@ -37,7 +37,7 @@ namespace HealthCareApp.Pages.DepartmentPage
         private List<Department> _searchResults { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
-        private bool _isSearchResults { get; set; }
+        private bool _hasSearchResults { get; set; }
         private bool _isEnableAddDepartment { get; set; }
 
         private string _searchTerm { get; set; }
@@ -51,7 +51,7 @@ namespace HealthCareApp.Pages.DepartmentPage
             _departments = new List<Department>();
             _searchResults = new List<Department>();
             _department = new();
-            _isSearchResults = false;
+            _hasSearchResults = false;
             _isEnableAddDepartment = false;
             _searchTerm = string.Empty;
         }
@@ -67,12 +67,12 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
-            _isSearchResults = true;
+            _hasSearchResults = true;
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 _searchResults = new List<Department>();
-                _isSearchResults = false;
+                _hasSearchResults = false;
                 await Task.CompletedTask;
             }
             else
@@ -124,6 +124,7 @@ namespace HealthCareApp.Pages.DepartmentPage
             FormInitialState();
 
             await Task.FromResult(_modal.Close(_modalTarget));
+            await OnSubmitSuccess.InvokeAsync();
             await Task.CompletedTask;
         }
 

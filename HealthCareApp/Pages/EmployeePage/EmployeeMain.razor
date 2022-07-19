@@ -82,7 +82,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    @if (!_isSearchResults)
+                                                    @if (!_hasSearchResults)
                                                     {
                                                         <Virtualize Context="person"
                                                                     ItemsProvider="@LoadEmployees"
@@ -148,7 +148,7 @@
                                                             </Placeholder>
                                                         </Virtualize>
                                                     }
-                                                    @if (_isSearchResults)
+                                                    @if (_hasSearchResults)
                                                     {
                                                         @foreach (var person in _searchResults)
                                                         {

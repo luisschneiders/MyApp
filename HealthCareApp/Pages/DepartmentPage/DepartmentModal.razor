@@ -5,7 +5,8 @@
 @using HealthCareApp.Settings.Theme;
 
 <Modal @ref="_modal"
-       Size="Size.fullscreen">
+       Size="Size.fullscreen"
+       IsCloseButtonVisible="false">
     <Title>Lisf of departments</Title>
     <Body>
 
@@ -89,7 +90,7 @@
                     </tr>
                 </thead>
                 <tbody class="table-group-divider">
-                    @if (!_isSearchResults)
+                    @if (!_hasSearchResults)
                     {
                         <Virtualize Context="department"
                                     ItemsProvider="@LoadDepartments"

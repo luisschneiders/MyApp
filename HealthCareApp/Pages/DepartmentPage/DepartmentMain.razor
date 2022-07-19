@@ -81,7 +81,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    @if (!_isSearchResults)
+                                                    @if (!_hasSearchResults)
                                                     {
                                                         <Virtualize Context="area"
                                                                     ItemsProvider="@LoadAreas"
@@ -143,7 +143,7 @@
                                                             </Placeholder>
                                                         </Virtualize>
                                                     }
-                                                    @if (_isSearchResults)
+                                                    @if (_hasSearchResults)
                                                     {
                                                         @foreach (var area in _areaDtoResults)
                                                         {
@@ -211,7 +211,7 @@
             </PageWrapper>
             <Toast />
             <AreaOffCanvas @ref="_areaOffCanvas" OnSubmitSuccess="RefreshVirtualizeContainer" />
-            <DepartmentModal @ref="_departmentModal" OnSubmitSuccess="RefreshVirtualizeContainer" />
+            <DepartmentModal @ref="_departmentModal" OnSubmitSuccess="RefreshDepartmentList" />
         </Authorized>
         <NotAuthorized>
             <NotAuthorizedMessage />
