@@ -28,7 +28,7 @@
 
             <div class="col-12">
                 <div class="form-floating mb-3">
-                    <InputSelect class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                    <InputSelect class="form-select"
                                  id="DepartmentId"
                                  disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
                                  @oninput="OnValueChanged"
