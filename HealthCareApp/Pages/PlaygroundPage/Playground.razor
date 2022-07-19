@@ -3,7 +3,8 @@
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Message;
 @using HealthCareApp.Components.Breadcrumb;
-
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum;
 
 <div class="container-lg">
 
@@ -11,7 +12,7 @@
 
         <PageTopView>
             <PageTopWrapper>
-                <PageTopTitle Title="Playground"/>
+                <PageTopTitle Title="Playground" />
                 <Breadcrumb />
             </PageTopWrapper>
         </PageTopView>
@@ -24,7 +25,10 @@
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Card" CardProfileIcon="bi bi-card-heading">
                                     <div class="lead p-2">
-                                        UI layout for <b>Card</b><sup class="badge bg-warning">New</sup>
+                                        UI layout for <b>Card</b>
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Warning.ToString().ToLower()" Message="New" />
+                                        </sup>
                                     </div>
                                 </CardProfile>
                             </CardMiddle>
@@ -35,7 +39,10 @@
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Pages" CardProfileIcon="bi bi-layout-text-window-reverse">
                                     <div class="lead p-2">
-                                        UI layout for <b>Page</b><sup class="badge bg-warning">New</sup>
+                                        UI layout for <b>Page</b>
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Warning.ToString().ToLower()" Message="New" />
+                                        </sup>
                                     </div>
                                 </CardProfile>
                             </CardMiddle>
