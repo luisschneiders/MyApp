@@ -90,6 +90,12 @@ namespace HealthCareApp.Pages.DepartmentPage
             await Task.CompletedTask;
         }
 
+        public async Task RefreshDepartmentList()
+        {
+            _departments = await _departmentService.GetActiveDepartmentsAsync();
+            await Task.CompletedTask;
+        }
+
         private async Task SetOffCanvasState(OffCanvasViewType offCanvasViewType, Level level)
         {
             _offCanvasViewType = offCanvasViewType;
