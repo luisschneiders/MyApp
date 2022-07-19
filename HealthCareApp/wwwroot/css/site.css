@@ -191,8 +191,24 @@ a.hca-box-shadow:hover {
     background-color: #fff;
 }
 
-.text-shadow {
+.hca-text-shadow {
     text-shadow: 1px 1px 2px #000;
+}
+.hca-component-focus {
+    z-index: 1060;
+    position: relative;
+}
+.hca-component-focus-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1055;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
+.hca-component-focus-backdrop.show {
+    opacity: 0.5;
 }
 
 @media (min-width: 992px) {

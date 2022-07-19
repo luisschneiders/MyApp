@@ -1,21 +1,81 @@
 ﻿@using HealthCareApp.Components.Modal;
 @using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.Dropdown;
 @using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Settings.Theme;
 
 <Modal @ref="_modal"
        Size="Size.fullscreen">
     <Title>Lisf of departments</Title>
     <Body>
-        <div class="row">
-            <div class="col-10 col-md-6 col-lg-4 pb-2">
-                <input type="text"
-                       class="form-control"
-                       placeholder="Search for departments..."
-                       aria-label="search"
-                       @bind-value="_searchTerm"
-                       @oninput="SearchAsync">
+
+        @if (_isEnableAddDepartment)
+        {
+            <EditForm Model="@_department"
+                        OnValidSubmit="@HandleValidSubmitAsync"
+                        OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                        autocomplete="off">
+                <DataAnnotationsValidator />
+                <div class="hca-component-focus bg-light p-2 rounded d-block">
+                        <div class="row justify-content-between">
+                            <div class="col-7">
+                                <InputText class="form-control"
+                                           id="Name"
+                                           placeholder="Type department name..."
+                                           @bind-Value="_department.Name" />
+                            </div>
+                            <div class="col-auto">
+                                <button type="button"
+                                        class="btn btn-outline-danger"
+                                        data-dismiss="modal"
+                                        @onclick="() => DisableFormAddDepartmentAsync()"
+                                        title="Cancel">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                                <button type="submit"
+                                        class="btn btn-success"
+                                        title="Save">
+                                    <i class="bi bi-check-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                        @if (_displayValidationErrorMessages)
+                        {
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>Validation Messages: </label>
+                                    <ValidationSummary />
+                                </div>
+                            </div>
+                        }
+                </div>
+                <div class="hca-component-focus-backdrop fade show"></div>
+            </EditForm>
+        }
+        else
+        {
+            <div class="row flex-row-reverse justify-content-between align-items-center p-2">
+                <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end g-0">
+                    <DropdownActions IconColor="Theme.success">
+                        <li>
+                            <button class="dropdown-item"
+                                    @onclick="() => EnableFormAddDepartmentAsync()">
+                                <i class="bi bi-plus-lg pe-1"></i>New Department
+                            </button>
+                        </li>
+                    </DropdownActions>
+                </div>
+                <div class="col-10 col-md-6 col-lg-4">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Search for departments..."
+                           aria-label="search"
+                           @bind-value="_searchTerm"
+                           @oninput="SearchAsync">
+                </div>
             </div>
-        </div>
+
+        }
         <div class="table-responsive hca-table-wrap">
             <table class="table table-hover">
                 <thead class="text-muted">

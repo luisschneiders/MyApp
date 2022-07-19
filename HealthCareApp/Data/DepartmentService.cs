@@ -131,7 +131,7 @@ namespace HealthCareApp.Data
                  * we need to detach all state entities with EntityState.Detached
                  * to avoid exception when adding a record or updating the same record more than once
                  */
-                _applicationDbContext.Entry(department).State = EntityState.Detached;
+                //_applicationDbContext.Entry(department).State = EntityState.Detached;
 
                 await Task.CompletedTask;
             }
