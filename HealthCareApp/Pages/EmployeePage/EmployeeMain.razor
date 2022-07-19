@@ -21,7 +21,7 @@
                         <div class="d-flex flex-row">
                             <PageTopTitle Title="Employees" />
                             <sup>
-                                <Badge BackgroundColor="@Level.Info.ToString()" Message="New" />
+                                <Badge BackgroundColor="@Level.Info.ToString().ToLower()" Message="New" />
                             </sup>
                         </div>
                         <Breadcrumb />
@@ -82,13 +82,13 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody class="table-group-divider">
-                                                    @if (!_isSearchResults)
+                                                    @if (!_hasSearchResults)
                                                     {
                                                         <Virtualize Context="person"
                                                                     ItemsProvider="@LoadEmployees"
                                                                     @ref="_virtualizeContainer">
                                                             <ItemContent>
-                                                                <tr class="py-5">
+                                                                <tr>
                                                                     <td>
                                                                         @person.EmployeeFirstName
                                                                     </td>
@@ -148,7 +148,7 @@
                                                             </Placeholder>
                                                         </Virtualize>
                                                     }
-                                                    @if (_isSearchResults)
+                                                    @if (_hasSearchResults)
                                                     {
                                                         @foreach (var person in _searchResults)
                                                         {

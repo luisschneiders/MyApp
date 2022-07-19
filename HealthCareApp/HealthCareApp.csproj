@@ -16,8 +16,6 @@
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Pomelo.EntityFrameworkCore.MySql" />
     <None Remove="Migrations\" />
-    <None Remove="Pages\ContactUsPage\" />
-    <None Remove="Pages\MapLocationPage\" />
     <None Remove="Shared\images\" />
     <None Remove="Components\Footer\" />
     <None Remove="Components\PageV3\" />
@@ -70,8 +68,6 @@
   <ItemGroup>
     <Folder Include="Pages\AreaPage\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Pages\ContactUsPage\" />
-    <Folder Include="Pages\MapLocationPage\" />
     <Folder Include="wwwroot\icon\" />
     <Folder Include="Shared\images\" />
     <Folder Include="Components\Footer\" />

@@ -5,6 +5,7 @@ using HealthCareApp.Components.Modal;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Components.Toast;
 using HealthCareApp.Data;
+using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -36,7 +37,8 @@ namespace HealthCareApp.Pages.DepartmentPage
         private List<Department> _searchResults { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
-        private bool _isSearchResults { get; set; }
+        private bool _hasSearchResults { get; set; }
+        private bool _isEnableAddDepartment { get; set; }
 
         private string _searchTerm { get; set; }
 
@@ -44,17 +46,13 @@ namespace HealthCareApp.Pages.DepartmentPage
         {
             _toastService = new();
             _spinnerService = new();
-
             _virtualizeContainer = new();
-
             _modal = new();
-
-            _department = new();
-
             _departments = new List<Department>();
             _searchResults = new List<Department>();
-
-            _isSearchResults = false;
+            _department = new();
+            _hasSearchResults = false;
+            _isEnableAddDepartment = false;
             _searchTerm = string.Empty;
         }
 
@@ -69,12 +67,12 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
-            _isSearchResults = true;
+            _hasSearchResults = true;
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 _searchResults = new List<Department>();
-                _isSearchResults = false;
+                _hasSearchResults = false;
                 await Task.CompletedTask;
             }
             else
@@ -89,7 +87,6 @@ namespace HealthCareApp.Pages.DepartmentPage
             _departments = await _departmentService.GetDepartmentsAsync();
 
             await Task.Run(() => _spinnerService.HideSpinner());
-
             await InvokeAsync(() => StateHasChanged());
 
             return new ItemsProviderResult<Department>(
@@ -100,7 +97,20 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task UpdateDepartmentStatusAsync(Department department)
         {
             department.IsActive = !department.IsActive;
+
             await Task.FromResult(_departmentService.UpdateDepartmentAsync(department));
+            await Task.CompletedTask;
+        }
+
+        private async Task EnableFormAddDepartmentAsync()
+        {
+            _isEnableAddDepartment = true;
+            await Task.CompletedTask;
+        }
+
+        private async Task DisableFormAddDepartmentAsync()
+        {
+            FormInitialState();
             await Task.CompletedTask;
         }
 
@@ -111,10 +121,46 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private async Task CloseModalAsync()
         {
-            _department = new Department();
+            FormInitialState();
 
             await Task.FromResult(_modal.Close(_modalTarget));
+            await OnSubmitSuccess.InvokeAsync();
             await Task.CompletedTask;
+        }
+
+        private async Task HandleValidSubmitAsync()
+        {
+
+            _displayValidationErrorMessages = false;
+
+            await _departmentService.AddDepartmentAsync(_department);
+            await OnSubmitSuccess.InvokeAsync();
+            await RefreshVirtualizeContainer();
+
+            _toastService.ShowToast("Department added!", Level.Success);
+
+            await Task.Delay((int)Delay.DataSuccess);
+            await DisableFormAddDepartmentAsync();
+            await Task.CompletedTask;
+
+        }
+
+        private async Task HandleInvalidSubmitAsync()
+        {
+            await Task.FromResult(_displayValidationErrorMessages = true);
+            await Task.CompletedTask;
+        }
+
+        private async Task RefreshVirtualizeContainer()
+        {
+            await _virtualizeContainer.RefreshDataAsync();
+        }
+
+        private void FormInitialState()
+        {
+            _department = new Department();
+            _isEnableAddDepartment = false;
+            _displayValidationErrorMessages = false;
         }
     }
 }

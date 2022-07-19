@@ -16,7 +16,7 @@ namespace HealthCareApp.Pages.EmployeePage
 
         private Virtualize<EmployeeListDto> _virtualizeContainer { get; set; }
 
-        private bool _isSearchResults { get; set; }
+        private bool _hasSearchResults { get; set; }
 
         private string _searchTerm { get; set; }
 
@@ -38,6 +38,8 @@ namespace HealthCareApp.Pages.EmployeePage
 
             _employeeListDto = new();
             _searchResults = new List<EmployeeListDto>();
+
+            _hasSearchResults = false;
         }
 
         private async Task AddRecordAsync()
@@ -94,12 +96,12 @@ namespace HealthCareApp.Pages.EmployeePage
         private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
-            _isSearchResults = true;
+            _hasSearchResults = true;
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 _searchResults = new();
-                _isSearchResults = false;
+                _hasSearchResults = false;
                 await Task.CompletedTask;
             }
             else

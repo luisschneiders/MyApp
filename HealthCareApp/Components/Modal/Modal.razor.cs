@@ -18,6 +18,9 @@ namespace HealthCareApp.Components.Modal
         [Parameter]
         public Size Size { get; set; }
 
+        [Parameter]
+        public bool IsCloseButtonVisible { get; set; }
+
         private ModalDisplay _modalStyleDisplay { get; set; }
         private string _modalClass { get; set; }
         private bool _showBackdrop { get; set; }
@@ -26,6 +29,7 @@ namespace HealthCareApp.Components.Modal
         public Modal()
         {
             Size = Size.md;
+            IsCloseButtonVisible = true;
             _modalStyleDisplay = ModalDisplay.none;
             _modalClass = string.Empty;
             _showBackdrop = false;

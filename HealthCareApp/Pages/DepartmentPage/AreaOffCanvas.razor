@@ -28,9 +28,9 @@
 
             <div class="col-12">
                 <div class="form-floating mb-3">
-                    <InputSelect class="form-control"
+                    <InputSelect class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
                                  id="DepartmentId"
-                                 readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                 disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
                                  @oninput="OnValueChanged"
                                  @bind-Value="_area.DepartmentId">
                         <option value="@Guid.Empty.ToString()">-- Select department --</option>

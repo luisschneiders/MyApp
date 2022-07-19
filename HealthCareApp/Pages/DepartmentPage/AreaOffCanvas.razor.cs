@@ -65,10 +65,34 @@ namespace HealthCareApp.Pages.DepartmentPage
         public async Task AddRecordOffCanvasAsync()
         {
             _area = new();
-
+            _isDisabled = true;
             await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Add, Level.Success));
 
             await Task.FromResult(_offCanvas.Open(Guid.NewGuid()));
+            await Task.CompletedTask;
+        }
+
+        public async Task ViewDetailsOffCanvasAsync(Guid id)
+        {
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.View, Level.Info));
+            await Task.FromResult(SetOffCanvasInfo(id));
+
+            await Task.FromResult(_offCanvas.Open(_offCanvasTarget));
+            await Task.CompletedTask;
+        }
+
+        public async Task EditDetailsOffCanvasAsync(Guid id)
+        {
+            await Task.FromResult(SetOffCanvasState(OffCanvasViewType.Edit, Level.Danger));
+            await Task.FromResult(SetOffCanvasInfo(id));
+
+            await Task.FromResult(_offCanvas.Open(_offCanvasTarget));
+            await Task.CompletedTask;
+        }
+
+        public async Task RefreshDepartmentList()
+        {
+            _departments = await _departmentService.GetActiveDepartmentsAsync();
             await Task.CompletedTask;
         }
 
@@ -129,6 +153,14 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task HandleInvalidSubmitAsync()
         {
             await Task.FromResult(_displayValidationErrorMessages = true);
+            await Task.CompletedTask;
+        }
+
+        private async Task SetOffCanvasInfo(Guid id)
+        {
+            _offCanvasTarget = id;
+            _area = _areaService.GetAreaById(id);
+            _isDisabled = false;
             await Task.CompletedTask;
         }
 

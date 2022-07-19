@@ -22,7 +22,7 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private Virtualize<AreaDto> _virtualizeContainer { get; set; }
 
-        private bool _isSearchResults { get; set; }
+        private bool _hasSearchResults { get; set; }
 
         private string _searchTerm { get; set; }
 
@@ -40,7 +40,7 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         public DepartmentMain()
         {
-            _isSearchResults = false;
+            _hasSearchResults = false;
             _searchTerm = string.Empty;
 
             _spinnerService = new();
@@ -74,13 +74,13 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private async Task ViewDetailsAsync(Guid id)
         {
-            //await Task.FromResult(_employeeOffCanvas.ViewDetailsOffCanvasAsync(id));
+            await Task.FromResult(_areaOffCanvas.ViewDetailsOffCanvasAsync(id));
             await Task.CompletedTask;
         }
 
         private async Task EditDetailsAsync(Guid id)
         {
-            //await Task.FromResult(_employeeOffCanvas.EditDetailsOffCanvasAsync(id));
+            await Task.FromResult(_areaOffCanvas.EditDetailsOffCanvasAsync(id));
             await Task.CompletedTask;
         }
 
@@ -128,12 +128,12 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
-            _isSearchResults = true;
+            _hasSearchResults = true;
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
                 _areaDtoResults = new List<AreaDto>();
-                _isSearchResults = false;
+                _hasSearchResults = false;
                 await Task.CompletedTask;
             }
             else
@@ -176,6 +176,12 @@ namespace HealthCareApp.Pages.DepartmentPage
         private async Task RefreshVirtualizeContainer()
         {
             await _virtualizeContainer.RefreshDataAsync();
+        }
+
+        private async Task RefreshDepartmentList()
+        {
+            await _areaOffCanvas.RefreshDepartmentList();
+            await Task.CompletedTask;
         }
 
         //private async ValueTask<ItemsProviderResult<Department>> LoadDepartments(ItemsProviderRequest request)
