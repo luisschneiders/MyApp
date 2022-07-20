@@ -29,7 +29,6 @@ namespace HealthCareApp.Pages.DepartmentPage
         private List<AreaDto> _areaDtoResults { get; set; }
         private List<AreaDto> _areasDetailsDto { get; set; }
 
-        //private List<Department> _departmentResults { get; set; }
         private List<Department> _departments { get; set; }
 
         /*
@@ -45,8 +44,6 @@ namespace HealthCareApp.Pages.DepartmentPage
 
             _spinnerService = new();
             _virtualizeContainer = new();
-            //_departmentModalAdd = new();
-            //_departmentModalUpdate = new();
 
             _areaOffCanvas = new();
             _departmentModal = new();
@@ -55,9 +52,6 @@ namespace HealthCareApp.Pages.DepartmentPage
             _areasDetailsDto = new();
 
             _departments = new List<Department>();
-            //_departmentResults = new List<Department>();
-
-            //_departmentDetails = null;
         }
 
         private async Task AddAreaAsync()
@@ -143,36 +137,6 @@ namespace HealthCareApp.Pages.DepartmentPage
             }
         }
 
-        //private async Task OpenModalAddAsync()
-        //{
-        //    await Task.FromResult(_departmentModalAdd.OpenModalAddAsync());
-        //    await Task.CompletedTask;
-        //}
-
-        //private async Task OpenModalUpdateAsync(Guid id)
-        //{
-        //    await Task.FromResult(_departmentModalUpdate.OpenModalUpdateAsync(id));
-        //    await Task.CompletedTask;
-        //}
-
-        //private async Task ShowDepartmentDetails(Department department)
-        //{
-        //    _departmentDetails = department;
-
-        //    _isLoading = true;
-        //    await Task.Delay((int)Delay.DataLoading);
-        //    _isLoading = false;
-
-        //    await Task.CompletedTask;
-        //}
-
-        //private async Task UpdateDepartmentStatusAsync(Department department)
-        //{
-        //    department.IsActive = !department.IsActive;
-        //    await Task.FromResult(_departmentService.UpdateDepartmentAsync(department));
-        //    await Task.CompletedTask;
-        //}
-
         private async Task RefreshVirtualizeContainer()
         {
             await _virtualizeContainer.RefreshDataAsync();
@@ -184,18 +148,5 @@ namespace HealthCareApp.Pages.DepartmentPage
             await _areaOffCanvas.RefreshDepartmentList();
             await Task.CompletedTask;
         }
-
-        //private async ValueTask<ItemsProviderResult<Department>> LoadDepartments(ItemsProviderRequest request)
-        //{
-        //    _departments = await _departmentService.GetDepartmentsAsync();
-
-        //    await Task.Run(() => _spinnerService.HideSpinner());
-
-        //    await InvokeAsync(() => StateHasChanged());
-
-        //    return new ItemsProviderResult<Department>(
-        //        _departments.Skip(request.StartIndex).Take(request.Count), _departments.Count
-        //    );
-        //}
     }
 }
