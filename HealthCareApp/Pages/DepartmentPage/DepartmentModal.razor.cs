@@ -38,7 +38,9 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         private bool _displayValidationErrorMessages { get; set; }
         private bool _hasSearchResults { get; set; }
-        private bool _isEnableAddDepartment { get; set; }
+        private bool _isEnabledAddDepartment { get; set; }
+        private bool _isEnabledUpdateDepartment { get; set; }
+        private Guid _departmentId { get; set; }
 
         private string _searchTerm { get; set; }
 
@@ -52,7 +54,9 @@ namespace HealthCareApp.Pages.DepartmentPage
             _searchResults = new List<Department>();
             _department = new();
             _hasSearchResults = false;
-            _isEnableAddDepartment = false;
+            _isEnabledAddDepartment = false;
+            _isEnabledUpdateDepartment = false;
+            _departmentId = Guid.Empty;
             _searchTerm = string.Empty;
         }
 
@@ -94,7 +98,7 @@ namespace HealthCareApp.Pages.DepartmentPage
             );
         }
 
-        private async Task UpdateDepartmentStatusAsync(Department department)
+        private async Task UpdateStatusAsync(Department department)
         {
             department.IsActive = !department.IsActive;
 
@@ -102,20 +106,31 @@ namespace HealthCareApp.Pages.DepartmentPage
             await Task.CompletedTask;
         }
 
-        private async Task EnableFormAddDepartmentAsync()
+        private async Task EnableFormAddRecordAsync()
         {
-            _isEnableAddDepartment = true;
+            _isEnabledAddDepartment = true;
             await Task.CompletedTask;
         }
 
-        private async Task DisableFormAddDepartmentAsync()
+        private async Task DisableFormAddRecordAsync()
         {
             FormInitialState();
             await Task.CompletedTask;
         }
 
-        private async Task EditDepartmentAsync()
+        private async Task DisableFormUpdateRecordAsync()
         {
+            _department = new();
+            _isEnabledUpdateDepartment = false;
+
+            await Task.CompletedTask;
+        }
+
+        private async Task EditDetailsAsync(Department department)
+        {
+            _isEnabledUpdateDepartment = true;
+            _departmentId = department.Id;
+            _department = department;
             await Task.CompletedTask;
         }
 
@@ -140,12 +155,35 @@ namespace HealthCareApp.Pages.DepartmentPage
             _toastService.ShowToast("Department added!", Level.Success);
 
             await Task.Delay((int)Delay.DataSuccess);
-            await DisableFormAddDepartmentAsync();
+            await DisableFormAddRecordAsync();
             await Task.CompletedTask;
 
         }
 
         private async Task HandleInvalidSubmitAsync()
+        {
+            await Task.FromResult(_displayValidationErrorMessages = true);
+            await Task.CompletedTask;
+        }
+
+        private async Task HandleValidSubmitFromTableAsync()
+        {
+
+            _displayValidationErrorMessages = false;
+
+            await _departmentService.UpdateDepartmentAsync(_department);
+            await OnSubmitSuccess.InvokeAsync();
+            await RefreshVirtualizeContainer();
+
+            _toastService.ShowToast("Department updated!", Level.Success);
+
+            await Task.Delay((int)Delay.DataSuccess);
+            await DisableFormUpdateRecordAsync();
+            await Task.CompletedTask;
+
+        }
+
+        private async Task HandleInvalidSubmitFromTableAsync()
         {
             await Task.FromResult(_displayValidationErrorMessages = true);
             await Task.CompletedTask;
@@ -159,7 +197,8 @@ namespace HealthCareApp.Pages.DepartmentPage
         private void FormInitialState()
         {
             _department = new Department();
-            _isEnableAddDepartment = false;
+            _isEnabledAddDepartment = false;
+            _isEnabledUpdateDepartment = false;
             _displayValidationErrorMessages = false;
         }
     }

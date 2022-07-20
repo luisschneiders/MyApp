@@ -178,8 +178,9 @@ namespace HealthCareApp.Pages.DepartmentPage
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async Task RefreshDepartmentList()
+        private async Task RefreshLists()
         {
+            await _virtualizeContainer.RefreshDataAsync();
             await _areaOffCanvas.RefreshDepartmentList();
             await Task.CompletedTask;
         }
