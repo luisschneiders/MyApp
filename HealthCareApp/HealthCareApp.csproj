@@ -10,7 +10,6 @@
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
     <None Remove="CSharpVitamins.ShortGuid" />
-    <None Remove="Pages\AreaPage\" />
     <None Remove="db\app.db" />
     <None Remove="Microsoft.AspNetCore.Authentication.MicrosoftAccount" />
     <None Remove="Microsoft.EntityFrameworkCore" />
@@ -66,7 +65,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\AreaPage\" />
     <Folder Include="Migrations\" />
     <Folder Include="wwwroot\icon\" />
     <Folder Include="Shared\images\" />

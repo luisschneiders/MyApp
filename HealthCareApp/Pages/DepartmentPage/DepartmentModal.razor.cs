@@ -200,6 +200,8 @@ namespace HealthCareApp.Pages.DepartmentPage
             _isEnabledAddDepartment = false;
             _isEnabledUpdateDepartment = false;
             _displayValidationErrorMessages = false;
+            _searchTerm = string.Empty;
+            _hasSearchResults = false;
         }
     }
 }

@@ -81,7 +81,7 @@
             <table class="table table-hover">
                     <thead class="text-muted">
                         <tr>
-                            <th>
+                            <th class="col-7">
                                 Department
                             </th>
                             <th colspan="2">
@@ -98,7 +98,7 @@
                                 <ItemContent>
                                     <tr @key="department.Id">
                                         @if (_isEnabledUpdateDepartment && (_departmentId == department.Id))
-                                            {
+                                        {
                                             <td colspan="3">
                                                 <EditForm Model="@_department"
                                                           OnValidSubmit="@HandleValidSubmitFromTableAsync"
@@ -125,7 +125,7 @@
                                         }
                                         else
                                         {
-                                            <td class="col-7">
+                                            <td>
                                                 @department.Name
                                             </td>
                                             <td>
@@ -149,7 +149,7 @@
                                                     }
                                                 </div>
                                             </td>
-                                            <td class="text-center">
+                                            <td>
                                                 <button class="btn btn-link p-0 text-danger"
                                                         type="button"
                                                         title="Edit"
@@ -162,7 +162,7 @@
                                 </ItemContent>
                                 <Placeholder>
                                     <tr>
-                                        <td colspan="5">
+                                        <td colspan="3">
                                             <Spinner Size="Size.md" />
                                         </td>
                                     </tr>
@@ -174,38 +174,67 @@
                             @foreach (var department in _searchResults)
                             {
                                 <tr @key="department.Id">
-                                    <td>
-                                        @department.Name
-                                    </td>
-                                    <td>
-                                        <div class="form-check form-switch">
-                                            @if (department.IsActive)
-                                            {
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       role="switch"
-                                                       id="IsActive"
-                                                       checked
-                                                       @onclick="() => UpdateStatusAsync(department)" />
-                                            }
-                                            else
-                                            {
-                                                <input class="form-check-input"
-                                                       type="checkbox"
-                                                       role="switch"
-                                                       id="IsActive"
-                                                       @onclick="() => UpdateStatusAsync(department)" />
-                                            }
-                                        </div>
-                                    </td>
-                                    <td>
-                                        <button class="btn btn-link p-0 text-danger"
-                                                type="button"
-                                                title="Edit"
-                                                @onclick="() => EditDetailsAsync(department)">
-                                            <i class="bi bi-pencil"></i>
-                                        </button>
-                                    </td>
+                                    @if (_isEnabledUpdateDepartment && (_departmentId == department.Id))
+                                    {
+                                        <td colspan="3">
+                                            <EditForm Model="@_department"
+                                                      OnValidSubmit="@HandleValidSubmitFromTableAsync"
+                                                      OnInvalidSubmit="@HandleInvalidSubmitFromTableAsync"
+                                                      autocomplete="off">
+                                                <DataAnnotationsValidator />
+                                                <div class="row justify-content-between">
+                                                    <div class="col-7">
+                                                        <InputText class="form-control"
+                                                                   id="Name"
+                                                                   placeholder="Type department name..."
+                                                                   @bind-Value="_department.Name" />
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button type="submit"
+                                                                class="btn btn-info text-white"
+                                                                title="Save">
+                                                            <i class="bi bi-check-lg"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </EditForm>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @department.Name
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                @if (department.IsActive)
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           checked
+                                                           @onclick="() => UpdateStatusAsync(department)" />
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           @onclick="() => UpdateStatusAsync(department)" />
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-link p-0 text-danger"
+                                                    type="button"
+                                                    title="Edit"
+                                                    @onclick="() => EditDetailsAsync(department)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                        </td>
+                                    }
                                 </tr>
                             }
                         }

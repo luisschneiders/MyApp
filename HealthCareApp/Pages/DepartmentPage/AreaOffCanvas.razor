@@ -36,7 +36,7 @@
                         <option value="@Guid.Empty.ToString()">-- Select department --</option>
                         @foreach (var (department, index) in _departments.Select((value, index) => (value, index)))
                         {
-                            <option value="@department.Id">@department.Name</option>
+                            <option value="@department.Id" disabled="@(department.IsActive ? false : true)">@department.Name</option>
                         }
                     </InputSelect>
                     <label for="DepartmentId">Department</label>
