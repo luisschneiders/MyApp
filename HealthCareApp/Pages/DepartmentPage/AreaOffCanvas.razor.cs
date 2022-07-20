@@ -52,7 +52,7 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         protected override async Task OnInitializedAsync()
         {
-            _departments = await _departmentService.GetActiveDepartmentsAsync();
+            _departments = await _departmentService.GetDepartmentsAsync();
 
             if (_area.DepartmentId == Guid.Empty)
             {
@@ -92,7 +92,7 @@ namespace HealthCareApp.Pages.DepartmentPage
 
         public async Task RefreshDepartmentList()
         {
-            _departments = await _departmentService.GetActiveDepartmentsAsync();
+            _departments = await _departmentService.GetDepartmentsAsync();
             await Task.CompletedTask;
         }
 
