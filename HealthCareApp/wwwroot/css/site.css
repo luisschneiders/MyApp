@@ -166,9 +166,6 @@ a.hca-box-shadow:hover {
     text-decoration: none;
     transition: all .3s ease-in-out;
 }
-.list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: #dbe0e1;
-}
 .zpl-format {
     word-break: break-all;
 }

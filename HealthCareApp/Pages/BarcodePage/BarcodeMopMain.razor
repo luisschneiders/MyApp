@@ -1,0 +1,34 @@
+﻿@page "/admin/barcodes/label-mop";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Message;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <PageTopTitle Title="Barcode for mop labels" />
+                        <Breadcrumb />
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView>
+                    <PageBottomWrapper>
+                    </PageBottomWrapper>
+                </PageBottomView>
+
+            </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

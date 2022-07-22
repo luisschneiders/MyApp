@@ -10,7 +10,7 @@ using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
 
-namespace HealthCareApp.Pages.LabelPage
+namespace HealthCareApp.Pages.BarcodePage
 {
 	public partial class LabelMopModalAdd : ComponentBase
 	{
