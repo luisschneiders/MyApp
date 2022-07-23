@@ -1,0 +1,36 @@
+﻿@using HealthCareApp.Components.CardV3
+
+<CardView  Styles="flex-fill">
+    <CardMiddle>
+        <div class="float-end">
+            <i class="bi bi-clock-history display-6 text-info"></i>
+        </div>
+        <h6 class="text-uppercase">
+            Usage history
+        </h6>
+        
+        <div class="list-group py-3">
+            <NavLink class="list-group-item list-group-item-action d-flex gap-3 py-3 align-items-center border-white" aria-current="true"
+                        href="@_appURL.TasksHistoryMop">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Mop usage history</h6>
+                        <p class="mb-0 opacity-75">Create a record history of <strong>mops</strong> used in all departments areas</p>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right md-icon"></i>
+            </NavLink>
+            <NavLink class="list-group-item list-group-item-action d-flex gap-3 py-3 align-items-center border-white disabled opacity-50" aria-current="true"
+                        href="@_appURL.TasksHistoryMop">
+                <div class="d-flex w-100 justify-content-between">
+                    <div>
+                        <h6 class="mb-0">Chemicals usage history</h6>
+                        <p class="mb-0 opacity-75">Create a record history of <strong>chemicals</strong> used in all departments areas</p>
+                    </div>
+                </div>
+                <i class="bi bi-chevron-right md-icon"></i>
+            </NavLink>
+        </div>
+    </CardMiddle>
+</CardView>
+
