@@ -7,13 +7,13 @@
     <div class="container-lg">
         <AuthorizeView>
             <Authorized>
-                <a class="navbar-brand" href="/dashboard">
+                <a class="navbar-brand" href="@_appURL.Dashboard">
                     <img src="/apple-touch-icon.png" alt="logo" width="28" height="28" class="rounded">
                     <span class="px-1 navbar-brand-title">MyApp</span>
                 </a>
             </Authorized>
             <NotAuthorized>
-                <a class="navbar-brand" href="/">
+                <a class="navbar-brand" href="@_appURL.Home">
                     <img src="/apple-touch-icon.png" alt="logo" width="28" height="28" class="rounded">
                     <span class="px-1 navbar-brand-title">MyApp</span>
                 </a>
@@ -43,62 +43,62 @@
                     <AuthorizeView>
                         <Authorized>
                             <li class="nav-item col-12 col-lg-auto px-3">
-                                <NavLink class="nav-link" href="dashboard" Match="NavLinkMatch.All">
+                                <NavLink class="nav-link" href="@_appURL.Dashboard" Match="NavLinkMatch.All">
                                     Dashboard
                                 </NavLink>
                             </li>
                             <li class="nav-item dropdown px-3">
-                                <NavLink class="nav-link hca-outline-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <NavLink class="nav-link hca-outline-none" href="@_appURL.Admin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                     <i class="bi bi-grid-3x3-gap pe-1"></i>Admin<i class="bi bi-chevron-down ps-2"></i>
                                 </NavLink>
                                 <ul class="dropdown-menu hca-dropdown-menu border-light shadow-lg" aria-labelledby="navbarDropdownSettingsLink">
                                     <li>
-                                        <NavLink class="dropdown-item" href="/admin/employees">
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminEmployees">
                                             Employees
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink class="dropdown-item" href="/admin/departments">
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminDepartments">
                                             Departments
                                         </NavLink>
                                     </li>
                                     <li>
-                                        <NavLink class="dropdown-item" href="/admin/barcodes">
-                                            Barcode labels
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminBarcodes">
+                                            Barcodes
                                         </NavLink>
                                     </li>
                                 </ul>
 
                             </li>
                             <li class="nav-item col-12 col-lg-auto px-3">
-                                <NavLink class="nav-link" href="tracking-inventory">
-                                    Inventory
+                                <NavLink class="nav-link" href="@_appURL.Tasks">
+                                    Tasks
                                 </NavLink>
                             </li>
                             @if (_env.IsDevelopment())
                             {
                                 <li class="nav-item dropdown px-3">
-                                    <NavLink class="nav-link hca-outline-none" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <NavLink class="nav-link hca-outline-none" href="@_appURL.API" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                         APIs<i class="bi bi-chevron-down ps-2"></i>
                                     </NavLink>
                                     <ul class="dropdown-menu hca-dropdown-menu border-light shadow-lg" aria-labelledby="navbarDropdownAPILink">
                                         <li>
-                                            <NavLink class="dropdown-item disabled" href="/API/get">
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIGet">
                                                 Get
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink class="dropdown-item" href="/API/post">
+                                            <NavLink class="dropdown-item" href="@_appURL.APIPost">
                                                 Post
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink class="dropdown-item disabled" href="/API/put">
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIPut">
                                                 Put
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink class="dropdown-item disabled" href="/API/delete">
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIDelete">
                                                 Delete
                                             </NavLink>
                                         </li>
@@ -110,7 +110,7 @@
                         </Authorized>
                         <NotAuthorized>
                             <li class="nav-item col-12 col-lg-auto px-3">
-                                <NavLink class="nav-link" href="/about">
+                                <NavLink class="nav-link" href="@_appURL.About">
                                     About
                                 </NavLink>
                             </li>
@@ -121,7 +121,7 @@
                         <hr class="d-lg-none">
                     </li>
                     <li class="nav-item col-12 col-lg-auto ps-3">
-                        <NavLink class="nav-link" href="/playground">
+                        <NavLink class="nav-link" href="@_appURL.Playground">
                             <i class="bi bi-controller pe-1"></i>Playground
                         </NavLink>
                     </li>
