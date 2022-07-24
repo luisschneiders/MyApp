@@ -11,6 +11,8 @@ namespace HealthCareApp.Shared
         public readonly string AdminEmployees;
         public readonly string AdminDepartments;
         public readonly string AdminBarcodes;
+        public readonly string AdminBarcodesMop;
+        public readonly string AdminBarcodesChemical;
 
         public readonly string API;
         public readonly string APIGet;
@@ -34,6 +36,8 @@ namespace HealthCareApp.Shared
             AdminEmployees = $"{Admin}/employees";
             AdminDepartments = $"{Admin}/departments";
             AdminBarcodes = $"{Admin}/barcodes";
+            AdminBarcodesMop = $"{AdminBarcodes}/mop";
+            AdminBarcodesChemical = $"{AdminBarcodes}/chemical";
 
             API = "/api";
             APIGet = $"{API}/get";
