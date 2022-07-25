@@ -33,6 +33,7 @@ namespace HealthCareApp.Shared
 
         public readonly string Tasks;
         public readonly string TasksHistoryMop;
+        public readonly string TasksHistoryChemical;
 
         public AppURL()
         {
@@ -64,6 +65,7 @@ namespace HealthCareApp.Shared
 
             Tasks = "/tasks";
             TasksHistoryMop = $"{Tasks}/history-mop";
+            TasksHistoryChemical = $"{Tasks}/history-chemical";
         }
     }
 }
