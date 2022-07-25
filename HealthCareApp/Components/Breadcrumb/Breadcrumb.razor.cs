@@ -1,32 +1,79 @@
 ﻿using System;
+using System.IO;
+using System.Text;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Breadcrumb
 {
 	public partial class Breadcrumb : ComponentBase
 	{
-        [Inject]
-        private NavigationManager _navigationManager { get; set; } = default!;
 
         [Parameter]
         public bool IsVisible { get; set; } = true;
 
-        private string _baseUri { get; set; } = string.Empty;
-        private string[] _uri { get; set; } = default!;
-        private string[] _path { get; set; } = default!;
+        [Parameter]
+        public string AppPageLink { get; set; }
+
+        private string[] _appPageLink { get; set; } = default!;
+
+        private BreadcrumbLink _breadcrumbLink { get; set; }
+        private List<BreadcrumbLink> _breadcrumbLinks { get; set; }
 
         public Breadcrumb()
 		{
-		}
+            AppPageLink = string.Empty;
+            _breadcrumbLink = new();
+            _breadcrumbLinks = new();
+        }
 
-        protected override Task OnInitializedAsync()
+        protected override void OnInitialized()
         {
-            _baseUri = _navigationManager.BaseUri;
-            _uri = _navigationManager.Uri.Split(_baseUri);
-            _path = _uri[1].Split("/");
+            _appPageLink = AppPageLink.Split("/");
 
-            return base.OnInitializedAsync();
+            BuildBreadcrumbLinks();
+
+        }
+
+        private void BuildBreadcrumbLinks()
+        {
+            int lastIndex = _appPageLink.Length - 1;
+
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var appPageLink in _appPageLink.Select((x, i) => new { Value = x, Index = i }))
+            {
+                _breadcrumbLink = new();
+
+                _breadcrumbLink.AppPageURLValue = _appPageLink[appPageLink.Index];
+
+                if ((appPageLink.Index + 1) == 1)
+                {
+
+                    sb.Append(appPageLink.Value);
+                    _breadcrumbLink.IsActive = true;
+
+                } else if ((appPageLink.Index + 1) > 1)
+                {
+                    if (appPageLink.Index == lastIndex)
+                    {
+
+                        _breadcrumbLink.IsActive = false;
+
+                    }
+                    else
+                    {
+
+                        sb.Append("/" + appPageLink.Value);
+                        _breadcrumbLink.IsActive = true;
+
+                    }
+                }
+
+                _breadcrumbLink.AppPageURL = sb.ToString();
+
+                _breadcrumbLinks.Add(_breadcrumbLink);
+
+            }
         }
     }
 }
-

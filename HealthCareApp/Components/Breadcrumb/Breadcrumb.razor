@@ -1,22 +1,23 @@
 ﻿@if (IsVisible)
 {
-    <nav class="d-none d-lg-block @(_path.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
+    <nav class="d-none d-lg-block @(_appPageLink.Length > 0 ? "breadcrumb-divider hca-breadcrumb" : "breadcrumb-no-divider" )" aria-label="breadcrumb">
         <ol class="breadcrumb text-capitalize">
-            @foreach (var urlPath in _path.Select((x, i) => new { Value = x, Index = i }))
+
+            @foreach (var breadcrumb in _breadcrumbLinks.Select((x, i) => new { Value = x, Index = i }))
             {
-                int lastIndex = _path.Count();
-
-                <li class="breadcrumb-item @((urlPath.Index + 1) < lastIndex ? "" : "active" )">
-                    @if ((urlPath.Index + 1) < lastIndex)
-                    {
-                        <a href="@(_baseUri+@urlPath.Value)">@urlPath.Value</a>
-                    }
-                    else
-                    {
-                        @urlPath.Value
-                    }
-
-                </li>
+                @if (breadcrumb.Index > 0)
+                {
+                    <li class="breadcrumb-item @(breadcrumb.Value.IsActive ? "active" : "text-muted" )">
+                        @if (breadcrumb.Value.IsActive)
+                        {
+                            <a href="@breadcrumb.Value.AppPageURL">@breadcrumb.Value.AppPageURLValue</a>
+                        }
+                        else
+                        {
+                            @breadcrumb.Value.AppPageURLValue
+                        }
+                    </li>
+                }
             }
         </ol>
     </nav>
