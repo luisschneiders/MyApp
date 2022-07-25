@@ -1,6 +1,7 @@
 ﻿using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -28,6 +29,8 @@ namespace HealthCareApp.Pages.EmployeePage
          */
         private EmployeeOffCanvas _employeeOffCanvas { get; set; }
 
+        private AppURL _appURL { get; }
+
         public EmployeeMain()
         {
             _searchTerm = string.Empty;
@@ -40,6 +43,7 @@ namespace HealthCareApp.Pages.EmployeePage
             _searchResults = new List<EmployeeListDto>();
 
             _hasSearchResults = false;
+            _appURL = new();
         }
 
         private async Task AddRecordAsync()

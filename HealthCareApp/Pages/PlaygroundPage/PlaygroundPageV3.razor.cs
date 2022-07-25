@@ -1,6 +1,7 @@
 ﻿using System;
 using HealthCareApp.Components.Markup;
 using HealthCareApp.Pages.PlaygroundPage;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.PlaygroundPage
@@ -12,6 +13,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
 		private List<string> _codes { get; set; }
         private List<bool> _newLine { get; set; }
         private List<string> _cssStyle { get; set; }
+        private AppURL _appURL { get; }
 
         public PlaygroundPageV3()
 		{
@@ -20,6 +22,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
 			_codes = new List<string>();
             _cssStyle = new List<string>();
             _newLine = new List<bool>();
+            _appURL = new();
         }
 
         protected override void OnInitialized()
@@ -31,7 +34,7 @@ namespace HealthCareApp.Pages.PlaygroundPage
                 new MarkupString("<PageTopView>").ToString(),
                 new MarkupString("<PageTopWrapper>").ToString(),
                 new MarkupString("<PageTopTitle />").ToString(),
-                new MarkupString("<Breadcrumb />").ToString(),
+                new MarkupString("<Breadcrumb AppPageLink=\"/playground/page-v3\"/>").ToString(),
                 new MarkupString("</PageTopWrapper>").ToString(),
                 new MarkupString("</PageTopView>").ToString(),
                 new MarkupString("<PageMiddleView>").ToString(),

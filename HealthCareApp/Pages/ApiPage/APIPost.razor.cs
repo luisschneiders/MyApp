@@ -5,6 +5,7 @@ using HealthCareApp.Services;
 using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
+using HealthCareApp.Shared;
 
 namespace HealthCareApp.Pages.ApiPage
 {
@@ -37,6 +38,7 @@ namespace HealthCareApp.Pages.ApiPage
 
         private bool _displayValidationMessages { get; set; }
         private bool _labelError { get; set; }
+        private AppURL _appURL { get; }
 
         public APIPost()
         {
@@ -55,6 +57,7 @@ namespace HealthCareApp.Pages.ApiPage
             _route = "api/v1/Labels";
             _fileName = string.Empty;
             _labelString = string.Empty;
+            _appURL = new();
         }
 
         protected override void OnInitialized()

@@ -1,4 +1,4 @@
-﻿@page "/API";
+﻿@page "/api";
 @using HealthCareApp.Components.PageV3;
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Message;
@@ -14,7 +14,7 @@
         <PageTopView>
             <PageTopWrapper>
                 <PageTopTitle Title="API" />
-                <Breadcrumb />
+                <Breadcrumb AppPageLink="@_appURL.API"/>
             </PageTopWrapper>
         </PageTopView>
 
@@ -35,7 +35,7 @@
                         </CardView>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
-                        <CardView Link="/API/post">
+                        <CardView Link="@_appURL.APIPost">
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Post"
                                              CardProfileIcon="bi bi-share-fill"

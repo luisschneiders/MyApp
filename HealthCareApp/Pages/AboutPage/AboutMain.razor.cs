@@ -5,7 +5,7 @@ namespace HealthCareApp.Pages.AboutUsPage
 {
 	public partial class AboutMain : ComponentBase
 	{
-		public AboutMain()
+        public AboutMain()
 		{
 		}
 	}
