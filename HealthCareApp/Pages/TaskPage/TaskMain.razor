@@ -1,8 +1,7 @@
-﻿@page "/dashboard";
-@using HealthCareApp.Components.Message;
-@using HealthCareApp.Components.CardV3;
+﻿@page "/tasks";
 @using HealthCareApp.Components.PageV3;
-@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Breadcrumb
+@using HealthCareApp.Components.Message;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -11,26 +10,27 @@
 
                 <PageTopView>
                     <PageTopWrapper>
-                        <PageTopTitle Title="Dashboard" />
-                        <Breadcrumb AppPageLink="@_appURL.Dashboard"/>
+                        <PageTopTitle Title="Tasks" />
+                        <Breadcrumb AppPageLink="@_appURL.Tasks" />
                     </PageTopWrapper>
                 </PageTopView>
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
-                        <div class="row">
-                            <div class="col-sm-12 col-lg-3">
-                                <ActiveUsers />
+                        <div class="row g-3">
+                            <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
+                                <UsageHistory />
                             </div>
-
-                            <div class="col-auto">
-
+                            <div class="col-sm-12 col-md-6 col-lg-4 d-flex opacity-50">
+                                <TodoList />
                             </div>
                         </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
 
-                <PageBottomView />
+                <PageBottomView>
+                    <PageBottomWrapper />
+                </PageBottomView>
 
             </PageWrapper>
         </Authorized>

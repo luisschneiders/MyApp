@@ -23,7 +23,7 @@
                                 <Badge BackgroundColor="@Level.Success.ToString().ToLower()" Message="New" />
                             </sup>
                         </div>
-                        <Breadcrumb />
+                        <Breadcrumb AppPageLink="@_appURL.AdminDepartments" />
                     </PageTopWrapper>
                 </PageTopView>
 
@@ -67,10 +67,10 @@
                                                 <thead class="text-muted">
                                                     <tr>
                                                         <th class="col-7">
+                                                            Area
                                                             <Tooltip Position="Position.top"
                                                                      BackgroundColor="Theme.light"
                                                                      Title="Areas are sectors or locations within each department in the organization." />
-                                                            Area
                                                         </th>
                                                         <th class="col-2">
                                                             Department

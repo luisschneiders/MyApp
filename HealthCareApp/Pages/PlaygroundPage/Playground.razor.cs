@@ -1,16 +1,16 @@
 ﻿using System;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Shared
+namespace HealthCareApp.Pages.PlaygroundPage
 {
-    public partial class NavView : ComponentBase
+    public partial class Playground : ComponentBase
     {
         private AppURL _appURL { get; }
 
-        public NavView()
+        public Playground()
         {
             _appURL = new();
         }
-
     }
 }

@@ -5,7 +5,7 @@ using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
-namespace HealthCareApp.Pages.LabelPage
+namespace HealthCareApp.Pages.BarcodePage
 {
     public partial class LabelMopMain : ComponentBase
     {

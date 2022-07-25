@@ -4,6 +4,7 @@ using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
 using HealthCareApp.Pages.EmployeePage;
 using HealthCareApp.Settings.Enum;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -36,6 +37,7 @@ namespace HealthCareApp.Pages.DepartmentPage
          */
         private AreaOffCanvas _areaOffCanvas { get; set; }
         private DepartmentModal _departmentModal { get; set; }
+        private AppURL _appURL { get; }
 
         public DepartmentMain()
         {
@@ -52,6 +54,7 @@ namespace HealthCareApp.Pages.DepartmentPage
             _areasDetailsDto = new();
 
             _departments = new List<Department>();
+            _appURL = new();
         }
 
         private async Task AddAreaAsync()

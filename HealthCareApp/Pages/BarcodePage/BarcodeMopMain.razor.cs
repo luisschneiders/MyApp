@@ -1,16 +1,16 @@
 ﻿using System;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Shared
+namespace HealthCareApp.Pages.BarcodePage
 {
-    public partial class NavView : ComponentBase
+    public partial class BarcodeMopMain : ComponentBase
     {
         private AppURL _appURL { get; }
 
-        public NavView()
+        public BarcodeMopMain()
         {
             _appURL = new();
         }
-
     }
 }

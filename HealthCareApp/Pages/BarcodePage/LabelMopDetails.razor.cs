@@ -1,7 +1,7 @@
 ﻿using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.LabelPage
+namespace HealthCareApp.Pages.BarcodePage
 {
 	public partial class LabelMopDetails : ComponentBase 
 	{

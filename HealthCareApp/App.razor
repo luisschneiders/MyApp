@@ -9,13 +9,17 @@
         </Found>
         <NotFound>
             <LayoutView Layout="@typeof(MainLayout)">
-                <MessageView Icon="bi-search lg-icon text-warning"
-                             Title="Page not found"
-                             Message="Sorry, we could not find the page.">
-                    <ChildContent>
-                        <button class="btn btn-light btn-rounded" @onclick="OnClick">Back to Home</button>
-                    </ChildContent>
-                </MessageView>
+                <div class="row py-5">
+                    <div class="col-sm-12 col-md-4 col-lg-4 m-auto">
+                        <MessageView Icon="bi-search lg-icon text-warning"
+                                     Title="Page not found"
+                                     Message="Sorry, we could not find the page.">
+                            <ChildContent>
+                                <button class="btn btn-light btn-rounded" @onclick="OnClick">Back to Home</button>
+                            </ChildContent>
+                        </MessageView>
+                    </div>
+                </div>
             </LayoutView>
         </NotFound>
     </Router>

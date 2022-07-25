@@ -1,4 +1,4 @@
-﻿@page "/API";
+﻿@page "/api";
 @using HealthCareApp.Components.PageV3;
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Message;
@@ -14,19 +14,19 @@
         <PageTopView>
             <PageTopWrapper>
                 <PageTopTitle Title="API" />
-                <Breadcrumb />
+                <Breadcrumb AppPageLink="@_appURL.API"/>
             </PageTopWrapper>
         </PageTopView>
 
         <PageMiddleView>
             <PageMiddleWrapper>
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-6 col-lg-4 py-2">
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
                         <CardView>
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Get"
                                              CardProfileIcon="bi bi-share"
-                                             CardProfileIconColor="@Theme.light">
+                                             CardProfileIconColor="@Theme.info">
                                     <div class="lead p-2">
                                         API <b>Get</b> example
                                     </div>
@@ -35,7 +35,7 @@
                         </CardView>
                     </div>
                     <div class="col-sm-12 col-md-6 col-lg-4 py-2">
-                        <CardView Link="/API/post">
+                        <CardView Link="@_appURL.APIPost">
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Post"
                                              CardProfileIcon="bi bi-share-fill"
@@ -52,12 +52,12 @@
                     </div>
                 </div>
                 <div class="row justify-content-center">
-                    <div class="col-sm-12 col-md-6 col-lg-4 py-2">
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
                         <CardView>
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Put"
                                              CardProfileIcon="bi bi-share-fill"
-                                             CardProfileIconColor="@Theme.light">
+                                             CardProfileIconColor="@Theme.info">
                                     <div class="lead p-2">
                                         API <b>Put</b> example
                                     </div>
@@ -65,12 +65,12 @@
                             </CardMiddle>
                         </CardView>
                     </div>
-                    <div class="col-sm-12 col-md-6 col-lg-4 py-2">
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
                         <CardView>
                             <CardMiddle>
                                 <CardProfile CardProfileTitle="Delete"
                                              CardProfileIcon="bi bi-share"
-                                             CardProfileIconColor="@Theme.light">
+                                             CardProfileIconColor="@Theme.info">
                                     <div class="lead p-2">
                                         API <b>Delete</b> example
                                     </div>

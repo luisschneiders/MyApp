@@ -1,16 +1,16 @@
 ﻿using System;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Shared
+namespace HealthCareApp.Pages.ApiPage
 {
-    public partial class NavView : ComponentBase
+    public partial class API : ComponentBase
     {
         private AppURL _appURL { get; }
 
-        public NavView()
+        public API()
         {
             _appURL = new();
         }
-
     }
 }

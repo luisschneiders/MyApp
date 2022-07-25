@@ -1,16 +1,16 @@
 ﻿using System;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Shared
+namespace HealthCareApp.Pages.TaskPage
 {
-    public partial class NavView : ComponentBase
+    public partial class UsageHistory : ComponentBase
     {
         private AppURL _appURL { get; }
 
-        public NavView()
+        public UsageHistory()
         {
             _appURL = new();
         }
-
     }
 }

@@ -11,9 +11,13 @@ namespace HealthCareApp.Components.CardV3
         [Parameter]
         public string Link { get; set; }
 
+        [Parameter]
+        public string Styles { get; set; }
+
         public CardView()
         {
             Link = string.Empty;
+            Styles = string.Empty;
         }
     }
 }
