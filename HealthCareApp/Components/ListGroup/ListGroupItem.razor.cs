@@ -13,9 +13,6 @@ namespace HealthCareApp.Components.ListGroup
         public string ItemURL { get; set; }
 
         [Parameter]
-        public string Styles { get; set; }
-
-        [Parameter]
         public string Icon { get; set; }
 
         [Parameter]
@@ -27,14 +24,17 @@ namespace HealthCareApp.Components.ListGroup
         [Parameter]
         public string Summary { get; set; }
 
+        [Parameter]
+        public bool Disabled { get; set; }
+
         public ListGroupItem()
         {
             ItemURL = string.Empty;
-            Styles = string.Empty;
             Icon = "bi bi-chevron-right";
             IconSize = "md-icon";
             Title = "Add title";
             Summary = "Add a small summary here...";
+            Disabled = false;
         }
     }
 }
