@@ -10,11 +10,11 @@
                     <li class="breadcrumb-item @(breadcrumb.Value.IsActive ? "active" : "text-muted" )">
                         @if (breadcrumb.Value.IsActive)
                         {
-                            <a href="@breadcrumb.Value.AppPageURL">@breadcrumb.Value.AppPageURLValue</a>
+                            <a href="@breadcrumb.Value.AppPageURL">@breadcrumb.Value.AppPageTitle</a>
                         }
                         else
                         {
-                            @breadcrumb.Value.AppPageURLValue
+                            @breadcrumb.Value.AppPageTitle
                         }
                     </li>
                 }

@@ -2,6 +2,11 @@
 @using HealthCareApp.Components.PageV3;
 @using HealthCareApp.Components.Breadcrumb;
 @using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Components.Dropdown;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Settings.Theme;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -10,22 +15,48 @@
 
                 <PageTopView>
                     <PageTopWrapper>
-                        <PageTopTitle Title="Barcode for mop" />
-                        <Breadcrumb AppPageLink="@_appURL.AdminBarcodesMop"/>
+                        <div class="d-flex flex-row">
+                            <PageTopTitle Title="Mops Barcode" />
+                            <sup>
+                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message="Work in progress" />
+                            </sup>
+                        </div>
+                        <Breadcrumb AppPageLink="@_appURL.AdminBarcodesMop" />
                     </PageTopWrapper>
                 </PageTopView>
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
+                        <div class="row flex-row-reverse justify-content-between pb-2">
+                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                                <DropdownActions IconColor="Theme.success">
+                                    <li>
+                                        <button class="dropdown-item"
+                                                @onclick="() => AddRecordAsync()">
+                                            <i class="bi bi-plus-lg pe-1"></i>New Barcode
+                                        </button>
+                                    </li>
+                                </DropdownActions>
+                            </div>
+                            <div class="col-10 col-md-6 col-lg-4 pb-2">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Search for barcodes..."
+                                       aria-label="search"
+                                       @bind-value="_searchTerm"
+                                       @oninput="SearchAsync">
+                            </div>
+                        </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
 
                 <PageBottomView>
-                    <PageBottomWrapper>
-                    </PageBottomWrapper>
+                    <PageBottomWrapper />
                 </PageBottomView>
 
             </PageWrapper>
+            <Toast />
+            <BarcodeMopOffCanvas @ref="_barcodeMopOffCanvas" OnSubmitSuccess="RefreshVirtualizeContainer" />
         </Authorized>
         <NotAuthorized>
             <NotAuthorizedMessage />

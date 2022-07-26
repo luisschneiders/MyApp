@@ -44,7 +44,7 @@ namespace HealthCareApp.Components.Breadcrumb
             {
                 _breadcrumbLink = new();
 
-                _breadcrumbLink.AppPageURLValue = _appPageLink[appPageLink.Index];
+                _breadcrumbLink.AppPageTitle = _appPageLink[appPageLink.Index];
 
                 if ((appPageLink.Index + 1) == 1)
                 {
