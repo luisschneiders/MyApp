@@ -81,7 +81,7 @@ namespace HealthCareApp.Pages.BarcodePage
             }
             else if (_offCanvasViewType == OffCanvasViewType.Edit)
             {
-                //await _labelMopService.UpdateLabelMopAsync(_labelMop);
+                await _labelMopService.UpdateLabelMopAsync(_labelMop);
 
                 _toastService.ShowToast("Barcode updated!", Level.Success);
             }
