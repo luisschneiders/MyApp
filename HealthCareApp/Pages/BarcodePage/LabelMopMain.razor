@@ -147,27 +147,12 @@
                             }
                         </div>
                     </div>
-                    <div class="flex-container-main ps-2">
-                        <LabelMopDetails Info="_labelMopDetails" Loading="_isLoading" />
-                        @if (!_isLoading && _labelMopDetails is not null)
-                        {
-                            <div class="d-flex flex-row justify-content-end">
-                                <button type="button"
-                                        class="btn btn-info btn-rounded text-white"
-                                        @onclick="() => OpenModalUpdateAsync(_labelMopDetails.Id)"
-                                        disabled>
-                                    Update Details
-                                </button>
-                            </div>
-                        }
-                    </div>
                 </div>
                 <Toast />
             </PageBody>
             <PageFooter></PageFooter>
         </PageWrapper>
-        <LabelMopModalAdd @ref="_labelMopModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />
-        <LabelMopModalUpdate @ref="_labelMopModalUpdate" OnSubmitSuccess="RefreshVirtualizeContainer" />
+        @*<LabelMopModalAdd @ref="_labelMopModalAdd" OnSubmitSuccess="RefreshVirtualizeContainer" />*@
     </Authorized>
     <NotAuthorized>
         <NotAuthorizedMessage />

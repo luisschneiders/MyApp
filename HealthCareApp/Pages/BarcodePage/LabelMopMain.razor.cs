@@ -27,10 +27,9 @@ namespace HealthCareApp.Pages.BarcodePage
         private List<LabelMopDto> _labelMopsDetailsDto { get; set; }
 
         /*
-         * Add component LabelMopModalAdd & LabelMopModalUpdate reference
+         * Add component LabelMopModalAdd reference
          */
-        private LabelMopModalAdd _labelMopModalAdd { get; set; }
-        private LabelMopModalUpdate _labelMopModalUpdate { get; set; }
+        //private LabelMopModalAdd _labelMopModalAdd { get; set; }
 
         public LabelMopMain()
         {
@@ -38,8 +37,7 @@ namespace HealthCareApp.Pages.BarcodePage
 
             _spinnerService = new();
             _virtualizeContainer = new();
-            _labelMopModalAdd = new();
-            _labelMopModalUpdate = new();
+            //_labelMopModalAdd = new();
 
             _labelMopsDetailsDto = new List<LabelMopDto>();
             _results = new List<LabelMopDto>();
@@ -81,13 +79,12 @@ namespace HealthCareApp.Pages.BarcodePage
 
         private async Task OpenModalAddAsync()
         {
-            await Task.FromResult(_labelMopModalAdd.OpenModalAddAsync());
+            //await Task.FromResult(_labelMopModalAdd.OpenModalAddAsync());
             await Task.CompletedTask;
         }
 
         private async Task OpenModalUpdateAsync(Guid id)
         {
-            await Task.FromResult(_labelMopModalUpdate.OpenModalUpdateAsync(id));
             await Task.CompletedTask;
         }
 
