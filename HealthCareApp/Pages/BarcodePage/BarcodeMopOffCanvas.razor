@@ -100,21 +100,21 @@
                             <div class="form-floating">
                                 <InputText class="@((_offCanvasViewType == OffCanvasViewType.View || _offCanvasViewType == OffCanvasViewType.Edit) ? "form-control-plaintext" : "form-control")"
                                             id="Barcode"
-                                            placeholder="@(_offCanvasViewType == OffCanvasViewType.Add ? "Type or generate barcode" : "Barcode")"
+                                            placeholder="@(_offCanvasViewType == OffCanvasViewType.Add ? "Generate barcode" : "Barcode")"
                                             readonly="@((_offCanvasViewType == OffCanvasViewType.View || _offCanvasViewType == OffCanvasViewType.Edit) ? true: false)"
                                             @bind-Value="_labelMop.Barcode" />
-                                <label for="Barcode">@(_offCanvasViewType == OffCanvasViewType.Add ? "Type or generate barcode" : "Barcode")</label>
+                                <label for="Barcode">@(_offCanvasViewType == OffCanvasViewType.Add ? "Generate barcode" : "Barcode")</label>
                             </div>
                         </div>
                         @if (_offCanvasViewType == OffCanvasViewType.Add)
                         {
-                            <div class="col-auto d-flex">
+                            <div class="col-3 d-flex justify-content-end">
                                 <button type="button"
-                                        class="btn btn-outline-primary px-4"
+                                        class="btn btn-outline-success px-3"
                                         disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
                                         @onclick="() => GenerateBarcodeAsync()"
                                         title="Generate barcode">
-                                    <i class="bi bi-arrow-clockwise"></i>
+                                    <i class="bi bi-arrow-clockwise fs-4"></i>
                                 </button>
                             </div>
 
