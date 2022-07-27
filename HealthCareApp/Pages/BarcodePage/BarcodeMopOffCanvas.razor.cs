@@ -160,7 +160,7 @@ namespace HealthCareApp.Pages.BarcodePage
             /*
              * TODO: list all areas and add disabled attribute in the select input field
              */
-            _areas = await _areaService.GetActiveAreasAsync();
+            _areas = await _areaService.GetAreasAsync();
 
             if (_labelMop.AreaId == Guid.Empty)
             {
