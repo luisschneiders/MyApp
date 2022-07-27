@@ -1,5 +1,6 @@
 ﻿using System;
 using EmployeeLibrary.Models;
+using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
 using HealthCareApp.Pages.EmployeePage;
 using HealthCareApp.Shared;
@@ -14,7 +15,11 @@ namespace HealthCareApp.Pages.BarcodePage
         [Inject]
         private LabelMopService _labelMopService { get; set; } = default!;
 
+        [Inject]
+        private SpinnerService _spinnerService { get; set; }
+
         private Virtualize<LabelMopDto> _virtualizeContainer { get; set; }
+        private List<LabelMopDto> _labelMopsDto { get; set; }
 
         private AppURL _appURL { get; }
 
@@ -29,7 +34,9 @@ namespace HealthCareApp.Pages.BarcodePage
 
         public BarcodeMopMain()
         {
+            _spinnerService = new();
             _virtualizeContainer = new();
+            _labelMopsDto = new();
             _appURL = new();
             _barcodeMopOffCanvas = new();
             _searchTerm = string.Empty;
@@ -40,6 +47,18 @@ namespace HealthCareApp.Pages.BarcodePage
         private async Task AddRecordAsync()
         {
             await Task.FromResult(_barcodeMopOffCanvas.AddRecordOffCanvasAsync());
+            await Task.CompletedTask;
+        }
+
+        private async Task ViewDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_barcodeMopOffCanvas.ViewDetailsOffCanvasAsync(id));
+            await Task.CompletedTask;
+        }
+
+        private async Task EditDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_barcodeMopOffCanvas.EditDetailsOffCanvasAsync(id));
             await Task.CompletedTask;
         }
 
@@ -64,6 +83,33 @@ namespace HealthCareApp.Pages.BarcodePage
         private async Task RefreshVirtualizeContainer()
         {
             await _virtualizeContainer.RefreshDataAsync();
+        }
+
+        private async ValueTask<ItemsProviderResult<LabelMopDto>> LoadLabelMops(ItemsProviderRequest request)
+        {
+            _labelMopsDto = await _labelMopService.GetLabelMopsAsync();
+
+            await Task.Run(() => _spinnerService.HideSpinner());
+
+            await InvokeAsync(() => StateHasChanged());
+
+            return new ItemsProviderResult<LabelMopDto>(
+                _labelMopsDto.Skip(request.StartIndex).Take(request.Count), _labelMopsDto.Count
+            );
+        }
+
+        private async Task UpdateLabelMopStatusAsync(LabelMopDto labelMopDto)
+        {
+            labelMopDto.IsActive = !labelMopDto.IsActive;
+
+            LabelMop labelMop = new()
+            {
+                Id = labelMopDto.Id,
+                IsActive = labelMopDto.IsActive
+            };
+
+            await Task.FromResult(_labelMopService.UpdateLabelMopStatusAsync(labelMop));
+            await Task.CompletedTask;
         }
     }
 }
