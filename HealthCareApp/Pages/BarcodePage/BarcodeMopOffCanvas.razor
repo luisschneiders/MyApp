@@ -17,7 +17,6 @@
                 <div class="col-sm-12 col-md-6">
                     <button class="btn btn-info text-white w-100"
                             type="button"
-                            disabled
                             @onclick="() => UpdateFormState(OffCanvasViewType.Edit, Level.Danger)">
                         Edit
                     </button>
@@ -33,10 +32,10 @@
                     <legend>Label details</legend>
                     <div class="form-floating mb-3">
                         <InputSelect class="form-select"
-                                        id="AreaId"
-                                        disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                        @oninput="OnValueChanged"
-                                        @bind-Value="_labelMop.AreaId">
+                                     id="AreaId"
+                                     disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                     @oninput="OnValueChanged"
+                                     @bind-Value="_labelMop.AreaId">
                             <option value="@Guid.Empty.ToString()">-- Select area --</option>
                             @foreach (var (area, index) in _areas.Select((value, index) => (value, index)))
                             {
@@ -47,81 +46,81 @@
                     </div>
                     <div class="form-floating mb-3">
                         <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
-                                    id="CompanyName"
-                                    placeholder="Company name"
-                                    readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                    @bind-Value="_labelMop.CompanyName" />
+                                   id="CompanyName"
+                                   placeholder="Company name"
+                                   readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                   @bind-Value="_labelMop.CompanyName" />
                         <label for="CompanyName">Company name</label>
                     </div>
                     <div class="form-floating mb-3">
                         <InputNumber class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
-                                        id="Quantity"
-                                        placeholder="Quantity"
-                                        readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                        @bind-Value="_labelMop.Quantity" />
+                                     id="Quantity"
+                                     placeholder="Quantity"
+                                     readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                     @bind-Value="_labelMop.Quantity" />
                         <label for="Quantity">Quantity</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
-                                id="TimeOut"
-                                placeholder="Pickup time"
-                                readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                type="time"
-                                @bind-value="_labelMop.TimeOut" />
+                               id="TimeOut"
+                               placeholder="Pickup time"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               type="time"
+                               @bind-value="_labelMop.TimeOut" />
                         <label for="TimeOut">Pickup time</label>
                     </div>
                     <div class="form-floating mb-3">
                         <input class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
-                                id="TimeIn"
-                                placeholder="Return time"
-                                readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                type="time"
-                                @bind-value="_labelMop.TimeIn" />
+                               id="TimeIn"
+                               placeholder="Return time"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               type="time"
+                               @bind-value="_labelMop.TimeIn" />
                         <label for="TimeIn">Return time</label>
                     </div>
-                </fieldset>
-                    <fieldset class="mb-3">
-                        <legend>Barcode details</legend>
-                        <div class="row justify-content-between">
-                            <div class="col-8">
-                                <div class="form-floating">
-                                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
-                                                id="Barcode"
-                                                placeholder="@((_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit) ? "Type or generate barcode" : "Barcode")"
-                                                readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                                @bind-Value="_labelMop.Barcode" />
-                                    <label for="Barcode">@((_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit) ? "Type or generate barcode" : "Barcode")</label>
-                                </div>
-                            </div>
-                            @if (_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit)
-                            {
-                                <div class="col-auto d-flex">
-                                    <button type="button"
-                                            class="btn btn-outline-primary px-4"
-                                            disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
-                                            @onclick="() => GenerateBarcodeAsync()"
-                                            title="Generate barcode">
-                                        <i class="bi bi-arrow-clockwise"></i>
-                                    </button>
-                                </div>
-
-                            }
-                        </div>
-                    </fieldset>
                     @if (_offCanvasViewType == OffCanvasViewType.Edit)
                     {
-                        <div class="col-12 d-flex align-items-start">
+                        <div class="col-12 d-flex align-items-start mb-3">
                             <div class="form-check form-switch form-check-reverse">
-                                <label class="form-check-label" for="IsActive">Active?</label>
+                                <label class="form-check-label" for="IsActive">Label Active?</label>
                                 <InputCheckbox class="form-check-input"
-                                                type="checkbox"
-                                                role="switch"
-                                                id="IsActive"
-                                                @bind-Value="_labelMop.IsActive" />
+                                               type="checkbox"
+                                               role="switch"
+                                               id="IsActive"
+                                               @bind-Value="_labelMop.IsActive" />
                             </div>
                         </div>
                     }
 
+                </fieldset>
+                <fieldset class="mb-3">
+                    <legend>Barcode details</legend>
+                    <div class="row justify-content-between">
+                        <div class="col-9">
+                            <div class="form-floating">
+                                <InputText class="@((_offCanvasViewType == OffCanvasViewType.View || _offCanvasViewType == OffCanvasViewType.Edit) ? "form-control-plaintext" : "form-control")"
+                                            id="Barcode"
+                                            placeholder="@(_offCanvasViewType == OffCanvasViewType.Add ? "Type or generate barcode" : "Barcode")"
+                                            readonly="@((_offCanvasViewType == OffCanvasViewType.View || _offCanvasViewType == OffCanvasViewType.Edit) ? true: false)"
+                                            @bind-Value="_labelMop.Barcode" />
+                                <label for="Barcode">@(_offCanvasViewType == OffCanvasViewType.Add ? "Type or generate barcode" : "Barcode")</label>
+                            </div>
+                        </div>
+                        @if (_offCanvasViewType == OffCanvasViewType.Add)
+                        {
+                            <div class="col-auto d-flex">
+                                <button type="button"
+                                        class="btn btn-outline-primary px-4"
+                                        disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                        @onclick="() => GenerateBarcodeAsync()"
+                                        title="Generate barcode">
+                                    <i class="bi bi-arrow-clockwise"></i>
+                                </button>
+                            </div>
+
+                        }
+                    </div>
+                </fieldset>
             </div>
 
             @if (_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit)
