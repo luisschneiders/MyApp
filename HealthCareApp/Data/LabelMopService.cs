@@ -22,7 +22,7 @@ namespace HealthCareApp.Data
          */
         public async Task<List<LabelMopDto>> GetLabelMopsAsync()
         {
-            UserService userService = new UserService(_httpContextAccessor);
+
             List<LabelMopDto> labelMopList = new List<LabelMopDto>();
 
             /* Raw query with joins, filters and ordering */
@@ -33,7 +33,6 @@ namespace HealthCareApp.Data
                         on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where labelMop.InsertedBy == userService.UserId()
                     orderby labelMop.CreatedAt descending
                     select new { labelMop, area, department }
                 ).AsNoTracking();
@@ -51,7 +50,7 @@ namespace HealthCareApp.Data
          */
         public async Task<List<LabelMopDto>> SearchAsync(string searchTerm)
         {
-            UserService userService = new UserService(_httpContextAccessor);
+
             List<LabelMopDto> labelMopList = new List<LabelMopDto>();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
@@ -66,8 +65,7 @@ namespace HealthCareApp.Data
                         on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where labelMop.InsertedBy == userService.UserId()
-                    && (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
+                    where (EF.Functions.Like(labelMop.Barcode, $"%{searchTerm}%")
                     || EF.Functions.Like(area.Name, $"%{searchTerm}%")
                     || EF.Functions.Like(department.Name, $"%{searchTerm}%"))
                     orderby labelMop.CreatedAt descending
@@ -133,8 +131,7 @@ namespace HealthCareApp.Data
                           on labelMop.AreaId equals area.Id
                         join department in _applicationDbContext.Set<Department>()
                           on area.DepartmentId equals department.Id
-                        where labelMop.InsertedBy == userService.UserId()
-                        && labelMop.Barcode == barcode
+                        where labelMop.Barcode == barcode
                         select new { labelMop, area, department }
                     ).AsNoTracking().FirstOrDefault();
 
@@ -188,6 +185,7 @@ namespace HealthCareApp.Data
          */
         public async Task UpdateLabelMopAsync(LabelMop labelMop)
         {
+
             labelMop.UpdatedAt = DateTime.UtcNow;
 
             try

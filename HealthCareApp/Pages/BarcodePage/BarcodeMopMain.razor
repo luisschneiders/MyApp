@@ -60,14 +60,17 @@
                                             <table class="table table-hover">
                                                 <thead class="text-muted">
                                                     <tr>
-                                                        <th class="col-3">
+                                                        <th class="col-2">
                                                             Barcode
                                                         </th>
                                                         <th class="col-3">
                                                             Area
                                                         </th>
-                                                        <th class="col-3">
+                                                        <th class="col-2">
                                                             Department
+                                                        </th>
+                                                        <th>
+                                                            # of Mops
                                                         </th>
                                                         <th colspan="3">
                                                             Active?
@@ -90,6 +93,9 @@
                                                                     </td>
                                                                     <td>
                                                                         @labelMop.DepartmentName
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.Quantity
                                                                     </td>
                                                                     <td>
                                                                         <div class="form-check form-switch">
