@@ -1,0 +1,164 @@
+﻿@using HealthCareApp.Components.OffCanvas;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum;
+
+<OffCanvas @ref="_offCanvas" Position="end">
+    <EditForm Model="@_employee"
+                OnValidSubmit="@HandleValidSubmitAsync"
+                OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                autocomplete="off">
+        <ObjectGraphDataAnnotationsValidator />
+        <div class="row">
+            <div class="col-12 my-4">
+                <Badge BackgroundColor="@_badgeBackground" Message="@($"{_offCanvasViewType}ing...")" />
+            </div>
+            @if (_offCanvasViewType == OffCanvasViewType.View)
+            {
+                <div class="col-sm-12 col-md-6">
+                    <button class="btn btn-primary w-100"
+                            type="button"
+                            @onclick="() => UpdateFormState(OffCanvasViewType.Edit, Level.Danger)">
+                        Edit
+                    </button>
+                </div>
+                <div class="py-3">
+                    <hr />
+                </div>
+            }
+
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeFirstName"
+                               placeholder="First name"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.EmployeeFirstName" />
+                    <label for="EmployeeFirstName">First name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeLastName"
+                               placeholder="Last name"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.EmployeeLastName" />
+                    <label for="EmployeeLastName">Last name</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeUsername"
+                               placeholder="Username"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.EmployeeUsername" />
+                    <label for="EmployeeUsername">Username</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeePassword"
+                               type="password"
+                               placeholder="Password"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.EmployeePassword" />
+                    <label for="EmployeePassword">Password</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeEmail"
+                               type="email"
+                               placeholder="Email"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.ContactDetails.Email" />
+                    <label for="EmployeeEmail">Email</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeePhone"
+                               placeholder="Phone"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.ContactDetails.Phone" />
+                    <label for="EmployeePhone">Phone</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeAddress"
+                               placeholder="Address"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.Location.Address" />
+                    <label for="EmployeeAddress">Address</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeSuburb"
+                               placeholder="Suburb"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.Location.Suburb" />
+                    <label for="EmployeeSuburb">Suburb</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeeState"
+                               placeholder="State"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.Location.State" />
+                    <label for="EmployeeState">State</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="EmployeePostcode"
+                               placeholder="Postcode"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_employee.Location.Postcode" />
+                    <label for="EmployeePostcode">Postcode</label>
+                </div>
+                @if (_offCanvasViewType == OffCanvasViewType.Edit)
+                {
+                    <div class="col-12 d-flex align-items-start">
+                        <div class="form-check form-switch form-check-reverse">
+                            <label class="form-check-label" for="IsActive">Active?</label>
+                            <InputCheckbox class="form-check-input"
+                                           type="checkbox"
+                                           role="switch"
+                                           id="IsActive"
+                                           @bind-Value="_employee.IsActive" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            @if (_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit)
+            {
+                <div class="py-2">
+                    <hr />
+                </div>
+                @if (_displayValidationErrorMessages)
+                {
+                    <div class="col-12">
+                        <ValidationSummary />
+                    </div>
+                }
+                <div class="col-6">
+                    <button class="btn btn-outline-secondary w-100"
+                            @onclick="() => CloseOffCanvasAsync()">
+                        Cancel
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-primary w-100"
+                            type="submit">
+                        Save
+                    </button>
+                </div>
+            }
+        </div>
+    </EditForm>
+
+</OffCanvas>

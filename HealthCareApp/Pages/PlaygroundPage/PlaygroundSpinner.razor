@@ -1,23 +1,90 @@
-﻿@page "/playground/spinner"
-@using HealthCareApp.Components.Page
-@using HealthCareApp.Components.Spinner
-@using HealthCareApp.Settings.Enum
+﻿@page "/playground/spinner";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Settings.Enum;
 
-<PageWrapper>
-    <PageHeader>
-        <PageHeaderTitle Title="Spinner"
-                         ParentLink="/playgrounds"
-                         ParentTitle="Playgrounds" />
-        <PageMenu />
-    </PageHeader>
-    <PageBody>
-        <div class="h-100 d-flex flex-row justify-content-evenly align-items-center">
-            <div>
-                <Spinner Size="Size.Sm" />
-            </div>
-            <div>
-                <Spinner Size="Size.Md" />
-            </div>
-        </div>
-    </PageBody>
-</PageWrapper>
+<div class="container-lg">
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+
+                <PageTopTitle Title="Spinner" />
+                <Breadcrumb AppPageLink="@_appURL.PlaygroundSpinner" />
+
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p>
+                                <h4 class="hca-app-title">How to use</h4>
+                                <hr />
+                            </p>
+
+                            @foreach (var markupString in _componentMarkupList)
+                            {
+                                <div>
+                                    <h5>@markupString.Title</h5>
+                                    <p class="highlight p-2">
+                                        <code>
+                                            @foreach (var (item, index) in markupString.Code.Select((value, index) => (value, index)))
+                                            {
+                                                <span class="@markupString.CssStyle[index]">
+                                                    @item
+                                                </span>
+                                                <br />
+                                                @if (@markupString.NewLine[index])
+                                                {
+                                                    <br />
+                                                }
+                                            }
+                                        </code>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-sm-12 col-md-6 markup-background rounded">
+                            <p>
+                                <h4 class="text-black-50">Example</h4>
+                                <hr />
+                            </p>
+                            <div class="container-lg">
+
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-10 py-2">
+                                        <CardView>
+                                            <CardMiddle>
+
+                                                <div class="h-100 d-flex flex-row justify-content-evenly align-items-center">
+                                                    <div>
+                                                        <Spinner Size="Size.sm" />
+                                                    </div>
+                                                    <div>
+                                                        <Spinner Size="Size.md" />
+                                                    </div>
+                                                </div>
+
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        <PageBottomView>
+            <PageBottomWrapper />
+        </PageBottomView>
+    </PageWrapper>
+</div>

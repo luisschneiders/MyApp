@@ -1,107 +1,13 @@
-﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
-
-/*
-    App Main Colors
-    #997588;
-    #f7eee7;
-    #d6c1b8;
-    #755767;
-*/
-html, body {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-}
-
-body {
-    background: linear-gradient(
-        0deg, rgba(248, 184, 139,0) 20%,
-        rgba(248, 184, 139,.1) 20%,
-        rgba(248, 184, 139,.1) 40%,
-        rgba(248, 184, 139,.2) 40%,
-        rgba(248, 184, 139,.2) 60%,
-        rgba(248, 184, 139,.4) 60%,
-        rgba(248, 184, 139,.4) 80%,
-        rgba(248, 184, 139,.6) 80%),
-        linear-gradient(
-        45deg, rgba(250, 248, 132,0) 20%,
-        rgba(250, 248, 132,.1) 20%,
-        rgba(250, 248, 132,.1) 40%,
-        rgba(250, 248, 132,.2) 40%,
-        rgba(250, 248, 132,.2) 60%,
-        rgba(250, 248, 132,.4) 60%,
-        rgba(250, 248, 132,.4) 80%,
-        rgba(250, 248, 132,.6) 80%),
-        linear-gradient(
-        90deg, rgba(186, 237, 145,0) 20%,
-        rgba(186, 237, 145,.1) 20%,
-        rgba(186, 237, 145,.1) 40%,
-        rgba(186, 237, 145,.2) 40%,
-        rgba(186, 237, 145,.2) 60%,
-        rgba(186, 237, 145,.4) 60%,
-        rgba(186, 237, 145,.4) 80%,
-        rgba(186, 237, 145,.6) 80%),
-        linear-gradient(
-        135deg, rgba(178, 206, 254,0) 20%,
-        rgba(178, 206, 254,.1) 20%,
-        rgba(178, 206, 254,.1) 40%,
-        rgba(178, 206, 254,.2) 40%,
-        rgba(178, 206, 254,.2) 60%,
-        rgba(178, 206, 254,.4) 60%,
-        rgba(178, 206, 254,.4) 80%,
-        rgba(178, 206, 254,.6) 80%),
-        linear-gradient(
-        180deg, rgba(242, 162, 232,0) 20%,
-        rgba(242, 162, 232,.1) 20%,
-        rgba(242, 162, 232,.1) 40%,
-        rgba(242, 162, 232,.2) 40%,
-        rgba(242, 162, 232,.2) 60%,
-        rgba(242, 162, 232,.4) 60%,
-        rgba(242, 162, 232,.4) 80%,
-        rgba(242, 162, 232,.6) 80%),
-        linear-gradient(
-        225deg, rgba(254, 163, 170,0) 20%,
-        rgba(254, 163, 170,.1) 20%,
-        rgba(254, 163, 170,.1) 40%,
-        rgba(254, 163, 170,.2) 40%,
-        rgba(254, 163, 170,.2) 60%,
-        rgba(254, 163, 170,.4) 60%,
-        rgba(254, 163, 170,.4) 80%,
-        rgba(254, 163, 170,.6) 80%),
-        linear-gradient(270deg,
-        rgba(248, 184, 139,0) 20%,
-        rgba(248, 184, 139,.1) 20%,
-        rgba(248, 184, 139,.1) 40%,
-        rgba(248, 184, 139,.2) 40%,
-        rgba(248, 184, 139,.2) 60%,
-        rgba(248, 184, 139,.4) 60%,
-        rgba(248, 184, 139,.4) 80%,
-        rgba(248, 184, 139,.6) 80%),
-        linear-gradient(315deg,
-        rgba(250, 248, 132,0) 20%,
-        rgba(250, 248, 132,.1) 20%,
-        rgba(250, 248, 132,.1) 40%,
-        rgba(250, 248, 132,.2) 40%,
-        rgba(250, 248, 132,.2) 60%,
-        rgba(250, 248, 132,.4) 60%,
-        rgba(250, 248, 132,.4) 80%,
-        rgba(250, 248, 132,.6) 80%);
-    background-color: #f3f2f1;
-    background-size: 100% 100%;
-    min-height: 100vh;
+﻿html, body {
+    height: 100%;
 }
 
 a, .btn-link {
-    color: #755767;
     text-decoration: none;
 }
 
 a:hover {
     color: #493640;
-}
-
-.btn-primary {
-    color: #fff;
-    background: linear-gradient(135deg,#0a7fd8 0,#0a7fd8 29%,#0069b9 76%,#0069b9 100%);
-    border-color: #1861ac;
 }
 
 .btn-rounded {
@@ -115,30 +21,28 @@ a:hover {
 .btn-icon i {
     margin-left: -2px;
 }
+
 .breadcrumb-divider {
-    --bs-breadcrumb-divider: '/';
+    --bs-breadcrumb-divider: '>';
 }
+
 .breadcrumb-no-divider {
     --bs-breadcrumb-divider: '';
 }
-.hca-breadcrumb {
-    padding-left: 0.5rem;
-}
-.content {
-    width: calc(100% - 1rem);
-    height: calc(100% - (86px - 1rem));
-    margin: auto;
-    background-color: #f3f2f1;
-/*    border-radius: 0.8rem;*/
+
+.hca-outline-none {
+    outline: none;
 }
 
-.form-control {
-    border-radius: 1.8rem;
-}
 .form-control:focus {
     border-color: #0dcaf0;
     outline: 0;
     box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 4px rgb(13 202 240 / 60%);
+}
+
+.form-select:disabled {
+    background-color: transparent;
+    border: none;
 }
 
 .hca-form-control-lg {
@@ -227,23 +131,10 @@ a:hover {
 .logo-icon {
     color: #ff2f2f;
 }
-.hca-app-icon, .hca-app-title {
-    color: #0dcaf0;
-}
-.hca-App-icon,
-.hca-Employee-icon,
-.hca-Department-icon,
-.hca-Patient-icon,
-.hca-Supplier-icon,
-.hca-Label-icon,
-.hca-Area-icon {
-    color: #997588;
-}
 .hca-form-control-plaintext {
     padding: 0 0 1.5rem 0;
 }
 .hca-list-group-item {
-/*    border-radius: 0.8rem;*/
     background-color: #ffffff;
     border: none;
 }
@@ -258,9 +149,7 @@ a:hover {
 .hca-box-shadow {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
 }
-.hca-border-radius {
-    border-radius: 0.8rem;
-}
+
 .hca-bg-label-scan {
     border-radius: 4rem;
 }
@@ -277,9 +166,6 @@ a.hca-box-shadow:hover {
     text-decoration: none;
     transition: all .3s ease-in-out;
 }
-.list-group-item-action:focus, .list-group-item-action:hover {
-    background-color: #dbe0e1;
-}
 .zpl-format {
     word-break: break-all;
 }
@@ -289,8 +175,42 @@ a.hca-box-shadow:hover {
 .w-140 {
     width: 140px;
 }
-.table-md > :not(caption) > * > * {
-    padding: 1rem;
+
+/*
+* The component Virtualize won't work if we don't set a fix height for tables
+*/
+.hca-table-wrap {
+    height: calc(100vh - (3rem + 252px));
+    overflow-y: auto;
+}
+
+.hca-table-wrap thead tr th {
+    position: sticky;
+    top: 0;
+}
+
+.hca-table-wrap th {
+    background-color: #fff;
+}
+
+.hca-text-shadow {
+    text-shadow: 1px 1px 2px #000;
+}
+.hca-component-focus {
+    z-index: 1060;
+    position: relative;
+}
+.hca-component-focus-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1055;
+    width: 100vw;
+    height: 100vh;
+    background-color: #000;
+}
+.hca-component-focus-backdrop.show {
+    opacity: 0.5;
 }
 
 @media (min-width: 992px) {
@@ -305,3 +225,8 @@ a.hca-box-shadow:hover {
     }
 }
 
+@media (min-width: 992px) {
+    .hca-table-wrap {
+        height: calc(100vh - (3rem + 260px));
+    }
+}

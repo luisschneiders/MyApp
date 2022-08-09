@@ -1,0 +1,140 @@
+﻿@using Microsoft.AspNetCore.Hosting
+@using Microsoft.Extensions.Hosting
+
+@inject IWebHostEnvironment _env;
+
+<nav class="navbar navbar-expand-lg fixed-top bg-light">
+    <div class="container-lg">
+        <AuthorizeView>
+            <Authorized>
+                <a class="navbar-brand" href="@_appURL.Dashboard">
+                    <img src="/apple-touch-icon.png" alt="logo" width="28" height="28" class="rounded">
+                    <span class="px-1 navbar-brand-title">MyApp</span>
+                </a>
+            </Authorized>
+            <NotAuthorized>
+                <a class="navbar-brand" href="@_appURL.Home">
+                    <img src="/apple-touch-icon.png" alt="logo" width="28" height="28" class="rounded">
+                    <span class="px-1 navbar-brand-title">MyApp</span>
+                </a>
+            </NotAuthorized>
+        </AuthorizeView>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="offcanvas"
+                data-bs-target="#offcanvasLeft"
+                aria-controls="offcanvasLeft">
+            <i class="bi bi-justify"></i>
+        </button>
+
+        <div class="offcanvas-lg offcanvas-start flex-grow-1"
+             id="offcanvasLeft"
+             aria-labelledby="offcanvasLeftLabel"
+             data-bs-scroll="false">
+            <div class="offcanvas-header px-4 pb-0">
+                <h5 class="offcanvas-title" id="offcanvasLeftLabel">MyApp</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close" data-bs-target="#offcanvasLeft"></button>
+            </div>
+
+            <div class="offcanvas-body p-4 pt-0 p-lg-0 align-items-center">
+                <hr class="d-lg-none">
+                <ul class="navbar-nav me-auto justify-content-end">
+                    <AuthorizeView>
+                        <Authorized>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="@_appURL.Dashboard" Match="NavLinkMatch.All">
+                                    Dashboard
+                                </NavLink>
+                            </li>
+                            <li class="nav-item dropdown px-3">
+                                <NavLink class="nav-link hca-outline-none" href="@_appURL.Admin" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="bi bi-grid-3x3-gap pe-1"></i>Admin<i class="bi bi-chevron-down ps-2"></i>
+                                </NavLink>
+                                <ul class="dropdown-menu hca-dropdown-menu border-light shadow-lg" aria-labelledby="navbarDropdownSettingsLink">
+                                    <li>
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminEmployees">
+                                            Employees
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminDepartments">
+                                            Departments
+                                        </NavLink>
+                                    </li>
+                                    <li>
+                                        <NavLink class="dropdown-item" href="@_appURL.AdminBarcodes">
+                                            Barcodes
+                                        </NavLink>
+                                    </li>
+                                </ul>
+
+                            </li>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="@_appURL.Tasks">
+                                    Tasks
+                                </NavLink>
+                            </li>
+                            @if (_env.IsDevelopment())
+                            {
+                                <li class="nav-item dropdown px-3">
+                                    <NavLink class="nav-link hca-outline-none" href="@_appURL.API" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        APIs<i class="bi bi-chevron-down ps-2"></i>
+                                    </NavLink>
+                                    <ul class="dropdown-menu hca-dropdown-menu border-light shadow-lg" aria-labelledby="navbarDropdownAPILink">
+                                        <li>
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIGet">
+                                                Get
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="dropdown-item" href="@_appURL.APIPost">
+                                                Post
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIPut">
+                                                Put
+                                            </NavLink>
+                                        </li>
+                                        <li>
+                                            <NavLink class="dropdown-item disabled" href="@_appURL.APIDelete">
+                                                Delete
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+
+                                </li>
+
+                            }
+                        </Authorized>
+                        <NotAuthorized>
+                            <li class="nav-item col-12 col-lg-auto px-3">
+                                <NavLink class="nav-link" href="@_appURL.About">
+                                    About
+                                </NavLink>
+                            </li>
+                        </NotAuthorized>
+                    </AuthorizeView>
+                    <li class="nav-item col-12 col-lg-auto">
+                        <div class="vr d-none d-lg-flex h-100 mx-lg-0"></div>
+                        <hr class="d-lg-none">
+                    </li>
+                    <li class="nav-item col-12 col-lg-auto ps-3">
+                        <NavLink class="nav-link" href="@_appURL.Playground">
+                            <i class="bi bi-controller pe-1"></i>Playground
+                        </NavLink>
+                    </li>
+                </ul>
+
+                <div>
+                    <hr class="d-lg-none">
+                    <LoginDisplay />
+                    <LoginOrRegister />
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</nav>

@@ -1,0 +1,41 @@
+﻿@page "/dashboard";
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <PageTopTitle Title="Dashboard" />
+                        <Breadcrumb AppPageLink="@_appURL.Dashboard"/>
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+                        <div class="row">
+                            <div class="col-sm-12 col-lg-3">
+                                <ActiveUsers />
+                            </div>
+
+                            <div class="col-auto">
+
+                            </div>
+                        </div>
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView />
+
+            </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

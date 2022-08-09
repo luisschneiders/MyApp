@@ -1,85 +1,104 @@
-﻿@page "/playground/modal"
-@using HealthCareApp.Components.Page
-@using HealthCareApp.Components.Card
-@using HealthCareApp.Components.Modal
+﻿@page "/playground/modal";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
 
-<PageWrapper>
-    <PageHeader>
-        <PageHeaderTitle Title="Modal"
-                         ParentLink="/playgrounds"
-                         ParentTitle="Playgrounds" />
-        <PageMenu />
-    </PageHeader>
-    <PageBody>
-        <CardWrapper>
-            <CardView>
-                <CardViewHeader Title="Small Modal" Icon="bi bi-window" />
-                <CardViewBody>
-                    <div class="d-flex justify-content-around align-items-center">
-                        <button class="btn btn-outline-secondary btn-rounded"
-                                data-target="#modalSmallTarget"
-                                @onclick="() => OpenSmallModalAsync()">
-                            Open Modal
-                        </button>
+<div class="container-lg">
+
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+                <PageTopTitle Title="Modal" />
+                <Breadcrumb AppPageLink="@_appURL.PlaygroundModal" />
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p>
+                                <h4 class="hca-app-title">How to use</h4>
+                                <hr />
+                            </p>
+
+                            @foreach (var markupString in _componentMarkupList)
+                            {
+                                <div>
+                                    <h5>@markupString.Title</h5>
+                                    <p class="highlight p-2">
+                                        <code>
+                                            @foreach (var (item, index) in markupString.Code.Select((value, index) => (value, index)))
+                                            {
+                                                <span class="@markupString.CssStyle[index]">
+                                                    @item
+                                                </span>
+                                                <br />
+                                                @if (@markupString.NewLine[index])
+                                                {
+                                                    <br />
+                                                }
+                                            }
+                                        </code>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-sm-12 col-md-6 markup-background rounded">
+                            <p>
+                                <h4 class="text-black-50">Example</h4>
+                                <hr />
+                            </p>
+                            <div class="container-lg">
+
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-10 py-2">
+                                        <CardView>
+                                            <CardMiddle>
+                                                <CardProfile CardProfileTitle="Modal" CardProfileIcon="bi bi-window">
+                                                    <div class="lead p-5">
+                                                        Modal size can be small, medium, large or full screen
+                                                    </div>
+                                                    <div class="p-3">
+                                                        <button class="btn btn-outline-secondary btn-rounded"
+                                                                data-target="#modalTarget"
+                                                                @onclick="() => OpenModalAsync()">
+                                                            Open Modal
+                                                        </button>
+                                                    </div>
+                                                </CardProfile>
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </CardViewBody>
-            </CardView>
-            <CardView>
-                <CardViewHeader Title="Medium Modal" Icon="bi bi-window" />
-                <CardViewBody>
-                    <div class="d-flex justify-content-around align-items-center">
-                        <button class="btn btn-outline-info btn-rounded"
-                                data-target="#modalMediumTarget"
-                                @onclick="() => OpenMediumModalAsync()">
-                            Open Modal
-                        </button>
-                    </div>
-                </CardViewBody>
-            </CardView>
-            <CardView>
-                <CardViewHeader Title="Large Modal" Icon="bi bi-window" />
-                <CardViewBody>
-                    <div class="d-flex justify-content-around align-items-center">
-                        <button class="btn btn-outline-primary btn-rounded"
-                                data-target="#modalLargeTarget"
-                                @onclick="() => OpenLargeModalAsync()">
-                            Open Modal
-                        </button>
-                    </div>
-                </CardViewBody>
-            </CardView>
-        </CardWrapper>
-    </PageBody>
-    <PageFooter />
-</PageWrapper>
+                </div>
+            </PageMiddleWrapper>
+        </PageMiddleView>
 
+        <PageBottomView>
+            <PageBottomWrapper>
+            </PageBottomWrapper>
+        </PageBottomView>
 
-<Modal @ref="_modalSmall" Size="ModalSize.sm">
-    <Title>Small Modal</Title>
-    <Body>
-        <h5>This is a small modal!!</h5>
-    </Body>
-    <Footer>
-        <button type="button" class="btn btn-outline-secondary btn-rounded" data-dismiss="modal" @onclick="() => CloseSmallModalAsync()">Close</button>
-    </Footer>
-</Modal>
-
-<Modal @ref="_modalMedium" Size="ModalSize.md">
-    <Title>Medium Modal</Title>
-    <Body>
-        <h3>This is a medium modal!!</h3>
-    </Body>
-    <Footer>
-        <button type="button" class="btn btn-outline-primary btn-rounded" data-dismiss="modal" @onclick="() => CloseMediumModalAsync()">Close</button>
-    </Footer>
-</Modal>
-
-<Modal @ref="_modalLarge" Size="ModalSize.lg">
-    <Title>Large Modal</Title>
-    <Body>
-        <h2>This is a large modal!!</h2>
-    </Body>
-    <Footer>
-        <button type="button" class="btn btn-outline-primary btn-rounded" data-dismiss="modal" @onclick="() => CloseLargeModalAsync()">Close</button>
-    </Footer>
-</Modal>
+    </PageWrapper>
+    <Modal @ref="_modal" Size="Size.md">
+        <Title>Modal</Title>
+        <Body>
+            <h5 class="text-center">This is a modal!!</h5>
+            <p class="text-center lead p-4">
+                Modals can have different sizes.
+            </p>
+            <p class="text-center p-4">They can be small, medium, large or full screen.</p>
+        </Body>
+        <Footer>
+            <button type="button" class="btn btn-outline-secondary btn-rounded" data-dismiss="modal" @onclick="() => CloseModalAsync()">Close</button>
+        </Footer>
+    </Modal>
+</div>

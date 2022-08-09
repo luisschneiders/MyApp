@@ -1,10 +1,9 @@
-﻿@using HealthCareApp.Components.Modal
-@using HealthCareApp.Settings.Theme
-@using HealthCareApp.Pages.LabelPage
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Pages.BarcodePage;
 
 <Modal @ref="_modalPickup"
-       Theme="Theme.TrackingInventory"
-       Size="ModalSize.lg">
+       Size="Size.lg">
     <Title>Add new pickup time</Title>
     <Body>
         <EditForm Model="@_trackingInventoryMop"
@@ -55,7 +54,7 @@
                 </div>
                 <div class="col-lg-5 col-sm-12">
                     <ComponentMopDetails Model="_labelMopDto"
-                                FieldsetStyle="markup-background hca-border-radius p-2"
+                                FieldsetStyle="markup-background rounded p-2"
                                 Icon="bi bi-upc-scan" />
                 </div>
             </div>
@@ -83,7 +82,7 @@
         </button>
         <button type="submit"
                 form="FormPickupTrackingInventoryMop"
-                class="btn btn-info btn-rounded text-white">
+                class="btn btn-primary">
             Save
         </button>
     </Footer>

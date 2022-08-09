@@ -1,0 +1,15 @@
+﻿@inject IWebHostEnvironment _env;
+
+<AuthorizeView>
+    <NotAuthorized>
+        @if (_env.IsDevelopment())
+        {
+            <div class="btn-group" role="group" aria-label="Login or Register">
+                <a href="Identity/Account/Login" class="btn btn-outline-primary"
+                   aria-current="login">Login</a>
+                <a href="Identity/Account/Register" class="btn btn-primary"
+                   aria-current="register">Register</a>
+            </div>
+        }
+    </NotAuthorized>
+</AuthorizeView>

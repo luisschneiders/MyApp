@@ -1,0 +1,53 @@
+﻿@page "/admin/barcodes";
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.ListGroup;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                    <PageTopView>
+                        <PageTopWrapper>
+                            <PageTopTitle Title="Barcode labels" />
+                            <Breadcrumb AppPageLink="@_appURL.AdminBarcodes"/>
+                        </PageTopWrapper>
+                    </PageTopView>
+
+                    <PageMiddleView>
+                        <PageMiddleWrapper>
+                            <div class="row py-5">
+                                <div class="col-sm-12 col-md-8 col-lg-5 m-auto">
+                                    <CardView Styles="flex-fill">
+                                        <CardMiddle>
+                                            <ListGroup>
+                                                <ListGroupItem ItemURL="@_appURL.AdminBarcodesMop"
+                                                               Title="Create Mop Labels"
+                                                               Summary="Include department, location, pick up time, return time and quantity" />
+
+                                                <ListGroupItem ItemURL="@_appURL.AdminBarcodesChemical"
+                                                               Title="Create Chemicals Labels"
+                                                               Summary="Include department, location and quantity"
+                                                               Disabled="true"/>
+                                            </ListGroup>
+                                        </CardMiddle>
+                                    </CardView>
+                                </div>
+                            </div>
+                        </PageMiddleWrapper>
+                    </PageMiddleView>
+
+                    <PageBottomView>
+                        <PageBottomWrapper />
+                    </PageBottomView>
+
+                </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

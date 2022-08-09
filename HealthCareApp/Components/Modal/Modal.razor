@@ -10,17 +10,20 @@
             data-backdrop="static"
             role="document"
     >
-        <div class="modal-content hca-border-radius">
-            <div class="modal-header hca-app-modal-header">
-                <h5 class="hca-app-title modal-title">
+        <div class="modal-content rounded">
+            <div class="modal-header">
+                <h5 class="modal-title">
                     @Title
                 </h5>
-                <button class="btn-close"
-                        type="button"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                        @onclick="() => Close(_modalId)">
-                </button>
+                @if(IsCloseButtonVisible)
+                {
+                    <button class="btn-close"
+                            type="button"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                            @onclick="() => Close(_modalId)">
+                    </button>
+                }
             </div>
             <div class="modal-body">
                 @Body

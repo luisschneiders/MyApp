@@ -10,16 +10,25 @@
   <ItemGroup>
     <None Remove="Microsoft.AspNetCore.Components.Web.Extensions" />
     <None Remove="CSharpVitamins.ShortGuid" />
-    <None Remove="Pages\AreaPage\" />
     <None Remove="db\app.db" />
     <None Remove="Microsoft.AspNetCore.Authentication.MicrosoftAccount" />
     <None Remove="Microsoft.EntityFrameworkCore" />
     <None Remove="Pomelo.EntityFrameworkCore.MySql" />
     <None Remove="Migrations\" />
-    <None Remove="Pages\AboutUsPage\" />
-    <None Remove="Pages\ContactUsPage\" />
-    <None Remove="Pages\MapLocationPage\" />
     <None Remove="Shared\images\" />
+    <None Remove="Components\Footer\" />
+    <None Remove="Components\PageV3\" />
+    <None Remove="Pages\DashboardPage\" />
+    <None Remove="Components\Breadcrumb\" />
+    <None Remove="Components\CardV3\" />
+    <None Remove="Components\OffCanvas\" />
+    <None Remove="Pages\AdminPage\" />
+    <None Remove="Components\Tooltip\" />
+    <None Remove="Components\Popover\" />
+    <None Remove="Pages\ApiPage\" />
+    <None Remove="Components\Markup\" />
+    <None Remove="Components\Dropdown\" />
+    <None Remove="Components\ListGroup\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.5" />
@@ -57,13 +66,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Pages\AreaPage\" />
     <Folder Include="Migrations\" />
-    <Folder Include="Pages\AboutUsPage\" />
-    <Folder Include="Pages\ContactUsPage\" />
-    <Folder Include="Pages\MapLocationPage\" />
     <Folder Include="wwwroot\icon\" />
     <Folder Include="Shared\images\" />
+    <Folder Include="Components\Footer\" />
+    <Folder Include="Components\PageV3\" />
+    <Folder Include="Pages\DashboardPage\" />
+    <Folder Include="Components\Breadcrumb\" />
+    <Folder Include="Components\CardV3\" />
+    <Folder Include="Components\OffCanvas\" />
+    <Folder Include="Pages\AdminPage\" />
+    <Folder Include="Components\Tooltip\" />
+    <Folder Include="Components\Popover\" />
+    <Folder Include="Pages\ApiPage\" />
+    <Folder Include="Components\Markup\" />
+    <Folder Include="Components\Dropdown\" />
+    <Folder Include="Components\ListGroup\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

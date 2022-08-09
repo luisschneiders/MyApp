@@ -1,18 +1,22 @@
 ﻿@using HealthCareApp.Components.Message
+@using HealthCareApp.Components.Footer
 
 @inherits LayoutComponentBase
 
-<div class="page">
-    <div class="sidebar">
-        <NavMenu />
-    </div>
-
-    <div class="main">
-        <div class="top-row px-4 auth">
-            <LoginDisplay />
-        </div>
-        <div class="content py-2 hca-border-radius">
-            @Body
-        </div>
-    </div>
+<header>
+    <NavView />
+</header>
+<div class="main">
+    @Body
 </div>
+
+<footer class="bg-light py-3">
+    <AuthorizeView>
+        <Authorized>
+            <FooterViewAuthorized />
+        </Authorized>
+        <NotAuthorized>
+            <FooterViewNotAuthorized />
+        </NotAuthorized>
+    </AuthorizeView>
+</footer>

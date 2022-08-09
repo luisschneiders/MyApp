@@ -1,0 +1,96 @@
+﻿@using HealthCareApp.Components.OffCanvas;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum;
+
+<OffCanvas @ref="_offCanvas" Position="end">
+    <EditForm Model="@_area"
+              OnValidSubmit="@HandleValidSubmitAsync"
+              OnInvalidSubmit="@HandleInvalidSubmitAsync"
+              autocomplete="off">
+        <DataAnnotationsValidator />
+        <div class="row">
+            <div class="col-12 my-4">
+                <Badge BackgroundColor="@_badgeBackground" Message="@($"{_offCanvasViewType}ing...")" />
+            </div>
+            @if (_offCanvasViewType == OffCanvasViewType.View)
+            {
+                <div class="col-sm-12 col-md-6">
+                    <button class="btn btn-primary w-100"
+                            type="button"
+                            @onclick="() => UpdateFormState(OffCanvasViewType.Edit, Level.Danger)">
+                        Edit
+                    </button>
+                </div>
+                <div class="py-3">
+                    <hr />
+                </div>
+            }
+
+            <div class="col-12">
+                <div class="form-floating mb-3">
+                    <InputSelect class="form-select"
+                                 id="DepartmentId"
+                                 disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                 @oninput="OnValueChanged"
+                                 @bind-Value="_area.DepartmentId">
+                        <option value="@Guid.Empty.ToString()">-- Select department --</option>
+                        @foreach (var (department, index) in _departments.Select((value, index) => (value, index)))
+                        {
+                            <option value="@department.Id" disabled="@(department.IsActive ? false : true)">@department.Name</option>
+                        }
+                    </InputSelect>
+                    <label for="DepartmentId">Department</label>
+                </div>
+                <div class="form-floating mb-3">
+                    <InputText class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
+                               id="Name"
+                               placeholder="Area name"
+                               readonly="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                               @bind-Value="_area.Name" />
+                    <label for="Name">Area name</label>
+                </div>
+                @if (_offCanvasViewType == OffCanvasViewType.Edit)
+                {
+                    <div class="col-12 d-flex align-items-start">
+                        <div class="form-check form-switch form-check-reverse">
+                            <label class="form-check-label" for="IsActive">Active?</label>
+                            <InputCheckbox class="form-check-input"
+                                           type="checkbox"
+                                           role="switch"
+                                           id="IsActive"
+                                           @bind-Value="_area.IsActive" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            @if (_offCanvasViewType == OffCanvasViewType.Add || _offCanvasViewType == OffCanvasViewType.Edit)
+            {
+                <div class="py-2">
+                    <hr />
+                </div>
+                @if (_displayValidationErrorMessages)
+                {
+                    <div class="col-12">
+                        <ValidationSummary />
+                    </div>
+                }
+                <div class="col-6">
+                    <button class="btn btn-outline-secondary w-100"
+                            @onclick="() => CloseOffCanvasAsync()">
+                        Cancel
+                    </button>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-primary w-100"
+                            disabled="@_isDisabled"
+                            type="submit">
+                        Save
+                    </button>
+                </div>
+            }
+        </div>
+    </EditForm>
+
+</OffCanvas>

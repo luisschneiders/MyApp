@@ -1,0 +1,26 @@
+﻿@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.ListGroup;
+
+<CardView Styles="flex-fill">
+    <CardMiddle>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Usage history
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-clock-history display-6 text-info"></i>
+            </div>
+        </div>
+        <ListGroup>
+            <ListGroupItem ItemURL="@_appURL.TasksMopUsage"
+                           Title="Mop record history"
+                           Summary="Create and view records for mops" />
+            <ListGroupItem ItemURL="@_appURL.TasksChemicalRecord"
+                           Title="Chemicals record history"
+                           Summary="Create and view records for chemicals"
+                           Disabled="true"/>
+        </ListGroup>
+    </CardMiddle>
+</CardView>

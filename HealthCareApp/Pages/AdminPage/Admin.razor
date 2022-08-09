@@ -1,0 +1,73 @@
+﻿@page "/admin";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Message;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <PageTopTitle Title="Admin" />
+                        <Breadcrumb AppPageLink="@_appURL.Admin" />
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+                        <div class="row justify-content-center">
+                            <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                                <CardView Link="@_appURL.AdminEmployees">
+                                    <CardMiddle>
+                                        <CardProfile CardProfileTitle="Employees"
+                                                     CardProfileIcon="bi bi-people-fill">
+                                            <div class="lead p-2">
+                                                Add, update and view employees info
+                                            </div>
+                                        </CardProfile>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                                <CardView Link="@_appURL.AdminDepartments">
+                                    <CardMiddle>
+                                        <CardProfile CardProfileTitle="Departments"
+                                                     CardProfileIcon="bi bi-diagram-3-fill">
+                                            <div class="lead p-2">
+                                                Add, update and view departments info
+                                            </div>
+                                        </CardProfile>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                            <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                                <CardView Link="@_appURL.AdminBarcodes">
+                                    <CardMiddle>
+                                        <CardProfile CardProfileTitle="Barcodes"
+                                                     CardProfileIcon="bi bi-upc-scan">
+                                            <div class="lead p-2">
+                                                Add, update and view barcode label info
+                                            </div>
+                                        </CardProfile>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                        </div>
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView>
+                    <PageBottomWrapper>
+                    </PageBottomWrapper>
+                </PageBottomView>
+
+            </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

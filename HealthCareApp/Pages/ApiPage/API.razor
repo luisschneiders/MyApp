@@ -1,0 +1,92 @@
+﻿@page "/api";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Theme;
+@using HealthCareApp.Settings.Enum;
+
+<div class="container-lg">
+
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+                <PageTopTitle Title="API" />
+                <Breadcrumb AppPageLink="@_appURL.API"/>
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
+                        <CardView>
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Get"
+                                             CardProfileIcon="bi bi-share"
+                                             CardProfileIconColor="@Theme.info">
+                                    <div class="lead p-2">
+                                        API <b>Get</b> example
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2">
+                        <CardView Link="@_appURL.APIPost">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Post"
+                                             CardProfileIcon="bi bi-share-fill"
+                                             CardProfileIconColor="@Theme.info">
+                                    <div class="lead p-2">
+                                        API <b>Post</b> example
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Success.ToString().ToLower()" Message="New" />
+                                        </sup>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
+                        <CardView>
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Put"
+                                             CardProfileIcon="bi bi-share-fill"
+                                             CardProfileIconColor="@Theme.info">
+                                    <div class="lead p-2">
+                                        API <b>Put</b> example
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-6 col-lg-4 py-2 opacity-50">
+                        <CardView>
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Delete"
+                                             CardProfileIcon="bi bi-share"
+                                             CardProfileIconColor="@Theme.info">
+                                    <div class="lead p-2">
+                                        API <b>Delete</b> example
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        <PageBottomView>
+            <PageBottomWrapper>
+            </PageBottomWrapper>
+        </PageBottomView>
+
+    </PageWrapper>
+
+</div>

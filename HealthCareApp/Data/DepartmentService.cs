@@ -17,14 +17,12 @@ namespace HealthCareApp.Data
         // async method to get list of departments
         public async Task<List<Department>> GetDepartmentsAsync()
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<Department> departmentList = new List<Department>();
 
             /* Raw query with joins, filters and ordering */
             var query =
                 (
                     from department in _applicationDbContext.Set<Department>()
-                    where department.InsertedBy == userService.UserId()
                     orderby department.CreatedAt descending
                     select new { department }
                 ).AsNoTracking();
@@ -40,15 +38,13 @@ namespace HealthCareApp.Data
         // async method to get list of departments active
         public async Task<List<Department>> GetActiveDepartmentsAsync()
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<Department> departmentList = new List<Department>();
 
             /* Raw query with joins, filters and ordering */
             var query =
                 (
                     from department in _applicationDbContext.Set<Department>()
-                    where department.InsertedBy == userService.UserId()
-                        && department.IsActive == true
+                    where department.IsActive == true
                     orderby department.Name ascending
                     select new { department }
                 ).AsNoTracking();
@@ -68,8 +64,6 @@ namespace HealthCareApp.Data
         {
             try
             {
-                UserService userService = new(_httpContextAccessor);
-
                 /* Raw query with joins, filters and ordering */
                 var query =
                     (
@@ -90,7 +84,7 @@ namespace HealthCareApp.Data
 
         public async Task<List<Department>> SearchAsync(string searchTerm)
         {
-            UserService userService = new(_httpContextAccessor);
+
             List<Department> departmentList = new();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
@@ -101,8 +95,7 @@ namespace HealthCareApp.Data
             var query =
                 (
                     from department in _applicationDbContext.Set<Department>()
-                    where department.InsertedBy == userService.UserId()
-                    && EF.Functions.Like(department.Name, $"%{searchTerm}%")
+                    where EF.Functions.Like(department.Name, $"%{searchTerm}%")
                     orderby department.CreatedAt descending
                     select new { department }
                 ).AsNoTracking();

@@ -1,0 +1,94 @@
+﻿@page "/playground/card-v3";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Breadcrumb;
+
+<div class="container-lg">
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+
+                <PageTopTitle Title="Card V3" />
+                <Breadcrumb AppPageLink="@_appURL.PlaygroundCardV3" />
+
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p>
+                                <h4 class="hca-app-title">How to use</h4>
+                                <hr />
+                            </p>
+
+                            @foreach (var markupString in _componentMarkupList)
+                            {
+                                <div>
+                                    <h5>@markupString.Title</h5>
+                                    <p class="highlight p-2">
+                                        <code>
+                                            @foreach (var (item, index) in markupString.Code.Select((value, index) => (value, index)))
+                                            {
+                                                <span class="@markupString.CssStyle[index]">
+                                                    @item
+                                                </span>
+                                                <br />
+                                                @if (@markupString.NewLine[index])
+                                                {
+                                                    <br />
+                                                }
+                                            }
+                                        </code>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-sm-12 col-md-6 markup-background rounded">
+                            <p>
+                                <h4 class="text-black-50">Example</h4>
+                                <hr />
+                            </p>
+                            <div class="container-lg">
+
+                                <div class="row justify-content-center">
+                                    <div class="col-sm-10 py-2">
+                                        <CardView Link="@_appURL.Home">
+                                            <CardMiddle>
+                                                <CardProfile CardProfileTitle="Card with link" CardProfileIcon="bi bi-image">
+                                                    <div class="lead p-2">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    </div>
+                                                </CardProfile>
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                    <div class="col-sm-10 py-2">
+                                        <CardView>
+                                            <CardMiddle>
+                                                <CardProfile CardProfileTitle="Card without link" CardProfileIcon="bi bi-image-fill">
+                                                    <div class="lead p-2">
+                                                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                                                    </div>
+                                                </CardProfile>
+                                            </CardMiddle>
+                                        </CardView>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        <PageBottomView>
+            <PageBottomWrapper />
+        </PageBottomView>
+    </PageWrapper>
+</div>

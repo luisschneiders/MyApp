@@ -1,7 +1,7 @@
 ﻿using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
+using HealthCareApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
@@ -15,22 +15,21 @@ namespace HealthCareApp.Pages.EmployeePage
         [Inject]
         private SpinnerService _spinnerService { get; set; }
 
-        private Virtualize<Employee> _virtualizeContainer { get; set; }
+        private Virtualize<EmployeeListDto> _virtualizeContainer { get; set; }
 
-        private bool _isLoading { get; set; }
-        private bool _isSearchResults { get; set; }
+        private bool _hasSearchResults { get; set; }
 
         private string _searchTerm { get; set; }
 
-        private Employee? _employeeDetails { get; set; }
-        private List<Employee> _employees { get; set; }
-        private List<Employee> _results { get; set; }
+        private List<EmployeeListDto> _employeeListDto { get; set; }
+        private List<EmployeeListDto> _searchResults { get; set; }
 
         /*
-         * Add component EmployeeModalAdd & EmployeeModalUpdate reference
+         * Add component EmployeeOffCanvas reference
          */
-        private EmployeeModalAdd _employeeModalAdd { get; set; }
-        private EmployeeModalUpdate _employeeModalUpdate { get; set; }
+        private EmployeeOffCanvas _employeeOffCanvas { get; set; }
+
+        private AppURL _appURL { get; }
 
         public EmployeeMain()
         {
@@ -38,13 +37,31 @@ namespace HealthCareApp.Pages.EmployeePage
 
             _spinnerService = new();
             _virtualizeContainer = new();
-            _employeeModalAdd = new();
-            _employeeModalUpdate = new();
+            _employeeOffCanvas = new();
 
-            _employees = new List<Employee>();
-            _results = new List<Employee>();
+            _employeeListDto = new();
+            _searchResults = new List<EmployeeListDto>();
 
-            _employeeDetails = null;
+            _hasSearchResults = false;
+            _appURL = new();
+        }
+
+        private async Task AddRecordAsync()
+        {
+            await Task.FromResult(_employeeOffCanvas.AddRecordOffCanvasAsync());
+            await Task.CompletedTask;
+        }
+
+        private async Task ViewDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_employeeOffCanvas.ViewDetailsOffCanvasAsync(id));
+            await Task.CompletedTask;
+        }
+
+        private async Task EditDetailsAsync(Guid id)
+        {
+            await Task.FromResult(_employeeOffCanvas.EditDetailsOffCanvasAsync(id));
+            await Task.CompletedTask;
         }
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -59,73 +76,56 @@ namespace HealthCareApp.Pages.EmployeePage
                 await Task.Run(() => _spinnerService.HideSpinner());
                 await Task.CompletedTask;
             }
-
         }
 
-        private async Task OpenModalAddAsync()
+        private async ValueTask<ItemsProviderResult<EmployeeListDto>> LoadEmployees(ItemsProviderRequest request)
         {
-            await Task.FromResult(_employeeModalAdd.OpenModalAddAsync());
-            await Task.CompletedTask;
-        }
 
-        private async Task OpenModalUpdateAsync(Guid id)
-        {
-            await Task.FromResult(_employeeModalUpdate.OpenModalUpdateAsync(id));
-            await Task.CompletedTask;
-        }
-
-        private async Task ShowEmployeeDetails(Employee employee)
-        {
-            _employeeDetails = employee;
-
-            _isLoading = true;
-            await Task.Delay((int)Delay.DataLoading);
-            _isLoading = false;
-
-            await Task.CompletedTask;
-        }
-
-        private async ValueTask<ItemsProviderResult<Employee>> LoadEmployees(ItemsProviderRequest request)
-        {
-            _employees = await _employeeService.GetEmployeesAsync();
+            _employeeListDto = await _employeeService.GetEmployeeListDtoAsync();
 
             await Task.Run(() => _spinnerService.HideSpinner());
 
             await InvokeAsync(() => StateHasChanged());
 
-            return new ItemsProviderResult<Employee>(
-                _employees.Skip(request.StartIndex).Take(request.Count), _employees.Count
+            return new ItemsProviderResult<EmployeeListDto>(
+                _employeeListDto.Skip(request.StartIndex).Take(request.Count), _employeeListDto.Count
             );
         }
 
         private async Task RefreshVirtualizeContainer()
         {
-            _employeeDetails = null;
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async Task SearchEmployeeAsync(ChangeEventArgs eventArgs)
+        private async Task SearchAsync(ChangeEventArgs eventArgs)
         {
             var searchTerm = eventArgs?.Value?.ToString();
-            _isSearchResults = true;
+            _hasSearchResults = true;
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                _results = new List<Employee>();
-                _isSearchResults = false;
+                _searchResults = new();
+                _hasSearchResults = false;
                 await Task.CompletedTask;
             }
             else
             {
-                _results = await _employeeService.SearchAsync(searchTerm);
+                _searchResults = await _employeeService.SearchEmployeeListDtoAsync(searchTerm);
                 await Task.CompletedTask;
             }
         }
 
-        private async Task UpdateEmployeeStatusAsync(Employee employee)
+        private async Task UpdateEmployeeStatusAsync(EmployeeListDto employeeListDto)
         {
-            employee.IsActive = !employee.IsActive;
-            await Task.FromResult(_employeeService.UpdateEmployeeAsync(employee));
+            employeeListDto.IsActive = !employeeListDto.IsActive;
+
+            Employee employee = new()
+            {
+                Id = employeeListDto.Id,
+                IsActive = employeeListDto.IsActive
+            };
+
+            await Task.FromResult(_employeeService.UpdateEmployeeStatusAsync(employee));
             await Task.CompletedTask;
         }
     }

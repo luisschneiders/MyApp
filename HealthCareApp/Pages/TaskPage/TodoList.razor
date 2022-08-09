@@ -1,0 +1,28 @@
+﻿@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.ListGroup;
+
+<CardView Styles="flex-fill">
+    <CardMiddle>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Todo list
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-list-task display-6 text-warning"></i>
+            </div>
+        </div>
+        <ListGroup>
+            <ListGroupItem ItemURL="#"
+                           Title="Marketing"
+                           Summary="Add a call-to-action for the audience to take"
+                           Disabled="true"/>
+            <ListGroupItem ItemURL="#"
+                           Title="Finance"
+                           Summary="Implement eInvoicing"
+                           Disabled="true" />
+        </ListGroup>
+    </CardMiddle>
+</CardView>
+

@@ -39,13 +39,13 @@
                             </div>
                             <div class="col-sm-12 col-lg-6">
                                 <button type="button"
-                                        class="btn btn-info btn-rounded text-white w-140"
+                                        class="btn btn-primary w-140"
                                         @onclick="() => OpenModalPickupAsync()"
                                         disabled="@_isDisabled">
                                     @if (_isLoading)
                                     {
                                         <span>
-                                            <Spinner Size="Size.Sm" Color="Level.White" />
+                                            <Spinner Size="Size.sm" Color="Level.White" />
                                             Searching...
                                         </span>
                                     }
@@ -137,7 +137,7 @@
                                                     </div>*@
                                                 </ItemContent>
                                                 @*<Placeholder>
-                                                    <Spinner Size="Size.Md" />
+                                                    <Spinner Size="Size.md" />
                                                 </Placeholder>*@
                                             </Virtualize>
                                         </tbody>

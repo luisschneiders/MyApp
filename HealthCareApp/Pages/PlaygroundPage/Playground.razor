@@ -1,0 +1,108 @@
+﻿@page "/playground";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum;
+
+<div class="container-lg">
+
+    <PageWrapper>
+
+        <PageTopView>
+            <PageTopWrapper>
+                <PageTopTitle Title="Playground" />
+                <Breadcrumb AppPageLink="@_appURL.Playground" />
+            </PageTopWrapper>
+        </PageTopView>
+
+        <PageMiddleView>
+            <PageMiddleWrapper>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundCardV3">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Card" CardProfileIcon="bi bi-card-heading">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Card</b>
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Success.ToString().ToLower()" Message="New" />
+                                        </sup>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundPageV3">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Page" CardProfileIcon="bi bi-layout-text-window-reverse">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Page</b>
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Success.ToString().ToLower()" Message="New" />
+                                        </sup>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundModal">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Modal" CardProfileIcon="bi bi-window">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Modals</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundToast">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Toast" CardProfileIcon="bi bi-collection">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Toast</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundBadge">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Badge" CardProfileIcon="bi bi-usb-c">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Badge</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                    <div class="col-sm-12 col-md-4 col-lg-3 py-2">
+                        <CardView Link="@_appURL.PlaygroundSpinner">
+                            <CardMiddle>
+                                <CardProfile CardProfileTitle="Spinner" CardProfileIcon="bi bi-arrow-clockwise">
+                                    <div class="lead p-2">
+                                        UI layout for <b>Spinner</b>
+                                    </div>
+                                </CardProfile>
+                            </CardMiddle>
+                        </CardView>
+                    </div>
+                </div>
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        <PageBottomView>
+            <PageBottomWrapper>
+            </PageBottomWrapper>
+        </PageBottomView>
+
+    </PageWrapper>
+
+</div>

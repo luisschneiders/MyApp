@@ -1,0 +1,94 @@
+﻿@page "/playground/page-v3"
+
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+
+<div class="container-lg">
+    <PageWrapper>
+
+        @* Header View*@
+        <PageTopView>
+            <PageTopWrapper>
+
+                <PageTopTitle Title="Page V3" />
+                <Breadcrumb AppPageLink="@_appURL.PlaygroundPageV3" />
+
+            </PageTopWrapper>
+        </PageTopView>
+
+        @* Body View*@
+        <PageMiddleView>
+            <PageMiddleWrapper>
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6">
+                            <p>
+                                <h4 class="hca-app-title">How to use</h4>
+                                <hr />
+                            </p>
+
+                            @foreach (var markupString in _componentMarkupList)
+                            {
+                                <div>
+                                    <h5>@markupString.Title</h5>
+                                    <p class="highlight p-2">
+                                        <code>
+                                            @foreach (var (item, index) in markupString.Code.Select((value, index) => (value, index)))
+                                            {
+                                                <span class="@markupString.CssStyle[index]">
+                                                    @item
+                                                </span>
+                                                <br />
+                                                @if (@markupString.NewLine[index])
+                                                {
+                                                    <br />
+                                                }
+                                            }
+                                        </code>
+                                    </p>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-sm-12 col-md-6 markup-background rounded">
+                            <p>
+                                <h4 class="text-black-50">Example</h4>
+                                <hr />
+                            </p>
+                            <div class="container-lg">
+
+                                <PageWrapper Styles="">
+                                    <PageTopView>
+                                        <PageTopWrapper Styles="page-top-background">
+                                            <PageTopTitle Title="Page V3" />
+                                            <Breadcrumb AppPageLink="@_appURL.PlaygroundPageV3" />
+                                        </PageTopWrapper>
+                                    </PageTopView>
+                                    <PageMiddleView>
+                                        <PageMiddleWrapper Styles="page-middle-background">
+                                            <div class="d-flex justify-content-center align-items-center">Page body...</div>
+                                        </PageMiddleWrapper>
+                                    </PageMiddleView>
+                                    <PageBottomView>
+                                        <PageBottomWrapper Styles="page-bottom-background text-white">
+                                            <div class="d-flex justify-content-center align-items-center">
+                                                Page footer...
+                                            </div>
+                                        </PageBottomWrapper>
+                                    </PageBottomView>
+                                </PageWrapper>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </PageMiddleWrapper>
+        </PageMiddleView>
+
+        @* Footer View*@
+        <PageBottomView>
+            <PageBottomWrapper />
+        </PageBottomView>
+    </PageWrapper>
+</div>

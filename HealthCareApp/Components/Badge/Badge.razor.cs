@@ -1,6 +1,4 @@
-﻿using System;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+﻿using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Components.Badge
@@ -9,21 +7,15 @@ namespace HealthCareApp.Components.Badge
     {
 
         [Parameter]
-        public Level Level { get; set; }
+        public string BackgroundColor { get; set; }
 
         [Parameter]
-        public string? Message { get; set; }
+        public string Message { get; set; }
 
-        AppSettings AppSettings { get; set; } = new();
-
-        private string? BackgroundColor { get; set; }
-
-        protected override void OnInitialized()
+        public Badge()
         {
-            base.OnInitialized();
-
-            AppSettings.BuildLevel(Level);
-            BackgroundColor = AppSettings.BackgroundColor;
+            BackgroundColor = Level.Info.ToString().ToLower();
+            Message = string.Empty;
         }
     }
 }

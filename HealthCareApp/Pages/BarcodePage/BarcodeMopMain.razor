@@ -1,0 +1,240 @@
+﻿@page "/admin/barcodes/mop";
+@using HealthCareApp.Components.PageV3;
+@using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Components.Dropdown;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Settings.Theme;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <div class="d-flex flex-row">
+                            <PageTopTitle Title="Mops Barcode" />
+                            <sup>
+                                <Badge BackgroundColor="@Level.Success.ToString().ToLower()" Message="New" />
+                            </sup>
+                        </div>
+                        <Breadcrumb AppPageLink="@_appURL.AdminBarcodesMop" />
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+                        <div class="row flex-row-reverse justify-content-between pb-2">
+                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                                <DropdownActions IconColor="Theme.success">
+                                    <li>
+                                        <button class="dropdown-item"
+                                                @onclick="() => AddRecordAsync()">
+                                            <i class="bi bi-plus-lg pe-1"></i>New Barcode
+                                        </button>
+                                    </li>
+                                </DropdownActions>
+                            </div>
+                            <div class="col-10 col-md-6 col-lg-4 pb-2">
+                                <input type="text"
+                                       class="form-control"
+                                       placeholder="Search for barcodes..."
+                                       aria-label="search"
+                                       @bind-value="_searchTerm"
+                                       @oninput="SearchAsync">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <CardView>
+                                    <CardMiddle>
+                                        <div class="d-flex flex-row justify-content-evenly align-items-center">
+                                            <Spinner Size="Size.md" />
+                                        </div>
+                                        <div class="table-responsive hca-table-wrap">
+                                            <table class="table table-hover">
+                                                <thead class="text-muted">
+                                                    <tr>
+                                                        <th class="col-2">
+                                                            Barcode
+                                                        </th>
+                                                        <th class="col-2">
+                                                            Area
+                                                        </th>
+                                                        <th class="col-2">
+                                                            Department
+                                                        </th>
+                                                        <th>
+                                                            # of Mops
+                                                        </th>
+                                                        <th>
+                                                            Pickup time
+                                                        </th>
+                                                        <th>
+                                                            Return time
+                                                        </th>
+                                                        <th colspan="3">
+                                                            Active?
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    @if (!_hasSearchResults)
+                                                    {
+                                                        <Virtualize Context="labelMop"
+                                                                    ItemsProvider="@LoadLabelMops"
+                                                                    @ref="_virtualizeContainer">
+                                                            <ItemContent>
+                                                                <tr>
+                                                                    <td>
+                                                                        @labelMop.Barcode
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.AreaName
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.DepartmentName
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.Quantity
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.TimeOut.ToString("hh:mm tt")
+                                                                    </td>
+                                                                    <td>
+                                                                        @labelMop.TimeIn.ToString("hh:mm tt")
+                                                                    </td>
+                                                                    <td>
+                                                                        <div class="form-check form-switch">
+                                                                            @if (labelMop.IsActive)
+                                                                            {
+                                                                                <input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       role="switch"
+                                                                                       id="IsActive"
+                                                                                       checked
+                                                                                       @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
+                                                                            }
+                                                                            else
+                                                                            {
+                                                                                <input class="form-check-input"
+                                                                                       type="checkbox"
+                                                                                       role="switch"
+                                                                                       id="IsActive"
+                                                                                       @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
+                                                                            }
+                                                                        </div>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-link p-0 text-info"
+                                                                                type="button"
+                                                                                title="View details"
+                                                                                @onclick="() => ViewDetailsAsync(labelMop.Id)">
+                                                                            <i class="bi bi-eye-fill"></i>
+
+                                                                        </button>
+                                                                    </td>
+                                                                    <td>
+                                                                        <button class="btn btn-link p-0 text-danger"
+                                                                                type="button"
+                                                                                title="Edit"
+                                                                                @onclick="() => EditDetailsAsync(labelMop.Id)">
+                                                                            <i class="bi bi-pencil"></i>
+                                                                        </button>
+                                                                    </td>
+                                                                </tr>
+                                                            </ItemContent>
+                                                        </Virtualize>
+                                                    }
+                                                    else
+                                                    {
+                                                        @foreach (var labelMop in _searchResults)
+                                                        {
+                                                            <tr>
+                                                                <td>
+                                                                    @labelMop.Barcode
+                                                                </td>
+                                                                <td>
+                                                                    @labelMop.AreaName
+                                                                </td>
+                                                                <td>
+                                                                    @labelMop.DepartmentName
+                                                                </td>
+                                                                <td>
+                                                                    @labelMop.Quantity
+                                                                </td>
+                                                                <td>
+                                                                    @labelMop.TimeOut.ToString("hh:mm tt")
+                                                                </td>
+                                                                <td>
+                                                                    @labelMop.TimeIn.ToString("hh:mm tt")
+                                                                </td>
+                                                                <td>
+                                                                    <div class="form-check form-switch">
+                                                                        @if (labelMop.IsActive)
+                                                                        {
+                                                                            <input class="form-check-input"
+                                                                                   type="checkbox"
+                                                                                   role="switch"
+                                                                                   id="IsActive"
+                                                                                   checked
+                                                                                   @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
+                                                                        }
+                                                                        else
+                                                                        {
+                                                                            <input class="form-check-input"
+                                                                                   type="checkbox"
+                                                                                   role="switch"
+                                                                                   id="IsActive"
+                                                                                   @onclick="() => UpdateLabelMopStatusAsync(labelMop)" />
+                                                                        }
+                                                                    </div>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-link p-0 text-info"
+                                                                            type="button"
+                                                                            title="View details"
+                                                                            @onclick="() => ViewDetailsAsync(labelMop.Id)">
+                                                                        <i class="bi bi-eye-fill"></i>
+
+                                                                    </button>
+                                                                </td>
+                                                                <td>
+                                                                    <button class="btn btn-link p-0 text-danger"
+                                                                            type="button"
+                                                                            title="Edit"
+                                                                            @onclick="() => EditDetailsAsync(labelMop.Id)">
+                                                                        <i class="bi bi-pencil"></i>
+                                                                    </button>
+                                                                </td>
+                                                            </tr>
+                                                        }
+                                                    }
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                        </div>
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+
+                <PageBottomView>
+                    <PageBottomWrapper />
+                </PageBottomView>
+
+            </PageWrapper>
+            <Toast />
+            <BarcodeMopOffCanvas @ref="_barcodeMopOffCanvas" OnSubmitSuccess="RefreshVirtualizeContainer" />
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>

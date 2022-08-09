@@ -43,14 +43,71 @@ namespace HealthCareApp.Data
             return await Task.FromResult(employeeList);
         }
 
-        public async Task<List<Employee>> SearchAsync(string searchTerm)
+        // async method get list of employees
+
+        public async Task<List<EmployeeListDto>> GetEmployeeListDtoAsync()
+        {
+            List<EmployeeListDto> employeeListDto = new();
+
+            var query =
+                (
+                    from employee in _applicationDbContext.Set<Employee>()
+                    join contactDetails in _applicationDbContext.Set<ContactDetails>()
+                        on employee.ContactDetailsId equals contactDetails.Id
+                    orderby employee.CreatedAt descending
+                    select new { employee, contactDetails }
+                ).AsNoTracking();
+
+            foreach (var i in query)
+            {
+                employeeListDto.Add(SetEmployeeListDtoDetails(i.employee, i.contactDetails));
+            }
+
+            return await Task.FromResult(employeeListDto);
+        }
+
+
+        //public async Task<List<Employee>> SearchAsync(string searchTerm)
+        //{
+        //    UserService userService = new UserService(_httpContextAccessor);
+        //    List<Employee> employeeList = new List<Employee>();
+
+        //    if (string.IsNullOrWhiteSpace(searchTerm))
+        //    {
+        //        return await Task.FromResult(employeeList);
+        //    }
+
+        //    var query =
+        //        (
+        //            from employee in _applicationDbContext.Set<Employee>()
+        //            join contactDetails in _applicationDbContext.Set<ContactDetails>()
+        //                on employee.ContactDetailsId equals contactDetails.Id
+        //            join location in _applicationDbContext.Set<Location>()
+        //                on employee.LocationId equals location.Id
+        //            where employee.InsertedBy == userService.UserId()
+        //            && (EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
+        //            || EF.Functions.Like(employee.EmployeeLastName, $"%{searchTerm}%")
+        //            || EF.Functions.Like(employee.EmployeeUsername, $"%{searchTerm}%"))
+        //            orderby employee.CreatedAt descending
+        //            select new { employee, contactDetails, location }
+        //        ).AsNoTracking();
+
+        //    foreach (var i in query)
+        //    {
+        //        employeeList.Add(SetEmployeeDetails(i.employee, i.contactDetails, i.location));
+        //    }
+
+        //    return await Task.FromResult(employeeList);
+        //}
+
+        public async Task<List<EmployeeListDto>> SearchEmployeeListDtoAsync(string searchTerm)
         {
             UserService userService = new UserService(_httpContextAccessor);
-            List<Employee> employeeList = new List<Employee>();
+            List<EmployeeListDto> employeeListDto = new ();
 
             if (string.IsNullOrWhiteSpace(searchTerm))
             {
-                return await Task.FromResult(employeeList);
+                return await Task.FromResult(employeeListDto);
             }
 
             var query =
@@ -58,23 +115,20 @@ namespace HealthCareApp.Data
                     from employee in _applicationDbContext.Set<Employee>()
                     join contactDetails in _applicationDbContext.Set<ContactDetails>()
                         on employee.ContactDetailsId equals contactDetails.Id
-                    join location in _applicationDbContext.Set<Location>()
-                        on employee.LocationId equals location.Id
-                    where employee.InsertedBy == userService.UserId()
-                    && (EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
+                    where EF.Functions.Like(employee.EmployeeFirstName, $"%{searchTerm}%")
                     || EF.Functions.Like(employee.EmployeeLastName, $"%{searchTerm}%")
-                    || EF.Functions.Like(employee.EmployeeUsername, $"%{searchTerm}%"))
                     orderby employee.CreatedAt descending
-                    select new { employee, contactDetails, location }
+                    select new { employee, contactDetails }
                 ).AsNoTracking();
 
             foreach (var i in query)
             {
-                employeeList.Add(SetEmployeeDetails(i.employee, i.contactDetails, i.location));
+                employeeListDto.Add(SetEmployeeListDtoDetails(i.employee, i.contactDetails));
             }
 
-            return await Task.FromResult(employeeList);
+            return await Task.FromResult(employeeListDto);
         }
+
 
         /*
          * method to get employee by ID
@@ -105,6 +159,20 @@ namespace HealthCareApp.Data
                 Console.WriteLine("Error: {0}", ex.Message);
                 throw;
             }
+        }
+
+        public async Task<int> CountActiveEmployeeAsync()
+        {
+            UserService userService = new UserService(_httpContextAccessor);
+
+            int countUsers =
+                (
+                    from employee in _applicationDbContext.Set<Employee>()
+                    where employee.IsActive == true
+                    select new { employee }
+                ).AsNoTracking().Count();
+
+            return await Task.FromResult(countUsers);
         }
 
         /*
@@ -175,6 +243,41 @@ namespace HealthCareApp.Data
 
         }
 
+        /*
+         * async method to update Employee status
+         */
+        public async Task UpdateEmployeeStatusAsync(Employee employee)
+        {
+            try
+            {
+
+                Employee employeeUpdated = new();
+
+                employeeUpdated = GetEmployeeById(employee.Id);
+                employeeUpdated.IsActive = employee.IsActive;
+                employeeUpdated.UpdatedAt = DateTime.UtcNow;
+
+                _applicationDbContext.HcaEmployee.Update(employeeUpdated);
+                await _applicationDbContext.SaveChangesAsync();
+
+                /*
+                 * Because we are using AsNoTracking() in our query, 
+                 * we need to detach all state entities with EntityState.Detached
+                 * to avoid exception when adding a record or updating the same record more than once
+                 */
+                _applicationDbContext.Entry(employeeUpdated).State = EntityState.Detached;
+
+                await Task.CompletedTask;
+
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: {0}", ex.Message);
+                await Task.CompletedTask;
+            }
+
+        }
+
         private static Employee SetEmployeeDetails(Employee employee, ContactDetails contactDetails, Location location)
         {
             Employee employeeDetails = employee;
@@ -190,6 +293,23 @@ namespace HealthCareApp.Data
             }
 
             return employeeDetails;
+        }
+
+        private static EmployeeListDto SetEmployeeListDtoDetails(Employee employee, ContactDetails contactDetails)
+        {
+            EmployeeListDto employeeListDto = new();
+
+            employeeListDto.Id = employee.Id;
+            employeeListDto.EmployeeFirstName = employee.EmployeeFirstName;
+            employeeListDto.EmployeeLastName = employee.EmployeeLastName;
+            employeeListDto.IsActive = employee.IsActive;
+
+            if (employee.ContactDetailsId == contactDetails?.Id)
+            {
+                employeeListDto.EmployeeEmail = contactDetails.Email;
+            }
+
+            return employeeListDto;
         }
     }
 }

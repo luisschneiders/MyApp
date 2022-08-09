@@ -1,0 +1,254 @@
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.Dropdown;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Settings.Theme;
+
+<Modal @ref="_modal"
+       Size="Size.fullscreen"
+       IsCloseButtonVisible="false">
+    <Title>Lisf of departments</Title>
+    <Body>
+
+        @if (_isEnabledAddDepartment)
+        {
+            <EditForm Model="@_department"
+                      OnValidSubmit="@HandleValidSubmitAsync"
+                      OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                        autocomplete="off">
+                <DataAnnotationsValidator />
+                <div class="hca-component-focus bg-light p-2 rounded d-block">
+                        <div class="row justify-content-between">
+                            <div class="col-7">
+                                <InputText class="form-control"
+                                           id="Name"
+                                           placeholder="Type department name..."
+                                           @bind-Value="_department.Name" />
+                            </div>
+                            <div class="col-auto">
+                                <button type="button"
+                                        class="btn btn-outline-secondary"
+                                        data-dismiss="modal"
+                                        @onclick="() => DisableFormAddRecordAsync()"
+                                        title="Cancel">
+                                    <i class="bi bi-x-lg"></i>
+                                </button>
+                                <button type="submit"
+                                        class="btn btn-primary"
+                                        title="Save">
+                                    <i class="bi bi-check-lg"></i>
+                                </button>
+                            </div>
+                        </div>
+                        @if (_displayValidationErrorMessages)
+                        {
+                            <div class="row">
+                                <div class="col-12">
+                                    <label>Validation Messages: </label>
+                                    <ValidationSummary />
+                                </div>
+                            </div>
+                        }
+                </div>
+                <div class="hca-component-focus-backdrop fade show"></div>
+            </EditForm>
+        }
+        else
+        {
+            <div class="row flex-row-reverse justify-content-between align-items-center p-2">
+                <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end g-0">
+                    <DropdownActions IconColor="Theme.success">
+                        <li>
+                            <button class="dropdown-item"
+                                    @onclick="() => EnableFormAddRecordAsync()">
+                                <i class="bi bi-plus-lg pe-1"></i>New Department
+                            </button>
+                        </li>
+                    </DropdownActions>
+                </div>
+                <div class="col-10 col-md-6 col-lg-4">
+                    <input type="text"
+                           class="form-control"
+                           placeholder="Search for departments..."
+                           aria-label="search"
+                           @bind-value="_searchTerm"
+                           @oninput="SearchAsync">
+                </div>
+            </div>
+
+        }
+        <div class="table-responsive hca-table-wrap">
+            <table class="table table-hover">
+                    <thead class="text-muted">
+                        <tr>
+                            <th class="col-7">
+                                Department
+                            </th>
+                            <th colspan="2">
+                                Active?
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-group-divider">
+                        @if (!_hasSearchResults)
+                        {
+                            <Virtualize Context="department"
+                                        ItemsProvider="@LoadDepartments"
+                                        @ref="_virtualizeContainer">
+                                <ItemContent>
+                                    <tr @key="department.Id">
+                                        @if (_isEnabledUpdateDepartment && (_departmentId == department.Id))
+                                        {
+                                            <td colspan="3">
+                                                <EditForm Model="@_department"
+                                                          OnValidSubmit="@HandleValidSubmitFromTableAsync"
+                                                          OnInvalidSubmit="@HandleInvalidSubmitFromTableAsync"
+                                                          autocomplete="off">
+                                                    <DataAnnotationsValidator />
+                                                    <div class="row justify-content-between">
+                                                        <div class="col-7">
+                                                            <InputText class="form-control"
+                                                                       id="Name"
+                                                                       placeholder="Type department name..."
+                                                                       @bind-Value="_department.Name" />
+                                                        </div>
+                                                        <div class="col-auto">
+                                                            <button type="submit"
+                                                                    class="btn btn-primary"
+                                                                    title="Save">
+                                                                <i class="bi bi-check-lg"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </EditForm>
+                                            </td>
+                                        }
+                                        else
+                                        {
+                                            <td>
+                                                @department.Name
+                                            </td>
+                                            <td>
+                                                <div class="form-check form-switch">
+                                                    @if (department.IsActive)
+                                                    {
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="IsActive"
+                                                               checked
+                                                               @onclick="() => UpdateStatusAsync(department)" />
+                                                    }
+                                                    else
+                                                    {
+                                                        <input class="form-check-input"
+                                                               type="checkbox"
+                                                               role="switch"
+                                                               id="IsActive"
+                                                               @onclick="() => UpdateStatusAsync(department)" />
+                                                    }
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-link p-0 text-danger"
+                                                        type="button"
+                                                        title="Edit"
+                                                        @onclick="() => EditDetailsAsync(department)">
+                                                    <i class="bi bi-pencil"></i>
+                                                </button>
+                                            </td>
+                                        }
+                                    </tr>
+                                </ItemContent>
+                                <Placeholder>
+                                    <tr>
+                                        <td colspan="3">
+                                            <Spinner Size="Size.md" />
+                                        </td>
+                                    </tr>
+                                </Placeholder>
+                            </Virtualize>
+                        }
+                        else
+                        {
+                            @foreach (var department in _searchResults)
+                            {
+                                <tr @key="department.Id">
+                                    @if (_isEnabledUpdateDepartment && (_departmentId == department.Id))
+                                    {
+                                        <td colspan="3">
+                                            <EditForm Model="@_department"
+                                                      OnValidSubmit="@HandleValidSubmitFromTableAsync"
+                                                      OnInvalidSubmit="@HandleInvalidSubmitFromTableAsync"
+                                                      autocomplete="off">
+                                                <DataAnnotationsValidator />
+                                                <div class="row justify-content-between">
+                                                    <div class="col-7">
+                                                        <InputText class="form-control"
+                                                                   id="Name"
+                                                                   placeholder="Type department name..."
+                                                                   @bind-Value="_department.Name" />
+                                                    </div>
+                                                    <div class="col-auto">
+                                                        <button type="submit"
+                                                                class="btn btn-primary"
+                                                                title="Save">
+                                                            <i class="bi bi-check-lg"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </EditForm>
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td>
+                                            @department.Name
+                                        </td>
+                                        <td>
+                                            <div class="form-check form-switch">
+                                                @if (department.IsActive)
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           checked
+                                                           @onclick="() => UpdateStatusAsync(department)" />
+                                                }
+                                                else
+                                                {
+                                                    <input class="form-check-input"
+                                                           type="checkbox"
+                                                           role="switch"
+                                                           id="IsActive"
+                                                           @onclick="() => UpdateStatusAsync(department)" />
+                                                }
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-link p-0 text-danger"
+                                                    type="button"
+                                                    title="Edit"
+                                                    @onclick="() => EditDetailsAsync(department)">
+                                                <i class="bi bi-pencil"></i>
+                                            </button>
+                                        </td>
+                                    }
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+        </div>
+
+    </Body>
+    <Footer>
+        <button type="button"
+                class="btn btn-outline-secondary"
+                data-dismiss="modal"
+                @onclick="() => CloseModalAsync()">
+            Close
+        </button>
+    </Footer>
+</Modal>
