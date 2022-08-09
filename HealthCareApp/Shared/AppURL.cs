@@ -32,8 +32,8 @@ namespace HealthCareApp.Shared
         public readonly string PlaygroundSpinner;
 
         public readonly string Tasks;
-        public readonly string TasksHistoryMop;
-        public readonly string TasksHistoryChemical;
+        public readonly string TasksMopUsage;
+        public readonly string TasksChemicalRecord;
 
         public AppURL()
         {
@@ -64,8 +64,8 @@ namespace HealthCareApp.Shared
             PlaygroundSpinner = $"{Playground}/spinner";
 
             Tasks = "/tasks";
-            TasksHistoryMop = $"{Tasks}/history-mop";
-            TasksHistoryChemical = $"{Tasks}/history-chemical";
+            TasksMopUsage = $"{Tasks}/mop-usage";
+            TasksChemicalRecord = $"{Tasks}/chemical-record";
         }
     }
 }
