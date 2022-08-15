@@ -14,6 +14,8 @@ namespace LabelLibrary.Models
 
         public DateTime TimeOut { get; set; }
 
+        public int ShiftType { get; set; }
+
         public Guid DepartmentId { get; set; }
 
         public string? AreaName { get; set; }

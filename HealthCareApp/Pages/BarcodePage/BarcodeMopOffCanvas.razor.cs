@@ -33,11 +33,13 @@ namespace HealthCareApp.Pages.BarcodePage
         private LabelMop _labelMop { get; set; }
         private List<AreaDto> _areas { get; set; }
 
+        private ShiftType[] _shiftTypes { get; set; } = default!;
         private OffCanvasViewType _offCanvasViewType { get; set; }
         private string _badgeBackground { get; set; }
 
         private bool _displayValidationErrorMessages { get; set; }
         private bool _isDisabled { get; set; }
+        private bool _recordExists { get; set; }
 
         public BarcodeMopOffCanvas()
         {
@@ -45,10 +47,11 @@ namespace HealthCareApp.Pages.BarcodePage
             _offCanvas = new();
             _labelMop = new();
             _areas = new List<AreaDto>();
-
+            _shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
             _badgeBackground = Level.Info.ToString().ToLower();
             _displayValidationErrorMessages = false;
             _isDisabled = true;
+            _recordExists = true;
         }
 
         public async Task AddRecordOffCanvasAsync()
@@ -75,9 +78,21 @@ namespace HealthCareApp.Pages.BarcodePage
 
             if (_offCanvasViewType == OffCanvasViewType.Add)
             {
-                await _labelMopService.AddLabelMopAsync(_labelMop);
 
-                _toastService.ShowToast("Barcode added!", Level.Success);
+                _recordExists = await _labelMopService.CheckRecordExists(_labelMop.Barcode!);
+
+                if (_recordExists)
+                {
+                    _toastService.ShowToast("Barcode already exists!", Level.Danger);
+                    return;
+                }
+                else
+                {
+                    await _labelMopService.AddLabelMopAsync(_labelMop);
+
+                    _toastService.ShowToast("Barcode added!", Level.Success);
+                }
+
             }
             else if (_offCanvasViewType == OffCanvasViewType.Edit)
             {

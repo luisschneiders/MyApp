@@ -73,6 +73,9 @@
                                                             # of Mops
                                                         </th>
                                                         <th>
+                                                            Shift
+                                                        </th>
+                                                        <th>
                                                             Pickup time
                                                         </th>
                                                         <th>
@@ -102,6 +105,9 @@
                                                                     </td>
                                                                     <td>
                                                                         @labelMop.Quantity
+                                                                    </td>
+                                                                    <td>
+                                                                        @($"{_shiftTypes[@labelMop.ShiftType - 1]}")
                                                                     </td>
                                                                     <td>
                                                                         @labelMop.TimeOut.ToString("hh:mm tt")
