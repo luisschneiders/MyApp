@@ -7,9 +7,9 @@ using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Pages.TrackingInventoryPage
+namespace HealthCareApp.Pages.TaskPage
 {
-	public partial class TrackingInventoryMopModalPickup : ComponentBase
+	public partial class TaskMopUsageModal : ComponentBase
 	{
         [Inject]
         private ToastService _toastService { get; set; } = default!;
@@ -22,31 +22,34 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
         private TrackingInventoryMop _trackingInventoryMop { get; set; }
         private LabelMopDto _labelMopDto { get; set; }
-		private Modal _modalPickup { get; set; }
+		private Modal _modal { get; set; }
 
-		private Guid _modalPickupTarget { get; set; }
+		private Guid _modalTarget { get; set; }
         private bool _displayValidationErrorMessages { get; set; }
 
-        public TrackingInventoryMopModalPickup()
+        private EntryType[] _entryTypes { get; set; } = default!;
+        private ShiftType[] _shiftTypes { get; set; } = default!;
+
+        public TaskMopUsageModal()
 		{
             _trackingInventoryMop = new();
             _labelMopDto = new();
-            _modalPickup = new();
-		}
+            _modal = new();
+            _entryTypes = (EntryType[])Enum.GetValues(typeof(EntryType));
+            _shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
+        }
 
-		public async Task OpenModalPickupAsync(LabelMopDto labelMopDto)
+		public async Task OpenModalAsync(LabelMopDto labelMopDto)
 		{
-            string pickupTime = DateTime.Now.ToString("hh:mm tt");
-            string returnTime = DateTime.Now.ToShortDateString();
+            string scanTime = DateTime.Now.ToString("hh:mm tt");
 
-            _modalPickupTarget = Guid.NewGuid();
+            _modalTarget = Guid.NewGuid();
             _labelMopDto = labelMopDto;
-            //_trackingInventoryMop.PickupTime = DateTime.Parse(pickupTime);
-            //_trackingInventoryMop.ReturnTime = DateTime.Parse(returnTime);
+            _trackingInventoryMop.ScanTime = DateTime.Parse(scanTime);
             _trackingInventoryMop.CleanMopQuantity = labelMopDto.Quantity;
             _trackingInventoryMop.LabelMopId = labelMopDto.Id;
 
-			await Task.FromResult(_modalPickup.Open(_modalPickupTarget));
+			await Task.FromResult(_modal.Open(_modalTarget));
             await Task.CompletedTask;
         }
 
@@ -61,7 +64,7 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
 
             await Task.Delay((int)Delay.DataSuccess);
 
-            await CloseModalPickupAsync();
+            await CloseModalAsync();
             await Task.CompletedTask;
 
         }
@@ -72,12 +75,26 @@ namespace HealthCareApp.Pages.TrackingInventoryPage
             await Task.CompletedTask;
         }
 
-        private async Task CloseModalPickupAsync()
+        private async Task CloseModalAsync()
         {
             _trackingInventoryMop = new TrackingInventoryMop();
 
-            await Task.FromResult(_modalPickup.Close(_modalPickupTarget));
+            await Task.FromResult(_modal.Close(_modalTarget));
             await Task.CompletedTask;
         }
+
+        //private void OnValueChanged(ChangeEventArgs args)
+        //{
+        //    var valueChanged = args?.Value?.ToString();
+
+        //    if (string.IsNullOrEmpty(valueChanged) || new Guid(valueChanged) == Guid.Empty)
+        //    {
+        //        _isDisabled = true;
+        //    }
+        //    else
+        //    {
+        //        _isDisabled = false;
+        //    }
+        //}
     }
 }

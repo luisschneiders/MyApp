@@ -5,9 +5,9 @@ namespace TrackingInventoryLibrary.Models
 	{
         public Guid Id { get; set; }
 
-        public DateTime PickupTime { get; set; }
+        public DateTime ScanTime { get; set; }
 
-        public DateTime ReturnTime { get; set; }
+        public int EntryType { get; set; }
 
         public int CleanMopQuantity { get; set; }
 

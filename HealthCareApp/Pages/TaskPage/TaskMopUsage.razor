@@ -1,7 +1,13 @@
 ﻿@page "/tasks/mop-usage";
 @using HealthCareApp.Components.PageV3;
-@using HealthCareApp.Components.Breadcrumb
+@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Breadcrumb;
 @using HealthCareApp.Components.Message;
+@using HealthCareApp.Components.Dropdown;
+@using HealthCareApp.Components.Toast;
+@using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Settings.Theme;
+@using HealthCareApp.Settings.Enum;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -17,6 +23,152 @@
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
+                        <div class="row flex-row-reverse justify-content-between pb-2 align-items-center">
+                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                                <DropdownActions IconColor="Theme.success">
+                                    <li class="d-block d-lg-none">
+                                        <button type="button"
+                                                class="dropdown-item text-primary"
+                                                @onclick="() => OpenModalAsync()"
+                                                disabled="@_isDisabled">
+                                            @if (_isLoading)
+                                            {
+                                                <span>
+                                                    Checking...
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <i class="bi bi-clock pe-1"></i>
+                                                    Set time
+                                                </span>
+                                            }
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item">
+                                            <i class="bi bi-file-bar-graph pe-1"></i>Reports
+                                        </button>
+                                    </li>
+                                </DropdownActions>
+                            </div>
+                            <div class="col-10 col-md-6 pb-2">
+                                <div class="row align-items-center">
+                                    <div class="col-sm-8">
+                                        <div class="">
+                                            <input type="text"
+                                                   class="form-control bg-opacity-10 @(_isInputFocus ? "bg-info border-info" : "bg-warning border-warning")"
+                                                   placeholder="Scan label..."
+                                                   autocomplete="off"
+                                                   id="Barcode"
+                                                   @bind="_barcode"
+                                                   @onfocusin="SetInputFocusInAsync"
+                                                   @onfocusout="SetInputFocusOutAsync"
+                                                   @oninput="OnValueChanged" />
+                                        </div>
+                                    </div>
+                                    <div class="col-4 d-none d-lg-block">
+                                        <button type="button"
+                                                class="btn btn-primary w-100"
+                                                @onclick="() => OpenModalAsync()"
+                                                disabled="@_isDisabled">
+                                            @if (_isLoading)
+                                            {
+                                                <span>
+                                                    Checking...
+                                                </span>
+                                            }
+                                            else
+                                            {
+                                                <span>
+                                                    <i class="bi bi-clock pe-1"></i>
+                                                    Set time
+                                                </span>
+                                            }
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <CardView>
+                                    <CardMiddle>
+                                        <div class="d-flex flex-row justify-content-evenly align-items-center">
+                                            <Spinner Size="Size.md" />
+                                        </div>
+                                        <div class="table-responsive hca-table-wrap">
+                                            <table class="table table-hover">
+                                                <thead class="text-muted">
+                                                    <tr>
+                                                        <th>
+                                                            Date
+                                                        </th>
+                                                        <th>
+                                                            Barcode
+                                                        </th>
+                                                        <th>
+                                                            Area
+                                                        </th>
+                                                        <th>
+                                                            # of Mops
+                                                        </th>
+                                                        <th>
+                                                            Clean Mops
+                                                        </th>
+                                                        <th>
+                                                            Dirty Mops
+                                                        </th>
+                                                        @*<th>
+                                                            Shift
+                                                        </th>*@
+                                                        <th>
+                                                            Time
+                                                        </th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody class="table-group-divider">
+                                                    <Virtualize Context="trackinInventoryMop"
+                                                                ItemsProvider="@LoadTrackingInventoryMops"
+                                                                @ref="_virtualizeContainer">
+                                                        <ItemContent>
+                                                            <tr>
+                                                                <td>
+                                                                    @trackinInventoryMop.ScanTime.Date.ToShortDateString()
+                                                                </td>
+                                                                <td>
+                                                                    @trackinInventoryMop.Barcode
+                                                                </td>
+                                                                <td>
+                                                                    @trackinInventoryMop.AreaName
+                                                                </td>
+                                                                <td>
+                                                                    @trackinInventoryMop.MopQuantity
+                                                                </td>
+                                                                <td>
+                                                                    @trackinInventoryMop.CleanMopQuantity
+                                                                </td>
+                                                                <td>
+                                                                    @trackinInventoryMop.DirtyMopQuantity
+                                                                </td>
+                                                                @*<td>
+                                                                    @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
+                                                                </td>*@
+                                                                <td>
+                                                                    @($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} time {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")
+                                                                </td>
+                                                            </tr>
+                                                        </ItemContent>
+                                                    </Virtualize>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                        </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
 
@@ -25,6 +177,8 @@
                 </PageBottomView>
 
             </PageWrapper>
+            <Toast />
+            <TaskMopUsageModal @ref="_taskMopUsageModal" OnSubmitSuccess="RefreshVirtualizeContainer" />
         </Authorized>
         <NotAuthorized>
             <NotAuthorizedMessage />

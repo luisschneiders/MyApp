@@ -24,7 +24,6 @@ namespace HealthCareApp.Data
 		 */
         public async Task<List<TrackingInventoryMopDto>> GetTrackingInventoryMopByDateAsync(IDateTimeRange dateTime)
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<TrackingInventoryMopDto> trackingInventoryMopDtoList = new();
 
             /* Raw query with joins, filters and ordering */
@@ -37,8 +36,7 @@ namespace HealthCareApp.Data
                         on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where trackingInventoryMop.InsertedBy == userService.UserId()
-                    && (trackingInventoryMop.PickupTime.Date >= dateTime.Start.Date && trackingInventoryMop.PickupTime.Date <= dateTime.End.Date)
+                    where (trackingInventoryMop.ScanTime.Date >= dateTime.Start.Date && trackingInventoryMop.ScanTime.Date <= dateTime.End.Date)
                     orderby trackingInventoryMop.CreatedAt descending
                     select new { trackingInventoryMop, labelMop, area, department }
                 ).AsNoTracking();
@@ -88,8 +86,8 @@ namespace HealthCareApp.Data
         {
             TrackingInventoryMopDto trackingInventoryMopDto = new();
             trackingInventoryMopDto.Id = trackingInventoryMop.Id;
-            trackingInventoryMopDto.PickupTime = trackingInventoryMop.PickupTime;
-            trackingInventoryMopDto.ReturnTime = trackingInventoryMop.ReturnTime;
+            trackingInventoryMopDto.ScanTime = trackingInventoryMop.ScanTime;
+            trackingInventoryMopDto.EntryType = trackingInventoryMop.EntryType;
             trackingInventoryMopDto.CleanMopQuantity = trackingInventoryMop.CleanMopQuantity;
             trackingInventoryMopDto.DirtyMopQuantity = trackingInventoryMop.DirtyMopQuantity;
             trackingInventoryMopDto.IsActive = trackingInventoryMop.IsActive;

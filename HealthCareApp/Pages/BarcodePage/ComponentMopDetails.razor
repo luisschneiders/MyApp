@@ -2,63 +2,57 @@
     <legend><i class="@Icon pe-1"></i>Barcode label details</legend>
     <div class="row">
         <div class="col-sm-12">
-            <label class="form-label fw-bolder"
-                   for="Area">
-                Area
-            </label>
-            <input type="text"
-                   class="form-control-plaintext hca-form-control-plaintext"
-                   id="Area"
-                   value="@Model.AreaName"
-                   readonly />
-        </div>
-        <div class="col-sm-12">
-            <label class="form-label fw-bolder"
-                   for="Department">
-                Department
-            </label>
-            <input type="text"
-                   class="form-control-plaintext hca-form-control-plaintext"
-                   id="Department"
-                   value="@Model.DepartmentName"
-                   readonly />
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-12">
-            <label class="form-label fw-bolder"
-                   for="Quantity">
-                Mops Quantity
-            </label>
-            <input type="text"
-                   class="form-control-plaintext hca-form-control-plaintext"
-                   id="Quantity"
-                   value="@Model.Quantity"
-                   readonly />
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Area"
+                       value="@Model.AreaName"
+                       placeholder="Area"
+                       readonly />
+                <label for="Area">Area</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Area"
+                       value="@Model.DepartmentName"
+                       placeholder="Department"
+                       readonly />
+                <label for="Department">Department</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Quantity"
+                       value="@Model.Quantity"
+                       placeholder="Mops Quantity"
+                       readonly />
+                <label for="Quantity">Mops Quantity</label>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-md-6 col-sm-12">
-            <label class="form-label fw-bolder"
-                   for="TimeOut">
-                Pickup time
-            </label>
-            <input type="text"
-                   class="form-control-plaintext hca-form-control-plaintext"
-                   id="TimeOut"
-                   value="@Model.TimeOut.ToString("hh:mm tt")"
-                   readonly />
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="TimeOut"
+                       value="@Model.TimeOut.ToString("hh:mm tt")"
+                       placeholder="Pickup time"
+                       readonly />
+                <label for="TimeOut">Pickup time</label>
+            </div>
         </div>
         <div class="col-md-6 col-sm-12">
-            <label class="form-label fw-bolder"
-                   for="TimeIn">
-                Return time
-            </label>
-            <input type="text"
-                   class="form-control-plaintext hca-form-control-plaintext"
-                   id="TimeIn"
-                   value="@Model.TimeIn.ToString("hh:mm tt")"
-                   readonly />
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="TimeIn"
+                       value="@Model.TimeIn.ToString("hh:mm tt")"
+                       placeholder="Return time"
+                       readonly />
+                <label for="TimeIn">Return time</label>
+            </div>
         </div>
     </div>
 </fieldset>
