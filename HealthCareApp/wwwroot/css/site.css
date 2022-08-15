@@ -10,16 +10,17 @@ a:hover {
     color: #493640;
 }
 
+input[disabled] {
+    cursor: not-allowed;
+}
+
 .btn-rounded {
     border-radius: 45px;
 }
 
-.btn-icon {
-    width: 38px;
-}
-
-.btn-icon i {
-    margin-left: -2px;
+.btn:disabled {
+    cursor: not-allowed;
+    pointer-events: initial;
 }
 
 .breadcrumb-divider {
@@ -150,9 +151,6 @@ a:hover {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
 }
 
-.hca-bg-label-scan {
-    border-radius: 4rem;
-}
 .hca-bg-default {
     background-color: #f3f2f1;
 }
