@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components;
 
 namespace HealthCareApp.Pages.BarcodePage
 {
-	public partial class ComponentMopDetails : ComponentBase
+	public partial class ComponentBarcodeDetails : ComponentBase
 	{
         [Parameter]
 		public LabelMopDto Model { get; set; }
@@ -15,8 +15,7 @@ namespace HealthCareApp.Pages.BarcodePage
         [Parameter]
 		public string Icon { get; set; }
 
-
-		public ComponentMopDetails()
+		public ComponentBarcodeDetails()
 		{
 			Model = new();
 			FieldsetStyle = string.Empty;
