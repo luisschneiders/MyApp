@@ -19,6 +19,8 @@ namespace TrackingInventoryLibrary.Models
 
         public string? AreaName { get; set; }
 
+        public int ShiftType { get; set; }
+
         public int MopQuantity { get; set; }
 
         public bool IsActive { get; set; }
