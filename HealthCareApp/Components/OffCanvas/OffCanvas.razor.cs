@@ -24,6 +24,7 @@ namespace HealthCareApp.Components.OffCanvas
 		{
             Position = "end";
             _showBackdrop = false;
+            _offCanvasClass = string.Empty;
             _offCanvasId = Guid.Empty;
         }
 
