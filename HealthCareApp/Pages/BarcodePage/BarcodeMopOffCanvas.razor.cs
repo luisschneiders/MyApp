@@ -119,6 +119,7 @@ namespace HealthCareApp.Pages.BarcodePage
         private async Task CloseOffCanvasAsync()
         {
             _labelMop = new();
+            _isDisabled = true;
 
             await Task.FromResult(_offCanvas.Close(_offCanvasTarget));
             await Task.CompletedTask;
@@ -172,9 +173,6 @@ namespace HealthCareApp.Pages.BarcodePage
 
         protected override async Task OnInitializedAsync()
         {
-            /*
-             * TODO: list all areas and add disabled attribute in the select input field
-             */
             _areas = await _areaService.GetAreasAsync();
 
             if (_labelMop.AreaId == Guid.Empty)
