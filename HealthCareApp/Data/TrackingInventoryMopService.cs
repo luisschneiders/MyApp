@@ -37,7 +37,7 @@ namespace HealthCareApp.Data
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
                     where (trackingInventoryMop.ScanTime.Date >= dateTime.Start.Date && trackingInventoryMop.ScanTime.Date <= dateTime.End.Date)
-                    orderby trackingInventoryMop.ScanTime ascending
+                    orderby trackingInventoryMop.ScanTime descending
                     select new { trackingInventoryMop, labelMop, area, department }
                 ).AsNoTracking();
 
