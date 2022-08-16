@@ -139,7 +139,7 @@
                                                                 ItemsProvider="@LoadTrackingInventoryMops"
                                                                 @ref="_virtualizeContainer">
                                                         <ItemContent>
-                                                            <tr>
+                                                            <tr class="@(trackinInventoryMop.EntryType == 1 ? "hca-table-bg-warning" : "hca-table-bg-success" )">
                                                                 <td>
                                                                     @trackinInventoryMop.ScanTime.Date.ToShortDateString()
                                                                 </td>
