@@ -48,6 +48,11 @@
                                     </li>
                                     <li>
                                         <button class="dropdown-item">
+                                            <i class="bi bi-calendar3 pe-1"></i>Change date
+                                        </button>
+                                    </li>
+                                    <li>
+                                        <button class="dropdown-item">
                                             <i class="bi bi-file-bar-graph pe-1"></i>Reports
                                         </button>
                                     </li>
@@ -121,9 +126,9 @@
                                                         <th>
                                                             Dirty Mops
                                                         </th>
-                                                        @*<th>
+                                                        <th>
                                                             Shift
-                                                        </th>*@
+                                                        </th>
                                                         <th>
                                                             Time
                                                         </th>
@@ -153,11 +158,23 @@
                                                                 <td>
                                                                     @trackinInventoryMop.DirtyMopQuantity
                                                                 </td>
-                                                                @*<td>
-                                                                    @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
-                                                                </td>*@
                                                                 <td>
-                                                                    @($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} time {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")
+                                                                    @switch (trackinInventoryMop.ShiftType)
+                                                                    {
+                                                                        case 1:
+                                                                            <i class="bi bi-brightness-alt-high-fill pe-1"></i>
+                                                                            break;
+                                                                        case 2:
+                                                                            <i class="bi bi-brightness-high-fill pe-1"></i>
+                                                                            break;
+                                                                        case 3:
+                                                                            <i class="bi bi-moon-stars-fill pe-1"></i>
+                                                                            break;
+                                                                    }
+                                                                    @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
+                                                                </td>
+                                                                <td>
+                                                                    @($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")
                                                                 </td>
                                                             </tr>
                                                         </ItemContent>

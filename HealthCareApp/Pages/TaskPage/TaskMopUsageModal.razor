@@ -14,7 +14,7 @@
             <DataAnnotationsValidator />
             <div class="row">
                 <div class="col-lg-6 col-sm-12 pb-3">
-                    <ComponentMopDetails Model="_labelMopDto"
+                    <ComponentBarcodeDetails Model="_labelMopDto"
                                          FieldsetStyle="markup-background rounded p-2"
                                          Icon="bi bi-upc-scan" />
                 </div>
@@ -27,7 +27,14 @@
                                    @bind-Value="_labelMopDto.Barcode" />
                         <label for="Barcode">Barcode</label>
                     </div>
-
+                    <div class="form-floating mb-3">
+                        <input class="form-control"
+                               id="ScanTime"
+                               type="time"
+                               placeholder="Time"
+                               @bind-value="_trackingInventoryMop.ScanTime" />
+                        <label for="ScanTime">Time</label>
+                    </div>
                     <div class="form-floating mb-3">
                         <InputSelect class="form-select"
                                      id="EntryType"
@@ -40,15 +47,6 @@
                             }
                         </InputSelect>
                         <label for="EntryType">Time type</label>
-                    </div>
-
-                    <div class="form-floating mb-3">
-                        <input class="form-control"
-                               id="ScanTime"
-                               type="time"
-                               placeholder="Time"
-                               @bind-value="_trackingInventoryMop.ScanTime" />
-                        <label for="ScanTime">Time</label>
                     </div>
                     <div class="form-floating mb-3">
                         <InputNumber class="form-control"

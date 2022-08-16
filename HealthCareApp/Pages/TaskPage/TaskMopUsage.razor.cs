@@ -32,7 +32,7 @@ namespace HealthCareApp.Pages.TaskPage
         private LabelMopDto _labelMopDto { get; set; }
         private List<TrackingInventoryMopDto> _trackingInventoryMopDto { get; set; }
         private EntryType[] _entryTypes { get; set; } = default!;
-        //private ShiftType[] _shiftTypes { get; set; } = default!;
+        private ShiftType[] _shiftTypes { get; set; } = default!;
         private string _barcode { get; set; }
         private bool _isInputFocus { get; set; }
         private bool _isDisabled { get; set; }
@@ -47,7 +47,7 @@ namespace HealthCareApp.Pages.TaskPage
             _labelMopDto = new();
             _trackingInventoryMopDto = new();
             _entryTypes = (EntryType[])Enum.GetValues(typeof(EntryType));
-            //_shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
+            _shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
             _barcode = string.Empty;
             _isInputFocus = false;
             _isDisabled = false;
