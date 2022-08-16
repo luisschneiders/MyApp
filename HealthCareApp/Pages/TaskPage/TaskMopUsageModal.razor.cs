@@ -26,6 +26,7 @@ namespace HealthCareApp.Pages.TaskPage
 
 		private Guid _modalTarget { get; set; }
         private bool _displayValidationErrorMessages { get; set; }
+        private bool _recordExists { get; set; }
 
         private EntryType[] _entryTypes { get; set; } = default!;
         private ShiftType[] _shiftTypes { get; set; } = default!;
@@ -35,6 +36,10 @@ namespace HealthCareApp.Pages.TaskPage
             _trackingInventoryMop = new();
             _labelMopDto = new();
             _modal = new();
+
+            _displayValidationErrorMessages = false;
+            _recordExists = true;
+
             _entryTypes = (EntryType[])Enum.GetValues(typeof(EntryType));
             _shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
         }
@@ -57,14 +62,25 @@ namespace HealthCareApp.Pages.TaskPage
         {
             _displayValidationErrorMessages = false;
 
-            await _trackingInventoryMopService.AddTrackingInventoryMopAsync(_trackingInventoryMop);
-            await OnSubmitSuccess.InvokeAsync();
+            _recordExists = await _trackingInventoryMopService.CheckRecordExists(_trackingInventoryMop);
 
-            _toastService.ShowToast("New pickup added!", Level.Success);
+            if (_recordExists)
+            {
+                _toastService.ShowToast($"Barcode already has a record for {Enum.GetName(typeof(EntryType), _trackingInventoryMop.EntryType)} time!", Level.Danger);
+                return;
+            }
+            else
+            {
+                await _trackingInventoryMopService.AddTrackingInventoryMopAsync(_trackingInventoryMop);
+                await OnSubmitSuccess.InvokeAsync();
 
-            await Task.Delay((int)Delay.DataSuccess);
+                _toastService.ShowToast("New record added!", Level.Success);
 
-            await CloseModalAsync();
+                await Task.Delay((int)Delay.DataSuccess);
+                await CloseModalAsync();
+            }
+
+
             await Task.CompletedTask;
 
         }

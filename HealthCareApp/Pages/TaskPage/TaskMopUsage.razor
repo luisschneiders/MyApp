@@ -6,6 +6,7 @@
 @using HealthCareApp.Components.Dropdown;
 @using HealthCareApp.Components.Toast;
 @using HealthCareApp.Components.Spinner;
+@using HealthCareApp.Components.Badge;
 @using HealthCareApp.Settings.Theme;
 @using HealthCareApp.Settings.Enum;
 
@@ -151,6 +152,13 @@
                                                                 </td>
                                                                 <td>
                                                                     @trackinInventoryMop.MopQuantity
+                                                                    @if (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity < trackinInventoryMop.MopQuantity)
+                                                                    {
+                                                                        <sup class="px-1">
+                                                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                                                   Message="@($"Missing ({trackinInventoryMop.MopQuantity - (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity)})")" />
+                                                                        </sup>
+                                                                    }
                                                                 </td>
                                                                 <td>
                                                                     @trackinInventoryMop.CleanMopQuantity

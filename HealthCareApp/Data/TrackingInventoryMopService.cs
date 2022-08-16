@@ -82,6 +82,29 @@ namespace HealthCareApp.Data
             }
         }
 
+        /*
+         * Check if date, barcode and entry type (pickup or return) exists
+         * 
+         */
+        public async Task<bool> CheckRecordExists(TrackingInventoryMop checkTrackingInventoryMop)
+        {
+            bool recordExists =
+                    (
+                        from trackingInventoryMop in _applicationDbContext.Set<TrackingInventoryMop>()
+                        join labelMop in _applicationDbContext.Set<LabelMop>()
+                            on trackingInventoryMop.LabelMopId equals labelMop.Id
+                        where
+                        (
+                            trackingInventoryMop.ScanTime.Date == checkTrackingInventoryMop.ScanTime.Date
+                            && labelMop.Id == checkTrackingInventoryMop.LabelMopId
+                            &&  trackingInventoryMop.EntryType == checkTrackingInventoryMop.EntryType
+                        )
+                        select new { trackingInventoryMop }
+                    )
+                    .AsNoTracking().Any();
+            return await Task.FromResult(recordExists);
+        }
+
         private static TrackingInventoryMopDto SetTrackingInventotyMopDto(TrackingInventoryMop trackingInventoryMop, LabelMop labelMop, Area area, Department department)
         {
             TrackingInventoryMopDto trackingInventoryMopDto = new();
