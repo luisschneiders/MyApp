@@ -34,7 +34,7 @@ namespace HealthCareApp.Pages.TaskPage
         private bool _isInputFocus { get; set; }
         private bool _isDisabled { get; set; }
         private bool _isLoading { get; set; }
-        private bool _hasSearchResults { get; set; }
+        private IDateTimeRange _dateTimeRange { get; set; }
 
         public TaskMopUsage()
         {
@@ -49,7 +49,11 @@ namespace HealthCareApp.Pages.TaskPage
             _isInputFocus = false;
             _isDisabled = false;
             _isLoading = false;
-            _hasSearchResults = false;
+            _dateTimeRange = new DateTimeRange
+            {
+                Start = DateTime.Now,
+                End = DateTime.Now
+            };
         }
 
         private async Task RefreshVirtualizeContainer()
@@ -124,11 +128,8 @@ namespace HealthCareApp.Pages.TaskPage
 
         private async ValueTask<ItemsProviderResult<TrackingInventoryMopDto>> LoadTrackingInventoryMops(ItemsProviderRequest request)
         {
-            IDateTimeRange dateTimeRange = new DateTimeRange();
-            dateTimeRange.Start = DateTime.Now;
-            dateTimeRange.End = DateTime.Now;
 
-            _trackingInventoryMopDto = await _trackingInventoryMopService.GetTrackingInventoryMopByDateAsync(dateTimeRange);
+            _trackingInventoryMopDto = await _trackingInventoryMopService.GetTrackingInventoryMopByDateAsync(_dateTimeRange);
 
             await InvokeAsync(() => StateHasChanged());
 

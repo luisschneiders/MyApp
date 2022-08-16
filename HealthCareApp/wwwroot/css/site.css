@@ -185,6 +185,7 @@ a.hca-box-shadow:hover {
 .hca-table-wrap thead tr th {
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
 .hca-table-wrap th {

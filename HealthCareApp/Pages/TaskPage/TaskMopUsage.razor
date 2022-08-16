@@ -151,12 +151,13 @@
                                                                     @trackinInventoryMop.AreaName
                                                                 </td>
                                                                 <td>
-                                                                    @trackinInventoryMop.MopQuantity
+                                                                    <span class="pe-1">@trackinInventoryMop.MopQuantity</span>
                                                                     @if (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity < trackinInventoryMop.MopQuantity)
                                                                     {
-                                                                        <sup class="px-1">
+                                                                        <sup>
                                                                             <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                                                                                   Message="@($"Missing ({trackinInventoryMop.MopQuantity - (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity)})")" />
+                                                                                   Message="@($"Missing {trackinInventoryMop.MopQuantity - (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity)}")" />
+
                                                                         </sup>
                                                                     }
                                                                 </td>
