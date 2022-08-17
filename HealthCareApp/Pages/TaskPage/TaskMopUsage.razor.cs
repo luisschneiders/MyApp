@@ -24,6 +24,7 @@ namespace HealthCareApp.Pages.TaskPage
         private TrackingInventoryMopService _trackingInventoryMopService { get; set; } = default!;
 
         private TaskMopUsageModal _taskMopUsageModal { get; set; }
+        private TaskMopUsageModalDate _taskMopUsageModalDate { get; set; }
         private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
         private AppURL _appURL { get; }
         private LabelMopDto _labelMopDto { get; set; }
@@ -31,14 +32,17 @@ namespace HealthCareApp.Pages.TaskPage
         private EntryType[] _entryTypes { get; set; } = default!;
         private ShiftType[] _shiftTypes { get; set; } = default!;
         private string _barcode { get; set; }
+        private string _dateRangeDescription { get; set; }
         private bool _isInputFocus { get; set; }
         private bool _isDisabled { get; set; }
         private bool _isLoading { get; set; }
+
         private IDateTimeRange _dateTimeRange { get; set; }
 
         public TaskMopUsage()
         {
             _taskMopUsageModal = new();
+            _taskMopUsageModalDate = new();
             _virtualizeContainer = new();
             _appURL = new();
             _labelMopDto = new();
@@ -54,11 +58,21 @@ namespace HealthCareApp.Pages.TaskPage
                 Start = DateTime.Now,
                 End = DateTime.Now
             };
+            _dateRangeDescription = string.Empty;
         }
 
         private async Task RefreshVirtualizeContainer()
         {
             await _virtualizeContainer.RefreshDataAsync();
+        }
+
+        private async Task RefreshDateRange()
+        {
+            _dateTimeRange = _taskMopUsageModalDate._dateTimeRange;
+            _toastService.ShowToast("Date range has changed!", Level.Secondary);
+            await UpdateTitleAsync();
+            await RefreshVirtualizeContainer();
+            await Task.CompletedTask;
         }
 
         private async Task SetInputFocusInAsync(FocusEventArgs eventArgs)
@@ -86,6 +100,13 @@ namespace HealthCareApp.Pages.TaskPage
         protected override async Task OnInitializedAsync()
         {
             _isDisabled = true;
+            await Task.FromResult(UpdateTitleAsync());
+            await Task.CompletedTask;
+        }
+
+        private async Task UpdateTitleAsync()
+        {
+            _dateRangeDescription = $"From {_dateTimeRange.Start.Date.ToShortDateString()} to {_dateTimeRange.End.Date.ToShortDateString()}";
             await Task.CompletedTask;
         }
 
@@ -124,6 +145,11 @@ namespace HealthCareApp.Pages.TaskPage
             _isLoading = false;
 
             await Task.CompletedTask;
+        }
+
+        private async Task OpenModalDateAsync()
+        {
+            await Task.FromResult(_taskMopUsageModalDate.OpenModalAsync());
         }
 
         private async ValueTask<ItemsProviderResult<TrackingInventoryMopDto>> LoadTrackingInventoryMops(ItemsProviderRequest request)
