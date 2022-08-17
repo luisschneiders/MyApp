@@ -98,19 +98,5 @@ namespace HealthCareApp.Pages.TaskPage
             await Task.FromResult(_modal.Close(_modalTarget));
             await Task.CompletedTask;
         }
-
-        //private void OnValueChanged(ChangeEventArgs args)
-        //{
-        //    var valueChanged = args?.Value?.ToString();
-
-        //    if (string.IsNullOrEmpty(valueChanged) || new Guid(valueChanged) == Guid.Empty)
-        //    {
-        //        _isDisabled = true;
-        //    }
-        //    else
-        //    {
-        //        _isDisabled = false;
-        //    }
-        //}
     }
 }
