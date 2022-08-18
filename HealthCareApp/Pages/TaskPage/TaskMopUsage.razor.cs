@@ -25,6 +25,7 @@ namespace HealthCareApp.Pages.TaskPage
 
         private TaskMopUsageModal _taskMopUsageModal { get; set; }
         private TaskMopUsageModalDate _taskMopUsageModalDate { get; set; }
+        private TaskMopUsageModalReport _taskMopUsageModalReport { get; set; }
         private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
         private AppURL _appURL { get; }
         private LabelMopDto _labelMopDto { get; set; }
@@ -43,6 +44,7 @@ namespace HealthCareApp.Pages.TaskPage
         {
             _taskMopUsageModal = new();
             _taskMopUsageModalDate = new();
+            _taskMopUsageModalReport = new();
             _virtualizeContainer = new();
             _appURL = new();
             _labelMopDto = new();
@@ -69,7 +71,7 @@ namespace HealthCareApp.Pages.TaskPage
         private async Task RefreshDateRange()
         {
             _dateTimeRange = _taskMopUsageModalDate._dateTimeRange;
-            _toastService.ShowToast("Date range has changed!", Level.Secondary);
+            _toastService.ShowToast("Date range has changed!", Level.Info);
             await UpdateTitleAsync();
             await RefreshVirtualizeContainer();
             await Task.CompletedTask;
@@ -106,7 +108,14 @@ namespace HealthCareApp.Pages.TaskPage
 
         private async Task UpdateTitleAsync()
         {
-            _dateRangeDescription = $"From {_dateTimeRange.Start.Date.ToShortDateString()} to {_dateTimeRange.End.Date.ToShortDateString()}";
+            if(_dateTimeRange.Start.Date == _dateTimeRange.End.Date)
+            {
+                _dateRangeDescription = $"{_dateTimeRange.Start.Date.ToString("dd/MM/yy")}";
+            }
+            else
+            {
+                _dateRangeDescription = $"{_dateTimeRange.Start.Date.ToString("dd/MM/yy")} - {_dateTimeRange.End.Date.ToString("dd/MM/yy")}";
+            }
             await Task.CompletedTask;
         }
 
@@ -150,6 +159,11 @@ namespace HealthCareApp.Pages.TaskPage
         private async Task OpenModalDateAsync()
         {
             await Task.FromResult(_taskMopUsageModalDate.OpenModalAsync());
+        }
+
+        private async Task OpenModalReportAsync()
+        {
+            await Task.FromResult(_taskMopUsageModalReport.OpenModalAsync());
         }
 
         private async ValueTask<ItemsProviderResult<TrackingInventoryMopDto>> LoadTrackingInventoryMops(ItemsProviderRequest request)

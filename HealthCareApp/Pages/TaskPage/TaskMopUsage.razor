@@ -48,7 +48,7 @@
                                             }
                                         </button>
                                     </li>
-                                    <li class="d-block d-lg-none">
+                                    <li>
                                         <button class="dropdown-item"
                                                 title="Change date"
                                                 @onclick="() => OpenModalDateAsync()">
@@ -56,7 +56,9 @@
                                         </button>
                                     </li>
                                     <li>
-                                        <button class="dropdown-item">
+                                        <button class="dropdown-item"
+                                                title="View Report"
+                                                @onclick="() => OpenModalReportAsync()">
                                             <i class="bi bi-file-bar-graph pe-1"></i>Reports
                                         </button>
                                     </li>
@@ -96,14 +98,14 @@
                                             }
                                         </button>
                                     </div>
-                                    <div class="col-md-5 d-none d-lg-block">
-                                        <button type="button"
-                                                class="btn btn-light"
-                                                title="Change date"
-                                                @onclick="() => OpenModalDateAsync()">
-                                            <i class="bi bi-calendar3 pe-1"></i>@_dateRangeDescription
-                                        </button>
-                                    </div>
+                                    @*<div class="col-md-5 d-none d-lg-block">
+                                    <button type="button"
+                                            class="btn btn-light"
+                                            title="Change date"
+                                            @onclick="() => OpenModalDateAsync()">
+                                        <i class="bi bi-calendar3 pe-1"></i>@_dateRangeDescription
+                                    </button>
+                                </div>*@
                                 </div>
                             </div>
 
@@ -120,7 +122,14 @@
                                                 <thead class="text-muted">
                                                     <tr>
                                                         <th>
-                                                            Date
+                                                            <sup>
+                                                                <Badge BackgroundColor="@Level.Info.ToString().ToLower()"
+                                                                       Message="@_dateRangeDescription" />
+                                                            </sup>
+                                                            <div>
+                                                                Date
+                                                            </div>
+
                                                         </th>
                                                         <th>
                                                             Barcode
@@ -198,10 +207,10 @@
                                                             </tr>
                                                         </ItemContent>
                                                     </Virtualize>
-                                                    @if(_trackingInventoryMopDto.Count <= 0)
+                                                    @if (_trackingInventoryMopDto.Count <= 0)
                                                     {
                                                         <tr>
-                                                            <td colspan="8" class="text-center text-danger">
+                                                            <td colspan="8" class="text-center lead">
                                                                 No records found!
                                                             </td>
                                                         </tr>
@@ -224,6 +233,7 @@
             <Toast />
             <TaskMopUsageModal @ref="_taskMopUsageModal" OnSubmitSuccess="RefreshVirtualizeContainer" />
             <TaskMopUsageModalDate @ref="_taskMopUsageModalDate" OnSubmitSuccess="RefreshDateRange" />
+            <TaskMopUsageModalReport @ref="_taskMopUsageModalReport" />
         </Authorized>
         <NotAuthorized>
             <NotAuthorizedMessage />
