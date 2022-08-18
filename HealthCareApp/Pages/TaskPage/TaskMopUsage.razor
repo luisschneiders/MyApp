@@ -64,8 +64,13 @@
                                     <li>
                                         <button class="dropdown-item"
                                                 title="View Report"
+                                                disabled
                                                 @onclick="() => OpenModalReportAsync()">
                                             <i class="bi bi-file-bar-graph pe-1"></i>Reports
+                                            <sup>
+                                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                       Message="Coming soon"/>
+                                            </sup>
                                         </button>
                                     </li>
                                 </DropdownActions>
