@@ -3,7 +3,7 @@
 <AuthorizeView>
     <Authorized>
         <div class="dropdown">
-            <a class="btn btn-outline-secondary shadow" id="dropdownMenuUser" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
+            <a class="btn btn-default shadow" id="dropdownMenuUser" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
                 Hello, @context.User.Identity?.Name.Truncate((int)Truncate.FirstName)<i class="bi bi-chevron-down ps-2"></i>
             </a>
             <ul class="dropdown-menu dropdown-menu-lg-end border-light shadow-lg" aria-labelledby="dropdownMenuUser">
