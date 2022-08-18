@@ -1,6 +1,38 @@
 ﻿html, body {
     height: 100%;
 }
+.btn-default {
+    --bs-btn-color: var(--bs-white);
+    --bs-btn-bg: var(--bs-purple);
+    --bs-btn-border-color: var(--bs-purple);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: #59359a;
+    --bs-btn-hover-border-color: #432874;
+    --bs-btn-focus-shadow-rgb: 111,66,193;
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: #432874;
+    --bs-btn-active-border-color: #2c1a4d;
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--bs-white);
+    --bs-btn-disabled-bg: var(--bs-purple);
+    --bs-btn-disabled-border-color: var(--bs-purple);
+}
+
+.btn-outline-default {
+    --bs-btn-color: var(--bs-purple);
+    --bs-btn-border-color: var(--bs-purple);
+    --bs-btn-hover-color: var(--bs-white);
+    --bs-btn-hover-bg: var(--bs-purple);
+    --bs-btn-hover-border-color: var(--bs-purple);
+    --bs-btn-focus-shadow-rgb: 111,66,193;
+    --bs-btn-active-color: var(--bs-white);
+    --bs-btn-active-bg: var(--bs-purple);
+    --bs-btn-active-border-color: var(--bs-purple);
+    --bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+    --bs-btn-disabled-color: var(--bs-purple);
+    --bs-btn-disabled-bg: transparent;
+    --bs-gradient: none;
+}
 
 a, .btn-link {
     text-decoration: none;
@@ -89,7 +121,6 @@ input[disabled] {
 }
 .markup-background {
     background-color: #f4fdff;
-/*    border-radius: 0.8rem;*/
 }
 .flex-container {
     display: grid;
@@ -150,7 +181,6 @@ input[disabled] {
 .hca-box-shadow {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
 }
-
 .hca-bg-default {
     background-color: #f3f2f1;
 }

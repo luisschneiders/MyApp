@@ -47,17 +47,16 @@ namespace HealthCareApp.Pages.TaskPage
         private async Task PrintAsync()
         {
             _dateTimeRange.CheckDate();
-            //if (!_dateTimeRange.CheckDate())
-            //{
-            //    _isValidDateRange = false;
-            //    ResetDateRange();
-            //}
-            //else
-            //{
-            //    _isValidDateRange = true;
-            //    await OnSubmitSuccess.InvokeAsync();
-            //    await CloseModalAsync();
-            //}
+            if (!_dateTimeRange.CheckDate())
+            {
+                _isValidDateRange = false;
+                ResetDateRange();
+            }
+            else
+            {
+                _isValidDateRange = true;
+                await CloseModalAsync();
+            }
             await Task.CompletedTask;
         }
 
