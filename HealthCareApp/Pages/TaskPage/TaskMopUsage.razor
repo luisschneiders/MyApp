@@ -17,7 +17,13 @@
 
                 <PageTopView>
                     <PageTopWrapper>
-                        <PageTopTitle Title="Mop usage" />
+                        <div class="d-flex flex-row">
+                            <PageTopTitle Title="Mop usage" />
+                            <sup>
+                                <Badge BackgroundColor="@Level.Success.ToString().ToLower()"
+                                       Message="New" />
+                            </sup>
+                        </div>
                         <Breadcrumb AppPageLink="@_appURL.TasksMopUsage" />
                     </PageTopWrapper>
                 </PageTopView>

@@ -1,11 +1,16 @@
 ﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Components.Badge;
 @using HealthCareApp.Settings.Enum;
-@using HealthCareApp.Pages.BarcodePage;
 
 <Modal @ref="_modal" Size="Size.md">
 
-    <Title>Change date</Title>
-
+    <Title>
+        Change date
+        <sup>
+            <Badge BackgroundColor="@Level.Success.ToString().ToLower()"
+                   Message="New" />
+        </sup>
+    </Title>
     <Body>
         <div class="row">
             <div class="col-sm-12 col-md-6">
@@ -31,7 +36,7 @@
 
             </div>
         </div>
-        @if(!_isValidDateRange)
+        @if (!_isValidDateRange)
         {
             <div class="row">
 
