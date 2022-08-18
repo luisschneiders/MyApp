@@ -1,0 +1,87 @@
+﻿@using HealthCareApp.Settings.Enum;
+
+<fieldset class="@FieldsetStyle">
+    <legend><i class="@Icon pe-1"></i>Barcode label details</legend>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Area"
+                       value="@Model.AreaName"
+                       placeholder="Area"
+                       readonly />
+                <label for="Area">Area</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Area"
+                       value="@Model.DepartmentName"
+                       placeholder="Department"
+                       readonly />
+                <label for="Department">Department</label>
+            </div>
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="Quantity"
+                       value="@Model.Quantity"
+                       placeholder="Mops Quantity"
+                       readonly />
+                <label for="Quantity">Mops Quantity</label>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <div class="form-floating mb-3">
+                <input type="text"
+                       class="form-control-plaintext"
+                       id="ShiftType"
+                       value="@(Enum.GetName(typeof(ShiftType), Model.ShiftType))"
+                       placeholder="Shift"
+                       readonly />
+                <label for="ShiftType">Shift</label>
+            </div>
+        </div>
+        <div class="col-6 d-flex align-items-center">
+            @switch (Model.ShiftType)
+            {
+                case 1:
+                    <i class="bi bi-brightness-alt-high-fill ps-3"></i>
+                    break;
+                case 2:
+                    <i class="bi bi-brightness-high-fill ps-3"></i>
+                    break;
+                case 3:
+                    <i class="bi bi-moon-stars-fill ps-3"></i>
+                    break;
+            }
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+                <input type="text"
+                        class="form-control-plaintext"
+                        id="TimeOut"
+                        value="@Model.TimeOut.ToString("hh:mm tt")"
+                        placeholder="Pickup time"
+                        readonly />
+                <label for="TimeOut">Pickup time</label>
+            </div>
+        </div>
+        <div class="col-md-6 col-sm-12">
+            <div class="form-floating mb-3">
+                <input type="text"
+                        class="form-control-plaintext"
+                        id="TimeIn"
+                        value="@Model.TimeIn.ToString("hh:mm tt")"
+                        placeholder="Return time"
+                        readonly />
+                <label for="TimeIn">Return time</label>
+            </div>
+        </div>
+    </div>
+</fieldset>

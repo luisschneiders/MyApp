@@ -1,4 +1,4 @@
-﻿
+﻿using System;
 using AreaLibrary.Models;
 using DepartmentLibrary.Models;
 using LabelLibrary.Models;
@@ -15,7 +15,7 @@ namespace HealthCareApp.Data
 		{
 			_applicationDbContext = applicationDbContext;
 			_httpContextAccessor = httpContextAccessor;
-		}
+        }
 
         /*
          * async method to get list of LabelMops
@@ -178,8 +178,20 @@ namespace HealthCareApp.Data
                 Console.WriteLine("Error: {0}", ex.Message);
                 await Task.CompletedTask;
             }
+
         }
 
+        public async Task<bool> CheckRecordExists(string barcode)
+        {
+            bool recordExists =
+                    (
+                        from labelMop in _applicationDbContext.Set<LabelMop>()
+                        where labelMop.Barcode == barcode
+                        select new { labelMop }
+                    ).AsNoTracking().Any();
+
+            return await Task.FromResult(recordExists);
+        }
         /*
          * async method to update Label
          */
@@ -256,6 +268,7 @@ namespace HealthCareApp.Data
             labelMopDto.Id = labelMop.Id;
             labelMopDto.Barcode = labelMop.Barcode;
             labelMopDto.Quantity = labelMop.Quantity;
+            labelMopDto.ShiftType = labelMop.ShiftType;
             labelMopDto.TimeIn = labelMop.TimeIn;
             labelMopDto.TimeOut = labelMop.TimeOut;
             labelMopDto.DepartmentId = labelMop.AreaId;

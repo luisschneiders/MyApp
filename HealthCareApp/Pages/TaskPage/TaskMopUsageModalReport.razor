@@ -1,0 +1,67 @@
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Pages.BarcodePage;
+
+<Modal @ref="_modal" Size="Size.md">
+
+    <Title>Reports</Title>
+
+    <Body>
+        <div class="row">
+            <div class="col-sm-12 col-md-6">
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="Start"
+                           type="date"
+                           placeholder="Start date"
+                           @bind-value="_dateTimeRange.Start" />
+                    <label for="Start">Start date</label>
+                </div>
+
+            </div>
+            <div class="col-sm-12 col-md-6">
+                <div class="form-floating mb-3">
+                    <input class="form-control"
+                           id="End"
+                           type="date"
+                           placeholder="End date"
+                           @bind-value="_dateTimeRange.End" />
+                    <label for="End">End date</label>
+                </div>
+
+            </div>
+        </div>
+        @*@if (!_isValidDateRange)
+        {
+            <div class="row">
+
+                <div class="col-12">
+                    <ul class="validation-errors">
+                        <li class="validation-message">
+                            Invalid date range, please check!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        }*@
+    </Body>
+
+    <Footer>
+        <div class="row w-100 justify-content-end">
+            <div class="col-sm-12 col-md-6 d-flex gap-2 g-0">
+                <button type="button"
+                        class="btn btn-outline-secondary w-100"
+                        data-dismiss="modal"
+                        @onclick="() => CloseModalAsync()">
+                    Cancel
+                </button>
+                <button type="button"
+                        class="btn btn-primary w-100"
+                        @onclick="() => PrintAsync()">
+                    View report
+                </button>
+            </div>
+        </div>
+    </Footer>
+
+</Modal>

@@ -61,6 +61,20 @@
                         <label for="Quantity">Quantity</label>
                     </div>
                     <div class="form-floating mb-3">
+                        <InputSelect class="form-select"
+                                     id="ShiftType"
+                                     disabled="@(_offCanvasViewType == OffCanvasViewType.View ? true: false)"
+                                     @bind-Value="_labelMop.ShiftType">
+                            <option value="0">-- Select shift type --</option>
+                            @foreach (var (shiftType, index) in _shiftTypes.Select((value, index) => (value, index)))
+                            {
+                                int shiftTypeValue = index + 1;
+                                <option value="@shiftTypeValue"> @($"{shiftType}") </option>
+                            }
+                        </InputSelect>
+                        <label for="ShiftType">Shift type</label>
+                    </div>
+                    <div class="form-floating mb-3">
                         <input class="@(_offCanvasViewType == OffCanvasViewType.View ? "form-control-plaintext" : "form-control")"
                                id="TimeOut"
                                placeholder="Pickup time"
@@ -142,7 +156,8 @@
                 </div>
                 <div class="col-6">
                     <button class="btn btn-primary w-100"
-                            type="submit">
+                            type="submit"
+                            disabled="@_isDisabled">
                         Save
                     </button>
                 </div>

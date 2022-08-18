@@ -24,7 +24,6 @@ namespace HealthCareApp.Data
 		 */
         public async Task<List<TrackingInventoryMopDto>> GetTrackingInventoryMopByDateAsync(IDateTimeRange dateTime)
         {
-            UserService userService = new UserService(_httpContextAccessor);
             List<TrackingInventoryMopDto> trackingInventoryMopDtoList = new();
 
             /* Raw query with joins, filters and ordering */
@@ -37,9 +36,8 @@ namespace HealthCareApp.Data
                         on labelMop.AreaId equals area.Id
                     join department in _applicationDbContext.Set<Department>()
                         on area.DepartmentId equals department.Id
-                    where trackingInventoryMop.InsertedBy == userService.UserId()
-                    && (trackingInventoryMop.PickupTime.Date >= dateTime.Start.Date && trackingInventoryMop.PickupTime.Date <= dateTime.End.Date)
-                    orderby trackingInventoryMop.CreatedAt descending
+                    where (trackingInventoryMop.ScanTime.Date >= dateTime.Start.Date && trackingInventoryMop.ScanTime.Date <= dateTime.End.Date)
+                    orderby trackingInventoryMop.ScanTime descending
                     select new { trackingInventoryMop, labelMop, area, department }
                 ).AsNoTracking();
 
@@ -84,12 +82,36 @@ namespace HealthCareApp.Data
             }
         }
 
+        /*
+         * Check if date, barcode and entry type (pickup or return) exists
+         * 
+         */
+        public async Task<bool> CheckRecordExists(TrackingInventoryMop checkTrackingInventoryMop)
+        {
+            bool recordExists =
+                    (
+                        from trackingInventoryMop in _applicationDbContext.Set<TrackingInventoryMop>()
+                        join labelMop in _applicationDbContext.Set<LabelMop>()
+                            on trackingInventoryMop.LabelMopId equals labelMop.Id
+                        where
+                        (
+                            trackingInventoryMop.ScanTime.Date == checkTrackingInventoryMop.ScanTime.Date
+                            && labelMop.Id == checkTrackingInventoryMop.LabelMopId
+                            &&  trackingInventoryMop.EntryType == checkTrackingInventoryMop.EntryType
+                        )
+                        select new { trackingInventoryMop }
+                    )
+                    .AsNoTracking().Any();
+            return await Task.FromResult(recordExists);
+        }
+
         private static TrackingInventoryMopDto SetTrackingInventotyMopDto(TrackingInventoryMop trackingInventoryMop, LabelMop labelMop, Area area, Department department)
         {
             TrackingInventoryMopDto trackingInventoryMopDto = new();
             trackingInventoryMopDto.Id = trackingInventoryMop.Id;
-            trackingInventoryMopDto.PickupTime = trackingInventoryMop.PickupTime;
-            trackingInventoryMopDto.ReturnTime = trackingInventoryMop.ReturnTime;
+            trackingInventoryMopDto.ScanTime = trackingInventoryMop.ScanTime;
+            trackingInventoryMopDto.EntryType = trackingInventoryMop.EntryType;
+            trackingInventoryMopDto.ShiftType = labelMop.ShiftType;
             trackingInventoryMopDto.CleanMopQuantity = trackingInventoryMop.CleanMopQuantity;
             trackingInventoryMopDto.DirtyMopQuantity = trackingInventoryMop.DirtyMopQuantity;
             trackingInventoryMopDto.IsActive = trackingInventoryMop.IsActive;

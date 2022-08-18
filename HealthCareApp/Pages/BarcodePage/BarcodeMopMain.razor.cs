@@ -3,6 +3,7 @@ using EmployeeLibrary.Models;
 using HealthCareApp.Components.Spinner;
 using HealthCareApp.Data;
 using HealthCareApp.Pages.EmployeePage;
+using HealthCareApp.Settings.Enum;
 using HealthCareApp.Shared;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
@@ -30,6 +31,7 @@ namespace HealthCareApp.Pages.BarcodePage
 
         private string _searchTerm { get; set; }
         private List<LabelMopDto> _searchResults { get; set; }
+        private ShiftType[] _shiftTypes { get; set; } = default!;
         private bool _hasSearchResults { get; set; }
 
         public BarcodeMopMain()
@@ -41,6 +43,7 @@ namespace HealthCareApp.Pages.BarcodePage
             _barcodeMopOffCanvas = new();
             _searchTerm = string.Empty;
             _searchResults = new List<LabelMopDto>();
+            _shiftTypes = (ShiftType[])Enum.GetValues(typeof(ShiftType));
             _hasSearchResults = false;
         }
 

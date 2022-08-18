@@ -10,16 +10,17 @@ a:hover {
     color: #493640;
 }
 
+input[disabled] {
+    cursor: not-allowed;
+}
+
 .btn-rounded {
     border-radius: 45px;
 }
 
-.btn-icon {
-    width: 38px;
-}
-
-.btn-icon i {
-    margin-left: -2px;
+.btn:disabled {
+    cursor: not-allowed;
+    pointer-events: initial;
 }
 
 .breadcrumb-divider {
@@ -150,9 +151,6 @@ a:hover {
     box-shadow: 0px 12px 15px 0px rgb(0 0 0 / 10%);
 }
 
-.hca-bg-label-scan {
-    border-radius: 4rem;
-}
 .hca-bg-default {
     background-color: #f3f2f1;
 }
@@ -187,6 +185,7 @@ a.hca-box-shadow:hover {
 .hca-table-wrap thead tr th {
     position: sticky;
     top: 0;
+    z-index: 10;
 }
 
 .hca-table-wrap th {
@@ -211,6 +210,26 @@ a.hca-box-shadow:hover {
 }
 .hca-component-focus-backdrop.show {
     opacity: 0.5;
+}
+
+.hca-bg-info {
+    background: hsl(190deg 100% 60% / 21%);
+    color: hsl(190deg 60% 35%);
+}
+
+.hca-bg-success {
+    background: hsl(152deg 100% 60% / 21%);
+    color: hsl(152deg 60% 35%);
+}
+
+.hca-bg-warning {
+    background-color: hsl(45deg 100% 60% / 21%);
+    color: hsl(45deg 60% 35%);
+}
+
+.hca-bg-danger {
+    background-color: hsl(354deg 100% 60% / 21%);
+    color: hsl(354deg 60% 35%);
 }
 
 @media (min-width: 992px) {

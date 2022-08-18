@@ -33,6 +33,9 @@ namespace HealthCareApp.Shared
                 case Level.White:
                     BackgroundColor = "white";
                     break;
+                case Level.Secondary:
+                    BackgroundColor = "secondary";
+                    break;
             }
         }
 

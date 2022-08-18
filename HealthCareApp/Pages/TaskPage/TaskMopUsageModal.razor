@@ -1,0 +1,102 @@
+﻿@using HealthCareApp.Components.Modal;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Pages.BarcodePage;
+
+<Modal @ref="_modal"
+       Size="Size.lg">
+    <Title>Set new time</Title>
+    <Body>
+        <EditForm Model="@_trackingInventoryMop"
+                  OnValidSubmit="@HandleValidSubmitAsync"
+                  OnInvalidSubmit="@HandleInvalidSubmitAsync"
+                  autocomplete="off"
+                  id="ModalForm">
+            <DataAnnotationsValidator />
+            <div class="row">
+                <div class="col-lg-6 col-sm-12 pb-3">
+                    <ComponentBarcodeDetails Model="_labelMopDto"
+                                         FieldsetStyle="markup-background rounded p-2"
+                                         Icon="bi bi-upc-scan" />
+                </div>
+                <div class="col-lg-6 col-sm-12">
+                    <div class="form-floating mb-3">
+                        <InputText class="form-control"
+                                   id="Barcode"
+                                   disabled="true"
+                                   placeholder="Barcode"
+                                   @bind-Value="_labelMopDto.Barcode" />
+                        <label for="Barcode">Barcode</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input class="form-control"
+                               id="ScanTime"
+                               type="time"
+                               placeholder="Time"
+                               @bind-value="_trackingInventoryMop.ScanTime" />
+                        <label for="ScanTime">Time</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputSelect class="form-select"
+                                     id="EntryType"
+                                     @bind-Value="_trackingInventoryMop.EntryType">
+                            <option value="0">-- Select time type --</option>
+                            @foreach (var (entryType, index) in _entryTypes.Select((value, index) => (value, index)))
+                            {
+                                int entryTypeValue = index + 1;
+                                <option value="@entryTypeValue"> @($"{entryType} time") </option>
+                            }
+                        </InputSelect>
+                        <label for="EntryType">Time type</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber class="form-control"
+                                     id="CleanMopQuantity"
+                                     min="0"
+                                     max="@_labelMopDto.Quantity"
+                                     placeholder="Clean mops quantity"
+                                     @bind-Value="_trackingInventoryMop.CleanMopQuantity" />
+                        <label for="CleanMopQuantity">Clean mops quantity</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <InputNumber class="form-control"
+                                     id="DirtyMopQuantity"
+                                     min="0"
+                                     max="@(_labelMopDto.Quantity - _trackingInventoryMop.CleanMopQuantity)"
+                                     placeholder="Dirty mops quantity"
+                                     @bind-Value="_trackingInventoryMop.DirtyMopQuantity" />
+                        <label for="DirtyMopQuantity">Dirty mops quantity</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    @if (_displayValidationErrorMessages)
+                    {
+                        <div class="row mb-3">
+                            <div class="col">
+                                <ValidationSummary />
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </EditForm>
+    </Body>
+    <Footer>
+        <div class="row w-100 justify-content-end">
+            <div class="col-sm-12 col-md-6 d-flex gap-2 g-0">
+                <button type="button"
+                        class="btn btn-outline-secondary w-100"
+                        data-dismiss="modal"
+                        @onclick="() => CloseModalAsync()">
+                    Cancel
+                </button>
+                <button type="submit"
+                        form="ModalForm"
+                        class="btn btn-primary w-100">
+                    Save
+                </button>
+            </div>
+        </div>
+    </Footer>
+</Modal>

@@ -30,7 +30,7 @@
                 <PageMiddleView>
                     <PageMiddleWrapper>
                         <div class="row flex-row-reverse justify-content-between pb-2">
-                            <div class="col-2 col-md-3 col-lg-2 d-flex justify-content-end pb-2">
+                            <div class="col-2 col-md-2 col-lg-2 d-flex justify-content-end pb-2">
                                 <DropdownActions IconColor="Theme.success">
                                     <li>
                                         <button class="dropdown-item"
@@ -73,6 +73,9 @@
                                                             # of Mops
                                                         </th>
                                                         <th>
+                                                            Shift
+                                                        </th>
+                                                        <th>
                                                             Pickup time
                                                         </th>
                                                         <th>
@@ -102,6 +105,9 @@
                                                                     </td>
                                                                     <td>
                                                                         @labelMop.Quantity
+                                                                    </td>
+                                                                    <td>
+                                                                        @($"{_shiftTypes[@labelMop.ShiftType - 1]}")
                                                                     </td>
                                                                     <td>
                                                                         @labelMop.TimeOut.ToString("hh:mm tt")
