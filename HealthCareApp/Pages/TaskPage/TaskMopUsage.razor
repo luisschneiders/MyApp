@@ -104,14 +104,6 @@
                                             }
                                         </button>
                                     </div>
-                                    @*<div class="col-md-5 d-none d-lg-block">
-                                    <button type="button"
-                                            class="btn btn-light"
-                                            title="Change date"
-                                            @onclick="() => OpenModalDateAsync()">
-                                        <i class="bi bi-calendar3 pe-1"></i>@_dateRangeDescription
-                                    </button>
-                                </div>*@
                                 </div>
                             </div>
 
@@ -165,7 +157,7 @@
                                                                 ItemsProvider="@LoadTrackingInventoryMops"
                                                                 @ref="_virtualizeContainer">
                                                         <ItemContent>
-                                                            <tr class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
+                                                            <tr>
                                                                 <td>
                                                                     @trackinInventoryMop.ScanTime.Date.ToShortDateString()
                                                                 </td>
@@ -207,8 +199,9 @@
                                                                     }
                                                                     @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
                                                                 </td>
-                                                                <td>
-                                                                    @($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")
+                                                                <td class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
+                                                                    <Badge BackgroundColor="@(trackinInventoryMop.EntryType == 1 ? Level.Warning.ToString().ToLower() : Level.Success.ToString().ToLower() )"
+                                                                           Message="@($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")"/>
                                                                 </td>
                                                             </tr>
                                                         </ItemContent>
