@@ -1,0 +1,28 @@
+﻿@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Settings.Enum; 
+
+<CardView>
+    <CardMiddle>
+        <div class="float-end">
+            <i class="bi bi-graph-up display-6 text-warning"></i>
+        </div>
+        <h6 class="text-uppercase">
+            Mop usage
+            <sup>
+                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                       Message="Coming soon" />
+            </sup>
+        </h6>
+        <div class="my-2 pt-4 text-muted fw-light">
+            <p class="lead">
+                Graphic will total amount of clean, dirth and missing mops appear hear
+            </p>
+            <strong>Date range options:</strong>
+            <ul>
+                <li>Current month </li>
+                <li>With select date range</li>
+            </ul>
+        </div>
+    </CardMiddle>
+</CardView>
