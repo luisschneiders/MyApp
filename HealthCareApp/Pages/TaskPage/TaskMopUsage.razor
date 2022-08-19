@@ -8,6 +8,7 @@
 @using HealthCareApp.Components.Toast;
 @using HealthCareApp.Components.Spinner;
 @using HealthCareApp.Components.Badge;
+@using HealthCareApp.Pages.DashboardPage;
 @using HealthCareApp.Settings.Theme;
 @using HealthCareApp.Settings.Enum;
 
@@ -116,17 +117,10 @@
                         </div>
                         <div class="row flex-row-reverse">
                             <div class="col-sm-12 col-lg-4 pb-2 d-none d-lg-block">
-                                <CardView>
-                                    <CardMiddle>
-                                        <span class="lead">
-                                            Graphic will appear here!
-                                        </span>
-                                        <sup>
-                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                                                   Message="Coming soon" />
-                                        </sup>
-                                    </CardMiddle>
-                                </CardView>
+                                @* TODO:
+                                    This component will be located in the folder Components/Chart
+                                *@
+                                <MopUsage />
                             </div>
                             <div class="col-sm-12 col-lg-8">
                                 <CardView>
