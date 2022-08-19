@@ -1,4 +1,5 @@
 ﻿@page "/tasks/mop-usage";
+@using BaseLibrary;
 @using HealthCareApp.Components.PageV3;
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Breadcrumb;
@@ -35,7 +36,7 @@
                                 <DropdownActions IconColor="Theme.success">
                                     <li class="d-block d-lg-none">
                                         <button type="button"
-                                                class="dropdown-item text-primary"
+                                                class="@(_isDisabled ? "dropdown-item" : "dropdown-item text-primary")"
                                                 title="Set Time"
                                                 @onclick="() => OpenModalAsync()"
                                                 disabled="@_isDisabled">
@@ -69,7 +70,7 @@
                                             <i class="bi bi-file-bar-graph pe-1"></i>Reports
                                             <sup>
                                                 <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                                                       Message="Coming soon"/>
+                                                       Message="Coming soon" />
                                             </sup>
                                         </button>
                                     </li>
@@ -113,8 +114,21 @@
                             </div>
 
                         </div>
-                        <div class="row">
-                            <div class="col-12">
+                        <div class="row flex-row-reverse">
+                            <div class="col-sm-12 col-lg-4 pb-2 d-none d-lg-block">
+                                <CardView>
+                                    <CardMiddle>
+                                        <span class="lead">
+                                            Graphic will appear here!
+                                        </span>
+                                        <sup>
+                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                   Message="Coming soon" />
+                                        </sup>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                            <div class="col-sm-12 col-lg-8">
                                 <CardView>
                                     <CardMiddle>
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
@@ -166,11 +180,11 @@
                                                                 <td>
                                                                     @trackinInventoryMop.ScanTime.Date.ToShortDateString()
                                                                 </td>
-                                                                <td>
-                                                                    @trackinInventoryMop.Barcode
+                                                                <td title="@trackinInventoryMop.Barcode">
+                                                                    @trackinInventoryMop.Barcode.Truncate((int)Truncate.Barcode)
                                                                 </td>
-                                                                <td>
-                                                                    @trackinInventoryMop.AreaName
+                                                                <td title="@trackinInventoryMop.AreaName">
+                                                                    @trackinInventoryMop.AreaName.Truncate((int)Truncate.DepartmentName)
                                                                 </td>
                                                                 <td>
                                                                     <span class="pe-1">@trackinInventoryMop.MopQuantity</span>
@@ -206,7 +220,7 @@
                                                                 </td>
                                                                 <td class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
                                                                     <Badge BackgroundColor="@(trackinInventoryMop.EntryType == 1 ? Level.Warning.ToString().ToLower() : Level.Success.ToString().ToLower() )"
-                                                                           Message="@($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")"/>
+                                                                           Message="@($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")" />
                                                                 </td>
                                                             </tr>
                                                         </ItemContent>
