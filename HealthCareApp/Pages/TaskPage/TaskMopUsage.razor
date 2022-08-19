@@ -32,204 +32,213 @@
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
-                        <div class="row flex-row-reverse justify-content-between pb-2 align-items-center">
-                            <div class="col-2 col-md-2 col-lg-2 d-flex justify-content-end pb-2">
-                                <DropdownActions IconColor="Theme.success">
-                                    <li class="d-block d-lg-none">
-                                        <button type="button"
-                                                class="@(_isDisabled ? "dropdown-item" : "dropdown-item text-primary")"
-                                                title="Set Time"
-                                                @onclick="() => OpenModalAsync()"
-                                                disabled="@_isDisabled">
-                                            @if (_isLoading)
-                                            {
-                                                <span>
-                                                    Checking...
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span>
-                                                    <i class="bi bi-clock pe-1"></i>
-                                                    Set time
-                                                </span>
-                                            }
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item"
-                                                title="Change date"
-                                                @onclick="() => OpenModalDateAsync()">
-                                            <i class="bi bi-calendar3 pe-1"></i>Change date
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <button class="dropdown-item"
-                                                title="View Report"
-                                                disabled
-                                                @onclick="() => OpenModalReportAsync()">
-                                            <i class="bi bi-file-bar-graph pe-1"></i>Reports
-                                            <sup>
-                                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                                                       Message="Coming soon" />
-                                            </sup>
-                                        </button>
-                                    </li>
-                                </DropdownActions>
-                            </div>
-                            <div class="col-10 col-md-10 pb-2">
-                                <div class="row align-items-center">
-                                    <div class="col-sm-10 col-md-4">
-                                        <input type="text"
-                                               class="form-control bg-opacity-10 @(_isInputFocus ? "bg-info border-info" : "bg-warning border-warning")"
-                                               placeholder="Scan label..."
-                                               autocomplete="off"
-                                               id="Barcode"
-                                               @bind="_barcode"
-                                               @onfocusin="SetInputFocusInAsync"
-                                               @onfocusout="SetInputFocusOutAsync"
-                                               @oninput="OnValueChanged" />
-                                    </div>
-                                    <div class="col-md-3 d-none d-lg-block">
-                                        <button type="button"
-                                                class="btn btn-primary w-100"
-                                                title="Set time"
-                                                @onclick="() => OpenModalAsync()"
-                                                disabled="@_isDisabled">
-                                            @if (_isLoading)
-                                            {
-                                                <span>
-                                                    Checking...
-                                                </span>
-                                            }
-                                            else
-                                            {
-                                                <span>
-                                                    <i class="bi bi-clock pe-1"></i>
-                                                    Set time
-                                                </span>
-                                            }
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div class="row flex-row-reverse">
-                            <div class="col-sm-12 col-lg-4 pb-2 d-none d-lg-block">
-                                @* TODO:
-                                    This component will be located in the folder Components/Chart
-                                *@
-                                <MopUsage />
-                            </div>
+                        <div class="row">
                             <div class="col-sm-12 col-lg-8">
                                 <CardView>
                                     <CardMiddle>
-                                        <div class="d-flex flex-row justify-content-evenly align-items-center">
-                                            <Spinner Size="Size.md" />
-                                        </div>
-                                        <div class="table-responsive hca-table-wrap">
-                                            <table class="table table-hover">
-                                                <thead class="text-muted">
-                                                    <tr>
-                                                        <th>
+                                        <div class="row flex-row-reverse justify-content-between pb-2 align-items-center">
+                                            <div class="col-auto d-flex justify-content-end pb-2">
+                                                <div class="pe-2 d-none d-lg-block">
+                                                    <DropdownDateRange IconColor="Theme.info"
+                                                                       ButtonSize="Size.md"
+                                                                       DateRange="@_dateRangeDescription">
+                                                        <li>
+                                                            <button class="dropdown-item"
+                                                                    title="Change date"
+                                                                    @onclick="() => OpenModalDateAsync()">
+                                                                <i class="bi bi-calendar3"></i>Change date
+                                                            </button>
+                                                        </li>
+                                                    </DropdownDateRange>
+                                                </div>
+                                                <DropdownActions IconColor="Theme.success">
+                                                    <li class="d-block d-lg-none">
+                                                        <button type="button"
+                                                                class="@(_isDisabled ? "dropdown-item" : "dropdown-item text-primary")"
+                                                                title="Set Time"
+                                                                @onclick="() => OpenModalAsync()"
+                                                                disabled="@_isDisabled">
+                                                            @if (_isLoading)
+                                                            {
+                                                                <span>
+                                                                    Checking...
+                                                                </span>
+                                                            }
+                                                            else
+                                                            {
+                                                                <span>
+                                                                    <i class="bi bi-clock pe-1"></i>
+                                                                    Set time
+                                                                </span>
+                                                            }
+                                                        </button>
+                                                    </li>
+                                                    <li class="d-block d-lg-none">
+                                                        <button class="dropdown-item"
+                                                                title="Change date"
+                                                                @onclick="() => OpenModalDateAsync()">
+                                                            <i class="bi bi-calendar3 pe-1"></i>Change date
+                                                        </button>
+                                                    </li>
+                                                    <li>
+                                                        <button class="dropdown-item"
+                                                                title="View Report"
+                                                                disabled
+                                                                @onclick="() => OpenModalReportAsync()">
+                                                            <i class="bi bi-file-bar-graph pe-1"></i>Reports
                                                             <sup>
-                                                                <Badge BackgroundColor="@Level.Info.ToString().ToLower()"
-                                                                       Message="@_dateRangeDescription" />
+                                                                <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                                       Message="Coming soon" />
                                                             </sup>
-                                                            <div>
-                                                                Date
-                                                            </div>
-
-                                                        </th>
-                                                        <th>
-                                                            Barcode
-                                                        </th>
-                                                        <th>
-                                                            Area
-                                                        </th>
-                                                        <th>
-                                                            # of Mops
-                                                        </th>
-                                                        <th>
-                                                            Clean Mops
-                                                        </th>
-                                                        <th>
-                                                            Dirty Mops
-                                                        </th>
-                                                        <th>
-                                                            Shift
-                                                        </th>
-                                                        <th>
-                                                            Time
-                                                        </th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody class="table-group-divider">
-                                                    <Virtualize Context="trackinInventoryMop"
-                                                                ItemsProvider="@LoadTrackingInventoryMops"
-                                                                @ref="_virtualizeContainer">
-                                                        <ItemContent>
-                                                            <tr>
-                                                                <td>
-                                                                    @trackinInventoryMop.ScanTime.Date.ToShortDateString()
-                                                                </td>
-                                                                <td title="@trackinInventoryMop.Barcode">
-                                                                    @trackinInventoryMop.Barcode.Truncate((int)Truncate.Barcode)
-                                                                </td>
-                                                                <td title="@trackinInventoryMop.AreaName">
-                                                                    @trackinInventoryMop.AreaName.Truncate((int)Truncate.DepartmentName)
-                                                                </td>
-                                                                <td>
-                                                                    <span class="pe-1">@trackinInventoryMop.MopQuantity</span>
-                                                                    @if (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity < trackinInventoryMop.MopQuantity)
-                                                                    {
-                                                                        <sup>
-                                                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                                                                                   Message="@($"Missing {trackinInventoryMop.MopQuantity - (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity)}")" />
-
-                                                                        </sup>
-                                                                    }
-                                                                </td>
-                                                                <td>
-                                                                    @trackinInventoryMop.CleanMopQuantity
-                                                                </td>
-                                                                <td>
-                                                                    @trackinInventoryMop.DirtyMopQuantity
-                                                                </td>
-                                                                <td>
-                                                                    @switch (trackinInventoryMop.ShiftType)
-                                                                    {
-                                                                        case 1:
-                                                                            <i class="bi bi-brightness-alt-high-fill pe-1"></i>
-                                                                            break;
-                                                                        case 2:
-                                                                            <i class="bi bi-brightness-high-fill pe-1"></i>
-                                                                            break;
-                                                                        case 3:
-                                                                            <i class="bi bi-moon-stars-fill pe-1"></i>
-                                                                            break;
-                                                                    }
-                                                                    @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
-                                                                </td>
-                                                                <td class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
-                                                                    <Badge BackgroundColor="@(trackinInventoryMop.EntryType == 1 ? Level.Warning.ToString().ToLower() : Level.Success.ToString().ToLower() )"
-                                                                           Message="@($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")" />
-                                                                </td>
-                                                            </tr>
-                                                        </ItemContent>
-                                                    </Virtualize>
-                                                    @if (_trackingInventoryMopDto.Count <= 0)
-                                                    {
-                                                        <tr>
-                                                            <td colspan="8" class="text-center lead">
-                                                                No records found!
-                                                            </td>
-                                                        </tr>
-                                                    }
-                                                </tbody>
-                                            </table>
+                                                        </button>
+                                                    </li>
+                                                </DropdownActions>
+                                            </div>
+                                            <div class="col d-flex align-items-center pb-2">
+                                                <div class="col d-flex align-items-center pe-2">
+                                                    <input type="text"
+                                                           class="form-control bg-opacity-10 @(_isInputFocus ? "bg-info border-info" : "bg-warning border-warning")"
+                                                           placeholder="Scan label..."
+                                                           autocomplete="off"
+                                                           id="Barcode"
+                                                           @bind="_barcode"
+                                                           @onfocusin="SetInputFocusInAsync"
+                                                           @onfocusout="SetInputFocusOutAsync"
+                                                           @oninput="OnValueChanged" />
+                                                </div>
+                                                <div class="col-auto d-flex align-items-center d-none d-lg-block">
+                                                    <button type="button"
+                                                            class="btn btn-primary"
+                                                            title="Set time"
+                                                            @onclick="() => OpenModalAsync()"
+                                                            disabled="@_isDisabled">
+                                                        @if (_isLoading)
+                                                        {
+                                                            <span>
+                                                                Checking...
+                                                            </span>
+                                                        }
+                                                        else
+                                                        {
+                                                            <span>
+                                                                <i class="bi bi-clock pe-1"></i>
+                                                                Set time
+                                                            </span>
+                                                        }
+                                                    </button>
+                                                </div>
+                                            </div>
                                         </div>
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="table-responsive hca-table-wrap">
+                                                    <table class="table table-hover">
+                                                        <thead class="text-muted">
+                                                            <tr>
+                                                                <th>
+                                                                    Date
+                                                                </th>
+                                                                <th>
+                                                                    Barcode
+                                                                </th>
+                                                                <th>
+                                                                    Area
+                                                                </th>
+                                                                <th>
+                                                                    # of Mops
+                                                                </th>
+                                                                <th>
+                                                                    Clean Mops
+                                                                </th>
+                                                                <th>
+                                                                    Dirty Mops
+                                                                </th>
+                                                                <th>
+                                                                    Shift
+                                                                </th>
+                                                                <th>
+                                                                    Time
+                                                                </th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody class="table-group-divider">
+                                                            <Virtualize Context="trackinInventoryMop"
+                                                                        ItemsProvider="@LoadTrackingInventoryMops"
+                                                                        @ref="_virtualizeContainer">
+                                                                <ItemContent>
+                                                                    <tr>
+                                                                        <td>
+                                                                            @trackinInventoryMop.ScanTime.Date.ToShortDateString()
+                                                                        </td>
+                                                                        <td title="@trackinInventoryMop.Barcode">
+                                                                            @trackinInventoryMop.Barcode.Truncate((int)Truncate.Barcode)
+                                                                        </td>
+                                                                        <td title="@trackinInventoryMop.AreaName">
+                                                                            @trackinInventoryMop.AreaName.Truncate((int)Truncate.DepartmentName)
+                                                                        </td>
+                                                                        <td>
+                                                                            <span class="pe-1">@trackinInventoryMop.MopQuantity</span>
+                                                                            @if (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity < trackinInventoryMop.MopQuantity)
+                                                                            {
+                                                                                <sup>
+                                                                                    <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                                                           Message="@($"Missing {trackinInventoryMop.MopQuantity - (trackinInventoryMop.CleanMopQuantity + trackinInventoryMop.DirtyMopQuantity)}")" />
+
+                                                                                </sup>
+                                                                            }
+                                                                        </td>
+                                                                        <td>
+                                                                            @trackinInventoryMop.CleanMopQuantity
+                                                                        </td>
+                                                                        <td>
+                                                                            @trackinInventoryMop.DirtyMopQuantity
+                                                                        </td>
+                                                                        <td>
+                                                                            @switch (trackinInventoryMop.ShiftType)
+                                                                            {
+                                                                                case 1:
+                                                                                    <i class="bi bi-brightness-alt-high-fill pe-1"></i>
+                                                                                    break;
+                                                                                case 2:
+                                                                                    <i class="bi bi-brightness-high-fill pe-1"></i>
+                                                                                    break;
+                                                                                case 3:
+                                                                                    <i class="bi bi-moon-stars-fill pe-1"></i>
+                                                                                    break;
+                                                                            }
+                                                                            @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
+                                                                        </td>
+                                                                        <td class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
+                                                                            <Badge BackgroundColor="@(trackinInventoryMop.EntryType == 1 ? Level.Warning.ToString().ToLower() : Level.Success.ToString().ToLower() )"
+                                                                                   Message="@($"{_entryTypes[@trackinInventoryMop.EntryType - 1]} {@trackinInventoryMop.ScanTime.ToString("hh:mm tt")}")" />
+                                                                        </td>
+                                                                    </tr>
+                                                                </ItemContent>
+                                                            </Virtualize>
+                                                            @if (_trackingInventoryMopDto.Count <= 0)
+                                                            {
+                                                                <tr>
+                                                                    <td colspan="8" class="text-center lead">
+                                                                        No records found!
+                                                                    </td>
+                                                                </tr>
+                                                            }
+                                                        </tbody>
+                                                    </table>
+                                                </div>
+
+                                            </div>
+                                        </div>
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
+                            <div class="col-sm-12 col-lg-4 d-none d-lg-block">
+                                <CardView>
+                                    <CardMiddle>
+                                        @* TODO:
+                                            This component will be located in the folder Components/Chart
+                                        *@
+                                        <MopUsage />
                                     </CardMiddle>
                                 </CardView>
                             </div>
