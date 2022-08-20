@@ -43,11 +43,8 @@
                                                                        ButtonSize="Size.md"
                                                                        DateRange="@_dateRangeDescription">
                                                         <li>
-                                                            <button class="dropdown-item"
-                                                                    title="Change date"
-                                                                    @onclick="() => OpenModalDateAsync()">
-                                                                <i class="bi bi-calendar3"></i>Change date
-                                                            </button>
+                                                            <TaskMopUsageDropdownDateRange @ref="_taskMopUsageDropdownDateRange"
+                                                                                        OnSubmitSuccess="RefreshDropdownDateRange" />
                                                         </li>
                                                     </DropdownDateRange>
                                                 </div>
@@ -144,7 +141,7 @@
                                                                 <th>
                                                                     Area
                                                                 </th>
-                                                                <th>
+                                                                <th style="width: 98px;">
                                                                     # of Mops
                                                                 </th>
                                                                 <th>
@@ -168,13 +165,13 @@
                                                                 <ItemContent>
                                                                     <tr>
                                                                         <td>
-                                                                            @trackinInventoryMop.ScanTime.Date.ToShortDateString()
+                                                                            @trackinInventoryMop.ScanTime.Date.ToString("dd/MM/yy")
                                                                         </td>
                                                                         <td title="@trackinInventoryMop.Barcode">
                                                                             @trackinInventoryMop.Barcode.Truncate((int)Truncate.Barcode)
                                                                         </td>
                                                                         <td title="@trackinInventoryMop.AreaName">
-                                                                            @trackinInventoryMop.AreaName.Truncate((int)Truncate.DepartmentName)
+                                                                            @trackinInventoryMop.AreaName.Truncate((int)Truncate.AreaName)
                                                                         </td>
                                                                         <td>
                                                                             <span class="pe-1">@trackinInventoryMop.MopQuantity</span>
@@ -193,7 +190,8 @@
                                                                         <td>
                                                                             @trackinInventoryMop.DirtyMopQuantity
                                                                         </td>
-                                                                        <td>
+                                                                        <td class="text-center"
+                                                                            title="@($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")">
                                                                             @switch (trackinInventoryMop.ShiftType)
                                                                             {
                                                                                 case 1:
@@ -206,7 +204,7 @@
                                                                                     <i class="bi bi-moon-stars-fill pe-1"></i>
                                                                                     break;
                                                                             }
-                                                                            @($"{_shiftTypes[@trackinInventoryMop.ShiftType - 1]}")
+                                                                            <hr class="p-0 m-0" />
                                                                         </td>
                                                                         <td class="@(trackinInventoryMop.EntryType == 1 ? "hca-bg-warning" : "hca-bg-success" )">
                                                                             <Badge BackgroundColor="@(trackinInventoryMop.EntryType == 1 ? Level.Warning.ToString().ToLower() : Level.Success.ToString().ToLower() )"
@@ -253,7 +251,7 @@
             </PageWrapper>
             <Toast />
             <TaskMopUsageModal @ref="_taskMopUsageModal" OnSubmitSuccess="RefreshVirtualizeContainer" />
-            <TaskMopUsageModalDate @ref="_taskMopUsageModalDate" OnSubmitSuccess="RefreshDateRange" />
+            <TaskMopUsageModalDate @ref="_taskMopUsageModalDate" OnSubmitSuccess="RefreshModalDateRange" />
             <TaskMopUsageModalReport @ref="_taskMopUsageModalReport" />
         </Authorized>
         <NotAuthorized>

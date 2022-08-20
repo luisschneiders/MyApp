@@ -26,6 +26,8 @@ namespace HealthCareApp.Pages.TaskPage
         private TaskMopUsageModal _taskMopUsageModal { get; set; }
         private TaskMopUsageModalDate _taskMopUsageModalDate { get; set; }
         private TaskMopUsageModalReport _taskMopUsageModalReport { get; set; }
+        private TaskMopUsageDropdownDateRange _taskMopUsageDropdownDateRange { get; set; }
+
         private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
         private AppURL _appURL { get; }
         private LabelMopDto _labelMopDto { get; set; }
@@ -45,6 +47,7 @@ namespace HealthCareApp.Pages.TaskPage
             _taskMopUsageModal = new();
             _taskMopUsageModalDate = new();
             _taskMopUsageModalReport = new();
+            _taskMopUsageDropdownDateRange = new();
             _virtualizeContainer = new();
             _appURL = new();
             _labelMopDto = new();
@@ -68,9 +71,22 @@ namespace HealthCareApp.Pages.TaskPage
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async Task RefreshDateRange()
+        private async Task RefreshDropdownDateRange()
+        {
+            _dateTimeRange = _taskMopUsageDropdownDateRange._dateTimeRange;
+
+            await RefreshDateRange();
+        }
+
+        private async Task RefreshModalDateRange()
         {
             _dateTimeRange = _taskMopUsageModalDate._dateTimeRange;
+
+            await RefreshDateRange();
+        }
+
+        private async Task RefreshDateRange()
+        {
             _toastService.ShowToast("Date range has changed!", Level.Info);
             await UpdateTitleAsync();
             await RefreshVirtualizeContainer();
