@@ -1,8 +1,9 @@
 ﻿<div class="dropdown @(IsDisplayLargeNone ? "d-lg-none" : "") ">
-    <button class="@("btn-" + ButtonSize.ToString() + " btn btn-" + ButtonColor.ToString() )"
+    <button class="@("btn btn-" + ButtonSize.ToString() + " btn-" + ButtonColor.ToString() )"
             title="Change Date Range"
             id="dropdownDateRange"
             data-bs-toggle="dropdown"
+            data-bs-auto-close="outside"
             aria-expanded="false">
         <i class="bi bi-calendar3 text-@IconColor.ToString()"></i>
         @DateRange
