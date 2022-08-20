@@ -29,36 +29,36 @@
 
                 <PageMiddleView>
                     <PageMiddleWrapper>
-                        <div class="row flex-row-reverse justify-content-between align-items-center pb-2">
-                            <div class="col-2 col-md-2 col-lg-2 d-flex justify-content-end pb-2">
-                                <DropdownActions IconColor="Theme.success">
-                                    <li>
-                                        <button class="dropdown-item"
-                                                @onclick="() => AddAreaAsync()">
-                                            <i class="bi bi-plus-lg pe-1"></i>New Area
-                                        </button>
-                                    </li>
-                                    <li class="pb-1">
-                                        <button class="dropdown-item"
-                                                @onclick="() => ViewDepartmentAsync()">
-                                            <i class="bi bi-eye-fill pe-1"></i>View Departments
-                                        </button>
-                                    </li>
-                                </DropdownActions>
-                            </div>
-                            <div class="col-10 col-md-6 col-lg-4 pb-2">
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Search for areas..."
-                                       aria-label="search"
-                                       @bind-value="_searchTerm"
-                                       @oninput="SearchAsync">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-12">
-                                <CardView>
-                                    <CardMiddle>
+                        <CardView>
+                            <CardMiddle>
+                                <div class="row flex-row-reverse justify-content-between align-items-center pb-2">
+                                    <div class="col-2 col-md-2 col-lg-2 d-flex justify-content-end pb-2">
+                                        <DropdownActions IconColor="Theme.success">
+                                            <li>
+                                                <button class="dropdown-item"
+                                                        @onclick="() => AddAreaAsync()">
+                                                    <i class="bi bi-plus-lg pe-1"></i>New Area
+                                                </button>
+                                            </li>
+                                            <li class="pb-1">
+                                                <button class="dropdown-item"
+                                                        @onclick="() => ViewDepartmentAsync()">
+                                                    <i class="bi bi-eye-fill pe-1"></i>View Departments
+                                                </button>
+                                            </li>
+                                        </DropdownActions>
+                                    </div>
+                                    <div class="col-10 col-md-6 col-lg-4 pb-2">
+                                        <input type="text"
+                                               class="form-control"
+                                               placeholder="Search for areas..."
+                                               aria-label="search"
+                                               @bind-value="_searchTerm"
+                                               @oninput="SearchAsync">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
                                         <div class="d-flex flex-row justify-content-evenly align-items-center">
                                             <Spinner Size="Size.md" />
                                         </div>
@@ -198,10 +198,10 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                    </CardMiddle>
-                                </CardView>
-                            </div>
-                        </div>
+                                    </div>
+                                </div>
+                            </CardMiddle>
+                        </CardView>
                     </PageMiddleWrapper>
                 </PageMiddleView>
 
