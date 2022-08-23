@@ -1,6 +1,8 @@
 ﻿@using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Badge;
-@using HealthCareApp.Settings.Enum; 
+@using HealthCareApp.Components.Chart;
+
+@using HealthCareApp.Settings.Enum;
 
 
 <div class="float-end">
@@ -10,7 +12,7 @@
     Mop usage
     <sup>
         <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                Message="Coming soon" />
+               Message="Coming soon" />
     </sup>
 </h6>
 <div class="my-2 pt-4 text-muted fw-light">
@@ -22,4 +24,9 @@
         <li>Default: current month </li>
         <li>Custom: select date range</li>
     </ul>
+    <Chart ChartId="MopUsage"
+           ChartType="ChartType.Bar"
+           Data="@(new[] {"8", "38" , "88"} )"
+           BackgroundColor="@( new[] {"red", "yellow", "green"})"
+           Labels="@(new[] {"missing", "dirty", "clean" } )"/>
 </div>
