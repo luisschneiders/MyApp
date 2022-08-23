@@ -1,13 +1,21 @@
-﻿@using HealthCareApp.Components.CardV3
-
+﻿@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.ListGroup;
 <CardView>
     <CardMiddle>
-        <div class="float-end">
-            <i class="bi bi-person-check display-6 text-success"></i>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Active users
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-person-check display-6 text-success"></i>
+            </div>
         </div>
-        <h6 class="text-uppercase">
-            Active users
-        </h6>
-        <h2 class="my-2 pt-4 text-muted fw-light">@_activeUsers</h2>
+        <div class="row">
+            <div class="col-12">
+                <h2 class="my-2 pt-4 text-muted fw-light">@_activeUsers</h2>
+            </div>
+        </div>
     </CardMiddle>
 </CardView>
