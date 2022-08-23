@@ -10,53 +10,58 @@ namespace HealthCareApp.Components.Chart
 		[Parameter]
 		public string ChartId { get; set; }
 
+        [Parameter]
+        public string LabelTitle { get; set; }
+
 		[Parameter]
 		public ChartType ChartType { get; set; }
 
-		[Parameter]
+
+        [Parameter]
 		public string[] Data { get; set; } = default!;
 
         [Parameter]
         public string[] BackgroundColor { get; set; } = default!;
 
         [Parameter]
+        public string[] BorderColor { get; set; } = default!;
+
+        [Parameter]
         public string[] Labels { get; set; } = default!;
 
         public Chart()
 		{
-			ChartId = string.Empty;
+            LabelTitle = string.Empty;
+            ChartId = string.Empty;
 			ChartType = ChartType.Bar;
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
-			var config = new
-			{
-				Type = ChartType.ToString().ToLower(),
-                Options = new
-                {
-                    Responsive = true,
-                    Scales = new
+            if (firstRender)
+            {
+			    var config = new
+			    {
+				    type = ChartType.ToString().ToLower(),
+                    data = new
                     {
-                        YAxes = new[]
-                    {
-                        new { Ticks = new {
-                            BeginAtZero=true
-                        } }
-                    }
-                    }
-                },
-                Data = new
-                {
-                    Datasets = new[]
-                {
-                    new { Data = Data, BackgroundColor = BackgroundColor}
-                },
-                    Labels = Labels
-                }
-            };
+                        labels = Labels,
+                        datasets = new[]
+                        {
+                            new {
+                                label = LabelTitle,
+                                data = Data,
+                                backgroundColor = BackgroundColor,
+                                borderColor = BorderColor,
+                                borderWidth = 1
+                            }
+                        },
+                    },
+                    options = new {},
+                };
 
-            await JS.InvokeVoidAsync("setup", ChartId, config);
+                await JS.InvokeVoidAsync("setup", ChartId, config);
+            }
             await Task.CompletedTask;
         }
     }
