@@ -3,8 +3,13 @@ namespace HealthCareApp.Settings.Enum
 {
 	public enum ChartType
 	{
-        Pie,
         Bar,
-        HorizontalBar
+        Bubble,
+        Doughnut,
+        Line,
+        Pie,
+        PolarArea,
+        Radar,
+        Scatter
     }
 }
