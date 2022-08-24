@@ -6,7 +6,7 @@ using Microsoft.JSInterop;
 namespace HealthCareApp.Components.Chart
 {
 	public partial class Chart : ComponentBase
-	{
+    {
 		[Parameter]
 		public string ChartId { get; set; }
 
@@ -29,38 +29,43 @@ namespace HealthCareApp.Components.Chart
         [Parameter]
         public string[] Labels { get; set; } = default!;
 
+        private ChartConfig _config { get; set; }
+
         public Chart()
 		{
             LabelTitle = string.Empty;
             ChartId = string.Empty;
 			ChartType = ChartType.Bar;
+            _config = new();
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
         {
             if (firstRender)
             {
-			    var config = new
-			    {
-				    type = ChartType.ToString().ToLower(),
-                    data = new
+
+                _config = new ChartConfig
+                {
+                    Type = ChartType.Bar.ToString().ToLower(),
+                    Data = new ChartConfigData
                     {
-                        labels = Labels,
-                        datasets = new[]
+                        Labels = Labels,
+                        Datasets = new List<ChartConfigDataset>
                         {
-                            new {
-                                label = LabelTitle,
-                                data = Data,
-                                backgroundColor = BackgroundColor,
-                                borderColor = BorderColor,
-                                borderWidth = 1
+                            new ChartConfigDataset
+                            {
+                                Label = LabelTitle,
+                                Data = Data,
+                                BackgroundColor = BackgroundColor,
+                                BorderColor = BorderColor,
+                                BorderWidth = 1
                             }
-                        },
+                        }
                     },
-                    options = new {},
+                    Options = new {}
                 };
 
-                await JS.InvokeVoidAsync("setup", ChartId, config);
+                await JS.InvokeVoidAsync("setup", ChartId, _config);
             }
             await Task.CompletedTask;
         }
