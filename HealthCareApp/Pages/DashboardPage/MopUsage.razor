@@ -30,13 +30,14 @@
                 <li>Default: current month </li>
                 <li>Custom: select date range</li>
             </ul>
-            <Chart ChartId="MopUsage"
+                <Chart ChartId="MopUsage"
                    ChartType="ChartType.Bar"
                    LabelTitle="Mop Usage Chart"
                    Data="@(new[] {"8", "38" , "88"} )"
-                   BackgroundColor="@( new[] {"rgba(255, 99, 132, 0.2)", "rgba(255, 159, 64, 0.2)", "rgba(75, 192, 192, 0.2)"})"
-                   BorderColor="@( new[] {"rgb(255, 99, 132)", "rgb(255, 159, 64)", "rgb(75, 192, 192)"})"
-                   Labels="@(new[] {"missing", "dirty", "clean" } )" />
+                   BackgroundColor="@(_chartBackgroundColors)"
+                   BorderColor="@(_chartBorderColors)"
+                   Labels="@(_chartLabels)" />
+
         </div>
     </CardMiddle>
 </CardView>
