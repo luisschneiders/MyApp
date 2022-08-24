@@ -21,13 +21,13 @@ namespace HealthCareApp.Components.Chart
 		public string[] Data { get; set; } = default!;
 
         [Parameter]
-        public string[] BackgroundColor { get; set; } = default!;
+        public List<string> BackgroundColor { get; set; } = default!;
 
         [Parameter]
-        public string[] BorderColor { get; set; } = default!;
+        public List<string> BorderColor { get; set; } = default!;
 
         [Parameter]
-        public string[] Labels { get; set; } = default!;
+        public List<string> Labels { get; set; } = default!;
 
         private ChartConfig _config { get; set; }
 

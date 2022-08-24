@@ -4,12 +4,12 @@ namespace HealthCareApp.Components.Chart
 	public class ChartConfigData : IChartConfigData
     {
 
-        public string[] Labels { get; set; }
+        public List<string> Labels { get; set; }
         public List<ChartConfigDataset> Datasets { get; set; }
 
         public ChartConfigData()
 		{
-            Labels = Array.Empty<string>();
+            Labels = new();
             Datasets = new();
 		}
 
