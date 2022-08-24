@@ -16,6 +16,5 @@ namespace HealthCareApp.Components.Chart
             Data = new();
             Options = new();
 		}
-
     }
 }
