@@ -26,6 +26,9 @@ namespace HealthCareApp.Components.Dropdown
         [Parameter]
         public string DateRange { get; set; }
 
+        [Parameter]
+        public string DropdownPosition { get; set; }
+
         private IDateTimeRange _dateTimeRange { get; set; }
 
         public DropdownDateRange()
@@ -34,6 +37,7 @@ namespace HealthCareApp.Components.Dropdown
             ButtonColor = Theme.light;
             IconColor = Theme.success;
             ButtonSize = Size.md;
+            DropdownPosition = "dropdown";
             _dateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,

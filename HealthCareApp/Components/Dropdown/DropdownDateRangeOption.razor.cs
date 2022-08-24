@@ -1,24 +1,19 @@
-﻿using DateTimeLibrary;
-using HealthCareApp.Components.Modal;
+﻿using System;
+using DateTimeLibrary;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.TaskPage
+namespace HealthCareApp.Components.Dropdown
 {
-	public partial class TaskMopUsageModalDate : ComponentBase
+	public partial class DropdownDateRangeOption : ComponentBase
 	{
         [Parameter]
         public EventCallback OnSubmitSuccess { get; set; }
 
-        private Modal _modal { get; set; }
-
-        private Guid _modalTarget { get; set; }
-
         public IDateTimeRange DateTimeRange { get; set; }
         private bool _isValidDateRange { get; set; }
 
-        public TaskMopUsageModalDate()
+        public DropdownDateRangeOption()
 		{
-            _modal = new();
             DateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,
@@ -27,22 +22,19 @@ namespace HealthCareApp.Pages.TaskPage
             _isValidDateRange = true;
         }
 
-        public async Task OpenModalAsync()
+        public async Task<string> UpdateDateRangeDescription()
         {
+            string dateRangeDescription = string.Empty;
+            if (DateTimeRange.Start.Date == DateTimeRange.End.Date)
+            {
+                dateRangeDescription = $"{DateTimeRange.Start.Date.ToString("dd/MM/yy")}";
+            }
+            else
+            {
+                dateRangeDescription = $"{DateTimeRange.Start.Date.ToString("dd/MM/yy")} - {DateTimeRange.End.Date.ToString("dd/MM/yy")}";
+            }
 
-            _modalTarget = Guid.NewGuid();
-
-            await Task.FromResult(_modal.Open(_modalTarget));
-            await Task.CompletedTask;
-        }
-
-        private async Task CloseModalAsync()
-        {
-
-            ResetDateRange();
-
-            await Task.FromResult(_modal.Close(_modalTarget));
-            await Task.CompletedTask;
+            return await Task.FromResult(dateRangeDescription);
         }
 
         private async Task ChangeDateAsync()
@@ -57,7 +49,6 @@ namespace HealthCareApp.Pages.TaskPage
             {
                 _isValidDateRange = true;
                 await OnSubmitSuccess.InvokeAsync();
-                await CloseModalAsync();
             }
             await Task.CompletedTask;
         }
