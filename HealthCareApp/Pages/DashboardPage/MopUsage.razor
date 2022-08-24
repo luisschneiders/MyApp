@@ -1,25 +1,43 @@
 ﻿@using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.Badge;
-@using HealthCareApp.Settings.Enum; 
+@using HealthCareApp.Components.Chart;
 
+@using HealthCareApp.Settings.Enum;
 
-<div class="float-end">
-    <i class="bi bi-graph-up display-6 text-warning"></i>
-</div>
-<h6 class="text-uppercase">
-    Mop usage
-    <sup>
-        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
-                Message="Coming soon" />
-    </sup>
-</h6>
-<div class="my-2 pt-4 text-muted fw-light">
-    <p class="lead">
-        Graphic will show total amount of clean, dirth and missing mops by the selected date range.
-    </p>
-    <strong>Date range options:</strong>
-    <ul>
-        <li>Default: current month </li>
-        <li>Custom: select date range</li>
-    </ul>
-</div>
+<CardView>
+    <CardMiddle>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Mop usage
+                    <sup>
+                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                               Message="Coming soon" />
+                    </sup>
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-graph-up display-6 text-warning"></i>
+            </div>
+        </div>
+
+        <div>
+            <p class="lead">
+                Graphic will show total amount of clean, dirth and missing mops by the selected date range.
+            </p>
+            <strong>Date range options:</strong>
+            <ul>
+                <li>Default: current month </li>
+                <li>Custom: select date range</li>
+            </ul>
+                <Chart ChartId="MopUsage"
+                   ChartType="ChartType.Bar"
+                   LabelTitle="Mop Usage Chart"
+                   Data="@(new[] {"8", "38" , "88"} )"
+                   BackgroundColor="@(_chartBackgroundColors)"
+                   BorderColor="@(_chartBorderColors)"
+                   Labels="@(_chartLabels)" />
+
+        </div>
+    </CardMiddle>
+</CardView>
