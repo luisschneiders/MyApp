@@ -29,7 +29,6 @@ namespace HealthCareApp.Components.Dropdown
         [Parameter]
         public string DropdownPosition { get; set; }
 
-        private IDateTimeRange _dateTimeRange { get; set; }
         private string _dateRangeLabel { get; set; }
 
         private bool _isValidDateRange { get; set; }
@@ -38,13 +37,13 @@ namespace HealthCareApp.Components.Dropdown
 		{
             _isValidDateRange = true;
             _dateRangeLabel = $"No date assigned!";
-            _dateTimeRange = new DateTimeRange
+
+            DateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,
                 End = DateTime.Now
             };
 
-            DateTimeRange = _dateTimeRange;
             IsDisplayLargeNone = false;
             ButtonColor = Theme.light;
             IconColor = Theme.success;
@@ -56,21 +55,21 @@ namespace HealthCareApp.Components.Dropdown
 
         protected override async Task OnInitializedAsync()
         {
-            _dateTimeRange = DateTimeRange;
             _dateRangeLabel = await UpdateDateRangeLabel();
+
             await Task.CompletedTask;
         }
 
         private async Task<string> UpdateDateRangeLabel()
         {
             string dateRangeDescription = string.Empty;
-            if (_dateTimeRange.Start.Date == _dateTimeRange.End.Date)
+            if (DateTimeRange.Start.Date == DateTimeRange.End.Date)
             {
-                dateRangeDescription = $"{_dateTimeRange.Start.Date.ToString("dd/MM/yy")}";
+                dateRangeDescription = $"{DateTimeRange.Start.Date.ToString("dd/MM/yy")}";
             }
             else
             {
-                dateRangeDescription = $"{_dateTimeRange.Start.Date.ToString("dd/MM/yy")} - {_dateTimeRange.End.Date.ToString("dd/MM/yy")}";
+                dateRangeDescription = $"{DateTimeRange.Start.Date.ToString("dd/MM/yy")} - {DateTimeRange.End.Date.ToString("dd/MM/yy")}";
             }
 
             return await Task.FromResult(dateRangeDescription);
@@ -78,8 +77,8 @@ namespace HealthCareApp.Components.Dropdown
 
         private async Task ChangeDateAsync()
         {
-            _dateTimeRange.CheckDate();
-            if (!_dateTimeRange.CheckDate())
+            DateTimeRange.CheckDate();
+            if (!DateTimeRange.CheckDate())
             {
                 _isValidDateRange = false;
             }
