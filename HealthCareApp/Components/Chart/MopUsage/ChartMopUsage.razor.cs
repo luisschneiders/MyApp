@@ -1,5 +1,6 @@
 ﻿using DateTimeLibrary;
 using HealthCareApp.Components.Dropdown;
+using HealthCareApp.Components.Modal;
 using HealthCareApp.Pages.TaskPage;
 using HealthCareApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
@@ -9,13 +10,13 @@ namespace HealthCareApp.Components.Chart.MopUsage
 {
     public partial class ChartMopUsage : ComponentBase
     {
-        private DropdownDateRangeOption _dropdownDateRangeOption { get; set; }
+        [Parameter]
+        public IDateTimeRange DateTimeRange { get; set; }
 
         private List<string> _chartBackgroundColors { get; set; }
         private List<string> _chartBorderColors { get; set; }
         private List<string> _chartLabels { get; set; }
         private IDateTimeRange _dateTimeRange { get; set; }
-        private string _dateRangeDescription { get; set; }
 
         public ChartMopUsage()
         {
@@ -38,26 +39,26 @@ namespace HealthCareApp.Components.Chart.MopUsage
                 MopStatus.Dirty.ToString(),
                 MopStatus.Clean.ToString(),
             };
-            _dropdownDateRangeOption = new();
+
             _dateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,
                 End = DateTime.Now
             };
-            _dateRangeDescription = string.Empty;
+
+            DateTimeRange = _dateTimeRange;
+
         }
 
         protected override async Task OnInitializedAsync()
         {
-            await RefreshDropdownDateRange();
+            _dateTimeRange = DateTimeRange;
+
             await Task.CompletedTask;
         }
 
-        private async Task RefreshDropdownDateRange()
+        private async Task RefreshChartFromDropdownDateRange()
         {
-            _dateTimeRange = _dropdownDateRangeOption.DateTimeRange;
-            _dateRangeDescription = await _dropdownDateRangeOption.UpdateDateRangeDescription();
-
             await Task.CompletedTask;
         }
     }

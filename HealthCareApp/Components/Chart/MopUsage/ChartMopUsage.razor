@@ -26,13 +26,10 @@
             <div class="col-12">
                 <DropdownDateRange IconColor="Theme.info"
                                    ButtonSize="Size.sm"
-                                   DateRange="@_dateRangeDescription"
-                                   DropdownPosition="dropdown-center">
-                    <li>
-                        <DropdownDateRangeOption @ref="_dropdownDateRangeOption"
-                                                 OnSubmitSuccess="RefreshDropdownDateRange" />
-                    </li>
-                </DropdownDateRange>
+                                   DateTimeRange="@_dateTimeRange"
+                                   DropdownPosition="dropdown-center"
+                                   OnSubmitSuccess="RefreshChartFromDropdownDateRange"
+                />
             </div>
         </div>
         <Chart ChartId="MopUsage"

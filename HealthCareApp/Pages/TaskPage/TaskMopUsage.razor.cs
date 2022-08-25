@@ -27,7 +27,6 @@ namespace HealthCareApp.Pages.TaskPage
         private TaskMopUsageModal _taskMopUsageModal { get; set; }
         private TaskMopUsageModalDate _taskMopUsageModalDate { get; set; }
         private TaskMopUsageModalReport _taskMopUsageModalReport { get; set; }
-        private DropdownDateRangeOption _dropdownDateRangeOption { get; set; }
 
         private Virtualize<TrackingInventoryMopDto> _virtualizeContainer { get; set; }
         private AppURL _appURL { get; }
@@ -36,7 +35,7 @@ namespace HealthCareApp.Pages.TaskPage
         private EntryType[] _entryTypes { get; set; } = default!;
         private ShiftType[] _shiftTypes { get; set; } = default!;
         private string _barcode { get; set; }
-        private string _dateRangeDescription { get; set; }
+
         private bool _isInputFocus { get; set; }
         private bool _isDisabled { get; set; }
         private bool _isLoading { get; set; }
@@ -48,7 +47,6 @@ namespace HealthCareApp.Pages.TaskPage
             _taskMopUsageModal = new();
             _taskMopUsageModalDate = new();
             _taskMopUsageModalReport = new();
-            _dropdownDateRangeOption = new();
             _virtualizeContainer = new();
             _appURL = new();
             _labelMopDto = new();
@@ -64,7 +62,13 @@ namespace HealthCareApp.Pages.TaskPage
                 Start = DateTime.Now,
                 End = DateTime.Now
             };
-            _dateRangeDescription = string.Empty;
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            _isDisabled = true;
+
+            await Task.CompletedTask;
         }
 
         private async Task RefreshVirtualizeContainer()
@@ -72,29 +76,14 @@ namespace HealthCareApp.Pages.TaskPage
             await _virtualizeContainer.RefreshDataAsync();
         }
 
-        private async Task SetDropdownDateRange()
-        {
-            _dateTimeRange = _dropdownDateRangeOption.DateTimeRange;
-            _dateRangeDescription = await _dropdownDateRangeOption.UpdateDateRangeDescription();
-            await Task.CompletedTask;
-        }
-
-        private async Task RefreshDropdownDateRange()
-        {
-            _dateTimeRange = _dropdownDateRangeOption.DateTimeRange;
-            _dateRangeDescription = await _dropdownDateRangeOption.UpdateDateRangeDescription();
-            await RefreshDateRange();
-            await Task.CompletedTask;
-        }
-
         private async Task RefreshModalDateRange()
         {
             _dateTimeRange = _taskMopUsageModalDate.DateTimeRange;
 
-            await RefreshDateRange();
+            await RefreshVirtualizerFromDropdownDateRange();
         }
 
-        private async Task RefreshDateRange()
+        private async Task RefreshVirtualizerFromDropdownDateRange()
         {
             _toastService.ShowToast("Date range has changed!", Level.Info);
 
@@ -121,13 +110,6 @@ namespace HealthCareApp.Pages.TaskPage
                 _isInputFocus = false;
             }
 
-            await Task.CompletedTask;
-        }
-
-        protected override async Task OnInitializedAsync()
-        {
-            _isDisabled = true;
-            await SetDropdownDateRange();
             await Task.CompletedTask;
         }
 

@@ -41,12 +41,9 @@
                                                 <div class="pe-2 d-none d-lg-block">
                                                     <DropdownDateRange IconColor="Theme.info"
                                                                        ButtonSize="Size.md"
-                                                                       DateRange="@_dateRangeDescription">
-                                                        <li>
-                                                            <DropdownDateRangeOption @ref="_dropdownDateRangeOption"
-                                                                                        OnSubmitSuccess="RefreshDropdownDateRange" />
-                                                        </li>
-                                                    </DropdownDateRange>
+                                                                       DateTimeRange="@_dateTimeRange"
+                                                                       OnSubmitSuccess="RefreshVirtualizerFromDropdownDateRange"
+                                                    />
                                                 </div>
                                                 <DropdownActions IconColor="Theme.success">
                                                     <li class="d-block d-lg-none">
