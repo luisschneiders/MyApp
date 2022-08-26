@@ -7,7 +7,7 @@ namespace HealthCareApp.Components.Chart
 {
 	public partial class Chart : ComponentBase
     {
-		[Parameter]
+        [Parameter]
 		public string ChartId { get; set; }
 
         [Parameter]
@@ -16,9 +16,8 @@ namespace HealthCareApp.Components.Chart
 		[Parameter]
 		public ChartType ChartType { get; set; }
 
-
         [Parameter]
-		public string[] Data { get; set; } = default!;
+		public List<string> Data { get; set; } = default!;
 
         [Parameter]
         public List<string> BackgroundColor { get; set; } = default!;
