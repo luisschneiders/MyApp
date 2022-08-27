@@ -4,6 +4,8 @@
 @using HealthCareApp.Settings.Enum;
 @using HealthCareApp.Settings.Theme;
 
+@inject IJSRuntime JS;
+
 <CardView>
     <CardMiddle>
         <div class="row justify-content-between">
@@ -26,16 +28,15 @@
             <div class="col-12">
                 <DropdownDateRange IconColor="Theme.info"
                                    ButtonSize="Size.sm"
-                                   DateTimeRange="@_dateTimeRange"
+                                   DateTimeRange="@DateTimeRange"
                                    DropdownPosition="dropdown-center"
-                                   OnSubmitSuccess="RefreshChartFromDropdownDateRange"
-                />
+                                   OnSubmitSuccess="RefreshChartFromDropdownDateRange" />
             </div>
         </div>
         <Chart ChartId="MopUsage"
                ChartType="ChartType.Bar"
                LabelTitle="Mop Usage Chart"
-               Data="@(new[] {"8", "38" , "88"} )"
+               Data="@(_chartData)"
                BackgroundColor="@(_chartBackgroundColors)"
                BorderColor="@(_chartBorderColors)"
                Labels="@(_chartLabels)" />
