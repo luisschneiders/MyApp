@@ -5,7 +5,7 @@ using Microsoft.JSInterop;
 
 namespace HealthCareApp.Components.Chart
 {
-	public partial class Chart : ComponentBase
+	public partial class Chart : ComponentBase, IAsyncDisposable
     {
         [Parameter]
 		public string ChartId { get; set; }
@@ -28,14 +28,17 @@ namespace HealthCareApp.Components.Chart
         [Parameter]
         public List<string> Labels { get; set; } = default!;
 
-        private ChartConfig _config { get; set; }
+        private IJSObjectReference? _chartModule;
+
+        private ChartConfig _chartConfig { get; set; }
 
         public Chart()
 		{
             LabelTitle = string.Empty;
             ChartId = string.Empty;
 			ChartType = ChartType.Bar;
-            _config = new();
+
+            _chartConfig = new();
 		}
 
         protected override async Task OnAfterRenderAsync(bool firstRender)
@@ -43,7 +46,7 @@ namespace HealthCareApp.Components.Chart
             if (firstRender)
             {
 
-                _config = new ChartConfig
+                _chartConfig = new ChartConfig
                 {
                     Type = ChartType.Bar.ToString().ToLower(),
                     Data = new ChartConfigData
@@ -64,9 +67,21 @@ namespace HealthCareApp.Components.Chart
                     Options = new {}
                 };
 
-                await JS.InvokeVoidAsync("setup", ChartId, _config);
+                _chartModule = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Chart/Chart.razor.js");
+
+                await _chartModule.InvokeVoidAsync("setupChart", ChartId, _chartConfig);
             }
+
             await Task.CompletedTask;
+        }
+
+        async ValueTask IAsyncDisposable.DisposeAsync()
+        {
+
+            if (_chartModule is not null)
+            {
+                await _chartModule.DisposeAsync();
+            }
         }
     }
 }
