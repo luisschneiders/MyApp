@@ -74,19 +74,7 @@ namespace HealthCareApp.Components.Chart.MopUsage
 
         protected override async Task OnInitializedAsync()
         {
-
-            _trackingInventorySumMopDtoList = await _trackingInventoryService.GetTrackingInventoryMopSumByDateAsync(DateTimeRange);
-            _trackingInventorySumTotalMop = new()
-            {
-                MopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.MopQuantity),
-                CleanMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.CleanMopQuantity),
-                DirtyMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.DirtyMopQuantity),
-            };
-
-            _chartData.Add((_trackingInventorySumTotalMop.MopQuantity - (_trackingInventorySumTotalMop.CleanMopQuantity + _trackingInventorySumTotalMop.DirtyMopQuantity)).ToString());
-            _chartData.Add(_trackingInventorySumTotalMop.DirtyMopQuantity.ToString());
-            _chartData.Add(_trackingInventorySumTotalMop.CleanMopQuantity.ToString());
-
+            await SetChartData();
             await Task.CompletedTask;
         }
 
@@ -94,22 +82,8 @@ namespace HealthCareApp.Components.Chart.MopUsage
         {
             _chartData = new();
 
-            _trackingInventorySumMopDtoList = await _trackingInventoryService.GetTrackingInventoryMopSumByDateAsync(DateTimeRange);
-
-            _trackingInventorySumTotalMop = new()
-            {
-                MopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.MopQuantity),
-                CleanMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.CleanMopQuantity),
-                DirtyMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.DirtyMopQuantity),
-            };
-
-            _chartData.Add((_trackingInventorySumTotalMop.MopQuantity - (_trackingInventorySumTotalMop.CleanMopQuantity + _trackingInventorySumTotalMop.DirtyMopQuantity)).ToString());
-            _chartData.Add(_trackingInventorySumTotalMop.DirtyMopQuantity.ToString());
-            _chartData.Add(_trackingInventorySumTotalMop.CleanMopQuantity.ToString());
-
-            await _chartModule!.InvokeVoidAsync("removeChartData");
+            await SetChartData();
             await _chartModule!.InvokeVoidAsync("updateChartData", _chartData);
-
             await Task.CompletedTask;
         }
 
@@ -120,6 +94,21 @@ namespace HealthCareApp.Components.Chart.MopUsage
             {
                 await _chartModule.DisposeAsync();
             }
+        }
+
+        private async Task SetChartData()
+        {
+            _trackingInventorySumMopDtoList = await _trackingInventoryService.GetTrackingInventoryMopSumByDateAsync(DateTimeRange);
+            _trackingInventorySumTotalMop = new()
+            {
+                MopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.MopQuantity),
+                CleanMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.CleanMopQuantity),
+                DirtyMopQuantity = _trackingInventorySumMopDtoList.Sum(s => s.DirtyMopQuantity),
+            };
+
+            _chartData.Add((_trackingInventorySumTotalMop.MopQuantity - (_trackingInventorySumTotalMop.CleanMopQuantity + _trackingInventorySumTotalMop.DirtyMopQuantity)).ToString());
+            _chartData.Add(_trackingInventorySumTotalMop.DirtyMopQuantity.ToString());
+            _chartData.Add(_trackingInventorySumTotalMop.CleanMopQuantity.ToString());
         }
     }
 }
