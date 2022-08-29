@@ -5,8 +5,11 @@ namespace HealthCareApp.Components.Footer
 {
 	public partial class FooterViewNotAuthorized : ComponentBase
 	{
-		public FooterViewNotAuthorized()
+        private DateTime _currentYear { get; set; }
+
+        public FooterViewNotAuthorized()
 		{
-		}
+            _currentYear = DateTime.Now;
+        }
 	}
 }
