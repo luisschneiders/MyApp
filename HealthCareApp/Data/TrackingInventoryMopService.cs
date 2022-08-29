@@ -2,6 +2,7 @@
 using AreaLibrary.Models;
 using DateTimeLibrary;
 using DepartmentLibrary.Models;
+using HealthCareApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using TrackingInventoryLibrary.Models;
@@ -49,6 +50,30 @@ namespace HealthCareApp.Data
             return await Task.FromResult(trackingInventoryMopDtoList);
 
         }
+
+        /*
+         * async method to get quantity of mops by date
+         */
+        public async Task<List<TrackingInventorySumMopDto>> GetTrackingInventoryMopSumByDateAsync(IDateTimeRange dateTime)
+        {
+            List<TrackingInventorySumMopDto> trackingInventorySumMopDtoList = new();
+
+            var query =
+                (
+                    from trackingInventoryMop in _applicationDbContext.Set<TrackingInventoryMop>()
+                    join labelMop in _applicationDbContext.Set<LabelMop>()
+                        on trackingInventoryMop.LabelMopId equals labelMop.Id
+                    where trackingInventoryMop.EntryType == (int)EntryType.Return && (trackingInventoryMop.ScanTime.Date >= dateTime.Start.Date && trackingInventoryMop.ScanTime.Date <= dateTime.End.Date)
+                    select new { trackingInventoryMop, labelMop }
+                ).AsNoTracking();
+            foreach (var i in query)
+            {
+                trackingInventorySumMopDtoList.Add(SetTrackingInventotySumMopDto(i.trackingInventoryMop, i.labelMop));
+            }
+
+            return await Task.FromResult(trackingInventorySumMopDtoList);
+        }
+
 
         /*
 		 * async method to add tracking inventory for mops
@@ -103,6 +128,20 @@ namespace HealthCareApp.Data
                     )
                     .AsNoTracking().Any();
             return await Task.FromResult(recordExists);
+        }
+
+        private static TrackingInventorySumMopDto SetTrackingInventotySumMopDto(TrackingInventoryMop trackingInventoryMop, LabelMop labelMop)
+        {
+            TrackingInventorySumMopDto trackingInventorySumMopDto = new();
+            trackingInventorySumMopDto.CleanMopQuantity = trackingInventoryMop.CleanMopQuantity;
+            trackingInventorySumMopDto.DirtyMopQuantity = trackingInventoryMop.DirtyMopQuantity;
+            if (trackingInventoryMop.LabelMopId == labelMop?.Id)
+            {
+                trackingInventorySumMopDto.MopQuantity = labelMop.Quantity;
+            }
+
+            return trackingInventorySumMopDto;
+
         }
 
         private static TrackingInventoryMopDto SetTrackingInventotyMopDto(TrackingInventoryMop trackingInventoryMop, LabelMop labelMop, Area area, Department department)

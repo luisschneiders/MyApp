@@ -13,13 +13,13 @@ namespace HealthCareApp.Pages.TaskPage
 
         private Guid _modalTarget { get; set; }
 
-        public IDateTimeRange _dateTimeRange { get; set; }
+        public IDateTimeRange DateTimeRange { get; set; }
         private bool _isValidDateRange { get; set; }
 
         public TaskMopUsageModalDate()
 		{
             _modal = new();
-            _dateTimeRange = new DateTimeRange
+            DateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,
                 End = DateTime.Now
@@ -47,8 +47,8 @@ namespace HealthCareApp.Pages.TaskPage
 
         private async Task ChangeDateAsync()
         {
-            _dateTimeRange.CheckDate();
-            if (!_dateTimeRange.CheckDate())
+            DateTimeRange.CheckDate();
+            if (!DateTimeRange.CheckDate())
             {
                 _isValidDateRange = false;
                 ResetDateRange();
@@ -64,7 +64,7 @@ namespace HealthCareApp.Pages.TaskPage
 
         private void ResetDateRange()
         {
-            _dateTimeRange = new DateTimeRange
+            DateTimeRange = new DateTimeRange
             {
                 Start = DateTime.Now,
                 End = DateTime.Now

@@ -8,7 +8,7 @@
 @using HealthCareApp.Components.Toast;
 @using HealthCareApp.Components.Spinner;
 @using HealthCareApp.Components.Badge;
-@using HealthCareApp.Pages.DashboardPage;
+@using HealthCareApp.Components.Chart.MopUsage;
 @using HealthCareApp.Settings.Theme;
 @using HealthCareApp.Settings.Enum;
 
@@ -41,12 +41,8 @@
                                                 <div class="pe-2 d-none d-lg-block">
                                                     <DropdownDateRange IconColor="Theme.info"
                                                                        ButtonSize="Size.md"
-                                                                       DateRange="@_dateRangeDescription">
-                                                        <li>
-                                                            <TaskMopUsageDropdownDateRange @ref="_taskMopUsageDropdownDateRange"
-                                                                                        OnSubmitSuccess="RefreshDropdownDateRange" />
-                                                        </li>
-                                                    </DropdownDateRange>
+                                                                       DateTimeRange="@_dateTimeRange"
+                                                                       OnSubmitSuccess="RefreshVirtualizerFromDropdownDateRange" />
                                                 </div>
                                                 <DropdownActions IconColor="Theme.success">
                                                     <li class="d-block d-lg-none">
@@ -231,10 +227,7 @@
                                 </CardView>
                             </div>
                             <div class="col-sm-12 col-lg-4 d-none d-lg-block">
-                                @* TODO:
-                                    This component will be located in the folder Components/Chart
-                                *@
-                                <MopUsage />
+                                <ChartMopUsage DateTimeRange="_dateTimeRange" />
                             </div>
                         </div>
                     </PageMiddleWrapper>

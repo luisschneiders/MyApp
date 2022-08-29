@@ -1,0 +1,44 @@
+﻿@using HealthCareApp.Components.CardV3;
+@using HealthCareApp.Components.Badge;
+@using HealthCareApp.Components.Dropdown;
+@using HealthCareApp.Settings.Enum;
+@using HealthCareApp.Settings.Theme;
+
+@inject IJSRuntime JS;
+
+<CardView>
+    <CardMiddle>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Mop usage
+                    <sup>
+                        <Badge BackgroundColor="@Level.Success.ToString().ToLower()"
+                               Message="New" />
+                    </sup>
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-graph-up display-6 text-warning"></i>
+            </div>
+        </div>
+        <div class="row text-center py-3">
+
+            <div class="col-12">Select date range:</div>
+            <div class="col-12">
+                <DropdownDateRange IconColor="Theme.info"
+                                   ButtonSize="Size.sm"
+                                   DateTimeRange="@DateTimeRange"
+                                   DropdownPosition="dropdown-center"
+                                   OnSubmitSuccess="RefreshChartFromDropdownDateRange" />
+            </div>
+        </div>
+        <Chart ChartId="MopUsage"
+               ChartType="ChartType.Bar"
+               LabelTitle="Mop Usage Chart"
+               Data="@(_chartData)"
+               BackgroundColor="@(_chartBackgroundColors)"
+               BorderColor="@(_chartBorderColors)"
+               Labels="@(_chartLabels)" />
+    </CardMiddle>
+</CardView>

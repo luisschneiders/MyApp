@@ -3,6 +3,7 @@
 @using HealthCareApp.Components.CardV3;
 @using HealthCareApp.Components.PageV3;
 @using HealthCareApp.Components.Breadcrumb;
+@using HealthCareApp.Components.Chart.MopUsage;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -22,8 +23,8 @@
                             <div class="col-sm-12 col-md-6 col-lg-4 d-flex flex-column">
                                 <ActiveUsers />
                             </div>
-                            <div class="col-sm-12 col-md-6 col-lg-4 d-flex">
-                                <MopUsage />
+                            <div class="col-sm-12 col-md-6 col-lg-4 d-flex flex-column">
+                                <ChartMopUsage DateTimeRange="@_dateTimeRange" />
                             </div>
                         </div>
                     </PageMiddleWrapper>
