@@ -12,6 +12,5 @@ namespace MyApp.Components.Chart
             Labels = new();
             Datasets = new();
 		}
-
     }
 }
