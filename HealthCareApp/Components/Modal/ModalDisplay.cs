@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HealthCareApp.Components.Modal
+namespace MyApp.Components.Modal
 {
     public enum ModalDisplay
     {

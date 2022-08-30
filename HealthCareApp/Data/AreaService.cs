@@ -3,7 +3,7 @@ using AreaLibrary.Models;
 using DepartmentLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HealthCareApp.Data
+namespace MyApp.Data
 {
 	public class AreaService
 	{

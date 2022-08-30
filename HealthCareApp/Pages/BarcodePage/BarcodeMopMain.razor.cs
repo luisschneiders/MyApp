@@ -1,15 +1,15 @@
 ﻿using System;
 using EmployeeLibrary.Models;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Data;
-using HealthCareApp.Pages.EmployeePage;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Components.Spinner;
+using MyApp.Data;
+using MyApp.Pages.EmployeePage;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
-namespace HealthCareApp.Pages.BarcodePage
+namespace MyApp.Pages.BarcodePage
 {
     public partial class BarcodeMopMain : ComponentBase
     {

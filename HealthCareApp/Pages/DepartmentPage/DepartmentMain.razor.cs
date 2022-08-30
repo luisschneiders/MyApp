@@ -1,14 +1,14 @@
 ﻿using AreaLibrary.Models;
 using DepartmentLibrary.Models;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Data;
-using HealthCareApp.Pages.EmployeePage;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Components.Spinner;
+using MyApp.Data;
+using MyApp.Pages.EmployeePage;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
-namespace HealthCareApp.Pages.DepartmentPage
+namespace MyApp.Pages.DepartmentPage
 {
     public partial class DepartmentMain : ComponentBase
     {

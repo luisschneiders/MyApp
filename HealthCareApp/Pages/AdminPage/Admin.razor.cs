@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.AdminPage
+namespace MyApp.Pages.AdminPage
 {
 	public partial class Admin : ComponentBase
 	{

@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HealthCareApp.Components.Chart
+namespace MyApp.Components.Chart
 {
 	public interface IChartConfigDataset
 	{

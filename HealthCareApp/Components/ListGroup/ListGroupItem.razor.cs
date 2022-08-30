@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.ListGroup
+namespace MyApp.Components.ListGroup
 {
     public partial class ListGroupItem : ComponentBase
     {

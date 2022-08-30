@@ -1,9 +1,9 @@
 ﻿using System;
 using DateTimeLibrary;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.DashboardPage
+namespace MyApp.Pages.DashboardPage
 {
 	public partial class Dashboard : ComponentBase
 	{

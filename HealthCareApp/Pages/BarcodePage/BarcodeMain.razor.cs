@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.BarcodePage
+namespace MyApp.Pages.BarcodePage
 {
     public partial class BarcodeMain : ComponentBase
     {

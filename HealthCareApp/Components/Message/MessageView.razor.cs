@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Message
+namespace MyApp.Components.Message
 {
     public partial class MessageView : ComponentBase
     {

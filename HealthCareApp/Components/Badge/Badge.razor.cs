@@ -1,7 +1,7 @@
-﻿using HealthCareApp.Settings.Enum;
+﻿using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Badge
+namespace MyApp.Components.Badge
 {
     public partial class Badge
     {

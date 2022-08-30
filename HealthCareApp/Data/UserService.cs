@@ -1,6 +1,6 @@
 ﻿using System.Security.Claims;
 
-namespace HealthCareApp.Data
+namespace MyApp.Data
 {
     public class UserService
     {

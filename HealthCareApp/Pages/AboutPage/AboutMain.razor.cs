@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.AboutUsPage
+namespace MyApp.Pages.AboutUsPage
 {
 	public partial class AboutMain : ComponentBase
 	{

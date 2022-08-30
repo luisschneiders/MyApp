@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Settings.Theme;
+using MyApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.CardV3
+namespace MyApp.Components.CardV3
 {
     public partial class CardTop : ComponentBase
     {

@@ -2,7 +2,7 @@
 using LabelLibrary.Models;
 using Newtonsoft.Json;
 
-namespace HealthCareApp.Services
+namespace MyApp.Services
 {
     public class LabelService
     {

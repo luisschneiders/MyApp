@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace HealthCareApp.Migrations
+namespace MyApp.Migrations
 {
     public partial class MakeFieldBarcodeUniqueForModelLabelMop : Migration
     {

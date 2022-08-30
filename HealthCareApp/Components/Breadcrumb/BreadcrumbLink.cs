@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace HealthCareApp.Components.Breadcrumb
+namespace MyApp.Components.Breadcrumb
 {
     public class BreadcrumbLink : IBreadcrumbLink
     {

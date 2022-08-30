@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Footer
+namespace MyApp.Components.Footer
 {
 	public partial class FooterViewNotAuthorized : ComponentBase
 	{

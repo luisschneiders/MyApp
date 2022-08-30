@@ -1,9 +1,9 @@
 ﻿using System;
-using HealthCareApp.Components.Markup;
-using HealthCareApp.Shared;
+using MyApp.Components.Markup;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.PlaygroundPage
+namespace MyApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundBadge : ComponentBase
     {

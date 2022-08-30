@@ -1,9 +1,9 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace HealthCareApp.Components.Chart
+namespace MyApp.Components.Chart
 {
 	public partial class Chart : ComponentBase, IAsyncDisposable
     {

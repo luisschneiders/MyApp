@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HealthCareApp.Settings.Enum
+namespace MyApp.Settings.Enum
 {
     public enum Truncate
     {

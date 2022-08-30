@@ -1,4 +1,4 @@
-﻿namespace HealthCareApp.Components.Markup
+﻿namespace MyApp.Components.Markup
 {
     public class ComponentMarkup : IComponentMarkup
     {

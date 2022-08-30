@@ -1,10 +1,10 @@
 ﻿using System;
 using DateTimeLibrary;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Settings.Theme;
+using MyApp.Settings.Enum;
+using MyApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Dropdown
+namespace MyApp.Components.Dropdown
 {
 	public partial class DropdownDateRange : ComponentBase
 	{

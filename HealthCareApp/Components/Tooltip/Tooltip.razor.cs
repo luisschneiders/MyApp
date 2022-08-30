@@ -1,10 +1,10 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Settings.Theme;
+using MyApp.Settings.Enum;
+using MyApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace HealthCareApp.Components.Tooltip
+namespace MyApp.Components.Tooltip
 {
 	public partial class Tooltip : ComponentBase
 	{

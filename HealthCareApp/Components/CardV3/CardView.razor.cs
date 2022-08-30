@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.CardV3
+namespace MyApp.Components.CardV3
 {
     public partial class CardView : ComponentBase
     {

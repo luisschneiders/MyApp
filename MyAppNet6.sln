@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1700.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HealthCareApp", "HealthCareApp\HealthCareApp.csproj", "{A49E70EC-8027-4535-83F4-D78280DA425F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyApp", "HealthCareApp\MyApp.csproj", "{A49E70EC-8027-4535-83F4-D78280DA425F}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BaseLibrary", "BaseLibrary\BaseLibrary.csproj", "{16D5CA0A-3CAB-41E7-AD84-7A37B42D375A}"
 EndProject

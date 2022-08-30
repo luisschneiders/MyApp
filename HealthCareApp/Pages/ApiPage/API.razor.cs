@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.ApiPage
+namespace MyApp.Pages.ApiPage
 {
     public partial class API : ComponentBase
     {

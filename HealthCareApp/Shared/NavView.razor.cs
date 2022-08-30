@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Shared
+namespace MyApp.Shared
 {
     public partial class NavView : ComponentBase
     {

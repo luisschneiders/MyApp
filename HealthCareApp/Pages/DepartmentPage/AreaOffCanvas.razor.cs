@@ -2,13 +2,13 @@
 using AreaLibrary.Models;
 using DepartmentLibrary.Models;
 using EmployeeLibrary.Models;
-using HealthCareApp.Components.OffCanvas;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
+using MyApp.Components.OffCanvas;
+using MyApp.Components.Toast;
+using MyApp.Data;
+using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.DepartmentPage
+namespace MyApp.Pages.DepartmentPage
 {
     public partial class AreaOffCanvas : ComponentBase
     {

@@ -1,9 +1,9 @@
 ﻿using System;
 using DateTimeLibrary;
-using HealthCareApp.Components.Modal;
+using MyApp.Components.Modal;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.TaskPage
+namespace MyApp.Pages.TaskPage
 {
 	public partial class TaskMopUsageModalReport : ComponentBase
 	{

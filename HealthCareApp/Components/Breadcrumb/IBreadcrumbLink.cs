@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HealthCareApp.Components.Breadcrumb
+namespace MyApp.Components.Breadcrumb
 {
     public interface IBreadcrumbLink
     {

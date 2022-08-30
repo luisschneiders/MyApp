@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HealthCareApp.Components.OffCanvas
+namespace MyApp.Components.OffCanvas
 {
 	public enum OffCanvasViewType
 	{

@@ -1,4 +1,4 @@
-﻿namespace HealthCareApp.Settings.Theme
+﻿namespace MyApp.Settings.Theme
 {
     public enum Theme
     {

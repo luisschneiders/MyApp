@@ -2,7 +2,7 @@
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.BarcodePage
+namespace MyApp.Pages.BarcodePage
 {
 	public partial class ComponentBarcodeDetails : ComponentBase
 	{

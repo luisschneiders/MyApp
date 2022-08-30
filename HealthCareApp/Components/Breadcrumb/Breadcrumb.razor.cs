@@ -3,7 +3,7 @@ using System.IO;
 using System.Text;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Breadcrumb
+namespace MyApp.Components.Breadcrumb
 {
 	public partial class Breadcrumb : ComponentBase
 	{

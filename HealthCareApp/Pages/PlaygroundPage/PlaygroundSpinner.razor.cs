@@ -1,9 +1,9 @@
-﻿using HealthCareApp.Components.Markup;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Shared;
+﻿using MyApp.Components.Markup;
+using MyApp.Components.Spinner;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.PlaygroundPage
+namespace MyApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundSpinner
     {

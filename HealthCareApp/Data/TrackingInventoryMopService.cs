@@ -2,12 +2,12 @@
 using AreaLibrary.Models;
 using DateTimeLibrary;
 using DepartmentLibrary.Models;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Data
+namespace MyApp.Data
 {
 	public class TrackingInventoryMopService
 	{

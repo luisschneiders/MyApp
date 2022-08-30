@@ -1,14 +1,14 @@
 ﻿using DateTimeLibrary;
-using HealthCareApp.Components.Dropdown;
-using HealthCareApp.Components.Modal;
-using HealthCareApp.Data;
-using HealthCareApp.Pages.TaskPage;
-using HealthCareApp.Settings.Enum;
+using MyApp.Components.Dropdown;
+using MyApp.Components.Modal;
+using MyApp.Data;
+using MyApp.Pages.TaskPage;
+using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Components.Chart.MopUsage
+namespace MyApp.Components.Chart.MopUsage
 {
     public partial class ChartMopUsage : ComponentBase, IAsyncDisposable
     {

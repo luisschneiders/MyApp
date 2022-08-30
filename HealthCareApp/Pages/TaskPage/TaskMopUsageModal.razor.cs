@@ -1,13 +1,13 @@
 ﻿using System;
-using HealthCareApp.Components.Modal;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
+using MyApp.Components.Modal;
+using MyApp.Components.Toast;
+using MyApp.Data;
+using MyApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Pages.TaskPage
+namespace MyApp.Pages.TaskPage
 {
 	public partial class TaskMopUsageModal : ComponentBase
 	{

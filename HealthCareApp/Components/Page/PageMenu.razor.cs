@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Page
+namespace MyApp.Components.Page
 {
     public partial class PageMenu
     {

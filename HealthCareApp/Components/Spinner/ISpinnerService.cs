@@ -1,5 +1,5 @@
 ﻿using System;
-namespace HealthCareApp.Components.Spinner
+namespace MyApp.Components.Spinner
 {
     public interface ISpinnerService
     {

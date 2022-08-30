@@ -1,15 +1,15 @@
 ﻿using System;
 using AreaLibrary.Models;
 using DepartmentLibrary.Models;
-using HealthCareApp.Components.Modal;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
+using MyApp.Components.Modal;
+using MyApp.Components.Spinner;
+using MyApp.Components.Toast;
+using MyApp.Data;
+using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
-namespace HealthCareApp.Pages.DepartmentPage
+namespace MyApp.Pages.DepartmentPage
 {
     public partial class DepartmentModal : ComponentBase
     {

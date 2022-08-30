@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.TaskPage
+namespace MyApp.Pages.TaskPage
 {
     public partial class TodoList : ComponentBase
     {

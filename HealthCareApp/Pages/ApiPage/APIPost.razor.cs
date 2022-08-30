@@ -1,13 +1,13 @@
-﻿using HealthCareApp.Components.Spinner;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Components.Markup;
-using HealthCareApp.Services;
-using HealthCareApp.Settings.Enum;
+﻿using MyApp.Components.Spinner;
+using MyApp.Components.Toast;
+using MyApp.Components.Markup;
+using MyApp.Services;
+using MyApp.Settings.Enum;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
-using HealthCareApp.Shared;
+using MyApp.Shared;
 
-namespace HealthCareApp.Pages.ApiPage
+namespace MyApp.Pages.ApiPage
 {
     public partial class APIPost : ComponentBase
     {

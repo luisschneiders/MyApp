@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.PageV3
+namespace MyApp.Components.PageV3
 {
 	public partial class PageMiddleWrapper : ComponentBase
 	{

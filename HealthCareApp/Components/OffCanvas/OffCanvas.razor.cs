@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 
-namespace HealthCareApp.Components.OffCanvas
+namespace MyApp.Components.OffCanvas
 {
 	public partial class OffCanvas : ComponentBase
 	{

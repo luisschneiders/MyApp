@@ -1,9 +1,9 @@
-﻿using HealthCareApp.Settings.Enum;
-using HealthCareApp.Settings.Theme;
+﻿using MyApp.Settings.Enum;
+using MyApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 
-namespace HealthCareApp.Components.Popover
+namespace MyApp.Components.Popover
 {
 	public partial class Popover : ComponentBase
 	{

@@ -1,11 +1,11 @@
 ﻿using EmployeeLibrary.Models;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Data;
-using HealthCareApp.Shared;
+using MyApp.Components.Spinner;
+using MyApp.Data;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 
-namespace HealthCareApp.Pages.EmployeePage
+namespace MyApp.Pages.EmployeePage
 {
     public partial class EmployeeMain : ComponentBase
     {

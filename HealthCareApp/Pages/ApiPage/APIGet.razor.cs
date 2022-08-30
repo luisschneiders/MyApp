@@ -1,8 +1,8 @@
-﻿using HealthCareApp.Components.Markup;
-using HealthCareApp.Components.Spinner;
+﻿using MyApp.Components.Markup;
+using MyApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.ApiPage
+namespace MyApp.Pages.ApiPage
 {
     public partial class APIGet : ComponentBase
     {

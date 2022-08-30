@@ -3,7 +3,7 @@ using ContactDetailsLibrary.Models;
 using LocationLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HealthCareApp.Data
+namespace MyApp.Data
 {
     public class EmployeeService
     {

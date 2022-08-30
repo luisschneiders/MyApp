@@ -1,9 +1,9 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Spinner
+namespace MyApp.Components.Spinner
 {
     public partial class Spinner : ComponentBase, IDisposable
     {

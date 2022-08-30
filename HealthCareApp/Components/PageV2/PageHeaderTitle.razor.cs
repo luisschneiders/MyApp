@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.PageV2
+namespace MyApp.Components.PageV2
 {
 	public partial class PageHeaderTitle : ComponentBase
 	{

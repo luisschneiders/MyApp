@@ -1,11 +1,11 @@
 ﻿using System;
-using HealthCareApp.Components.Markup;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Components.Markup;
+using MyApp.Components.Toast;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.PlaygroundPage
+namespace MyApp.Pages.PlaygroundPage
 {
     public partial class PlaygroundToast : ComponentBase
     {

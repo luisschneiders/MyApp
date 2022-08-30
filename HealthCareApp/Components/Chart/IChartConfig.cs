@@ -1,7 +1,7 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 
-namespace HealthCareApp.Components.Chart
+namespace MyApp.Components.Chart
 {
 	public interface IChartConfig
     {

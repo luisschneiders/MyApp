@@ -1,9 +1,9 @@
 ﻿
 using System;
-using HealthCareApp.Settings.Theme;
+using MyApp.Settings.Theme;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Dropdown
+namespace MyApp.Components.Dropdown
 {
     public partial class DropdownActions : ComponentBase
     {

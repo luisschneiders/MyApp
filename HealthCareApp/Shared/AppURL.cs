@@ -1,7 +1,7 @@
 ﻿using System;
-using HealthCareApp.Pages.PlaygroundPage;
+using MyApp.Pages.PlaygroundPage;
 
-namespace HealthCareApp.Shared
+namespace MyApp.Shared
 {
     public class AppURL
     {

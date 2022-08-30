@@ -1,8 +1,8 @@
 ﻿using System;
-using HealthCareApp.Data;
+using MyApp.Data;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Pages.DashboardPage
+namespace MyApp.Pages.DashboardPage
 {
 	public partial class ActiveUsers : ComponentBase
 	{

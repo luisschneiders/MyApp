@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Data;
+namespace MyApp.Data;
 
 public class ApplicationDbContext : IdentityDbContext
 {

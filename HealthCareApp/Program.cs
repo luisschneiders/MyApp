@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using HealthCareApp.Areas.Identity;
-using HealthCareApp.Data;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Components.Spinner;
-using HealthCareApp.Services;
+using MyApp.Areas.Identity;
+using MyApp.Data;
+using MyApp.Components.Toast;
+using MyApp.Components.Spinner;
+using MyApp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;

@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.ListGroup
+namespace MyApp.Components.ListGroup
 {
     public partial class ListGroup : ComponentBase
     {

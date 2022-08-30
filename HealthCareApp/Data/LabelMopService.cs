@@ -4,7 +4,7 @@ using DepartmentLibrary.Models;
 using LabelLibrary.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace HealthCareApp.Data
+namespace MyApp.Data
 {
 	public class LabelMopService
 	{

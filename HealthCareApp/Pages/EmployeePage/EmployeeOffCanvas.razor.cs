@@ -1,11 +1,11 @@
 ﻿using EmployeeLibrary.Models;
-using HealthCareApp.Components.OffCanvas;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Data;
+using MyApp.Components.OffCanvas;
+using MyApp.Components.Toast;
+using MyApp.Data;
 using Microsoft.AspNetCore.Components;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 
-namespace HealthCareApp.Pages.EmployeePage
+namespace MyApp.Pages.EmployeePage
 {
 	public partial class EmployeeOffCanvas : ComponentBase
 	{

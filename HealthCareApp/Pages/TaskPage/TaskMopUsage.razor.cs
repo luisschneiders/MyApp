@@ -1,16 +1,16 @@
 ﻿using DateTimeLibrary;
-using HealthCareApp.Components.Dropdown;
-using HealthCareApp.Components.Toast;
-using HealthCareApp.Data;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Components.Dropdown;
+using MyApp.Components.Toast;
+using MyApp.Data;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using LabelLibrary.Models;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Web.Virtualization;
 using TrackingInventoryLibrary.Models;
 
-namespace HealthCareApp.Pages.TaskPage
+namespace MyApp.Pages.TaskPage
 {
     public partial class TaskMopUsage : ComponentBase
     {

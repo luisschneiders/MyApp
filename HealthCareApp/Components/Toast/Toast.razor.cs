@@ -1,9 +1,9 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
-using HealthCareApp.Shared;
+using MyApp.Settings.Enum;
+using MyApp.Shared;
 using Microsoft.AspNetCore.Components;
 
-namespace HealthCareApp.Components.Toast
+namespace MyApp.Components.Toast
 {
     public partial class Toast : ComponentBase, IDisposable
     {

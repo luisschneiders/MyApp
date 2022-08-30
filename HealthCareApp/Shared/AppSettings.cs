@@ -1,7 +1,7 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 
-namespace HealthCareApp.Shared
+namespace MyApp.Shared
 {
     public class AppSettings
     {

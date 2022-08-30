@@ -1,7 +1,7 @@
 ﻿using System;
-using HealthCareApp.Settings.Enum;
+using MyApp.Settings.Enum;
 
-namespace HealthCareApp.Components.Toast
+namespace MyApp.Components.Toast
 {
     public interface IToastService
     {
