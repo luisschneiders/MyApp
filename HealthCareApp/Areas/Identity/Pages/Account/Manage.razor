@@ -1,0 +1,29 @@
+﻿@page "/Identity/Account/Manage-New";
+@using MyApp.Components.PageV3;
+@using MyApp.Components.Breadcrumb;
+@using MyApp.Components.CardV3;
+@using MyApp.Components.Message;
+
+<div class="container-lg">
+    <AuthorizeView>
+        <Authorized>
+            <PageWrapper>
+
+                <PageTopView>
+                    <PageTopWrapper>
+                        <PageTopTitle Title="Manage your account" />
+                    </PageTopWrapper>
+                </PageTopView>
+
+                <PageMiddleView>
+                    <PageMiddleWrapper>
+
+                    </PageMiddleWrapper>
+                </PageMiddleView>
+            </PageWrapper>
+        </Authorized>
+        <NotAuthorized>
+            <NotAuthorizedMessage />
+        </NotAuthorized>
+    </AuthorizeView>
+</div>
