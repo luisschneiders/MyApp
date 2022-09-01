@@ -26,6 +26,10 @@ namespace MyApp.Shared
         public readonly string Identity;
         public readonly string IdentityAccount;
         public readonly string IdentityAccountManage;
+        public readonly string IdentityAccountManageEmail;
+        public readonly string IdentityAccountManageChangePassword;
+        public readonly string IdentityAccountManageTwoFactorAuthentication;
+        public readonly string IdentityAccountManagePersonalData;
 
         public readonly string Playground;
         public readonly string PlaygroundCard;
@@ -71,6 +75,10 @@ namespace MyApp.Shared
             Identity = "/Identity";
             IdentityAccount = $"{Identity}/Account";
             IdentityAccountManage = $"{IdentityAccount}/Manage-New";
+            IdentityAccountManageEmail = $"{IdentityAccountManage}/Email";
+            IdentityAccountManageChangePassword = $"{IdentityAccountManage}/ChangePassword";
+            IdentityAccountManageTwoFactorAuthentication = $"{IdentityAccountManage}/TwoFactorAuthentication";
+            IdentityAccountManagePersonalData = $"{IdentityAccountManage}/PersonalData";
 
             Tasks = "/tasks";
             TasksMopUsage = $"{Tasks}/mop-usage";
