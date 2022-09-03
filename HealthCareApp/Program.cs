@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Components.Authorization;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MyApp.Areas.Identity;
@@ -6,6 +6,7 @@ using MyApp.Data;
 using MyApp.Components.Toast;
 using MyApp.Components.Spinner;
 using MyApp.Services;
+using MyApp.Areas.Identity.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 var config = builder.Configuration;
