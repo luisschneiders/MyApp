@@ -103,5 +103,6 @@
     <Content Remove="wwwroot\db\app.db-shm" />
     <Content Remove="wwwroot\db\app.db-wal" />
     <Content Remove="wwwroot\icon\" />
+    <Content Remove="appsettings.Development.json" />
   </ItemGroup>
 </Project>
