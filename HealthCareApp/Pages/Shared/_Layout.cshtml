@@ -15,7 +15,7 @@
 </head>
 <body class="bg-light">
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-light border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm bg-light fixed-top">
             <div class="container-lg">
                 <a class="navbar-brand  d-flex align-items-center" href="~/">
                     <img src="/apple-touch-icon.png" alt="logo" width="28" height="28" class="rounded">
@@ -43,14 +43,15 @@
             </div>
         </nav>
     </header>
-
-    <div class="container">
-        <partial name="_CookieConsentPartial" optional />
-        <main role="main" class="pb-1">
-            @RenderBody()
-        </main>
+    <div class="main">
+        <div class="container-fluid g-0">
+            <partial name="_CookieConsentPartial" optional />
+            <main role="main">
+                @RenderBody()
+            </main>
+        </div>
     </div>
-    <footer class="footer border-top pl-3 text-muted">
+    <footer class="footer py-3 text-muted">
         <div class="container">
             @{
                 var _currentYear = DateTime.Now;
