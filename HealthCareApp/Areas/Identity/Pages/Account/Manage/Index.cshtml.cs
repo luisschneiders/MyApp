@@ -58,6 +58,9 @@ namespace MyApp.Areas.Identity.Pages.Account.Manage
             [Phone]
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
+
+            [Display(Name = "Username")]
+            public string UserName { get; set; }
         }
 
         private async Task LoadAsync(IdentityUser user)
@@ -69,6 +72,7 @@ namespace MyApp.Areas.Identity.Pages.Account.Manage
 
             Input = new InputModel
             {
+                UserName = userName,
                 PhoneNumber = phoneNumber
             };
         }
@@ -106,6 +110,16 @@ namespace MyApp.Areas.Identity.Pages.Account.Manage
                 if (!setPhoneResult.Succeeded)
                 {
                     StatusMessage = "Unexpected error when trying to set phone number.";
+                    return RedirectToPage();
+                }
+            }
+
+            if (Input.UserName != user.UserName)
+            {
+                var setUsernameResult = await _userManager.SetUserNameAsync(user, Input.UserName);
+                if (!setUsernameResult.Succeeded)
+                {
+                    StatusMessage = "Unexpected error when trying to set Username.";
                     return RedirectToPage();
                 }
             }
