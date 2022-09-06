@@ -59,6 +59,7 @@ namespace MyApp.Areas.Identity.Pages.Account.Manage
             [Display(Name = "Phone number")]
             public string PhoneNumber { get; set; }
 
+            [Required]
             [Display(Name = "Username")]
             public string UserName { get; set; }
         }
