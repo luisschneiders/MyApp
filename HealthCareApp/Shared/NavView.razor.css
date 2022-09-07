@@ -8,12 +8,6 @@
     box-shadow: 0 0 0 0.05rem;
 }
 
-.navbar-brand {
-    display: flex;
-    align-items: center;
-    color: #9f2b2c;
-}
-
 .navbar-brand-title {
     display: none;
 }

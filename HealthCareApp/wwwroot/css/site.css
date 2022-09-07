@@ -1,6 +1,28 @@
 ﻿html, body {
     height: 100%;
 }
+.main {
+    padding-top: 58px;
+    background-color: #efefef;
+}
+.hero-section, .hero-signin {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.hero-section-left, .hero-section-right {
+    width: 100%;
+    height: 50vh;
+}
+.hero-signin-left, .hero-signin-right {
+    width: 100%;
+}
+.hero-bg-default {
+    background-color: #fffcf1;
+}
+.hero-signin-register {
+
+}
 .btn-default {
     --bs-btn-color: var(--bs-white);
     --bs-btn-bg: var(--bs-purple);
@@ -266,7 +288,14 @@ a.hca-box-shadow:hover {
     .content {
         width: calc(100% - 1.5rem);
     }
+    .hero-section, .hero-signin {
+        flex-direction: row;
+    }
 
+    .hero-section-left, .hero-section-right, .hero-signin-left, .hero-signin-right {
+        width: 50%;
+        height: calc(100vh - 58px);
+    }
 }
 @media (min-width: 1200px) {
     .flex-container {

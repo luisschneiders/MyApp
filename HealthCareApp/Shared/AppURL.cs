@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Security.Principal;
 using MyApp.Pages.PlaygroundPage;
 
 namespace MyApp.Shared
@@ -21,6 +22,14 @@ namespace MyApp.Shared
         public readonly string APIPost;
         public readonly string APIPut;
         public readonly string APIDelete;
+
+        public readonly string Identity;
+        public readonly string IdentityAccount;
+        public readonly string IdentityAccountManage;
+        public readonly string IdentityAccountManageEmail;
+        public readonly string IdentityAccountManageChangePassword;
+        public readonly string IdentityAccountManageTwoFactorAuthentication;
+        public readonly string IdentityAccountManagePersonalData;
 
         public readonly string Playground;
         public readonly string PlaygroundCard;
@@ -62,6 +71,14 @@ namespace MyApp.Shared
             PlaygroundToast = $"{Playground}/toast";
             PlaygroundBadge = $"{Playground}/badge";
             PlaygroundSpinner = $"{Playground}/spinner";
+
+            Identity = "/Identity";
+            IdentityAccount = $"{Identity}/Account";
+            IdentityAccountManage = $"{IdentityAccount}/Manage-New";
+            IdentityAccountManageEmail = $"{IdentityAccountManage}/Email";
+            IdentityAccountManageChangePassword = $"{IdentityAccountManage}/ChangePassword";
+            IdentityAccountManageTwoFactorAuthentication = $"{IdentityAccountManage}/TwoFactorAuthentication";
+            IdentityAccountManagePersonalData = $"{IdentityAccountManage}/PersonalData";
 
             Tasks = "/tasks";
             TasksMopUsage = $"{Tasks}/mop-usage";
