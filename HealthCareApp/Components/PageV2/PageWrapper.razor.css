@@ -1,9 +1,0 @@
-﻿.page-wrapper {
-}
-
-@media (min-width: 992px) {
-    .page-wrapper {
-        display: flex;
-        flex-direction: column;
-    }
-}
