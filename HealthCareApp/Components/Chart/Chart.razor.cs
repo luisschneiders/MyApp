@@ -48,7 +48,7 @@ namespace MyApp.Components.Chart
 
                 _chartConfig = new ChartConfig
                 {
-                    Type = ChartType.Bar.ToString().ToLower(),
+                    Type = ChartType.ToString().ToLower(),
                     Data = new ChartConfigData
                     {
                         Labels = Labels,
