@@ -1,108 +1,119 @@
 ﻿@page "/api/get"
 @using MyApp.Components.Message
-@using MyApp.Components.Page
+@using MyApp.Components.PageV3
 @using MyApp.Components.Spinner
 @using MyApp.Components.Badge
 @using MyApp.Settings.Enum
+@using MyApp.Components.Breadcrumb
 
 <AuthorizeView>
     <Authorized>
         <PageWrapper>
-            <PageHeader>
-                <PageHeaderTitle Title="API - Get"></PageHeaderTitle>
-                <PageMenu />
-            </PageHeader>
-            <PageBody>
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                            <p>
-                                <h4 class="hca-app-title">How to use</h4>
-                                <hr />
-                            </p>
-                            @foreach (var markupString in _componentMarkupList)
-                            {
-                                <div>
-                                    <h5>@markupString.Title</h5>
+            <PageTopView>
+                <PageTopWrapper>
 
-                                    @foreach (var item in markupString.Code)
+                    <PageTopTitle Title="API Get" />
+                    <Breadcrumb AppPageLink="@_appURL.APIGet" />
+
+                </PageTopWrapper>
+            </PageTopView>
+            <PageMiddleView>
+                <PageMiddleWrapper>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <p>
+                                    <h4 class="hca-app-title">How to use</h4>
+                                    <hr />
+                                </p>
+                                @foreach (var markupString in _componentMarkupList)
+                                {
+                                    <div>
+                                        <h5>@markupString.Title</h5>
+
+                                        @foreach (var item in markupString.Code)
+                                        {
+                                            <p class="highlight p-2">
+                                                <code>@item</code>
+                                            </p>
+                                        }
+                                    </div>
+                                }
+                                <form>
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-4">
+                                            <label class="col-form-label"
+                                                   for="scope">
+                                                Get languages
+                                            </label>
+                                        </div>
+                                        <div class="col-4 offset-4">
+                                            <button type="button"
+                                                    class="btn btn-primary"
+                                                    @onclick="() => GetLanguages()">
+                                                Test endpoint
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <hr />
+                                    <div class="row g-3 align-items-center">
+                                        <div class="col-4">
+                                            <label class="col-form-label"
+                                                   for="scope">
+                                                Select scope language
+                                            </label>
+                                        </div>
+                                        <div class="col-4">
+                                            <select class="form-select form-control"
+                                                    aria-label="Select scope"
+                                                    @bind="_selectedScope">
+                                                <option value="1" selected>Dictionary</option>
+                                                <option value="2">Translation</option>
+                                                <option value="3">Transliteration</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-4">
+                                            <button type="button"
+                                                    disabled="@_isDisabled"
+                                                    class="btn btn-primary"
+                                                    @onclick="() => GetLanguagesByScope()">
+                                                Test endpoint
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-6 markup-background rounded">
+                                <p>
+                                    <h4 class="text-black-50">Example</h4>
+                                    <hr />
+                                </p>
+                                <div>
+                                    <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                        <Spinner Size="Size.md" />
+                                    </div>
+                                    @if (_getLanguagesError)
                                     {
-                                        <p class="highlight p-2">
-                                            <code>@item</code>
-                                        </p>
+                                        <div class="d-flex flex-column justify-content-evenly align-items-center">
+                                            <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to get languages. Please try again later!' />
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <code>
+                                            @_languages
+                                        </code>
                                     }
                                 </div>
-                            }
-                            <form>
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-4">
-                                        <label class="col-form-label"
-                                               for="scope">
-                                            Get languages
-                                        </label>
-                                    </div>
-                                    <div class="col-4 offset-4">
-                                        <button type="button"
-                                                class="btn btn-primary"
-                                                @onclick="() => GetLanguages()">
-                                            Test endpoint
-                                        </button>
-                                    </div>
-                                </div>
-                                <hr />
-                                <div class="row g-3 align-items-center">
-                                    <div class="col-4">
-                                        <label class="col-form-label"
-                                               for="scope">
-                                            Select scope language
-                                        </label>
-                                    </div>
-                                    <div class="col-4">
-                                        <select class="form-select form-control"
-                                                aria-label="Select scope"
-                                                @bind="_selectedScope">
-                                            <option value="1" selected>Dictionary</option>
-                                            <option value="2">Translation</option>
-                                            <option value="3">Transliteration</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-4">
-                                        <button type="button"
-                                                disabled="@_isDisabled"
-                                                class="btn btn-primary"
-                                                @onclick="() => GetLanguagesByScope()">
-                                            Test endpoint
-                                        </button>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="col-6 markup-background rounded">
-                            <p>
-                                <h4 class="text-black-50">Example</h4>
-                                <hr />
-                            </p>
-                            <div>
-                                <div class="d-flex flex-column justify-content-evenly align-items-center">
-                                    <Spinner Size="Size.md" />
-                                </div>
-                                @if (_getLanguagesError)
-                                {
-                                    <div class="d-flex flex-column justify-content-evenly align-items-center">
-                                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()" Message='Unable to get languages. Please try again later!' />
-                                    </div>
-                                }
-                                else
-                                {
-                                    <code>
-                                        @_languages
-                                    </code>
-                                }
                             </div>
                         </div>
                     </div>
-                </div>
-            </PageBody>
+                </PageMiddleWrapper>
+            </PageMiddleView>
+
+            <PageBottomView>
+                <PageBottomWrapper />
+            </PageBottomView>
         </PageWrapper>
     </Authorized>
     <NotAuthorized>

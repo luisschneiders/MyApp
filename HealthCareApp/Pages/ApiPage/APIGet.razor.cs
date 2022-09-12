@@ -1,6 +1,7 @@
 ﻿using MyApp.Components.Markup;
 using MyApp.Components.Spinner;
 using Microsoft.AspNetCore.Components;
+using MyApp.Shared;
 
 namespace MyApp.Pages.ApiPage
 {
@@ -24,6 +25,7 @@ namespace MyApp.Pages.ApiPage
 
         private bool _getLanguagesError;
         private bool _isDisabled { get; set; }
+        private AppURL _appURL { get; }
 
 
         public APIGet()
@@ -37,6 +39,7 @@ namespace MyApp.Pages.ApiPage
             _route = "api/v1/Languages";
             _languages = string.Empty;
             _selectedScope = 1;
+            _appURL = new();
 
         }
 

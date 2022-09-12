@@ -2,6 +2,7 @@
 using ContactDetailsLibrary.Models;
 using LocationLibrary.Models;
 using Microsoft.EntityFrameworkCore;
+using static MyApp.Components.Chart.User.ChartUsers;
 
 namespace MyApp.Data
 {
@@ -161,18 +162,27 @@ namespace MyApp.Data
             }
         }
 
-        public async Task<int> CountActiveEmployeeAsync()
+        public async Task<EmployeeCountDto> CountEmployeeAsync()
         {
             UserService userService = new UserService(_httpContextAccessor);
-
-            int countUsers =
+            
+            var query =
                 (
                     from employee in _applicationDbContext.Set<Employee>()
-                    where employee.IsActive == true
-                    select new { employee }
-                ).AsNoTracking().Count();
+                    group employee by 1 into g
+                    select new {
+                        active = g.Sum(e => e.IsActive == true ? 1 : 0),
+                        inactive = g.Sum(e => e.IsActive != true ? 1 : 0)
+                    }
+                ).AsNoTracking().FirstOrDefault();
 
-            return await Task.FromResult(countUsers);
+            EmployeeCountDto employeeCountDto = new()
+            {
+                Active = query!.active,
+                Inactive = query!.inactive
+            };
+
+            return await Task.FromResult(employeeCountDto);
         }
 
         /*
@@ -311,5 +321,6 @@ namespace MyApp.Data
 
             return employeeListDto;
         }
+
     }
 }
