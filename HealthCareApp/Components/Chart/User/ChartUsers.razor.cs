@@ -26,19 +26,18 @@ namespace MyApp.Components.Chart.User
 		{
             _chartBackgroundColors = new()
             {
+                BackgroundColor.Green,
                 BackgroundColor.Yellow,
-                BackgroundColor.Green
-
             };
             _chartBorderColors = new()
             {
+                BorderColor.Green,
                 BorderColor.Yellow,
-                BorderColor.Green
             };
             _chartLabels = new()
             {
-                Users.Inactive.ToString(),
                 Users.Active.ToString(),
+                Users.Inactive.ToString(),
             };
             _chartData = new();
 
