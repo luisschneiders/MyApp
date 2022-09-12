@@ -35,6 +35,7 @@
     <None Remove="Components\Chart\MopUsage\" />
     <None Remove="Components\Nav\" />
     <None Remove="Swashbuckle.AspNetCore" />
+    <None Remove="Components\Chart\User\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.8" />
@@ -98,6 +99,7 @@
     <Folder Include="Reports\" />
     <Folder Include="Components\Chart\MopUsage\" />
     <Folder Include="Components\Nav\" />
+    <Folder Include="Components\Chart\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Remove="wwwroot\db\app.db-shm" />

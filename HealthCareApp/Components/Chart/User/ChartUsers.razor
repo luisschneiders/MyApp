@@ -1,0 +1,33 @@
+﻿@using MyApp.Components.CardV3;
+@using MyApp.Components.Badge;
+@using MyApp.Components.Dropdown;
+@using MyApp.Settings.Enum;
+@using MyApp.Settings.Theme;
+
+@inject IJSRuntime JS;
+
+<CardView>
+    <CardMiddle>
+        <div class="row justify-content-between">
+            <div class="col-auto">
+                <h6 class="text-uppercase">
+                    Users
+                    <sup>
+                        <Badge BackgroundColor="@Level.Success.ToString().ToLower()"
+                               Message="New" />
+                    </sup>
+                </h6>
+            </div>
+            <div class="col-auto">
+                <i class="bi bi-person-check display-6 text-info"></i>
+            </div>
+        </div>
+        <Chart ChartId="Users"
+               ChartType="ChartType.Bar"
+               LabelTitle="Users"
+               Data="@(_chartData)"
+               BackgroundColor="@(_chartBackgroundColors)"
+               BorderColor="@(_chartBorderColors)"
+               Labels="@(_chartLabels)" />
+    </CardMiddle>
+</CardView>
