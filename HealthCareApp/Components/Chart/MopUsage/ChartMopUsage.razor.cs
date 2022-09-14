@@ -7,6 +7,7 @@ using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
 using TrackingInventoryLibrary.Models;
+using System;
 
 namespace MyApp.Components.Chart.MopUsage
 {
@@ -26,10 +27,10 @@ namespace MyApp.Components.Chart.MopUsage
         private List<string> _chartData { get; set; }
 
         private IJSObjectReference? _chartModule;
+        private IJSObjectReference? _chartObjectReference;
 
         public ChartMopUsage()
         {
-
             _chartBackgroundColors = new()
             {
                 BackgroundColor.Red,
@@ -83,7 +84,7 @@ namespace MyApp.Components.Chart.MopUsage
             _chartData = new();
 
             await SetChartData();
-            await _chartModule!.InvokeVoidAsync("updateChartData", _chartData);
+            await _chartModule!.InvokeVoidAsync("updateChartData", _chartObjectReference, _chartData);
             await Task.CompletedTask;
         }
 
