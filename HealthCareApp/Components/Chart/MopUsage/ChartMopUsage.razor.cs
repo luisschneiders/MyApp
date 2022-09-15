@@ -88,12 +88,25 @@ namespace MyApp.Components.Chart.MopUsage
             await Task.CompletedTask;
         }
 
+        private async Task SetChartObjectReference(IJSObjectReference chartObjectReference)
+        {
+            _chartObjectReference = chartObjectReference;
+
+            await Task.FromResult(_chartModule!.InvokeVoidAsync("updateChartData", _chartObjectReference, _chartData));
+            await Task.CompletedTask;
+        }
+
         async ValueTask IAsyncDisposable.DisposeAsync()
         {
 
             if (_chartModule is not null)
             {
                 await _chartModule.DisposeAsync();
+            }
+
+            if (_chartObjectReference is not null)
+            {
+                await _chartObjectReference.DisposeAsync();
             }
         }
 

@@ -29,8 +29,11 @@ namespace MyApp.Components.Chart
         [Parameter]
         public List<string> Labels { get; set; } = default!;
 
+        [Parameter]
+        public EventCallback<IJSObjectReference> OnSubmitSuccess { get; set; }
+
         private IJSObjectReference? _chartModule;
-        private IJSObjectReference? _chart;
+        public IJSObjectReference? ChartObjectReference;
 
         private ChartConfig _chartConfig { get; set; }
 
@@ -69,9 +72,9 @@ namespace MyApp.Components.Chart
 
                 _chartModule = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Chart/Chart.razor.js");
 
-                _chart = await _chartModule.InvokeAsync<IJSObjectReference>("setupChart", Id, _chartConfig);
+                ChartObjectReference = await _chartModule.InvokeAsync<IJSObjectReference>("setupChart", Id, _chartConfig);
 
-                Console.WriteLine("LFS - chart: " + _chart);
+                await OnSubmitSuccess.InvokeAsync(ChartObjectReference);
 
                 StateHasChanged();
             }
@@ -87,9 +90,9 @@ namespace MyApp.Components.Chart
                 await _chartModule.DisposeAsync();
             }
 
-            if (_chart is not null)
+            if (ChartObjectReference is not null)
             {
-                await _chart.DisposeAsync();
+                await ChartObjectReference.DisposeAsync();
             }
         }
     }
