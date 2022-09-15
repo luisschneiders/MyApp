@@ -1,12 +1,11 @@
-﻿let chart = {};
-
-export function setupChart(chartId, config) {
+﻿export function setupChart(chartId, config) {
     const ctx = document.getElementById(chartId).getContext('2d');
+    const chart = new Chart(ctx, config);
 
-    chart = new Chart(ctx, config);
+    return chart;
 }
 
-export function updateChartData(data) {
+export function updateChartData(chart, data) {
     chart.data.datasets.forEach((dataset) => {
         dataset.data = data;
     });
@@ -14,7 +13,7 @@ export function updateChartData(data) {
     chart.update();
 }
 
-export function removeChartData() {
+export function removeChartData(chart) {
     chart.data.datasets.forEach((dataset) => {
         dataset.data = [];
     });

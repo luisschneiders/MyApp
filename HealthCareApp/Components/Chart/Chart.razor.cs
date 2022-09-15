@@ -2,19 +2,20 @@
 using MyApp.Settings.Enum;
 using Microsoft.AspNetCore.Components;
 using Microsoft.JSInterop;
+using System.Security.Cryptography;
 
 namespace MyApp.Components.Chart
 {
 	public partial class Chart : ComponentBase, IAsyncDisposable
     {
         [Parameter]
-		public string ChartId { get; set; }
+		public string Id { get; set; }
 
         [Parameter]
-        public string LabelTitle { get; set; }
+        public string Title { get; set; }
 
 		[Parameter]
-		public ChartType ChartType { get; set; }
+		public ChartType Type { get; set; }
 
         [Parameter]
 		public List<string> Data { get; set; } = default!;
@@ -28,16 +29,19 @@ namespace MyApp.Components.Chart
         [Parameter]
         public List<string> Labels { get; set; } = default!;
 
+        [Parameter]
+        public EventCallback<IJSObjectReference> OnSubmitSuccess { get; set; }
+
         private IJSObjectReference? _chartModule;
+        private IJSObjectReference? _chartObjectReference;
 
         private ChartConfig _chartConfig { get; set; }
 
         public Chart()
 		{
-            LabelTitle = string.Empty;
-            ChartId = string.Empty;
-			ChartType = ChartType.Bar;
-
+            Id = string.Empty;
+            Title = string.Empty;
+			Type = ChartType.Bar;
             _chartConfig = new();
 		}
 
@@ -45,10 +49,9 @@ namespace MyApp.Components.Chart
         {
             if (firstRender)
             {
-
                 _chartConfig = new ChartConfig
                 {
-                    Type = ChartType.ToString().ToLower(),
+                    Type = Type.ToString().ToLower(),
                     Data = new ChartConfigData
                     {
                         Labels = Labels,
@@ -56,7 +59,7 @@ namespace MyApp.Components.Chart
                         {
                             new ChartConfigDataset
                             {
-                                Label = LabelTitle,
+                                Label = Title,
                                 Data = Data,
                                 BackgroundColor = BackgroundColor,
                                 BorderColor = BorderColor,
@@ -69,7 +72,9 @@ namespace MyApp.Components.Chart
 
                 _chartModule = await JS.InvokeAsync<IJSObjectReference>("import", "./Components/Chart/Chart.razor.js");
 
-                await _chartModule.InvokeVoidAsync("setupChart", ChartId, _chartConfig);
+                _chartObjectReference = await _chartModule.InvokeAsync<IJSObjectReference>("setupChart", Id, _chartConfig);
+
+                await OnSubmitSuccess.InvokeAsync(_chartObjectReference);
             }
 
             await Task.CompletedTask;
@@ -81,6 +86,11 @@ namespace MyApp.Components.Chart
             if (_chartModule is not null)
             {
                 await _chartModule.DisposeAsync();
+            }
+
+            if (_chartObjectReference is not null)
+            {
+                await _chartObjectReference.DisposeAsync();
             }
         }
     }

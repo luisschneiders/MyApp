@@ -10,6 +10,6 @@ namespace MyApp.Settings.Enum
         Pie,
         PolarArea,
         Radar,
-        Scatter
+        Scatter,
     }
 }
