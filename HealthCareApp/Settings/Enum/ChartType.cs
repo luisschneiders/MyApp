@@ -11,10 +11,5 @@ namespace MyApp.Settings.Enum
         PolarArea,
         Radar,
         Scatter,
-        /*
-         * Below properties at temporary
-         */
-        BarHorizontal,
-        BarVertical,
     }
 }

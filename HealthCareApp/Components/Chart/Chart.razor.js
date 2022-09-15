@@ -5,18 +5,18 @@
     return chart;
 }
 
-export function updateChartData(_chartObjectReference, data) {
-    _chartObjectReference.data.datasets.forEach((dataset) => {
+export function updateChartData(chart, data) {
+    chart.data.datasets.forEach((dataset) => {
         dataset.data = data;
     });
 
-    _chartObjectReference.update();
+    chart.update();
 }
 
-export function removeChartData(_chartObjectReference) {
-    _chartObjectReference.data.datasets.forEach((dataset) => {
+export function removeChartData(chart) {
+    chart.data.datasets.forEach((dataset) => {
         dataset.data = [];
     });
 
-    _chartObjectReference.update();
+    chart.update();
 }
