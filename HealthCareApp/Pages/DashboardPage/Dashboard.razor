@@ -29,7 +29,27 @@
                             <div class="col-sm-12 col-md-4 d-flex flex-sm-column flex-md-row justify-content-center">
                                 <ChartMopUsage DateTimeRange="@_dateTimeRange" />
                             </div>
+                            <div class="col-sm-12 col-md-4 d-flex flex-sm-column flex-md-row justify-content-center">
+                                <CardView Styles="w-100">
+                                    <CardMiddle>
+                                        <div class="row justify-content-between">
+                                            <div class="col-auto">
+                                                <h6 class="text-uppercase">
+                                                    Feeds
+                                                    <sup>
+                                                        <Badge BackgroundColor="@Level.Danger.ToString().ToLower()"
+                                                               Message="Coming soon" />
+                                                    </sup>
+                                                </h6>
+                                            </div>
+                                            <div class="col-auto">
+                                                <i class="bi bi-rss display-6 text-primary"></i>
+                                            </div>
+                                        </div>
 
+                                    </CardMiddle>
+                                </CardView>
+                            </div>
                         </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
