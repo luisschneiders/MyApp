@@ -3,8 +3,10 @@
 @using MyApp.Components.CardV3;
 @using MyApp.Components.PageV3;
 @using MyApp.Components.Breadcrumb;
+@using MyApp.Components.Badge;
 @using MyApp.Components.Chart.MopUsage;
 @using MyApp.Components.Chart.User;
+@using MyApp.Settings.Enum;
 
 <div class="container-lg">
     <AuthorizeView>
@@ -21,13 +23,13 @@
                 <PageMiddleView>
                     <PageMiddleWrapper>
                         <div class="row g-3">
-                            <div class="col-sm-12 col-md-2"></div>
                             <div class="col-sm-12 col-md-4 d-flex flex-sm-column flex-md-row justify-content-center">
                                 <ChartUsers />
                             </div>
                             <div class="col-sm-12 col-md-4 d-flex flex-sm-column flex-md-row justify-content-center">
                                 <ChartMopUsage DateTimeRange="@_dateTimeRange" />
                             </div>
+
                         </div>
                     </PageMiddleWrapper>
                 </PageMiddleView>
